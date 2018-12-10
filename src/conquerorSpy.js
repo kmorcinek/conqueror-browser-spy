@@ -77,14 +77,14 @@ function updateProvinces() {
 
 var livoniaHistory = [];
 
-function checkHistory(livoniaHistory) {
+function checkHistory(history) {
     // population 3 is longer than x (5?) => developing
     // -start from last one
-    var last = livoniaHistory[livoniaHistory.length - 1];
+    var last = history[history.length - 1];
     if (last.population === "3") {
         var counter = 0;
-        for (var i = livoniaHistory.length - 2; i > -1; i--) {
-            if (livoniaHistory[i].population === "3") {
+        for (var i = history.length - 2; i > -1; i--) {
+            if (history[i].population === "3") {
                 counter++;
             } 
         }

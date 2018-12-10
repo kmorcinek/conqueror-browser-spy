@@ -114,6 +114,8 @@ na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a nast
 
 !Wrócić do ProvinceSpy zeby było wiadomo co neutralne budują.
 - gdzie to wpisywać
+  - można w 'pop_roma'
+  - czy tooltip podziała?
 - ostrzegać gdy jest pewne że 3 buduje development
   - historie każdej tury 
 
