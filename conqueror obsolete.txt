@@ -1,2 +1,28 @@
 conqueror obsolete:
 
+var populationSelector = "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldInfoMain";
+
+function getPopulation() {
+	return parseInt($(populationSelector)[0].firstChild.data);
+}
+
+var cultureSelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldInfoMain > span:nth-child(3)';
+
+function getCulture() {
+	return $(cultureSelector)[0].firstChild.data;
+}
+
+var countryDetails = {
+	country: getCountry(),
+	population: getPopulation(),
+	culture: getCulture()
+};
+
+
+http://www.conquerorgame.com/teams/1.7.3/map/europe_1000/map_europe.svg
+
+
+gdy nie widzimy provincji do 'prod_' jest ukryte (hidden):
+<image id="prod_livonia" class="prod" height="12" width="12" x="618.4375" y="284" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="../common/images/icon_castle_kind.png" visibility="hidden" transform="translate(319,146.5)"/>
+
+

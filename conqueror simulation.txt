@@ -59,7 +59,6 @@ var gold = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFiel
 var goldV = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldProdWrapper > div.fieldProps > div.fieldProp.fieldProp2.fieldPropGold > div.fieldPropValue')
 
 
-
 var end = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.cap.type_default > div > div.fieldProdWrapper > div.fieldProdBuy.multi > div.buttonWrapper > div.fieldProdBuyButton.fieldProdBuyButton1');
 
 
@@ -118,3 +117,4 @@ na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a nast
 - ostrzegać gdy jest pewne że 3 buduje development
   - historie każdej tury 
 
+  populationItem.textContent = "(devel) 3°°";

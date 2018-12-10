@@ -21,6 +21,10 @@ function getCountryDetails(countryName)
     var productionId = "prod_" + countryName.toLowerCase();
     var productionItem = svgDoc.getElementById(productionId);
     var production = productionItem.getAttribute("xlink:href");
+    var isHidden = productionItem.getAttribute("visibility") === "hidden";
+    if (isHidden) {
+        production = "";
+    }
 
     var countryDetails = {
         country: countryName,
@@ -51,8 +55,23 @@ function refreshTurn() {
     if (turn !== lastTurn) {
         lastTurn = turn;
         console.log("New turn: ", lastTurn);
+        updateProvinces();
     }
 }
 
-var mytimer = setInterval(refreshTurn, 500);
-//clearInterval(mytimer);
+var refrestTurnInterval;
+clearInterval(refrestTurnInterval);
+refrestTurnInterval = setInterval(refreshTurn, 500);
+
+function updateProvinces() {
+    var provinceName = 'Livonia';
+
+    var province = getCountryDetails(provinceName);
+
+    console.log("Province:", province);
+
+    livoniaHistory.push(province);
+}
+
+var livoniaHistory = [];
+
