@@ -43,3 +43,16 @@ poland
 // #prod_crete
 // < image id = "prod_crete" class="prod" height = "12" width = "12" x = "738.4375" y = "659" xlink:href = "../common/images/icon_unit.png" visibility = "inherit" transform = "translate(242.56000000000006,213.76)" />
 // icon_farm.png, icon_unit.png, gold, culture, castle_kind, diplomat,
+
+var lastTurn = 0;
+
+function refreshTurn() {
+    var turn = getTurn();
+    if (turn !== lastTurn) {
+        lastTurn = turn;
+        console.log("New turn: ", lastTurn);
+    }
+}
+
+var mytimer = setInterval(refreshTurn, 500);
+//clearInterval(mytimer);

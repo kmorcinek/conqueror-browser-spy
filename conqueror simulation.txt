@@ -106,15 +106,15 @@ var mytimer = setInterval(updateName, 5000);
 clearInterval(mytimer);
 
 
-
-
 #info_roma    
 		
 
-	
 Zrobić przypominacza o najlepszej budowie.
 
 na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a następnie po zmianie country, zczytywać nowe budowania (ale może te nowe production nie sa takie ważne?!).
 
-
+!Wrócić do ProvinceSpy zeby było wiadomo co neutralne budują.
+- gdzie to wpisywać
+- ostrzegać gdy jest pewne że 3 buduje development
+  - historie każdej tury 
 
