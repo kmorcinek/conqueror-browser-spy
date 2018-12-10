@@ -124,12 +124,6 @@ var countryDetails = {
 	culture: getCulture()
 };
 
-var turnSelector = '#gameWrapper > div > div.area.areaT > div.area.areaTM > div > div > div > div.turnInfo > div > span.turnCount';
-
-function getTurn() {
-	return parseInt($(turnSelector).text().substring(5));
-}
-
 z mapy można wyczytać status kraju.
 
 
@@ -144,5 +138,7 @@ z mapy można wyczytać status kraju.
 	
 Zrobić przypominacza o najlepszej budowie.
 
-Zrobić aktualny zrzut jednej prowincji.
-- (bez prowincji)
+
+<object class="svgMap" data="1.7.3/map/europe_1000/map_europe.svg" type="image/svg+xml" style="overflow: hidden; display: block; height: 1046px; width: 1360px; top: -536.124px; left: -112px;"></object>
+
+
