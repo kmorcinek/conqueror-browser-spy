@@ -64,15 +64,21 @@ clearInterval(refrestTurnInterval);
 refrestTurnInterval = setInterval(refreshTurn, 500);
 
 function updateProvinces() {
-    var provinceName = 'Livonia';
+    console.log('updateProvinces()')
+    var provinces = ['Livonia', 'Brandenburg', 'Hungary'];
 
-    var province = getCountryDetails(provinceName);
+    for (var i = 0; i < provinces.length; i++) {
+        var provinceName = provinces[i];
+        
+        console.log('updateProvinces()[]', provinceName)
+        var province = getCountryDetails(provinceName);
 
-    console.log("Province:", province);
+        console.log("Province:", province);
 
-    livoniaHistory.push(province);
+        //livoniaHistory.push(province);
 
-    checkHistory(livoniaHistory);
+        //checkHistory(livoniaHistory);
+    }
 }
 
 var livoniaHistory = [];
