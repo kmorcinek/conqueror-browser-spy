@@ -27,7 +27,7 @@ function getCountryDetails(countryName)
     }
 
     var countryDetails = {
-        country: countryName,
+        name: countryName,
         population: populationItem.textContent,
         culture: populationItem.className.animVal,
         production: production
@@ -90,7 +90,7 @@ function checkHistory(history) {
         }
 
         if (counter > 1) {
-            alert("livonia is developing");
+            alert(last.name + " is developing");
         }
     }
 }
