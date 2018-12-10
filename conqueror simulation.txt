@@ -106,39 +106,15 @@ var mytimer = setInterval(updateName, 5000);
 clearInterval(mytimer);
 
 
-var populationSelector = "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldInfoMain";
-
-function getPopulation() {
-	return parseInt($(populationSelector)[0].firstChild.data);
-}
-
-var cultureSelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldInfoMain > span:nth-child(3)';
-
-function getCulture() {
-	return $(cultureSelector)[0].firstChild.data;
-}
-
-var countryDetails = {
-	country: getCountry(),
-	population: getPopulation(),
-	culture: getCulture()
-};
-
-z mapy można wyczytać status kraju.
 
 
-#pop_roma
-#info_roma
-
-<text id="pop_wallachia" x="696.546875" y="490" visibility="inherit" transform="translate(220.79999999999995,157.44000000000005)" class="dev">3°°</text>
-	    
+#info_roma    
 		
-#prod_crete
-<image id="prod_crete" class="prod" height="12" width="12" x="738.4375" y="659" xlink:href="../common/images/icon_unit.png" visibility="inherit" transform="translate(242.56000000000006,213.76)"/>
+
 	
 Zrobić przypominacza o najlepszej budowie.
 
+na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a następnie po zmianie country, zczytywać nowe budowania (ale może te nowe production nie sa takie ważne?!).
 
-<object class="svgMap" data="1.7.3/map/europe_1000/map_europe.svg" type="image/svg+xml" style="overflow: hidden; display: block; height: 1046px; width: 1360px; top: -536.124px; left: -112px;"></object>
 
 

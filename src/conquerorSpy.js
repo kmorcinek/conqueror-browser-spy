@@ -15,17 +15,21 @@ function getCountryDetails(countryName)
     // Get the SVG document inside the Object tag
     var svgDoc = a.contentDocument;
 
-    var id = "pop_" + countryName.toLowerCase();
-    // Get one of the SVG items by ID;
-    var svgItem = svgDoc.getElementById(id);
+    var populationId = "pop_" + countryName.toLowerCase();
+    var populationItem = svgDoc.getElementById(populationId);
     
+    var productionId = "prod_" + countryName.toLowerCase();
+    var productionItem = svgDoc.getElementById(productionId);
+    var production = productionItem.getAttribute("xlink:href");
+
     var countryDetails = {
         country: countryName,
-        population: svgItem.textContent,
-        culture: svgItem.className.animVal
+        population: populationItem.textContent,
+        culture: populationItem.className.animVal,
+        production: production
     };
 
-    console.log(svgItem);
+    console.log(populationItem);
 
     return countryDetails;
 }
@@ -35,3 +39,7 @@ poland
 
 // TODO: animVal vs baseVal?
 //svgItem.className.animVal
+
+// #prod_crete
+// < image id = "prod_crete" class="prod" height = "12" width = "12" x = "738.4375" y = "659" xlink:href = "../common/images/icon_unit.png" visibility = "inherit" transform = "translate(242.56000000000006,213.76)" />
+// icon_farm.png, icon_unit.png, gold, culture, castle_kind, diplomat,
