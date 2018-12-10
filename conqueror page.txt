@@ -1,0 +1,404 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="user-scalable=no, height=device-height, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <meta property="og:url" content="http://conqueror.strategymania.com">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Conqueror Strategy Game">
+    <meta property="og:description" content="Simple turn-based strategy game similar to risk and civilisation. Simultaneous 1-minute-turns support quick multi-player games. Play ffa or competitive team games.">
+    <meta property="og:image" content="https://strategymania.com/images/maps/conq_europe_big.jpg">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@strategy_mania">
+    <meta name="twitter:title" content="Conqueror Strategy Game">
+    <meta name="twitter:description" content="Simple turn-based strategy game similar to risk and civilisation. Simultaneous 1-minute-turns support quick multi-player games. Play ffa or competitive team games.">
+    <meta name="twitter:image" content="https://strategymania.com/images/maps/conq_europe_big.jpg">
+
+    <title>Conqueror</title>
+
+    <style type="text/css" media="all">
+        @import "//conqueror.strategymania.com/1.7.3/css/app.css";
+        @import "//conqueror.strategymania.com/1.7.3/css/lobby.css";
+        @import "//conqueror.strategymania.com/1.7.3/css/conq.css";
+        @import "//conqueror.strategymania.com/1.7.3/css/dp.css";
+    </style>
+    <script async="" src="//www.google-analytics.com/analytics.js"></script><script>
+        CFG_PATH = {
+            'static': '//conqueror.strategymania.com/1.7.3/',
+            css: '//conqueror.strategymania.com/1.7.3/css/',
+            js: '//conqueror.strategymania.com/1.7.3/js/',
+            audio: '//conqueror.strategymania.com/1.7.3/audio/',
+            image: '//conqueror.strategymania.com/1.7.3/image/',
+            map: '1.7.3/map/'
+        };
+        CFG_VERSION = '1.7.3';
+    </script>
+            <script type="text/javascript" src="//conqueror.strategymania.com/1.7.3/js/cfg.js"></script>
+        <script type="text/javascript" src="//conqueror.strategymania.com/1.7.3/js/dojo/dojo.js"></script>
+        <script type="text/javascript" src="//conqueror.strategymania.com/1.7.3/js/google-caja/html-sanitizer-minified.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+                <script type="text/javascript" src="//conqueror.strategymania.com/1.7.3/js/main.js"></script>
+        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
+
+    <link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/attack_attempt.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/attack_attempt.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/attack_result_fail.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/attack_result_fail.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/attack_result_win.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/attack_result_win.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/capital_loss.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/capital_loss.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/chat_public.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/chat_public.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/chat_whisper.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/chat_whisper.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/defeat.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/defeat.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/defense.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/defense.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/desertion.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/desertion.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/end_turn.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/end_turn.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/end_turn_alarm.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/end_turn_alarm.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/game_over.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/game_over.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/gold.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/gold.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/lightning.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/lightning.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/lobby.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/lobby.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/login.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/login.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/offense.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/offense.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/prestige.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/prestige.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/revolt.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/revolt.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/stdbeep_button.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/stdbeep_button.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/stdbeep_error.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/stdbeep_error.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/thunder.mp3"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/audio/thunder.ogg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/font/Carolingia.ttf"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/font/WELLSLEY.TTF"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/button_left_blank_green.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/button_right_blank_green.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_angkorwat.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_aqueduct.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_colosseum.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_colossus.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_greatpyramid.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_greatwall.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_himejicastle.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_lighthouse.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_statueofzeus.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_suntzuswaracademy.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_templeofartemis.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_templeofhaeinsa.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_templeofheaven.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/wonders/wonder_ujigamishrine.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/bg_wood.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/defaultBg.jpg"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/map_europe.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/conqueror_logo.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_Europe1000Ad.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_Europe1200Ad.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_WorldL.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_WorldM.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_WorldS.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_Rome90Ad.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_China1800Ad.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_TheGreatLakes.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/maps/map_thumb_Rome37Bc.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/ready.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/icon_community.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/icon_culture.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/icon_diplomat.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/icon_farm.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/icon_castle_kind.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/icon_gold.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/icon_unit.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/icon_wonder.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/css/image/disc.png"><link rel="prefetch" href="1.7.3/map/china_1800/map_china.svg"><link rel="prefetch" href="1.7.3/map/china_1800/map_china.png"><link rel="prefetch" href="1.7.3/map/china_1800/style.css"><link rel="prefetch" href="1.7.3/map/europe_1000/map_europe.svg"><link rel="prefetch" href="1.7.3/map/europe_1000/map_europe.png"><link rel="prefetch" href="1.7.3/map/europe_1000/style.css"><link rel="prefetch" href="1.7.3/map/europe_1200/map_europe_1200.svg"><link rel="prefetch" href="1.7.3/map/europe_1200/map_europe_1200.png"><link rel="prefetch" href="1.7.3/map/europe_1200/style.css"><link rel="prefetch" href="1.7.3/map/generated/map_generated.svg"><link rel="prefetch" href="1.7.3/map/generated/map_generated.png"><link rel="prefetch" href="1.7.3/map/generated/map_generated_sea.png"><link rel="prefetch" href="1.7.3/map/generated/style.css"><link rel="prefetch" href="1.7.3/map/rome_37/map_rome_37.svg"><link rel="prefetch" href="1.7.3/map/rome_37/map_rome_37.png"><link rel="prefetch" href="1.7.3/map/rome_37/style.css"><link rel="prefetch" href="1.7.3/map/rome_90/map_rome_90.svg"><link rel="prefetch" href="1.7.3/map/rome_90/map_rome_90.png"><link rel="prefetch" href="1.7.3/map/rome_90/style.css"><link rel="prefetch" href="1.7.3/map/thegreatlakes/map_tgl.svg"><link rel="prefetch" href="1.7.3/map/thegreatlakes/map_tgl.png"><link rel="prefetch" href="1.7.3/map/thegreatlakes/style.css"><link rel="prefetch" href="1.7.3/map/world_s/map_world_s.svg"><link rel="prefetch" href="1.7.3/map/world_s/map_world_s.png"><link rel="prefetch" href="1.7.3/map/world_s/style.css"><link rel="prefetch" href="1.7.3/map/world_m/map_world_m.svg"><link rel="prefetch" href="1.7.3/map/world_m/map_world_m.png"><link rel="prefetch" href="1.7.3/map/world_m/style.css"><link rel="prefetch" href="1.7.3/map/world_l/map_world_l.svg"><link rel="prefetch" href="1.7.3/map/world_l/map_world_l.png"><link rel="prefetch" href="1.7.3/map/world_l/style.css"><link rel="prefetch" href="1.7.3/map/common/common.css"><link rel="prefetch" href="1.7.3/map/common/fonts/mini7.ttf"><link rel="prefetch" href="1.7.3/map/common/fonts/mini7tight.ttf"><link rel="prefetch" href="1.7.3/map/common/images/icon_castle_kind.png"><link rel="prefetch" href="1.7.3/map/common/images/icon_culture.png"><link rel="prefetch" href="1.7.3/map/common/images/icon_diplomat.png"><link rel="prefetch" href="1.7.3/map/common/images/icon_farm.png"><link rel="prefetch" href="1.7.3/map/common/images/icon_gold.png"><link rel="prefetch" href="1.7.3/map/common/images/icon_revolt_70x100.png"><link rel="prefetch" href="1.7.3/map/common/images/icon_unit.png"><link rel="prefetch" href="1.7.3/map/common/images/icon_wonder.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_1.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_2.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_3.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_4.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_5.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_6.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_7.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_8.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_9.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_10.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_11.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_12.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_13.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_14.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_15.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_16.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_17.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_18.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_19.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_20.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_21.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_22.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_23.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_24.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_25.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_26.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_27.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_28.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_29.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_30.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_31.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_32.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_33.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_34.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_35.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_36.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_37.png"><link rel="prefetch" href="//conqueror.strategymania.com/1.7.3/image/flags/flag_38.png"><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script></head>
+<body class="dw12 mouse desktop dh55 dimS">
+<div id="fullscreenWrapper" style="height: 401px; width: 1538px;">
+    <div id="appWrapper" style="top: 5px; left: 20px;">
+        
+    <div class="view appAudioPlayer" style="height:0px; width:0px;" id="audioPlayer">
+	<audio dojoattachpoint="apChat"></audio>
+	<audio dojoattachpoint="apGame"></audio>
+	<audio dojoattachpoint="apButton"></audio>
+	<audio dojoattachpoint="apError"></audio>
+	<audio dojoattachpoint="apCustom"></audio>
+</div><div id="gameWrapper"><div class="view areaContainer conqGame gameTypeTeam gameMap_map_europe1000 spring" style="height: 391px; width: 1498px;">
+	<div class="area areaM" dojoattachpoint="apAreaM" style="width: 1258px; height: 391px;"><div class="view conqMapMap" style="position: absolute; height: 381px; width: 1248px; bottom: auto; right: auto; opacity: 1;"><object class="svgMap" data="1.7.3/map/europe_1000/map_europe.svg" type="image/svg+xml" style="overflow: hidden; display: block; height: 1046px; width: 1360px; top: -536.124px; left: -112px;"></object></div></div>
+	<div class="area areaT" dojoattachpoint="apAreaT">
+		<div class="area areaTL" dojoattachpoint="apAreaTL"></div>
+		<div class="area areaTM" dojoattachpoint="apAreaTM" style="width: 1258px;"><div class="view conqGameStage">
+	<div class="viewContent" dojoattachpoint="apContent">
+		<div class="stage">
+			<div class="turnInfo" dojoattachpoint="apTurnInfo">
+				<div class="infoBg">
+					<span class="turnCount" dojoattachpoint="apTurnCount">Turn 9</span>
+					<span class="turnYear" dojoattachpoint="apTurnYear"></span>
+					<span class="turnSeason" dojoattachpoint="apTurnSeason">Spring</span>
+				</div>
+			</div>
+			<div class="turnTimer">
+				<div class="infoBg">
+					<span dojoattachpoint="apTurnTimer">4:14</span>
+				</div>
+			</div>
+			<div class="centerWrapper">
+				<div class="header">
+					<div class="infoBg">
+						<span dojoattachpoint="apHeader">Awaiting your orders!</span>
+					</div>	
+				</div>
+				<div class="messageBox" dojoattachpoint="apMessageBox" style="visibility: hidden; display: none;">
+					<div class="content" dojoattachpoint="apMessageContent"></div>				
+					<div class="borderLeft"></div>
+					<div class="borderRight"></div>
+				</div>					
+			</div>
+		</div>
+	</div>
+</div></div>
+		<div class="area areaTR" dojoattachpoint="apAreaTR"></div>
+	</div>
+	<div class="area areaL" dojoattachpoint="apAreaL"></div>		
+	<div class="area areaR" dojoattachpoint="apAreaR" style="height: 391px;"><div class="view conqPlayerHeader">
+	<div class="viewHeader"></div>
+	<div class="viewContent" dojoattachpoint="apContent">
+		<div class="playerInfo">
+			<div class="playerIcon" dojoattachpoint="apPlayerIcon" style="background: rgb(99, 49, 156);"></div>
+			<div class="nameWrapper">
+				<div class="playerName" dojoattachpoint="apPlayerName">kl</div>
+				<div class="spotName" dojoattachpoint="apSpotName">Lady of Nicaea</div>
+			</div>
+		</div>
+		<div class="spotInfo">
+			<div class="gold dpTooltip dpTooltipTop" data-dp-tooltip="The gold in your treasury.">
+				<div>Gold</div>
+				<div dojoattachpoint="apGold">0</div>
+			</div>
+			<div class="income dpTooltip dpTooltipTop" data-dp-tooltip="Your total income this turn. Increase by building gold in your countries.">
+				<div>Income</div>
+				<div dojoattachpoint="apIncome">0</div>
+			</div>
+			<div class="costs dpTooltip dpTooltipTop dpTooltipRight" data-dp-tooltip="Your total support costs in winter. Be sure you can pay it, otherwise you will lose troops and risk rebellion.">
+				<div>Support</div>
+				<div dojoattachpoint="apCosts">0</div>
+			</div>
+		</div>
+	</div>
+	<div class="viewFooter" dojoattachpoint="apFooter"></div>
+</div><div class="view headerView conqFieldTools fogOfWar0 type_default">
+    <div class="viewContent" dojoattachpoint="apContent">
+        <div class="fieldHeaderWrapperBG"></div>
+        <div class="fieldHeaderWrapper">
+            <div class="fieldImageBounding" dojoattachpoint="apFieldImage"><svg><g id="field_roma" class="field field_focus_game" fill="#636300" transform="translate(-660.6977717715663 -706.8603158830769) scale(1.310566809301846)">
+	      <path d="m 514.45028,562.10131 c -0.27849,-1.72329 -0.8796,-3.33622 -1.68855,-4.87805 -0.65858,-2.16048 1.29321,-2.49096 2.29831,-4.01618 2.19047,-2.79787 5.7576,-4.15687 7.78905,-7.11305 0.99867,-1.17804 2.16413,-2.20377 3.23346,-3.31729 2.88178,1.47467 5.97138,0.6896 9.00563,0.37523 1.6106,-0.34858 3.25076,-0.0259 4.87805,0 1.71835,1.79089 3.53253,3.47886 5.4409,5.06567 0.97303,-0.18847 2.17516,-1.53506 2.87036,-0.31914 1.26687,1.15949 2.43525,2.39326 3.11294,3.99715 0.96941,1.355 1.2311,3.104 2.1442,4.44949 1.49386,1.70363 3.2904,3.04338 5.19332,4.25524 0.4018,1.00471 0.64356,2.13506 1.74767,2.58845 1.21841,0.61807 2.71913,0.57379 4.06847,0.78866 3.74517,-1.32625 1.13353,3.6989 2.40137,4.31519 1.61732,-0.2663 3.2393,0.80156 4.77365,0.0149 1.6387,-0.86762 1.08143,0.21238 0.51729,1.29847 -1.06459,0.46211 -2.5701,0.34576 -3.00296,1.63665 -0.92067,1.63863 -2.60773,3.11138 -2.57567,5.0656 2.4e-4,1.19095 0.13888,2.34131 0.89221,3.31136 0.84011,1.49634 2.37156,2.47143 3.3731,3.87007 -0.44661,0.93177 -0.40699,2.40304 -1.76951,2.31855 -2.10646,0.41746 -4.21872,1.27056 -5.59594,2.98311 -1.27457,0.63262 -0.63901,1.69476 -0.24202,2.70325 0.64719,1.326 -0.48656,2.69201 -0.49168,4.08259 -0.53075,1.0093 0.95232,2.4496 -0.7643,2.54023 -1.12173,0.39899 -2.311,0.69955 -2.94881,1.80366 -0.83034,0.78502 -1.14242,1.92092 -1.69619,2.89319 -1.45499,0.47386 -1.55951,-0.75737 -1.75439,-1.87454 -0.13989,-1.25567 -0.85266,-2.29229 -1.4351,-3.37874 -2.32869,2.21415 -2.83111,-1.96659 -2.9362,-3.65841 0.073,-1.21231 -1.70223,-0.91163 -2.5047,-1.40726 -1.86881,0.50328 -3.66552,1.89213 -5.63768,1.0132 -2.25895,-0.87945 -3.37668,-3.16296 -6.17085,-3.02716 -1.59773,-0.10921 -0.21427,-2.33923 -1.56839,-2.92019 -1.37436,-2.07003 -3.88013,1.00926 -5.48985,-0.6468 -0.91307,-1.15814 -1.71843,-2.61367 -3.0719,-3.23706 -0.91601,0.12625 -2.41302,-0.24596 -2.98781,0.17303 0.29314,1.40713 0.70152,3.09499 -0.99695,3.84901 -2.51126,0.47313 -5.18643,-0.54399 -5.00238,-3.34986 -1.34115,-0.41586 -2.13187,-1.55454 -3.03291,-2.54835 0.40335,-1.28278 0.414,-2.60866 0.37523,-3.93997 -1.22206,-0.39349 -2.34087,-1.38778 -3.68199,-1.03189 -2.55557,0.55671 -3.03934,-3.37427 -0.69386,-3.72203 0.98966,-0.55535 2.19452,-0.9188 2.52364,-2.13804 0.5694,-0.86955 0.89716,-2.02969 0.81373,-3.00755 -0.5052,-0.87896 -1.67129,-1.66176 -0.88076,-2.72925 0.32458,-1.06817 0.75219,-2.09665 1.16877,-3.13109 z" id="path_roma_0"></path>
+	      <path d="m 505.63227,564.72795 -1.50094,2.25141 2.81426,2.25141 2.43903,0.56285 -0.56286,-2.06379 -0.93808,-2.06379 -2.25141,-0.93809 z" id="path_roma_1"></path>
+	      <path d="m 509.94747,559.09944 -1.68856,1.68855 0.56285,2.25141 2.06379,-0.75047 0.75047,-2.06379 -1.68855,-1.1257 z" id="path_roma_2"></path>
+	      <path d="m 549.72233,599.24953 1.1257,1.50094 c 0,0 -0.75047,1.68855 -1.68856,1.68855 -0.93808,0 -3.18949,-0.18761 -3.18949,-0.18761 l -2.25141,-1.12571 3.00188,-0.93808 3.00188,-0.93809 z" id="path_roma_3"></path>
+	      <path d="m 535.83865,600.37523 3.00188,0.75047 2.62664,0.93809 c 0,0 2.81426,1.31332 1.50094,1.68856 -1.31333,0.37523 -2.06379,1.1257 -3.56473,0.75046 -1.50094,-0.37523 -6.00376,-1.87617 -6.00376,-1.87617 l 1.50094,-1.87617 0.93809,-0.37524 z" id="path_roma_4"></path>
+	      <path d="m 531.52345,599.24953 -0.75047,2.06379 c 0,0 -1.50093,-0.37523 -2.2514,-0.56285 -0.75047,-0.18762 -1.12571,-1.50094 -1.12571,-1.50094 l 1.68856,-1.1257 2.43902,1.1257 z" id="path_roma_5"></path>
+	    </g></svg></div>
+            <div class="fieldImageText" dojoattachpoint="apFieldImageText">Province<br>of<br>Charles IV</div>
+            <div class="fieldHeader" dojoattachpoint="apFieldHeader"><span class="name">Roma</span></div>
+            <div class="fieldInfoMain" dojoattachpoint="apFieldInfoMain">2<span class="dpTooltip" data-dp-tooltip="Population increases production. population grows by building farms">0,000&nbsp;<span class="label"> population</span></span><br><span class="dpTooltip" data-dp-tooltip="Culture increases production and lowers rebellion.">primitive<span class="label"> culture</span></span><br><span class="dpTooltip" data-dp-tooltip="Natural resources increase production.">+1<span class="label"> resources</span></span><br></div>
+            <div class="fieldInfoAttitude" dojoattachpoint="apFieldInfoAttitude"><span class="dpTooltip" data-dp-tooltip="Attitude influences rebellion and production. Improve it by building diplomats or culture.">hostile <span class="label">to me</span></span><br></div>
+            <div class="fieldInfoUnits" dojoattachpoint="apFieldInfoUnits">3 armies</div>
+            <div class="fieldInfoSupport dpTooltip dpTooltipRight" dojoattachpoint="apFieldInfoSupport" data-dp-tooltip="support costs to pay in winter">2</div>
+        </div>
+        <div class="fieldSpecial fieldSpecial--sea">
+            <div class="fieldSpecial__title">Sea</div>
+            <div class="fieldSpecial__info">5 gold per allied coast land</div>
+            <div class="fieldSpecial__info">strong influence on coast lands</div>
+            <div class="fieldSpecial__info">+20% defense vs land</div>
+            <div class="fieldSpecial__info">-50% attack vs land</div>
+        </div>
+        <div class="fieldSpecial fieldSpecial--glacier">
+            <div class="fieldSpecial__title">Glacier</div>
+            <div class="fieldSpecial__info">+50% defense</div>
+            <div class="fieldSpecial__info">+3 support cost per soldier</div>
+        </div>
+        <div class="fieldSpecial fieldSpecial--goldmountain">
+            <div class="fieldSpecial__title">Mountain with gold vine</div>
+            <div class="fieldSpecial__info">20 gold income</div>
+        </div>
+        <div class="fieldProdWrapperBG"></div>
+        <div class="fieldProdWrapper" dojoattachpoint="apFieldProd" style="visibility: hidden;">
+            <div class="fieldProps">
+                <div class="fieldProp fieldProp1 fieldPropUnits fieldPropActive" dojoattachpoint="apPropUnits" dojoattachevent="onmousedown:onClickUnits">
+                    <div class="fieldPropValue" dojoattachpoint="apPropValueUnits"></div>
+                    <div class="inactiveOverlay"></div>
+                </div>
+                <div class="fieldProp fieldProp2 fieldPropGold fieldPropInactive" dojoattachpoint="apPropGold" dojoattachevent="onmousedown:onClickGold">
+                    <div class="fieldPropValue" dojoattachpoint="apPropValueGold"></div>
+                    <div class="inactiveOverlay"></div>
+                </div>
+                <div class="fieldProp fieldProp3 fieldPropPop" dojoattachpoint="apPropPop" dojoattachevent="onmousedown:onClickPop">
+                    <div class="fieldPropValue" dojoattachpoint="apPropValuePop"></div>
+                    <div class="inactiveOverlay"></div>
+                </div>
+                <div class="fieldProp fieldProp4 fieldPropCulture" dojoattachpoint="apPropCulture" dojoattachevent="onmousedown:onClickCulture">
+                    <div class="fieldPropValue" dojoattachpoint="apPropValueCulture"></div>
+                    <div class="inactiveOverlay"></div>
+                </div>
+                <div class="fieldProp fieldProp5 fieldPropFort" dojoattachpoint="apPropFort" dojoattachevent="onmousedown:onClickFort">
+                    <div class="fieldPropValue" dojoattachpoint="apPropValueFort"></div>
+                    <div class="inactiveOverlay"></div>
+                </div>
+                <div class="fieldProp fieldProp6 fieldPropAttitude" dojoattachpoint="apPropAttitude" dojoattachevent="onmousedown:onClickAttitude">
+                    <div class="fieldPropValue" dojoattachpoint="apPropValueDiplomat"></div>
+                    <div class="inactiveOverlay"></div>
+                </div>
+                <div class="fieldProp fieldProp7 fieldPropWonder fieldPropInactive" dojoattachpoint="apPropWonder" dojoattachevent="onmousedown:onClickWonder">
+                    <div class="fieldPropValue" dojoattachpoint="apPropValueWonder"></div>
+                    <div class="inactiveOverlay"></div>
+                </div>
+            </div>
+            <div class="fieldProdInfo">
+                <div class="fieldProg fieldProg1 fieldProgDone"></div>
+                <div class="fieldProg fieldProg2 fieldProgDone"></div>
+                <div class="fieldProg fieldProg3 fieldProgDone"></div>
+                <div class="fieldProg fieldProg4 fieldProgDone"></div>
+                <div class="fieldProg fieldProg5 fieldProgDone"></div>
+                <div class="fieldProg fieldProg6"></div>
+                <div class="fieldProg fieldProg7"></div>
+                <div class="fieldProg fieldProg8"></div>
+                <div class="fieldProg fieldProg9"></div>
+                <div class="fieldProg fieldProg10"></div>
+                <div class="fieldProdInfoText" dojoattachpoint="apProdInfoText">builds 1 soldier this turn</div>
+            </div>
+            <div class="fieldProdBuy multi" dojoattachpoint="apProdBuy">
+                <div class="buttonWrapper">
+                    <div class="fieldProdBuyButton fieldProdBuyButton1 inactive" dojoattachpoint="apProdBuyButton1" dojoattachevent="onmousedown:onClickBuyButton1">Buy 1</div>
+                    <div class="fieldProdBuyButton fieldProdBuyButton2 inactive" dojoattachpoint="apProdBuyButton2" dojoattachevent="onmousedown:onClickBuyButton2">0</div>
+                </div>
+                <div class="costWrapper dpTooltip dpTooltipRight" data-dp-tooltip="Gold to pay for buying 1 unit."><span dojoattachpoint="apProdCost">8 gold</span></div>
+            </div>
+        </div>
+        <div class="turnTools" dojoattachpoint="apTurnTools"><div class="view conqTurnTools">
+	<div class="viewContent" dojoattachpoint="apContent">
+		<div class="endTurn" dojoattachpoint="apEndTurn" dojoattachevent="onmousedown:onClickEndTurn"><span>End Turn</span></div>
+		<div class="cancelOrders" dojoattachpoint="apCancelOrders" dojoattachevent="onmousedown:onClickCancelOrders"><span>Cancel Moves</span></div>
+	</div>
+</div></div>
+    </div>
+</div><div class="view conqGameTools">
+	<div class="viewContent" dojoattachpoint="apContent">
+		<table><tbody><tr>
+			<td class="gameToolsStats" dojoattachevent="onmousedown:onStats">Stats</td>
+			<td class="gameToolsHelp" dojoattachevent="onmousedown:onHelp">Help</td>
+			<td class="gameToolsOptions" dojoattachevent="onmousedown:onOptions">Options</td>
+			<td class="gameToolsQuit" dojoattachevent="onmousedown:onQuit">Quit</td>
+		</tr></tbody></table>
+	</div>
+</div><div class="view conqChannel" style="top: 407px;">
+	<div class="viewHeader" dojoattachpoint="apHeader">
+		<div class="toggleUser" dojoattachpoint="apToggleUser" dojoattachevent="onmousedown:onToggleUser"></div>
+	</div>
+	<div class="viewContent" dojoattachpoint="apContent" style="height: 9px;">
+		<div class="chatContainer visible" dojoattachpoint="apChat"><div class="view conqMessage invisible">
+	<div class="viewHeader" dojoattachpoint="apHeader"></div>
+	<div class="viewContent" dojoattachpoint="apContent">
+		<div class="messageOutputContainer" dojoattachpoint="apMessageOutputContainer" style="height: 0px;">
+			<div class="messageOutput" dojoattachpoint="apMessageOutput"><div class="message infoMessage"><span class="msgBody">Welcome to Conqueror - the finest in strategy gaming!<br>Quick turns, easy to learn, and difficult to master.<br><br>Get latest news and release updates at the <a href="https://www.facebook.com/strategymania/" target="_blank">facebook page</a>.<br>To secure your conqueror account, connect it to <a href="https://strategymania.com/signupconquerorgame" target="_blank">Strategy Mania</a>.<br><br>This is a place of friendship and fun. Be kind and enjoy!<br><br><strong>Updates in 1.7.3</strong><br>- World wonder Samson destroys forts<br><br></span></div><div class="message infoMessage"><span class="msgBody">kl creates ttt</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">netfalcon logs on</span></div><div class="message infoMessage"><span class="msgBody">nggfh logs on</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">netfalcon logs off</span></div><div class="message infoMessage"><span class="msgBody">khr logs on</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">khr joins honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">zsanossz logs off</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">honeymane's game is closed</span></div><div class="message infoMessage"><span class="msgBody">honeymane creates honeymane's game</span></div><div class="message infoMessage"><span class="msgBody">khr logs off</span></div><div class="message infoMessage"><span class="msgBody">dddddddddd logs off</span></div><div class="message infoMessage"><span class="msgBody">Zaemanatfi logs on</span></div><div class="message infoMessage"><span class="msgBody">khr logs on</span></div><div class="message infoMessage"><span class="msgBody">hisha logs on</span></div><div class="message infoMessage"><span class="msgBody">Teej logs on</span></div><div class="message infoMessage"><span class="msgBody">Frutzak logs on</span></div><div class="message infoMessage"><span class="msgBody">Frutzak logs off</span></div><div class="message infoMessage"><span class="msgBody">MP logs on</span></div><div class="message infoMessage"><span class="msgBody">Frutzak logs on</span></div><div class="message infoMessage"><span class="msgBody">Simba logs on</span></div><div class="message infoMessage"><span class="msgBody">Teej logs off</span></div><div class="message infoMessage"><span class="msgBody">mikmir logs on</span></div><div class="message infoMessage"><span class="msgBody">Frutzak logs off</span></div><div class="message infoMessage"><span class="msgBody">PoohBrown logs on</span></div><div class="message infoMessage"><span class="msgBody">mmm logs on</span></div><div class="message infoMessage"><span class="msgBody">mmm joins game</span></div><div class="message infoMessage"><span class="msgBody">mmm leaves game</span></div><div class="message infoMessage"><span class="msgBody">mmm joins game</span></div><div class="message infoMessage"><span class="msgBody">Frutzak logs on</span></div><div class="message infoMessage"><span class="msgBody">guest1 logs on</span></div><div class="message infoMessage"><span class="msgBody">ZZZd logs on</span></div><div class="message infoMessage"><span class="msgBody">ZZZd joins game</span></div><div class="message infoMessage"><span class="msgBody">Zaemanatfi logs off</span></div><div class="message infoMessage"><span class="msgBody">martel logs off</span></div><div class="message infoMessage"><span class="msgBody">shitface logs on</span></div><div class="message infoMessage"><span class="msgBody">mikmir creates mikmyr's game</span></div><div class="message infoMessage"><span class="msgBody">shitface joins mikmyr's game</span></div><div class="message infoMessage"><span class="msgBody">Hanzai logs on</span></div><div class="message infoMessage"><span class="msgBody">Hanzai joins mikmyr's game</span></div><div class="message infoMessage"><span class="msgBody">ShadowAdy logs on</span></div><div class="message infoMessage"><span class="msgBody">PoohBrown logs off</span></div><div class="message infoMessage"><span class="msgBody">DAfur logs on</span></div><div class="message infoMessage"><span class="msgBody">Hanzai logs off</span></div><div class="message infoMessage"><span class="msgBody"></span></div><div class="message infoMessage"><span class="msgBody">Frutzak logs off</span></div><div class="message infoMessage"><span class="msgBody">mikmir logs off</span></div><div class="message infoMessage"><span class="msgBody"></span></div><div class="message infoMessage"><span class="msgBody">shitface logs off</span></div><div class="message infoMessage"><span class="msgBody">mikmyr's game is closed</span></div><div class="message infoMessage"><span class="msgBody">dasfewf logs on</span></div><div class="message infoMessage"><span class="msgBody">oio logs on</span></div><div class="message infoMessage"><span class="msgBody">netfalcon logs on</span></div><div class="message infoMessage"><span class="msgBody">cleaner logs on</span></div><div class="message infoMessage"><span class="msgBody">cleaner creates cleaner's game</span></div><div class="message infoMessage"><span class="msgBody">nggfh logs off</span></div><div class="message infoMessage"><span class="msgBody">zzqzq logs on</span></div><div class="message infoMessage"><span class="msgBody">pbicchieri logs on</span></div><div class="message infoMessage"><span class="msgBody">ShadowAdy logs off</span></div><div class="message infoMessage"><span class="msgBody">gandalf logs on</span></div><div class="message infoMessage"><span class="msgBody">dasfewf logs off</span></div><div class="message infoMessage"><span class="msgBody">guest1 logs off</span></div><div class="message infoMessage"><span class="msgBody">pbicchieri logs off</span></div><div class="message infoMessage"><span class="msgBody">pbicchieri logs on</span></div><div class="message infoMessage"><span class="msgBody">MP logs off</span></div><div class="message infoMessage"><span class="msgBody">ZZZd logs off</span></div><div class="message infoMessage"><span class="msgBody"></span></div><div class="message infoMessage"><span class="msgBody">mmm logs off</span></div><div class="message infoMessage"><span class="msgBody"></span></div><div class="message infoMessage"><span class="msgBody">asfadsasfdaf logs on</span></div><div class="message infoMessage"><span class="msgBody">asfadsasfdaf joins game</span></div><div class="message infoMessage"><span class="msgBody">Simba logs off</span></div><div class="message infoMessage"><span class="msgBody">xz logs on</span></div><div class="message infoMessage"><span class="msgBody">asfadsasfdaf logs off</span></div><div class="message infoMessage"><span class="msgBody"></span></div><div class="message infoMessage"><span class="msgBody">netfalcon logs off</span></div><div class="message infoMessage"><span class="msgBody">zzqzq logs off</span></div><div class="message infoMessage"><span class="msgBody">DAfur logs off</span></div><div class="message infoMessage"><span class="msgBody">Yeti logs on</span></div><div class="message infoMessage"><span class="msgBody">Yeti creates end turn</span></div><div class="message infoMessage"><span class="msgBody">xz logs off</span></div><div class="message infoMessage"><span class="msgBody">Norbert logs on</span></div><div class="message infoMessage"><span class="msgBody">Fancypants logs on</span></div><div class="message infoMessage"><span class="msgBody">mmun2 logs off</span></div><div class="message infoMessage"><span class="msgBody">hisha logs off</span></div><div class="message infoMessage"><span class="msgBody">cnf logs on</span></div><div class="message infoMessage"><span class="msgBody">Yeti logs off</span></div><div class="message infoMessage"><span class="msgBody">end turn is closed</span></div><div class="message infoMessage"><span class="msgBody">Norbert logs off</span></div><div class="message infoMessage"><span class="msgBody">ibg logs on</span></div><div class="message infoMessage"><span class="msgBody">ibg creates CBR600RR</span></div><div class="message infoMessage"><span class="msgBody">ytio logs on</span></div><div class="message infoMessage"><span class="msgBody">ytio creates game</span></div><div class="message infoMessage"><span class="msgBody">dafur logs on</span></div><div class="message infoMessage"><span class="msgBody">Trotsky logs on</span></div><div class="message infoMessage"><span class="msgBody">gandalf logs off</span></div><div class="message infoMessage"><span class="msgBody">laaa logs on</span></div><div class="message infoMessage"><span class="msgBody">Rogue logs on</span></div><div class="message infoMessage"><span class="msgBody">Fancypants logs off</span></div><div class="message infoMessage"><span class="msgBody">game is closed</span></div><div class="message infoMessage"><span class="msgBody">robot logs on</span></div><div class="message infoMessage"><span class="msgBody">robot creates no slooow players</span></div><div class="message infoMessage"><span class="msgBody">cleaner logs off</span></div><div class="message infoMessage"><span class="msgBody">cleaner's game is closed</span></div><div class="message infoMessage"><span class="msgBody">ibg logs off</span></div><div class="message infoMessage"><span class="msgBody">CBR600RR is closed</span></div><div class="message infoMessage"><span class="msgBody">robot logs off</span></div><div class="message infoMessage"><span class="msgBody">no slooow players is closed</span></div><div class="message infoMessage"><span class="msgBody">martel logs on</span></div><div class="message infoMessage"><span class="msgBody">laaa logs off</span></div><div class="message infoMessage"><span class="msgBody">zzqzq logs on</span></div></div>
+		</div>
+		<div class="messageInput" dojoattachpoint="apMessageInput">
+			<div class="messageInputText">
+				<input dojoattachpoint="apMessageInputText" dojoattachevent="onkeypress:onWriteMessage" type="text" value="">
+			</div>
+		</div>
+	</div>
+	<div class="viewFooter" dojoattachpoint="apFooter"></div>
+</div><div class="view conqMessage invisible">
+	<div class="viewHeader" dojoattachpoint="apHeader"></div>
+	<div class="viewContent" dojoattachpoint="apContent">
+		<div class="messageOutputContainer" dojoattachpoint="apMessageOutputContainer" style="height: 0px;">
+			<div class="messageOutput" dojoattachpoint="apMessageOutput"></div>
+		</div>
+		<div class="messageInput" dojoattachpoint="apMessageInput">
+			<div class="messageInputText">
+				<input dojoattachpoint="apMessageInputText" dojoattachevent="onkeypress:onWriteMessage" type="text" value="">
+			</div>
+		</div>
+	</div>
+	<div class="viewFooter" dojoattachpoint="apFooter"></div>
+</div><div class="view conqMessage">
+	<div class="viewHeader" dojoattachpoint="apHeader"></div>
+	<div class="viewContent" dojoattachpoint="apContent">
+		<div class="messageOutputContainer" dojoattachpoint="apMessageOutputContainer" style="height: 332px;">
+			<div class="messageOutput" dojoattachpoint="apMessageOutput"><div class="message infoMessage"><span class="msgBody"></span></div><div class="message infoMessage"><span class="msgBody">ttt is running</span></div><div class="message infoMessage"><span class="msgBody"></span></div></div>
+		</div>
+		<div class="messageInput" dojoattachpoint="apMessageInput">
+			<div class="messageInputText">
+				<input dojoattachpoint="apMessageInputText" dojoattachevent="onkeypress:onWriteMessage" type="text" value="">
+			</div>
+		</div>
+	</div>
+	<div class="viewFooter" dojoattachpoint="apFooter"></div>
+</div></div>
+		<div class="userContainer invisible" dojoattachpoint="apUser">
+			<ul class="userList" dojoattachpoint="apUserList"><li class="userItem"><span class="userItemName">kl</span></li></ul>
+		</div>
+	</div>
+	<div class="viewFooter" dojoattachpoint="apFooter">
+		<table>
+			<tbody><tr>
+				<td dojoattachpoint="apGameChat" dojoattachevent="onmousedown:onSelectGame" class="selected">Game</td>
+				<td dojoattachpoint="apTeamChat" dojoattachevent="onmousedown:onSelectTeam" class="">Team</td>
+				<td dojoattachpoint="apLobbyChat" dojoattachevent="onmousedown:onSelectLobby" class="">Lobby</td>	
+			</tr>
+		</tbody></table>
+	</div>
+</div><div class="view barView conqPlayers">
+    <div class="viewHeader" dojoattachpoint="apHeader"></div>
+    <div class="viewContent" dojoattachpoint="apContent">
+        <div class="spotList" dojoattachpoint="apSpotList"><div class="teamWrapper"><div class="teamHeader"><div class="flag" style="background:#333333">1</div><div class="name"><div class="field">Team1</div><div class="player"></div></div><div class="score">295</div></div><div spot_id="2" class="spot"><div class="flag" style="background: rgb(0, 156, 0);"></div><div class="disc hidden"></div><div class="name"><div class="field">&nbsp;</div><div class="player">Elizabeth</div></div><div class="score">89</div><div class="kick hidden">Kick</div></div><div spot_id="5" class="spot"><div class="flag" style="background: rgb(0, 99, 99);"></div><div class="disc hidden"></div><div class="name"><div class="field">&nbsp;</div><div class="player">Saladin</div></div><div class="score">68</div><div class="kick hidden">Kick</div></div><div spot_id="4" class="spot"><div class="flag" style="background: rgb(255, 206, 0);"></div><div class="disc hidden"></div><div class="name"><div class="field">&nbsp;</div><div class="player">Harald Hardrada</div></div><div class="score">67</div><div class="kick hidden">Kick</div></div><div spot_id="1" class="spot"><div class="flag" style="background: rgb(255, 49, 49);"></div><div class="disc hidden"></div><div class="name"><div class="field">Norway</div><div class="player">Margaret</div></div><div class="score">36</div><div class="kick hidden">Kick</div></div><div spot_id="3" class="spot"><div class="flag" style="background: rgb(49, 49, 255);"></div><div class="disc hidden"></div><div class="name"><div class="field">Wallachia</div><div class="player">Edward I</div></div><div class="score">35</div><div class="kick hidden">Kick</div></div></div><div class="teamWrapper"><div class="teamHeader"><div class="flag" style="background:#333333">2</div><div class="name"><div class="field">Team2</div><div class="player"></div></div><div class="score">291</div></div><div spot_id="9" class="spot"><div class="flag" style="background: rgb(206, 156, 99);"></div><div class="disc hidden"></div><div class="name"><div class="field">Lithuania</div><div class="player">Stephen Dushan</div></div><div class="score">88</div><div class="kick hidden">Kick</div></div><div spot_id="7" class="spot"><div class="flag" style="background: rgb(99, 99, 0);"></div><div class="disc hidden"></div><div class="name"><div class="field">Napoli</div><div class="player">Charles IV</div></div><div class="score">77</div><div class="kick hidden">Kick</div></div><div spot_id="10" class="spot"><div class="flag" style="background: rgb(206, 99, 206);"></div><div class="disc hidden"></div><div class="name"><div class="field">Wales</div><div class="player">Henry the Fowler</div></div><div class="score">68</div><div class="kick hidden">Kick</div></div><div spot_id="8" class="spot"><div class="flag" style="background: rgb(49, 156, 156);"></div><div class="disc hidden"></div><div class="name"><div class="field">Brandenburg</div><div class="player">Svyatoslav I</div></div><div class="score">35</div><div class="kick hidden">Kick</div></div><div spot_id="6" class="spot"><div class="flag" style="background: rgb(99, 49, 156);"></div><div class="disc hidden"></div><div class="name"><div class="field">Nicaea</div><div class="player">kl</div></div><div class="score">23</div><div class="kick hidden">Kick</div></div></div></div>
+        <div class="viewFooter" dojoattachpoint="apFooter">
+            <div class="toggle" dojoattachpoint="apToggle" dojoattachevent="onmousedown: onToggle">←</div>
+        </div>
+    </div>
+</div></div>
+ 	<div class="area areaB" dojoattachpoint="apAreaB">
+ 		<div class="area areaBL" dojoattachpoint="apAreaBL"></div>
+		<div class="area areaBM" dojoattachpoint="apAreaBM" style="width: 1258px;"><div class="view conqMoveTools">
+	<div class="viewHeader">Moves</div>
+	<div class="viewContent">
+		<div class="infoBg" dojoattachpoint="apContent"><svg style="width: 187.5px;"><g id="tool_arrow_178" class="tool_arrow" visibility="inherit" transform="translate(5.625, 6.75), rotate(0), scale(1, 0.6)"><rect id="tool_arrow_178_rect" y="0" x="0" height="8" width="16.25"></rect><path id="tool_arrow_178_marker" d="m 26.25,4 -10,-10 0,20 10,-10 z"></path></g><text id="tool_arrow_178_label" x="24.375" y="6.75" visibility="inherit"></text><g id="tool_arrow_179" class="tool_arrow" visibility="inherit" transform="translate(43.125, 6.75), rotate(0), scale(1, 0.6)"><rect id="tool_arrow_179_rect" y="0" x="0" height="8" width="16.25"></rect><path id="tool_arrow_179_marker" d="m 26.25,4 -10,-10 0,20 10,-10 z"></path></g><text id="tool_arrow_179_label" x="61.875" y="6.75" visibility="inherit"></text><g id="tool_arrow_180" class="tool_arrow" visibility="inherit" transform="translate(80.625, 6.75), rotate(0), scale(1, 0.6)"><rect id="tool_arrow_180_rect" y="0" x="0" height="8" width="16.25"></rect><path id="tool_arrow_180_marker" d="m 26.25,4 -10,-10 0,20 10,-10 z"></path></g><text id="tool_arrow_180_label" x="99.375" y="6.75" visibility="inherit"></text><g id="tool_arrow_181" class="tool_arrow" visibility="inherit" transform="translate(118.125, 6.75), rotate(0), scale(1, 0.6)"><rect id="tool_arrow_181_rect" y="0" x="0" height="8" width="16.25"></rect><path id="tool_arrow_181_marker" d="m 26.25,4 -10,-10 0,20 10,-10 z"></path></g><text id="tool_arrow_181_label" x="136.875" y="6.75" visibility="inherit"></text><g id="tool_arrow_182" class="tool_arrow" visibility="inherit" transform="translate(155.625, 6.75), rotate(0), scale(1, 0.6)"><rect id="tool_arrow_182_rect" y="0" x="0" height="8" width="16.25"></rect><path id="tool_arrow_182_marker" d="m 26.25,4 -10,-10 0,20 10,-10 z"></path></g><text id="tool_arrow_182_label" x="174.375" y="6.75" visibility="inherit"></text></svg></div>
+    </div>
+    <div class="viewFooter">
+        <div class="toggle" dojoattachpoint="apToggle" dojoattachevent="onmousedown: onToggle">↓</div>
+    </div>
+</div></div>
+		<div class="area areaBR" dojoattachpoint="apAreaBR"></div>
+ 	</div>
+</div></div></div>
+    <div id="poweredWrapper" style="visibility: hidden; display: none;">
+        <span>Conqueror 1.7.3 powered by <a class="poweredLink" target="_blank" href="http://strategymania.com">strategymania.com</a> &amp; <a class="poweredLink" href="http://conquerorgame.com/" target="_blank">conquerorgame.com</a> - visit us on <a class="poweredLink" target="_blank" href="https://www.facebook.com/strategymania/">facebook</a></span>
+    </div>
+    <div id="legalWrapper" style="visibility: hidden; display: none;">
+        <a class="legalLink" target="_blank" href="http://strategymania.com/legal/tos.html" rel="nofollow">Terms Of
+            Service</a>
+        <a class="legalLink" target="_blank" href="http://strategymania.com/legal/impressum.html" rel="nofollow">Impressum/Disclaimer/Datenschutz</a>
+    </div>
+    <div id="appConnectionInfo" class="connected">connected</div>
+<div class="view barView conqMapTools">
+	<div class="viewHeader" dojoattachpoint="apHeader"></div>
+	<div class="viewContent" dojoattachpoint="apContent">
+		<div class="button togglePop" dojoattachevent="onmousedown:onTogglePop">i</div>
+		<div class="button toggleProd" dojoattachevent="onmousedown:onToggleProd">♠</div>
+		<div class="button toggleNames" dojoattachevent="onmousedown:onToggleNames">ℜ</div>
+		<div>&nbsp;</div>
+		<div class="button zoom zoomIn" dojoattachevent="onmousedown:onZoomIn">+</div>
+		<div class="button zoom zoomOut" dojoattachevent="onmousedown:onZoomOut">-</div>
+		<div class="button zoom zoomDefault" dojoattachevent="onmousedown:onZoomDefault">★</div>
+	<div class="viewFooter" dojoattachpoint="apFooter"></div>
+</div></div><div class="view conqGuide">
+    <div class="conqGuide__toggle-button button" dojoattachpoint="apToggle" dojoattachevent="onmousedown: onToggle">?
+    </div>
+    <div class="conqGuide__toggle-content">
+        <div class="viewContent">
+            <div class="conqGuide__intro">
+                <div class="conqGuide__header">
+                    <span dojoattachpoint="apIntroTitle">Introduction</span>
+                    <div class="arrowButton arrowButton--prev" dojoattachevent="onmousedown:onIntroPrev"></div>
+                    <div class="arrowButton arrowButton--next" dojoattachevent="onmousedown:onIntroNext"></div>
+                </div>
+                <div class="conqGuide__content" dojoattachpoint="apIntroItem">Defeat all your enemies to win this game!<br><br>You are <b><span style="color:#63319c">kl, Lady of Nicaea</span></b></div>
+                <div class="conqGuide__action">
+                </div>
+            </div>
+            <div class="conqGuide__prod">
+                <div class="conqGuide__header">Napoleon`s advice</div>
+                <div class="conqGuide__content">
+                    <div class="conqGuide__prodIntro">Adjust the production of these lands:</div>
+                    <div class="conqGuide__prodOrders" dojoattachpoint="apProdOrders"><div class="conqGuide__prodOrder" order-index="0" reason="getSaveMyCapProdOrders"><div class="conqGuide__prodField">Crete:&nbsp;</div><div class="conqGuide__prodInfo">Produce soldiers to protect your capital</div></div><div class="conqGuide__prodOrder" order-index="1" reason="getSaveMyCapProdOrders"><div class="conqGuide__prodField">Greece:&nbsp;</div><div class="conqGuide__prodInfo">Produce soldiers to protect your capital</div></div></div>
+                    <div class="conqGuide__prodFinal">Let all other lands continue their production!</div>
+                </div>
+                <div class="conqGuide__action">
+                    <div class="button active" dojoattachevent="onmousedown:onAutoProduce" dojoattachpoint="apAutoProduce">Auto-produce</div>
+                    <div class="button" dojoattachevent="onmousedown:onApplyAll">Apply All</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+<div id="fakeLoginWrapper" style="display:none">
+    <iframe src="//conqueror.strategymania.com/1.7.3/fakelogin.html" name="fakeLoginTarget"></iframe>
+    
+    <div>
+        <form action="//conqueror.strategymania.com/1.7.3/fakelogin.html" method="post">
+            
+            
+            <input type="submit" value="login">
+        <input id="loginNameInput" name="loginNameInput" type="text" placeholder="Your name" maxlength="12"><input id="loginPassInput" name="loginPassInput" type="password" maxlength="64"></form>
+    </div>
+<form id="loginForm" action="//conqueror.strategymania.com/1.7.3/fakelogin.html" method="post" target="fakeLoginTarget"></form></div>
+<script>
+    if (!(('navigator' in window) && window.navigator.doNotTrack)) {
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-74106640-1', 'auto');
+
+                ga('send', 'pageview');
+            }
+</script>
+
+
+<div class="appSocial" id="socialWrapper" style="visibility: hidden; display: none;">
+    <div class="appSocial__button" dojo-attach-point="apButton"><i class="fa fa-share-alt-square fa-2x"></i></div>
+    <ul class="appSocial__links">
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fconqueror.strategymania.com&amp;t=Conqueror%20Strategy%20Game" target="_blank" title="Share on Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+        <li>
+            <a href="https://twitter.com/intent/tweet?source=http%3A%2F%2Fconqueror.strategymania.com&amp;text=Conqueror%20Strategy%20Game:%20http%3A%2F%2Fconqueror.strategymania.com&amp;via=strategy_mania" target="_blank" title="Tweet"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+        <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fconqueror.strategymania.com" target="_blank" title="Share on Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+        <li>
+            <a href="http://www.tumblr.com/share?v=3&amp;u=http%3A%2F%2Fconqueror.strategymania.com&amp;t=Conqueror%20Strategy%20Game&amp;s=" target="_blank" title="Post to Tumblr"><i class="fa fa-tumblr-square fa-2x"></i></a></li>
+        <li>
+            <a href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fconqueror.strategymania.com&amp;media=https://strategymania.com/images/maps/conq_europe_big.jpg&amp;description=Turn-based%20strategy%20game%20between%20risk%20and%20civilisation.%20Simultaneous%20turns%20enable%20multi-player%20games%20which%20are%20done%20in%201%20hour.%20Simple%20to%20learn%20and%20hard%20to%20master." target="_blank" title="Pin it"><i class="fa fa-pinterest-square fa-2x"></i></a></li>
+        <li>
+            <a href="http://www.reddit.com/submit?url=http%3A%2F%2Fconqueror.strategymania.com&amp;title=Conqueror%20Strategy%20Game" target="_blank" title="Submit to Reddit"><i class="fa fa-reddit-square fa-2x"></i></a></li>
+        <li>
+            <a href="http://wordpress.com/press-this.php?u=http%3A%2F%2Fconqueror.strategymania.com&amp;t=Conqueror%20Strategy%20Game&amp;s=Turn-based%20strategy%20game%20between%20risk%20and%20civilisation.%20Simultaneous%20turns%20enable%20multi-player%20games%20which%20are%20done%20in%201%20hour.%20Simple%20to%20learn%20and%20hard%20to%20master.&amp;i=https://strategymania.com/images/maps/conq_europe_big.jpg" target="_blank" title="Publish on WordPress"><i class="fa fa-wordpress fa-2x"></i></a></li>
+        <li>
+            <a href="mailto:?subject=Conqueror%20Strategy%20Game&amp;body=Turn-based%20strategy%20game%20between%20risk%20and%20civilisation.%20Simultaneous%20turns%20enable%20multi-player%20games%20which%20are%20done%20in%201%20hour.%20Simple%20to%20learn%20and%20hard%20to%20master.:%20http%3A%2F%2Fconqueror.strategymania.com" target="_blank" title="Email"><i class="fa fa-envelope-square fa-2x"></i></a></li>
+    </ul>
+</div><div id="techsmith-snagitchrome-extension"></div><div class="dpWidget dpWidgetGlasspane"><div class="dpWidgetGlasspaneBackground" dojoattachpoint="apBackground" style="display: none; opacity: 0; position: absolute; top: 0px; left: 0px; height: 829px; width: 1538px;"></div><div class="dpWidgetGlasspaneLayer" dojoattachpoint="apForeground" style="position: absolute; visibility: hidden; top: -5000px; left: -5000px;"><div class="dpWidgetGlasspaneContent" dojoattachpoint="apContent">Loading Game</div><div class="dpWidgetGlasspaneControls"><div class="dpWidgetGlasspaneHide" dojoattachpoint="apCancel" dojoattachevent="onclick:_onHide"></div></div></div></div></body><div></div></html>

@@ -1,0 +1,148 @@
+<div class="fieldInfoMain" dojoattachpoint="apFieldInfoMain">3<span class="dpTooltip" data-dp-tooltip="Population increases production. population grows by building farms">0,000&nbsp;<span class="label"> population</span></span><br><span class="dpTooltip" data-dp-tooltip="Culture increases production and lowers rebellion.">developed<span class="label"> culture</span></span><br><span class="dpTooltip" data-dp-tooltip="Natural resources increase production.">+2<span class="label"> resources</span></span><br></div>
+
+
+
+#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldInfoMain
+
+$("#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldInfoMain").firstChild
+
+
+var wrapper = $("#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldInfoMain")
+
+var test = $('<button>Test</button>').click(function () {
+        alert('hi');
+    });
+
+    wrapper.append('<button>Test</button>');
+	
+	
+	
+        CFG_PATH = {
+            'static': '//conqueror.strategymania.com/1.7.3/',
+            css: '//conqueror.strategymania.com/1.7.3/css/',
+            js: '//conqueror.strategymania.com/1.7.3/js/',
+            audio: '//conqueror.strategymania.com/1.7.3/audio/',
+            image: '//conqueror.strategymania.com/1.7.3/image/',
+            map: '1.7.3/map/'
+        };
+        CFG_VERSION = '1.7.3';
+    src="//conqueror.strategymania.com/1.7.3/js/main.js"
+	
+	
+	<input type="button" value="Click me">
+	
+	
+#field_bulgaria
+
+$('#field_bulgaria').click()
+
+
+var event = document.createEvent("SVGEvents");
+event.initEvent("click",true,true);
+var d = document.getElementById("a0xa000033"); // id for one the "g" element.
+d.dispatchEvent(event);
+
+
+http://api.jquery.com/trigger/
+
+
+javascript:if(!window.jQuery||confirm('Overwrite\x20current\x20version?\x20v'+jQuery.fn.jquery))(function(d,s){s=d.createElement('script');s.src='https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js';(d.head||d.documentElement).appendChild(s)})(document);
+
+javascript:if(!window.jQuery||confirm('Overwrite\x20current\x20version?\x20v'+jQuery.fn.jquery))(function(d,s){s=d.createElement('script');s.src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js';(d.head||d.documentElement).appendChild(s)})(document);
+- za pierwszym razem po prostu ładuje a za drugim pyta, bo już załadowane.
+
+var gold = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldProdWrapper > div.fieldProps > div.fieldProp.fieldProp2.fieldPropGold')
+
+
+#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldProdWrapper > div.fieldProps > div.fieldProp.fieldProp2.fieldPropGold > div.fieldPropValue
+
+var goldV = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldProdWrapper > div.fieldProps > div.fieldProp.fieldProp2.fieldPropGold > div.fieldPropValue')
+
+
+
+var end = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.cap.type_default > div > div.fieldProdWrapper > div.fieldProdBuy.multi > div.buttonWrapper > div.fieldProdBuyButton.fieldProdBuyButton1');
+
+
+https://api.jquery.com/mousedown/
+http://api.jquery.com/trigger/
+https://grokbase.com/t/gg/d3-js/141z17dwee/manually-firing-events-for-an-svg-element
+https://stackoverflow.com/questions/49834459/programmatically-trigger-click-event-in-svg-rect-element
+https://stackoverflow.com/questions/8650975/javascript-to-create-a-button-with-onclick
+https://www.w3schools.com/jsref/met_document_createelement.asp
+https://stackoverflow.com/questions/27079598/uncaught-typeerror-failed-to-execute-appendchild-on-node-parameter-1-is-no
+https://stackoverflow.com/questions/9624972/command-for-loading-jquery-on-google-chrome-inspector
+
+
+country.change(function() {
+  alert( "Handler for .change() called." );
+});
+
+var country = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.cap.type_default > div > div.fieldHeaderWrapper > div.fieldHeader > span');
+                 #gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldHeader
+
+var countrySelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldHeader > span'
+
+				 
+var sidebar = $("#gameWrapper > div > div.area.areaR");
+.change(function() {
+  alert( "Handler for .change() called." );
+});
+
+var lastCountry = "";
+
+function getCountry() {
+	return $(countrySelector).text();
+}
+
+function updateName(){
+	var country = getCountry();
+	if(country !== lastCountry) {
+		lastCountry = country;
+		console.log("new country: ", lastCountry);
+	}
+}
+
+var mytimer = setInterval(updateName, 5000);
+clearInterval(mytimer);
+
+
+var populationSelector = "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldInfoMain";
+
+function getPopulation() {
+	return parseInt($(populationSelector)[0].firstChild.data);
+}
+
+var cultureSelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldInfoMain > span:nth-child(3)';
+
+function getCulture() {
+	return $(cultureSelector)[0].firstChild.data;
+}
+
+var countryDetails = {
+	country: getCountry(),
+	population: getPopulation(),
+	culture: getCulture()
+};
+
+var turnSelector = '#gameWrapper > div > div.area.areaT > div.area.areaTM > div > div > div > div.turnInfo > div > span.turnCount';
+
+function getTurn() {
+	return parseInt($(turnSelector).text().substring(5));
+}
+
+z mapy można wyczytać status kraju.
+
+
+#pop_roma
+#info_roma
+
+<text id="pop_wallachia" x="696.546875" y="490" visibility="inherit" transform="translate(220.79999999999995,157.44000000000005)" class="dev">3°°</text>
+	    
+		
+#prod_crete
+<image id="prod_crete" class="prod" height="12" width="12" x="738.4375" y="659" xlink:href="../common/images/icon_unit.png" visibility="inherit" transform="translate(242.56000000000006,213.76)"/>
+	
+Zrobić przypominacza o najlepszej budowie.
+
+Zrobić aktualny zrzut jednej prowincji.
+- (bez prowincji)
