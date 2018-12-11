@@ -8,23 +8,24 @@ function getTurn() {
 // - (without turn)
 function getCountryDetails(countryName)
 {
+    function createId(prefix, province) {
+        return prefix + province.toLowerCase();
+    }
+
     var a = document.getElementsByClassName("svgMap")[0];
     // Get the SVG document inside the Object tag
     var svgDoc = a.contentDocument;
 
-    var populationId = "pop_" + countryName.toLowerCase();
-    var populationItem = svgDoc.getElementById(populationId);
-    
-    var productionId = "prod_" + countryName.toLowerCase();
-    var productionItem = svgDoc.getElementById(productionId);
+    var populationItem = svgDoc.getElementById(createId("pop_", countryName));
+
+    var productionItem = svgDoc.getElementById(createId("prod_", countryName));
     var production = productionItem.getAttribute("xlink:href");
     var isHidden = productionItem.getAttribute("visibility") === "hidden";
     if (isHidden) {
         production = "";
     }
 
-    var soldierId = "info_" + countryName.toLowerCase();
-    var soldierItem = svgDoc.getElementById(soldierId);
+    var soldierItem = svgDoc.getElementById(createId("info_", countryName));
 
     var countryDetails = {
         turn: getTurn(),
