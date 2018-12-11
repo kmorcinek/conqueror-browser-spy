@@ -134,11 +134,19 @@ function getCountry() {
 }
 
 function refreshHudHistory(countryName) {
+    function lineIt(details) {
+        return "x: " + details.population + "," + details.culture;
+    }
     var history = provincesHistory[countryName];
 
-    var last = history[history.length - 1];
-    var oneliner = "x: " + last.population + "," + last.culture;
-    updateHudHtml(oneliner + "<br>" + oneliner);
+    //var last = history[history.length - 1];
+    //var oneliner = "x: " + last.population + "," + last.culture;
+    var lines = [];
+    for (var i = history.length - 1; i > -1; i--) {
+        lines.push(lineIt(history[i]));
+    }
+    
+    updateHudHtml(lines.join("<br>"));
 }
 
 var lastCountry = "";

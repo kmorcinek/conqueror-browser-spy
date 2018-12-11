@@ -107,3 +107,5 @@ Może być gdzieś moje miejsce gdzie będę wypisywał nowe informacje np po kl
 Historie wszystkiego już teraz mogę czytać. mogę ją zrzucać np do konsoli gdzie będą.
 
 Określanie co dokładnie jest budowane nie robić na podstawie dokładnych wyliczeń (jak wcześniej w C#) tylko hardkodować najbardziej użyteczne info.
+
+Pokazywać historie tylko krajów które są niczyje (chociaż to jest nieistotne bo hud nie musi być pusty)
