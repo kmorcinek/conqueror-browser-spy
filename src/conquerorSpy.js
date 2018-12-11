@@ -124,6 +124,9 @@ function updateHud(text) {
     $('#hud').text(text)
 }
 
+function updateHudHtml(html) {
+    $('#hud').html(html)
+}
 
 var countrySelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldHeader > span'
 function getCountry() {
@@ -135,7 +138,7 @@ function refreshHudHistory(countryName) {
 
     var last = history[history.length - 1];
     var oneliner = "x: " + last.population + "," + last.culture;
-    updateHud(oneliner);
+    updateHudHtml(oneliner + "<br>" + oneliner);
 }
 
 var lastCountry = "";
