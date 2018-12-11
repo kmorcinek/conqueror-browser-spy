@@ -40,8 +40,6 @@ function getCountryDetails(countryName)
         soldiers: soldierItem.textContent
     };
 
-    console.log(populationItem);
-
     return countryDetails;
 }
 
@@ -85,8 +83,6 @@ function updateProvinces() {
         var provinceName = provinces[i];
         
         var province = getCountryDetails(provinceName);
-
-        console.log("Province:", province);
 
         provincesHistory[provinceName].push(province);
 
@@ -146,8 +142,6 @@ function refreshHudHistory(countryName) {
     }
     var history = provincesHistory[countryName];
 
-    //var last = history[history.length - 1];
-    //var oneliner = "x: " + last.population + "," + last.culture;
     var lines = [];
     for (var i = history.length - 1; i > -1; i--) {
         lines.push(lineIt(history[i]));
