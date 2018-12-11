@@ -70,8 +70,8 @@ var allProvinces = [
     "luxembourg", "genoa", "venetia", "helvetica", "austria", "rhineland", "bohemia", "saxony", "hanover", "brandenburg"
 ];
 
-var provinces = ['Livonia', 'Brandenburg', 'Hungary'];
-provinces = allProvinces;
+var provinces = ["livonia", "muscovy", "ukraine", "crimea", "lithuania", "podolia", "prussia", "poland", "moldavia", "wallachia",
+    "transylvania", "hungary", "serbia", "bulgaria", "dalmatia"];
 
 function updateProvinces() {
     for (var i = 0; i < provinces.length; i++) {
@@ -112,4 +112,9 @@ function checkHistory(history) {
     }
 }
 
-provincesHistory
+var timerWrapperSelector = '#gameWrapper > div > div.area.areaT > div.area.areaTM > div > div > div > div.turnTimer';
+
+var timerWrapper = $(timerWrapperSelector);
+
+var hud = $('<div id="hud" style="margin-top: 20px;">konio</div>');
+timerWrapper.append(hud);
