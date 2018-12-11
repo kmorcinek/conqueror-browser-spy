@@ -1,6 +1,8 @@
 var conqueredProvinces = [];
 
-var playerColors = ['#ff3131', '#009c00'];
+var playerColors = [
+    '#ff3131', '#009c00', '#3131ff', '#ffce00', '#636300',
+    '#63319c', '#ce63ce', '#ce9c63', '#006363', '#319c9c'];
 
 function updateOwnedProvinces() {
     function createId(prefix, province) {
