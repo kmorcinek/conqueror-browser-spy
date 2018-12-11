@@ -63,9 +63,10 @@ var refrestTurnInterval;
 clearInterval(refrestTurnInterval);
 refrestTurnInterval = setInterval(refreshTurn, 500);
 
+var provinces = ['Livonia', 'Brandenburg', 'Hungary'];
+
 function updateProvinces() {
     console.log('updateProvinces()')
-    var provinces = ['Livonia', 'Brandenburg', 'Hungary'];
 
     for (var i = 0; i < provinces.length; i++) {
         var provinceName = provinces[i];
@@ -75,13 +76,18 @@ function updateProvinces() {
 
         console.log("Province:", province);
 
-        //livoniaHistory.push(province);
+        provincesHistory[provinceName].push(province);
 
         //checkHistory(livoniaHistory);
     }
 }
 
-var livoniaHistory = [];
+var provincesHistory = {};
+
+for (var i = 0; i < provinces.length; i++) {
+    var provinceName = provinces[i];
+    provincesHistory[provinceName] = [];
+}
 
 function checkHistory(history) {
     // population 3 is longer than x (5?) => developing

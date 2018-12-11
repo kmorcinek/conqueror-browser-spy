@@ -120,3 +120,8 @@ na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a nast
   - historie każdej tury 
 
   populationItem.textContent = "(devel) 3°°";
+
+Może być gdzieś moje miejsce gdzie będę wypisywał nowe informacje np po kliknięciu na inną provincje.
+
+
+Historie wszystkiego już teraz mogę czytać. mogę ją zrzucać np do konsoli gdzie będą 
