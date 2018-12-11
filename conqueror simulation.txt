@@ -84,10 +84,6 @@ var sidebar = $("#gameWrapper > div > div.area.areaR");
   alert( "Handler for .change() called." );
 });
 
-
-#info_roma    
-		
-
 Zrobić przypominacza o najlepszej budowie.
 
 na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a następnie po zmianie country, zczytywać nowe budowania (ale może te nowe production nie sa takie ważne?!).
@@ -99,16 +95,18 @@ na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a nast
 - ostrzegać gdy jest pewne że 3 buduje development
   - historie każdej tury 
 
-  populationItem.textContent = "(devel) 3°°";
-
-Może być gdzieś moje miejsce gdzie będę wypisywał nowe informacje np po kliknięciu na inną provincje.
-
-
-Historie wszystkiego już teraz mogę czytać. mogę ją zrzucać np do konsoli gdzie będą.
-
 Określanie co dokładnie jest budowane nie robić na podstawie dokładnych wyliczeń (jak wcześniej w C#) tylko hardkodować najbardziej użyteczne info.
 
 Pokazywać historie tylko krajów które są niczyje (chociaż to jest nieistotne bo hud nie musi być pusty)
 
 Testować gdy conqueror bez 'fog of war'.
 
+Alert gdy jest pewność co buduje ale też opis na górze HUDa, (można też napisać albo albo).
+
+
+obliczyć co musi się dziać dla 3 potem dla 4 -ki.
+- zrobić to może w TS razem z UT?
+
+- Gdy jeszcze nie widać to nie dodawać do listy.
+- Właczyć wszystkie provincje
+- te które zdobyłem to wyrzucić z listy.

@@ -73,6 +73,8 @@ var allProvinces = [
 var provinces = ["livonia", "muscovy", "ukraine", "crimea", "lithuania", "podolia", "prussia", "poland", "moldavia", "wallachia",
     "transylvania", "hungary", "serbia", "bulgaria", "dalmatia"];
 
+provinces = allProvinces;
+
 function updateProvinces() {
     for (var i = 0; i < provinces.length; i++) {
         var provinceName = provinces[i];
