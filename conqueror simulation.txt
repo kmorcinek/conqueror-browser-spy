@@ -130,3 +130,6 @@ od czerwonego:
 
 
 zdefiniować 6 kolorów i wg nich sprawdzać:
+
+
+zwiekszy 3 i develop.

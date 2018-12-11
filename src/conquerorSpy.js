@@ -12,8 +12,8 @@ function getCountryDetails(countryName)
         return prefix + province.toLowerCase();
     }
 
+    // TODO: prefetch it
     var a = document.getElementsByClassName("svgMap")[0];
-    // Get the SVG document inside the Object tag
     var svgDoc = a.contentDocument;
 
     var populationItem = svgDoc.getElementById(createId("pop_", countryName));
@@ -143,6 +143,12 @@ function refreshHudHistory(countryName) {
 
         return details.turn + ": " + details.population + culture + "," + details.soldiers;
     }
+
+    if (conqueredProvinces.includes(countryName)) {
+        updateHud("");
+        return;
+    }
+
     var history = provincesHistory[countryName];
 
     var lines = [];

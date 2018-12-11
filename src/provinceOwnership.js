@@ -1,16 +1,30 @@
 var conqueredProvinces = [];
 
+var playerColors = ['#ff3131', '#009c00'];
+
 function updateOwnedProvinces() {
-    console.log('konio');
-    return;
+    function createId(prefix, province) {
+        return prefix + province.toLowerCase();
+    }
 
     for (var i = 0; i < provinces.length; i++) {
         var provinceName = provinces[i];
 
-        var province = getCountryDetails(provinceName);
+        if (conqueredProvinces.includes(provinceName)) {
+            continue;
+        }
 
-        provincesHistory[provinceName].push(province);
+        // TODO: prefetch it
+        var a = document.getElementsByClassName("svgMap")[0];
+        var svgDoc = a.contentDocument;
 
-        checkHistory(provincesHistory[provinceName]);
+        var map = svgDoc.getElementById(createId("field_", provinceName));
+
+        var color = map.getAttribute("fill");
+
+        if (playerColors.includes(color)) {
+            console.log("color: ", color + " " + provinceName);
+            conqueredProvinces.push(provinceName);
+        }
     }
 }
