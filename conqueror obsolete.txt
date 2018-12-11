@@ -28,4 +28,6 @@ gdy nie widzimy provincji do 'prod_' jest ukryte (hidden):
 
 https://journocode.com/2016/08/02/svg-tooltips/
 
-
+using:
+https://stackoverflow.com/questions/39007243/cannot-open-local-file-chrome-not-allowed-to-load-local-resource/46480984#46480984
+- only when application is running.
