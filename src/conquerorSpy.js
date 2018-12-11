@@ -38,9 +38,6 @@ function getCountryDetails(countryName)
     return countryDetails;
 }
 
-var poland = getCountryDetails('poland');
-poland
-
 // TODO: animVal vs baseVal?
 //svgItem.className.animVal
 
@@ -66,19 +63,16 @@ refrestTurnInterval = setInterval(refreshTurn, 500);
 var provinces = ['Livonia', 'Brandenburg', 'Hungary'];
 
 function updateProvinces() {
-    console.log('updateProvinces()')
-
     for (var i = 0; i < provinces.length; i++) {
         var provinceName = provinces[i];
         
-        console.log('updateProvinces()[]', provinceName)
         var province = getCountryDetails(provinceName);
 
         console.log("Province:", province);
 
         provincesHistory[provinceName].push(province);
 
-        //checkHistory(livoniaHistory);
+        checkHistory(provincesHistory[provinceName]);
     }
 }
 
@@ -106,3 +100,5 @@ function checkHistory(history) {
         }
     }
 }
+
+provincesHistory
