@@ -108,5 +108,25 @@ obliczyć co musi się dziać dla 3 potem dla 4 -ki.
 - zrobić to może w TS razem z UT?
 
 - Gdy jeszcze nie widać to nie dodawać do listy.
-- Właczyć wszystkie provincje
 - te które zdobyłem to wyrzucić z listy.
+
+Która provincja jest już moja?
+
+moje:
+<g id="field_aragon" class="field" fill="#009c00">
+<g id="field_grenada" class="field field_focus_game" fill="#009c00">
+
+stolica:
+<g id="field_castile" class="field" fill="#009c00">
+
+niczyje (bardziej czarny jest mocniejszy):
+<g id="field_leon" class="field" fill="#747474">
+<g id="field_portugal" class="field" fill="#262626">
+
+
+od czerwonego:
+<g id="field_cyprus" class="field" fill="#ff3131">
+<g id="field_natolia" class="field" fill="#ff3131">
+
+
+zdefiniować 6 kolorów i wg nich sprawdzać:

@@ -53,6 +53,7 @@ function refreshTurn() {
         lastTurn = turn;
         console.log("New turn: ", lastTurn);
         updateProvinces();
+        updateOwnedProvinces();
     }
 }
 
