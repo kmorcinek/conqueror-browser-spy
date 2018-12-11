@@ -76,33 +76,13 @@ country.change(function() {
   alert( "Handler for .change() called." );
 });
 
-var country = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.cap.type_default > div > div.fieldHeaderWrapper > div.fieldHeader > span');
+div.fieldHeaderWrapper > div.fieldHeader > span');
                  #gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldHeader
-
-var countrySelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldHeader > span'
-
 				 
 var sidebar = $("#gameWrapper > div > div.area.areaR");
 .change(function() {
   alert( "Handler for .change() called." );
 });
-
-var lastCountry = "";
-
-function getCountry() {
-	return $(countrySelector).text();
-}
-
-function updateName(){
-	var country = getCountry();
-	if(country !== lastCountry) {
-		lastCountry = country;
-		console.log("new country: ", lastCountry);
-	}
-}
-
-var mytimer = setInterval(updateName, 5000);
-clearInterval(mytimer);
 
 
 #info_roma    

@@ -123,3 +123,27 @@ timerWrapper.append(hud);
 function updateHud(text) {
     $('#hud').text(text)
 }
+
+
+var countrySelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldHeader > span'
+function getCountry() {
+    return $(countrySelector).text();
+}
+
+function refreshHudHistory(countryName) {
+    updateHud(countryName);
+}
+
+var lastCountry = "";
+
+function refreshName() {
+    var country = getCountry();
+    if (country !== lastCountry) {
+        lastCountry = country;
+        refreshHudHistory(country);
+    }
+}
+
+var refreshNameInterval;
+clearInterval(refreshNameInterval);
+refreshNameInterval = setInterval(refreshName, 200);
