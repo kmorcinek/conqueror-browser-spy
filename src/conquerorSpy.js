@@ -138,7 +138,12 @@ function getCountry() {
 
 function refreshHudHistory(countryName) {
     function lineIt(details) {
-        return details.turn + ": " + details.population + "," + details.culture + "," + details.soldiers;
+        var culture = details.culture;
+        if (culture == "") {
+            culture = 'pri';
+        }
+
+        return details.turn + ": " + details.population + culture + "," + details.soldiers;
     }
     var history = provincesHistory[countryName];
 
