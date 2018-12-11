@@ -18,6 +18,11 @@ function getCountryDetails(countryName)
 
     var populationItem = svgDoc.getElementById(createId("pop_", countryName));
 
+    // fog of war
+    if (populationItem.getAttribute("visibility") === "hidden") {
+        return null;
+    }
+
     var productionItem = svgDoc.getElementById(createId("prod_", countryName));
     var production = productionItem.getAttribute("xlink:href");
     var isHidden = productionItem.getAttribute("visibility") === "hidden";
@@ -87,6 +92,10 @@ function updateProvinces() {
         var provinceName = provinces[i];
         
         var province = getCountryDetails(provinceName);
+
+        if (province == null) {
+            continue;
+        }
 
         provincesHistory[provinceName].push(province);
 
