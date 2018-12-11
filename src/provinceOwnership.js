@@ -23,7 +23,6 @@ function updateOwnedProvinces() {
         var color = map.getAttribute("fill");
 
         if (playerColors.includes(color)) {
-            console.log("color: ", color + " " + provinceName);
             conqueredProvinces.push(provinceName);
         }
     }

@@ -131,5 +131,5 @@ od czerwonego:
 
 zdefiniować 6 kolorów i wg nich sprawdzać:
 
+Bug: interval przy new turn chodzi gdy jeszcze gra na dobrze nie wystartowała i czyta prowincje.
 
-zwiekszy 3 i develop.
