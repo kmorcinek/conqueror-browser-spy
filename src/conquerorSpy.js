@@ -131,13 +131,17 @@ function getCountry() {
 }
 
 function refreshHudHistory(countryName) {
-    updateHud(countryName);
+    var history = provincesHistory[countryName];
+
+    var last = history[history.length - 1];
+    var oneliner = "x: " + last.population + "," + last.culture;
+    updateHud(oneliner);
 }
 
 var lastCountry = "";
 
 function refreshName() {
-    var country = getCountry();
+    var country = getCountry().toLowerCase();
     if (country !== lastCountry) {
         lastCountry = country;
         refreshHudHistory(country);
