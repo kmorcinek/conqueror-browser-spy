@@ -1,6 +1,8 @@
 if (!window.jQuery || confirm('Overwrite\x20current\x20version?\x20v' + jQuery.fn.jquery)) (function (d, s) { s = d.createElement('script'); s.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js'; (d.head || d.documentElement).appendChild(s) })(document);
 // - check
 
+// small timer is needed here as loading jQuery always takes a moment and the rest of file is evaluated without $
+
 var turnSelector = '#gameWrapper > div > div.area.areaT > div.area.areaTM > div > div > div > div.turnInfo > div > span.turnCount';
 
 function getTurn() {
@@ -26,11 +28,16 @@ function getCountryDetails(countryName)
         production = "";
     }
 
+    var soldierId = "info_" + countryName.toLowerCase();
+    var soldierItem = svgDoc.getElementById(soldierId);
+
     var countryDetails = {
+        turn: getTurn(),
         name: countryName,
         population: populationItem.textContent,
         culture: populationItem.className.animVal,
-        production: production
+        production: production,
+        soldiers: soldierItem.textContent
     };
 
     console.log(populationItem);
@@ -135,7 +142,7 @@ function getCountry() {
 
 function refreshHudHistory(countryName) {
     function lineIt(details) {
-        return "x: " + details.population + "," + details.culture;
+        return details.turn + ": " + details.population + "," + details.culture + "," + details.soldiers;
     }
     var history = provincesHistory[countryName];
 
