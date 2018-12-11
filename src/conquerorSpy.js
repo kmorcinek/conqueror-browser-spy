@@ -99,6 +99,7 @@ function checkHistory(history) {
     // -start from last one
     var last = history[history.length - 1];
     if (last.population === "3") {
+        updateHud('historia')
         var counter = 0;
         for (var i = history.length - 2; i > -1; i--) {
             if (history[i].population === "3") {
@@ -118,3 +119,7 @@ var timerWrapper = $(timerWrapperSelector);
 
 var hud = $('<div id="hud" style="margin-top: 20px;">konio</div>');
 timerWrapper.append(hud);
+
+function updateHud(text) {
+    $('#hud').text(text)
+}
