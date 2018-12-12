@@ -25,11 +25,22 @@ function getCountryDetails(countryName)
         culture = 'pri';
     }
 
+    function parseProduction(icon) {
+        var production = icon.replace("../common/images/icon_", "").replace(".png", "");
+        if (production === "castle_kind") {
+            production = "fort";
+        }
+
+        return production;
+    }
+
     var productionItem = svgDoc.getElementById(createId("prod_", countryName));
     var production = productionItem.getAttribute("xlink:href");
     var isHidden = productionItem.getAttribute("visibility") === "hidden";
     if (isHidden) {
         production = "";
+    } else {
+        production = parseProduction(production)
     }
 
     var soldierItem = svgDoc.getElementById(createId("info_", countryName));

@@ -55,3 +55,6 @@ fog of war:
 <rect id="pop_bg_poland" width="8" height="8" x="0.5" y="-8" visibility="hidden" transform="translate(308,212.5)"/>
 
 
+        "../common/images/icon_castle_kind.png"
+        "../common/images/icon_farm.png"
+ culture, unit, gold
