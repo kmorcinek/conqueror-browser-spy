@@ -124,3 +124,8 @@ Toolik do rysowania kolorów kropek, zeby wiedzieć gdzie dochodzą czyje potęg
 "4*" co robi, przykład takich najpopularniejszych z wątpliwościami
 
 brak zamków w hist
+
+
+livonia jest źle pokazywana, z jakiegoś powodu była w conqueredProvince. (zły kolor?).
+
+Bug: kraje które są niepodbite nie powinny mieć "production".
