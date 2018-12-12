@@ -5,11 +5,15 @@ function loadScript(url) {
 loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js');
 
 function refreshIt() {
-    var url = 'http://127.0.0.1:8887/conquerorSpy.js';
-    loadScript(url);
+    var urls = [
+        'http://127.0.0.1:8887/conquerorSpy.js',
+        'http://127.0.0.1:8887/provinceOwnership.js'
+    ];
 
-    var url = 'http://127.0.0.1:8887/provinceOwnership.js';
-    loadScript(url);
+    for (var i = 0; i < urls.length; i++) {
+        var url = urls[i];
+        loadScript(url);
+    }
 }
 
 setTimeout(function() {
