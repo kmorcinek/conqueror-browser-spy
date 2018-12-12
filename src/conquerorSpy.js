@@ -23,6 +23,7 @@ function refreshTurn() {
         updateProvinces();
         checkProvinces();
         updateOwnedProvinces();
+        checkBuildingProvinces();
     }
 }
 

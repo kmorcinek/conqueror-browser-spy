@@ -6,6 +6,7 @@ loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js');
 
 function refreshIt() {
     var urls = [
+        'buildingChecker.js',
         'conquerorSpy.js',
         'historyChecker.js',
         'provinceOwnership.js',
