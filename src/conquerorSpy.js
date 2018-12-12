@@ -17,6 +17,9 @@ function getCountryDetails(countryName)
     var svgDoc = a.contentDocument;
 
     var populationItem = svgDoc.getElementById(createId("pop_", countryName));
+    if (populationItem == null) {
+        return null;
+    }
 
     // fog of war
     if (populationItem.getAttribute("visibility") === "hidden") {
