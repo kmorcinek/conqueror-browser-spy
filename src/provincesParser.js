@@ -74,12 +74,15 @@ function checkHistory(history) {
     // population 3 is longer than x (5?) => developing
     // -start from last one
     var last = history[history.length - 1];
+    var lastSoldiersCount = last.soldiers;
+
     if (last.population === "3") {
         var counter = 0;
         for (var i = history.length - 2; i > -1; i--) {
-            if (history[i].population === "3") {
+            var current = history[i];
+            if (current.population === "3" && lastSoldiersCount <= current.soldiers) {
                 counter++;
-            } 
+            }
         }
 
         if (counter > 4) {
