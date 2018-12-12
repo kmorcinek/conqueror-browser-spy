@@ -9,6 +9,7 @@ function refreshIt() {
         'conquerorSpy.js',
         'provinceOwnership.js',
         'provinces.js',
+        'provincesParser.js',
         'hud.js'
     ];
 
