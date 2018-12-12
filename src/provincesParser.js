@@ -93,7 +93,7 @@ function checkHistory(history) {
             }
         }
 
-        if (counter > 4) {
+        if (counter > 1) {
             alertsToShow.push(last.name + " is developing");
         }
     }
