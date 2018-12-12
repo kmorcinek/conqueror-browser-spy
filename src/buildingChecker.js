@@ -11,11 +11,17 @@ function checkBuildingProvinces() {
             message = "should not farm"
         }
 
-        if (last.population === a.population &&
-            last.culture === a.culture &&
-            last.production === a.production) {
+        var patterns = [a];
 
-            buildingAdvices.push(last.name + " " + a.message);
+        for (var j = 0; j < patterns.length; j++) {
+            var pattern = patterns[j];
+
+            if (last.population === pattern.population &&
+                last.culture === pattern.culture &&
+                last.production === pattern.production) {
+
+                buildingAdvices.push(last.name + " " + pattern.message);
+            }
         }
 
         // 3**pri buduje farme (albo diplomat).
