@@ -22,6 +22,10 @@ function updateOwnedProvinces() {
 
         var map = svgDoc.getElementById(createId("field_", provinceName));
 
+        if (map == null) {
+            continue;
+        }
+
         var color = map.getAttribute("fill");
 
         if (playerColors.includes(color)) {
