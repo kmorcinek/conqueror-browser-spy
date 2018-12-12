@@ -108,6 +108,7 @@ obliczyć co musi się dziać dla 3 potem dla 4 -ki.
 
 Bug: Zagrać inną mapę bo nie działa historia hud
 - inne nazwy: e1, a9
+- a-k, 1-11.
 
 - nie dostawić alertów od prowincji blisko sojuszników.
 
