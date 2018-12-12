@@ -7,7 +7,8 @@ loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js');
 function refreshIt() {
     var urls = [
         'http://127.0.0.1:8887/conquerorSpy.js',
-        'http://127.0.0.1:8887/provinceOwnership.js'
+        'http://127.0.0.1:8887/provinceOwnership.js',
+        'http://127.0.0.1:8887/hud.js'
     ];
 
     for (var i = 0; i < urls.length; i++) {
