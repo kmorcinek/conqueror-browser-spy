@@ -110,7 +110,7 @@ Bug: Zagrać inną mapę bo nie działa historia hud
 - inne nazwy: e1, a9
 - a-k, 1-11.
 - co się dzieje gdy a1 nie ma na mapie?
-- inny selector dla countryName.
+.provincesParser.js
 
 - nie dostawić alertów od prowincji blisko sojuszników.
 
