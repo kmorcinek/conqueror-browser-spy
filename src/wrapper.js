@@ -8,6 +8,7 @@ function refreshIt() {
     var urls = [
         'conquerorSpy.js',
         'provinceOwnership.js',
+        'provinces.js',
         'hud.js'
     ];
 
