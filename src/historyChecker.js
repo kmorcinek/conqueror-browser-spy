@@ -15,6 +15,10 @@ function checkProvinces() {
 var alertsToShow = [];
 
 function checkHistory(history) {
+    if (history.length === 0) {
+        return;
+    }
+
     // population 3 is longer than x (5?) => developing
     // -start from last one
     var last = history[history.length - 1];
