@@ -6,13 +6,14 @@ loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js');
 
 function refreshIt() {
     var urls = [
-        'http://127.0.0.1:8887/conquerorSpy.js',
-        'http://127.0.0.1:8887/provinceOwnership.js',
-        'http://127.0.0.1:8887/hud.js'
+        'conquerorSpy.js',
+        'provinceOwnership.js',
+        'hud.js'
     ];
 
+    var baseUrl = "http://127.0.0.1:8887/";
     for (var i = 0; i < urls.length; i++) {
-        var url = urls[i];
+        var url = baseUrl + urls[i];
         loadScript(url);
     }
 }
