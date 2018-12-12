@@ -37,7 +37,7 @@ function checkHistory(history) {
             }
         }
 
-        if (counter > 1) {
+        if (counter > 5) {
             alertsToShow.push(last.name + " is developing");
         }
     }
