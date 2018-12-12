@@ -10,7 +10,13 @@ function checkBuildingProvinces() {
                 culture: "pri",
                 production: "farm",
                 message = "should not farm"
-            }
+            },
+            {
+                population: "3°°",
+                culture: "pri",
+                production: "farm",
+                message = "should not farm"
+            },
         ];
 
         for (var j = 0; j < patterns.length; j++) {
@@ -22,11 +28,6 @@ function checkBuildingProvinces() {
 
                 buildingAdvices.push(last.name + " " + pattern.message);
             }
-        }
-
-        // 3**pri buduje farme (albo diplomat).
-        if (last.population === "3°°" && last.culture === "pri" && last.production === "farm") {
-            buildingAdvices.push(last.name + " should not farm");
         }
     }
 
