@@ -20,6 +20,11 @@ function getCountryDetails(countryName)
         return null;
     }
 
+    var culture = populationItem.className.animVal;
+    if (culture == "") {
+        culture = 'pri';
+    }
+
     var productionItem = svgDoc.getElementById(createId("prod_", countryName));
     var production = productionItem.getAttribute("xlink:href");
     var isHidden = productionItem.getAttribute("visibility") === "hidden";
@@ -33,7 +38,7 @@ function getCountryDetails(countryName)
         turn: getTurn(),
         name: countryName,
         population: populationItem.textContent,
-        culture: populationItem.className.animVal,
+        culture: culture,
         production: production,
         soldiers: soldierItem.textContent
     };
