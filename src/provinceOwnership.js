@@ -30,6 +30,7 @@ function updateOwnedProvinces() {
 
         if (playerColors.includes(color)) {
             conqueredProvinces.push(provinceName);
+            console.log("conquered: ", provinceName);
         }
     }
 }
