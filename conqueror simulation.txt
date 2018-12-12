@@ -117,3 +117,4 @@ Bug: Zagrać inną mapę bo nie działa historia hud
 bug: eire jest puste. nie zczytało prowincji, a inne zczytało.
 - chyba jakiś race condition bo za drugim razem ten i inne zczytało.
 - LOW
+- kolejny raz.
