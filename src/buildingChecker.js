@@ -4,8 +4,18 @@ function checkBuildingProvinces() {
 
         var last = history[history.length - 1];
 
-        if (last.population === "4" && last.culture === "pri" && last.production === "farm") {
-            buildingAdvices.push(last.name + " should not farm (4pri)");
+        var a = {
+            population: "4",
+            culture: "pri",
+            production: "farm",
+            message = "should not farm"
+        }
+
+        if (last.population === a.population &&
+            last.culture === a.culture &&
+            last.production === a.production) {
+
+            buildingAdvices.push(last.name + " " + a.message);
         }
 
         // 3**pri buduje farme (albo diplomat).

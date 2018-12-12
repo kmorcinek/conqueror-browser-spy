@@ -127,6 +127,7 @@ brak zamków w hist
 
 
 livonia jest źle pokazywana, z jakiegoś powodu była w conqueredProvince. (zły kolor?).
+- znowu z Hannoverem tylko teraz nie było 'conquered' gdy powinno.
 
 Bug: kraje które są niepodbite nie powinny mieć "production".
 
