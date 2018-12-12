@@ -129,3 +129,6 @@ brak zamków w hist
 livonia jest źle pokazywana, z jakiegoś powodu była w conqueredProvince. (zły kolor?).
 
 Bug: kraje które są niepodbite nie powinny mieć "production".
+
+
+zagrać 1v1 i się dać w złe miejsce.
