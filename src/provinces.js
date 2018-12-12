@@ -8,4 +8,12 @@ var europeProvinces = [
     "luxembourg", "genoa", "venetia", "helvetica", "austria", "rhineland", "bohemia", "saxony", "hanover", "brandenburg"
 ];
 
-var provinces = europeProvinces;
+var generatedProvinces = [];
+var alphabet = "abcdefghijk";
+for (var i = 1; i < 12; i++) {
+    for (var j = 0; j < 11; j++) {
+        generatedProvinces.push(alphabet[j] + i);
+    } 
+}
+
+var provinces = europeProvinces.concat(generatedProvinces);
