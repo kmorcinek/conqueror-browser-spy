@@ -39,6 +39,7 @@ function cleanAllValues() {
     }
 
     allertsToShow = [];
+    buildingAdvices = [];
 }
 
 cleanAllValues();
