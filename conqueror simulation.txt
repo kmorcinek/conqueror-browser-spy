@@ -118,3 +118,12 @@ bug: eire jest puste. nie zczytało prowincji, a inne zczytało.
   - wrzucić 1s setTimeout.
   
 Toolik do rysowania kolorów kropek, zeby wiedzieć gdzie dochodzą czyje potęgi.
+
+
+
+4* co robi
+
+brak zamków w hist
+
+ile de france nie odswieza hud.
+- "île de france" rozne nazwy. i wszystkie inne ze spacjami.
