@@ -66,9 +66,17 @@ function updateProvinces() {
 
         checkHistory(provincesHistory[provinceName]);
     }
+
+    // TODO: refactor alertsToShow
+    if (alertsToShow.length) {
+        alert(alertsToShow.join(", "));
+        alertsToShow = [];
+    }
 }
 
 var provincesHistory;
+
+var alertsToShow = [];
 
 function checkHistory(history) {
     // population 3 is longer than x (5?) => developing
@@ -86,7 +94,7 @@ function checkHistory(history) {
         }
 
         if (counter > 4) {
-            alert(last.name + " is developing");
+            alertsToShow.push(last.name + " is developing");
         }
     }
 }

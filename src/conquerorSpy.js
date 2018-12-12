@@ -35,6 +35,8 @@ function cleanAllValues() {
         var provinceName = provinces[i];
         provincesHistory[provinceName] = [];
     }
+
+    allertsToShow = [];
 }
 
 cleanAllValues();
