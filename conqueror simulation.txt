@@ -113,5 +113,4 @@ Bug: Zagrać inną mapę bo nie działa historia hud
 
 - gdy "3" to patrzeć czy żołnierze nie rosną.
 
-bug: po zmienie gry nie pokazuje sie hud.
-- nie jest dodawany #hud tag.
+bug: eire jest puste. nie zczytało prowincji, a inne zczytało.

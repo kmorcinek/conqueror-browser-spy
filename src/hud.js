@@ -1,15 +1,23 @@
-var timerWrapperSelector = '#gameWrapper > div > div.area.areaT > div.area.areaTM > div > div > div > div.turnTimer';
+function initHud() {
+    if ($('#hud').length) {
+        return;
+    }
 
-var timerWrapper = $(timerWrapperSelector);
+    var timerWrapperSelector = '#gameWrapper > div > div.area.areaT > div.area.areaTM > div > div > div > div.turnTimer';
 
-var hud = $('<div id="hud" style="margin-top: 20px;"></div>');
-timerWrapper.append(hud);
+    var timerWrapper = $(timerWrapperSelector);
+
+    var hud = $('<div id="hud" style="margin-top: 20px;"></div>');
+    timerWrapper.append(hud);
+}
 
 function updateHud(text) {
+    initHud();
     $('#hud').text(text)
 }
 
 function updateHudHtml(html) {
+    initHud();
     $('#hud').html(html)
 }
 
