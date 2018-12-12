@@ -52,7 +52,14 @@ refrestTurnInterval = setInterval(refreshTurn, 500);
 
 var countrySelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldHeader > span'
 function getCountry() {
-    return $(countrySelector).text();
+    var text = $(countrySelector).text();
+
+    // TODO: encoding problem below with first character
+    if (text.includes("le de France")) {
+        text = "iledefrance";
+    }
+
+    return text;
 }
 
 var lastCountry = "";

@@ -121,9 +121,6 @@ Toolik do rysowania kolorów kropek, zeby wiedzieć gdzie dochodzą czyje potęg
 
 
 
-4* co robi
+"4*" co robi, przykład takich najpopularniejszych z wątpliwościami
 
 brak zamków w hist
-
-ile de france nie odswieza hud.
-- "île de france" rozne nazwy. i wszystkie inne ze spacjami.
