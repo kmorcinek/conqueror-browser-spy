@@ -4,14 +4,14 @@ function checkBuildingProvinces() {
 
         var last = history[history.length - 1];
 
-        var a = {
-            population: "4",
-            culture: "pri",
-            production: "farm",
-            message = "should not farm"
-        }
-
-        var patterns = [a];
+        var patterns = [
+            {
+                population: "4",
+                culture: "pri",
+                production: "farm",
+                message = "should not farm"
+            }
+        ];
 
         for (var j = 0; j < patterns.length; j++) {
             var pattern = patterns[j];
