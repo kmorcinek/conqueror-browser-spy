@@ -2,6 +2,10 @@ function checkProvinces() {
     for (var i = 0; i < provinces.length; i++) {
         var provinceName = provinces[i];
 
+        if (conqueredProvinces.includes(provinceName)) {
+            continue;
+        }
+
         checkHistory(provincesHistory[provinceName]);
     }
 
