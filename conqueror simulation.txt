@@ -102,6 +102,9 @@ Testować gdy conqueror bez 'fog of war'.
 Alert gdy jest pewność co buduje ale też opis na górze HUDa, (można też napisać albo albo).
 
 
+Ten tool się bardzo przyda w 2v2 a najbardziej w 1v1.
+
+
 obliczyć co musi się dziać dla 3 potem dla 4 -ki.
 - zrobić to może w TS razem z UT?
 
