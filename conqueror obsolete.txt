@@ -49,3 +49,9 @@ niczyje (bardziej czarny jest mocniejszy):
 od czerwonego:
 <g id="field_cyprus" class="field" fill="#ff3131">
 <g id="field_natolia" class="field" fill="#ff3131">
+
+
+fog of war:
+<rect id="pop_bg_poland" width="8" height="8" x="0.5" y="-8" visibility="hidden" transform="translate(308,212.5)"/>
+
+
