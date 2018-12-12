@@ -1,4 +1,4 @@
-var allProvinces = [
+var europeProvinces = [
     "eire", "ulster", "scotland", "wales", "northumberland", "england", "norway", "sweden", "finland", "denmark",
     "livonia", "muscovy", "ukraine", "crimea", "lithuania", "podolia", "prussia", "poland", "moldavia", "wallachia",
     "transylvania", "hungary", "serbia", "bulgaria", "dalmatia", "byzantium", "macedonia", "greece", "crete", "nicaea",
@@ -8,7 +8,4 @@ var allProvinces = [
     "luxembourg", "genoa", "venetia", "helvetica", "austria", "rhineland", "bohemia", "saxony", "hanover", "brandenburg"
 ];
 
-var provinces = ["livonia", "muscovy", "ukraine", "crimea", "lithuania", "podolia", "prussia", "poland", "moldavia", "wallachia",
-    "transylvania", "hungary", "serbia", "bulgaria", "dalmatia"];
-
-provinces = allProvinces;
+var provinces = europeProvinces;
