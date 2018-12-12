@@ -24,6 +24,8 @@ function refreshTurn() {
         checkProvinces();
         updateOwnedProvinces();
         checkBuildingProvinces();
+
+        console.log("refreshTurn() finished");
     }
 }
 
