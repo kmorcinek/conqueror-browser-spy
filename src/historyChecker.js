@@ -24,7 +24,7 @@ function checkHistory(history) {
     var last = history[history.length - 1];
     var lastSoldiersCount = last.soldiers;
 
-    if (last.population === "3") {
+    if (last.population === "3" && last.culture === "pri") {
         var counter = 0;
         for (var i = history.length - 2; i > -1; i--) {
             var current = history[i];
