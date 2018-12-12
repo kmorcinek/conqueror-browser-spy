@@ -61,12 +61,30 @@ function refreshTurn() {
     }
 
     if (turn !== lastTurn) {
+        if (turn === 1) {
+            cleanAllValues();
+        }
+
         lastTurn = turn;
         console.log("New turn: ", lastTurn);
         updateProvinces();
         updateOwnedProvinces();
     }
 }
+
+function cleanAllValues() {
+    lastCountry = "";
+    conqueredProvinces = [];
+
+    provincesHistory = {};
+
+    for (var i = 0; i < provinces.length; i++) {
+        var provinceName = provinces[i];
+        provincesHistory[provinceName] = [];
+    }
+}
+
+cleanAllValues();
 
 var refrestTurnInterval;
 clearInterval(refrestTurnInterval);
@@ -90,6 +108,10 @@ provinces = allProvinces;
 function updateProvinces() {
     for (var i = 0; i < provinces.length; i++) {
         var provinceName = provinces[i];
+
+        if (conqueredProvinces.includes(provinceName)) {
+            continue;
+        }
         
         var province = getCountryDetails(provinceName);
 
@@ -103,12 +125,7 @@ function updateProvinces() {
     }
 }
 
-var provincesHistory = {};
-
-for (var i = 0; i < provinces.length; i++) {
-    var provinceName = provinces[i];
-    provincesHistory[provinceName] = [];
-}
+var provincesHistory;
 
 function checkHistory(history) {
     // population 3 is longer than x (5?) => developing

@@ -105,11 +105,13 @@ Alert gdy jest pewność co buduje ale też opis na górze HUDa, (można też na
 obliczyć co musi się dziać dla 3 potem dla 4 -ki.
 - zrobić to może w TS razem z UT?
 
-Bug: gdy raz "3" się zrobiła to alert cały czas wyskakuje.
-- między grami nie kasują się stałe. Zrobić że na turn "1" wszystko się zeruje.
-
 
 Bug: Zagrać inną mapę bo nie działa historia hud
 - inne nazwy: e1, a9
 
 - nie dostawić alertów od prowincji blisko sojuszników.
+
+- gdy "3" to patrzeć czy żołnierze nie rosną.
+
+bug: po zmienie gry nie pokazuje sie hud.
+- nie jest dodawany #hud tag.
