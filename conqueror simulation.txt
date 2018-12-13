@@ -138,15 +138,7 @@ zagrać 1v1 i się dać w złe miejsce.
 Mooker powieniał że ja zawsze agro nawet gdy powiniem na niego jechać.
 
 
-Nie działa sprawdzanie * w population. zmienić na population&resources. W patternach zrobic explicite te 2. A w sprawdzaniu najpierw parsować na te 2 z tego co jest w detailsCountry.
-
 Pierwsze odpalenie często nie działa i dopiero refreshIt() trzeba.
 
 dlaczego mnie wypierdala czasem?
 
-
-getCountryDetails('norway').population[1].charCodeAt()
-176
-
-
-Bug: gdy provincja jest podbita to ciągle ją parsuj.

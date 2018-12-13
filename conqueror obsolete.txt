@@ -58,3 +58,7 @@ fog of war:
         "../common/images/icon_castle_kind.png"
         "../common/images/icon_farm.png"
  culture, unit, gold
+ 
+ 
+getCountryDetails('norway').population[1].charCodeAt()
+176
