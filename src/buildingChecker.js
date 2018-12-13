@@ -68,9 +68,7 @@ function checkBuildingProvinces() {
         for (var j = 0; j < patterns.length; j++) {
             var pattern = patterns[j];
 
-            if (pattern.resources === undefined) {
-                pattern.resources = 0;
-            }
+            pattern.resources = pattern.resources || 0;
         }
 
         for (var j = 0; j < patterns.length; j++) {
