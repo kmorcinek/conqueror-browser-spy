@@ -142,4 +142,4 @@ Nie działa sprawdzanie * w population. zmienić na population&resources. W patt
 
 Pierwsze odpalenie często nie działa i dopiero refreshIt() trzeba.
 
-dlaczego nie wypierdala czasem?
+dlaczego mnie wypierdala czasem?
