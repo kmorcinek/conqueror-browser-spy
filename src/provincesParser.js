@@ -68,10 +68,6 @@ function updateProvinces() {
     for (var i = 0; i < provinces.length; i++) {
         var provinceName = provinces[i];
 
-        if (conqueredProvinces.includes(provinceName)) {
-            continue;
-        }
-        
         var province = getCountryDetails(provinceName);
 
         if (province == null) {
