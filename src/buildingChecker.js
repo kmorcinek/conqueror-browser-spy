@@ -4,65 +4,84 @@ function checkBuildingProvinces() {
 
         var last = history[history.length - 1];
 
+        var original = {
+            name: last.name,
+            farms: parsePopulation(last.population).farms,
+            resources: parsePopulation(last.population).resources,
+            culture: last.culture,
+            production: last.production
+        };
+
         var patterns = [
             {
-                population: "4",
+                farms: 4,
+                resources: 0,
                 culture: "pri",
                 production: "farm",
-                message = "should not farm"
             },
             {
-                population: "5",
+                farms: 5,
                 culture: "pri",
                 production: "farm",
-                message = "should not farm"
             },
             {
-                population: "6",
+                farms: 6,
                 culture: "dev",
                 production: "farm",
-                message = "should not farm"
             },
             {
-                population: "4",
+                farms: 4,
                 culture: "dev",
                 production: "culture",
-                message = "should not advance"
             },
             {
-                population: "5",
+                farms: 5,
                 culture: "dev",
                 production: "culture",
-                message = "should not advance"
             },
             {
-                population: "4**",
+                farms: 4,
+                resources: 2,
                 culture: "dev",
                 production: "farm",
-                message = "should not farm"
             },
             {
-                population: "3**",
+                farms: 3,
+                resources: 2,
                 culture: "pri",
                 production: "farm",
-                message = "should not farm"
             },
             {
-                population: "4**",
+                farms: 4,
+                resources: 2,
                 culture: "pri",
                 production: "farm",
-                message = "should not farm"
+            },
+            {
+                farms: 3,
+                resources: 2,
+                culture: "dev",
+                production: "culture",
             },
         ];
 
         for (var j = 0; j < patterns.length; j++) {
             var pattern = patterns[j];
 
-            if (last.population === pattern.population &&
-                last.culture === pattern.culture &&
-                last.production === pattern.production) {
+            if (pattern.resources === undefined) {
+                pattern.resources = 0;
+            }
+        }
 
-                buildingAdvices.push(last.name + " " + pattern.message);
+        for (var j = 0; j < patterns.length; j++) {
+            var pattern = patterns[j];
+
+            if (original.farms === pattern.farms &&
+                original.resources === pattern.resources &&
+                original.culture === pattern.culture &&
+                original.production === pattern.production) {
+
+                buildingAdvices.push(original.name + " should not " + original.production);
             }
         }
     }
@@ -71,6 +90,27 @@ function checkBuildingProvinces() {
         alert(buildingAdvices.join(", "));
         buildingAdvices = [];
     }
+}
+
+function parsePopulation(population) {
+
+    var rest = population;
+    var resources = 0;
+
+    if (rest[rest.length - 1].charCodeAt() === 176) {
+        var rest = rest.substring(0, rest.length - 1);
+        resources++;
+    }
+
+    if (rest[rest.length - 1].charCodeAt() === 176) {
+        var rest = rest.substring(0, rest.length - 1);
+        resources++;
+    }
+
+    return {
+        farms: parseInt(rest),
+        resources: resources
+    };
 }
 
 var buildingAdvices = [];
