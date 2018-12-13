@@ -133,3 +133,9 @@ Bug: kraje które są niepodbite nie powinny mieć "production".
 
 
 zagrać 1v1 i się dać w złe miejsce.
+
+
+Mooker powieniał że ja zawsze agro nawet gdy powiniem na niego jechać.
+
+
+Nie działa sprawdzanie * w population. zmienić na population&resources. W patternach zrobic explicite te 2. A w sprawdzaniu najpierw parsować na te 2 z tego co jest w detailsCountry.
