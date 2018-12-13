@@ -141,3 +141,10 @@ Mooker powieniał że ja zawsze agro nawet gdy powiniem na niego jechać.
 Nie działa sprawdzanie * w population. zmienić na population&resources. W patternach zrobic explicite te 2. A w sprawdzaniu najpierw parsować na te 2 z tego co jest w detailsCountry.
 
 Skasowały się wszystkie patterny, jeszcze raz.
+
+Pierwsze odpalenie często nie działa i dopiero refreshIt() trzeba.
+
+
+Jak jest leon/France widziana w conquered i innych.
+
+dlaczego nie wypierdala czasem?
