@@ -16,12 +16,10 @@ function checkBuildingProvinces() {
             {
                 farms: 4,
                 resources: 0,
-                culture: "pri",
                 production: "farm",
             },
             {
                 farms: 5,
-                culture: "pri",
                 production: "farm",
             },
             {
@@ -48,13 +46,11 @@ function checkBuildingProvinces() {
             {
                 farms: 3,
                 resources: 2,
-                culture: "pri",
                 production: "farm",
             },
             {
                 farms: 4,
                 resources: 2,
-                culture: "pri",
                 production: "farm",
             },
             {
@@ -69,6 +65,7 @@ function checkBuildingProvinces() {
             var pattern = patterns[j];
 
             pattern.resources = pattern.resources || 0;
+            pattern.culture = pattern.culture || "pri";
         }
 
         for (var j = 0; j < patterns.length; j++) {
