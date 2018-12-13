@@ -52,10 +52,10 @@ refrestTurnInterval = setInterval(refreshTurn, 500);
 
 var countrySelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldHeader > span'
 function getCountry() {
-    var text = $(countrySelector).text();
+    var text = $(countrySelector).text().toLowerCase();
 
     // TODO: encoding problem below with first character
-    if (text.includes("le de France")) {
+    if (text.includes("le de france")) {
         text = "iledefrance";
     }
 
@@ -65,7 +65,7 @@ function getCountry() {
 var lastCountry = "";
 
 function refreshName() {
-    var country = getCountry().toLowerCase();
+    var country = getCountry();
     if (country !== lastCountry) {
         lastCountry = country;
         refreshHudHistory(country);
