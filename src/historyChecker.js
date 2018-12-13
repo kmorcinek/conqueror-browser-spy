@@ -11,7 +11,9 @@ function checkProvinces() {
 
     // TODO: refactor alertsToShow
     if (alertsToShow.length) {
-        alert(alertsToShow.join(", "));
+        var message = alertsToShow.join(", ");
+        console.log(message);
+        alert(message);
         alertsToShow = [];
     }
 }

@@ -82,7 +82,9 @@ function checkBuildingProvinces() {
     }
 
     if (buildingAdvices.length) {
-        alert(buildingAdvices.join(", "));
+        var message = buildingAdvices.join(", ");
+        console.log(message);
+        alert(message);
         buildingAdvices = [];
     }
 }
