@@ -97,14 +97,13 @@ function parsePopulation(population) {
     var rest = population;
     var resources = 0;
 
-    if (rest[rest.length - 1].charCodeAt() === 176) {
-        var rest = rest.substring(0, rest.length - 1);
-        resources++;
-    }
-
-    if (rest[rest.length - 1].charCodeAt() === 176) {
-        var rest = rest.substring(0, rest.length - 1);
-        resources++;
+    while (true) {
+        if (rest[rest.length - 1].charCodeAt() === 176) {
+            var rest = rest.substring(0, rest.length - 1);
+            resources++;
+        } else {
+            break;
+        }
     }
 
     return {
