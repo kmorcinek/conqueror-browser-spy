@@ -54,8 +54,11 @@ var countrySelector = '#gameWrapper > div > div.area.areaR > div.view.headerView
 function getCountry() {
     var text = $(countrySelector).text().toLowerCase();
 
-    // TODO: encoding problem below with first character
-    if (text.includes("le de france")) {
+    function removeDiacritics(str) { return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); }
+
+    text = removeDiacritics(text);
+
+    if (text === "ile de france") {
         text = "iledefrance";
     }
 
