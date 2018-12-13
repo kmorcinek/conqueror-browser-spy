@@ -12,7 +12,43 @@ function checkBuildingProvinces() {
                 message = "should not farm"
             },
             {
-                population: "3°°",
+                population: "5",
+                culture: "pri",
+                production: "farm",
+                message = "should not farm"
+            },
+            {
+                population: "6",
+                culture: "dev",
+                production: "farm",
+                message = "should not farm"
+            },
+            {
+                population: "4",
+                culture: "dev",
+                production: "culture",
+                message = "should not advance"
+            },
+            {
+                population: "5",
+                culture: "dev",
+                production: "culture",
+                message = "should not advance"
+            },
+            {
+                population: "4**",
+                culture: "dev",
+                production: "farm",
+                message = "should not farm"
+            },
+            {
+                population: "3**",
+                culture: "pri",
+                production: "farm",
+                message = "should not farm"
+            },
+            {
+                population: "4**",
                 culture: "pri",
                 production: "farm",
                 message = "should not farm"
