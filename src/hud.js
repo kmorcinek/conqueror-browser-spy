@@ -23,7 +23,12 @@ function updateHudHtml(html) {
 
 function refreshHudHistory(countryName) {
     function lineIt(details) {
-        return details.turn + ": " + details.population + details.culture + "," + details.soldiers;
+        var fort = "";
+        if (details.fort) {
+            fort = "," + details.fort[0];
+        }
+
+        return details.turn + ": " + details.population + details.culture + fort + "," + details.soldiers;
     }
 
     if (conqueredProvinces.includes(countryName)) {

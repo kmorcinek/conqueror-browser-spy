@@ -51,10 +51,30 @@ function getCountryDetails(countryName)
         population: populationItem.textContent,
         culture: culture,
         production: production,
-        soldiers: soldierItem.textContent
+        soldiers: soldierItem.textContent,
+        fort: getFort(svgDoc, countryName)
     };
 
     return countryDetails;
+}
+
+function getFort(svgDoc, countryName) {
+    function createFortId(prefix, province) {
+        return prefix + province.toLowerCase() + "_0";
+    }
+
+    var fortItem = svgDoc.getElementById(createFortId("fort_", countryName));
+    if (fortItem != null) {
+        return "fort";
+    } else {
+        var keepItem = svgDoc.getElementById(createFortId("keep_", countryName));
+
+        if (keepItem != null) {
+            return "keep";
+        } else {
+            return "";
+        }
+    }
 }
 
 // TODO: animVal vs baseVal?
