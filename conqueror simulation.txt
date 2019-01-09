@@ -135,8 +135,6 @@ zagrać 1v1 i się dać w złe miejsce.
 
 Mooker powieniał że ja zawsze agro nawet gdy powiniem na niego jechać.
 
-****
-Pierwsze odpalenie często nie działa i dopiero refreshIt() trzeba.
 
 dlaczego mnie wypierdala czasem?
 

@@ -24,4 +24,10 @@ function refreshIt() {
 
 setTimeout(function() {
     refreshIt();
-}, 2000)
+
+    // Setting second refresh fixes problems of loading scripts in wrong order (probably)
+    setTimeout(function() {
+        refreshIt();
+    }, 2000)
+
+}, 1000)
