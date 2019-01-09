@@ -123,6 +123,7 @@ Toolik do rysowania kolorów kropek, zeby wiedzieć gdzie dochodzą czyje potęg
 
 "4*" co robi, przykład takich najpopularniejszych z wątpliwościami
 
+****
 brak zamków w hist
 
 
@@ -137,7 +138,7 @@ zagrać 1v1 i się dać w złe miejsce.
 
 Mooker powieniał że ja zawsze agro nawet gdy powiniem na niego jechać.
 
-
+****
 Pierwsze odpalenie często nie działa i dopiero refreshIt() trzeba.
 
 dlaczego mnie wypierdala czasem?
@@ -145,3 +146,18 @@ dlaczego mnie wypierdala czasem?
 Zrobić dopisek "następna farma będzie w turze 3".
 
 gdy 2 oddalenia do stolicy to nie czekać 7 tur. 
+
+
+skupić się na castle (trzeba szybko zrobić castle).
+
+
+Nie robić 
+
+
+****
+Tooly który będzie trzymał kto kiedy wygrał.
+
+***
+gdzie zapisywać historie która się dzieje gdy gram.
+
+
