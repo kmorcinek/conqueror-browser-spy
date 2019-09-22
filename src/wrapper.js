@@ -15,7 +15,7 @@ function refreshIt() {
         'hud.js'
     ];
 
-    var baseUrl = "http://127.0.0.1:8887/";
+    var baseUrl = "http://conqueror-browser-spy.angelo.hostingasp.pl/";
     for (var i = 0; i < urls.length; i++) {
         var url = baseUrl + urls[i];
         loadScript(url);
