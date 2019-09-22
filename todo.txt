@@ -108,26 +108,8 @@ Ten tool się bardzo przyda w 2v2 a najbardziej w 1v1.
 obliczyć co musi się dziać dla 3 potem dla 4 -ki.
 - zrobić to może w TS razem z UT?
 
-- nie dostawić alertów od prowincji blisko sojuszników.
-  - trzeba będzie algorytmy na 'sąsiedztwo rozkminić i przypisać wszystkie sąsiedztwa.
-
-bug: eire jest puste. nie zczytało prowincji, a inne zczytało.
-- chyba jakiś race condition bo za drugim razem ten i inne zczytało.
-- LOW
-- kolejny raz.
-  - wrzucić 1s setTimeout.
   
 Toolik do rysowania kolorów kropek, zeby wiedzieć gdzie dochodzą czyje potęgi.
-
-
-
-"4*" co robi, przykład takich najpopularniejszych z wątpliwościami
-
-
-livonia jest źle pokazywana, z jakiegoś powodu była w conqueredProvince. (zły kolor?).
-- znowu z Hannoverem tylko teraz nie było 'conquered' gdy powinno.
-
-Bug: kraje które są niepodbite nie powinny mieć "production".
 
 
 zagrać 1v1 i się dać w złe miejsce.
@@ -138,21 +120,15 @@ Mooker powieniał że ja zawsze agro nawet gdy powiniem na niego jechać.
 
 dlaczego mnie wypierdala czasem?
 
-Zrobić dopisek "następna farma będzie w turze 3".
-
-gdy 2 oddalenia do stolicy to nie czekać 7 tur. 
+gdy 2 oddalenia do stolicy to nie czekać 7 tur.
 
 
 skupić się na castle (trzeba szybko zrobić castle).
-
-
-Nie robić 
 
 
 ****
 Tooly który będzie trzymał kto kiedy wygrał.
 
 ***
-gdzie zapisywać historie która się dzieje gdy gram.
 
 
