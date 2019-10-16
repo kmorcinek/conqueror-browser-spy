@@ -13,12 +13,33 @@ function initHud() {
 
 function updateHud(text) {
     initHud();
-    $('#hud').text(text)
+    $('#hud').text(text);
 }
 
 function updateHudHtml(html) {
     initHud();
-    $('#hud').html(html)
+    $('#hud').html(html);
+}
+
+function isTheSameProvinceExceptTurn(first, second) {
+    return first.population === second.population
+        && first.culture === second.culture
+        // && first.production === second.production // this is only our prediction
+        && first.soldiers === second.soldiers
+        && first.fort === second.fort;
+}
+
+function isHistoryEntryUnique(history, currentIndex) {
+    if (currentIndex === 0) {
+        return true;
+    }
+
+    if (currentIndex === history.length - 1) {
+        return true;
+    }
+
+    return !isTheSameProvinceExceptTurn(history[currentIndex - 1], history[currentIndex])
+        || !isTheSameProvinceExceptTurn(history[currentIndex], history[currentIndex + 1]);
 }
 
 function refreshHudHistory(countryName) {
@@ -40,7 +61,9 @@ function refreshHudHistory(countryName) {
 
     var lines = [];
     for (var i = history.length - 1; i > -1; i--) {
-        lines.push(lineIt(history[i]));
+        if (isHistoryEntryUnique(history, i)) {
+            lines.push(lineIt(history[i]));
+        }
     }
     
     updateHudHtml(lines.join("<br>"));
