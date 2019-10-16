@@ -15,7 +15,12 @@ function refreshIt() {
         'hud.js'
     ];
 
-    var baseUrl = "http://conqueror-browser-spy.angelo.hostingasp.pl/";
+    let baseUrl = "http://conqueror-browser-spy.angelo.hostingasp.pl/";
+	var isLocalTesting = false;
+	if (isLocalTesting) {
+		baseUrl = "http://127.0.0.1:8887/";
+	}
+
     for (var i = 0; i < urls.length; i++) {
         var url = baseUrl + urls[i];
         loadScript(url);
