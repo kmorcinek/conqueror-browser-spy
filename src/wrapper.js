@@ -16,10 +16,12 @@ function refreshIt() {
     ];
 
     let baseUrl = "http://conqueror-browser-spy.angelo.hostingasp.pl/";
-	var isLocalTesting = false;
+	let isLocalTesting = false;
 	if (isLocalTesting) {
 		baseUrl = "http://127.0.0.1:8887/";
-	}
+    }
+
+    console.log("refreshing from server: ", baseUrl);
 
     for (var i = 0; i < urls.length; i++) {
         var url = baseUrl + urls[i];
