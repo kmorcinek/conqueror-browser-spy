@@ -22,12 +22,12 @@ function refreshIt() {
     }
 }
 
-setTimeout(function() {
+setTimeout(function () {
     refreshIt();
 
     // Setting second refresh fixes problems of loading scripts in wrong order (probably)
-    setTimeout(function() {
+    setTimeout(function () {
         refreshIt();
-    }, 2000)
+    }, 2000);
 
-}, 1000)
+}, 1000);
