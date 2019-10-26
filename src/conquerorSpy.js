@@ -78,3 +78,7 @@ function refreshName() {
 var refreshNameInterval;
 clearInterval(refreshNameInterval);
 refreshNameInterval = setInterval(refreshName, 200);
+
+var toolVersion = '1.0';
+
+console.log("tool version: " + toolVersion);
