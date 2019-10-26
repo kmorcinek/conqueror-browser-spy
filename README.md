@@ -19,3 +19,11 @@
 * Włączyć dodatek (more tools->Extensions) chrome web server (Web Server for Chrome), domyślny katalog jest dobry, otwierasz folder "C:\Work\GitHub\kmorcinek\conqueror-spy\src" i plik wrapper.js, wkleić do przeglądarki F12 do consoli.
 * reload wrapper.js przeladuje wszystkie skrypty - wystarczy wpisać `refreshIt();` w consoli i też jest przeładowane
 * 
+
+## Which game to set for testing
+
+* Multiplayer
+* Fog of war - off
+* number of players - 2
+* Turn timer - high ie. 8 minutes
+* Map: Big enough, Europe is good
