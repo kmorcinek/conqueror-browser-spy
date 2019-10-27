@@ -2,17 +2,11 @@ function loadScript(url) {
     (function (d, s) { s = d.createElement('script'); s.src = url; (d.head || d.documentElement).appendChild(s) })(document);
 }
 
-loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js');
+//loadScript('https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js');
 
 function refreshIt() {
     var urls = [
-        'buildingChecker.js',
-        'conquerorSpy.js',
-        'historyChecker.js',
-        'provinceOwnership.js',
-        'provinces.js',
-        'provincesParser.js',
-        'hud.js'
+        'output.js'
     ];
 
     let baseUrl = "http://conqueror-browser-spy.angelo.hostingasp.pl/";
@@ -31,10 +25,5 @@ function refreshIt() {
 
 setTimeout(function () {
     refreshIt();
-
-    // Setting second refresh fixes problems of loading scripts in wrong order (probably)
-    setTimeout(function () {
-        refreshIt();
-    }, 2000);
 
 }, 1000);
