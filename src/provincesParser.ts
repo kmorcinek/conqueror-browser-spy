@@ -104,8 +104,7 @@ export class ProvinceParser {
                 continue;
             }
 
-            let a = Greeter.provincesHistory[provinceName];
-                a.push(province);
+            Greeter.provincesHistory[provinceName].push(province);
         }
     }
 }
