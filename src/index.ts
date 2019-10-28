@@ -32,6 +32,7 @@ export class ConquerorSpy {
     static provinceParser: ProvinceParser = new ProvinceParser();
     static buildingChecker: BuildingChecker = new BuildingChecker();
     static hud: Hud = new Hud();
+    static historyChecker: HistoryChecker = new HistoryChecker();
 
     static refreshTurn() {
         var turn = Greeter.getTurn();
@@ -48,7 +49,7 @@ export class ConquerorSpy {
             ConquerorSpy.lastTurn = turn;
             console.log("New turn: ", ConquerorSpy.lastTurn);
             ConquerorSpy.provinceParser.updateProvinces();
-            HistoryChecker.checkProvinces();
+            ConquerorSpy.historyChecker.checkProvinces();
             ProvinceOwnership.updateOwnedProvinces();
             ConquerorSpy.buildingChecker.checkBuildingProvinces();
 
@@ -68,7 +69,7 @@ export class ConquerorSpy {
             Greeter.provincesHistory[provinceName] = [];
         }
 
-        HistoryChecker.reset();
+        ConquerorSpy.historyChecker.reset();
         ConquerorSpy.buildingChecker.reset();
     }
 

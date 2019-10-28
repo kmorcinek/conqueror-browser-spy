@@ -4,7 +4,7 @@ import { Provinces } from "./provinces";
 
 export class HistoryChecker {
 
-    public static checkProvinces() {
+    public checkProvinces() {
         let provinces = Provinces.GetProvinces();
         for (var i = 0; i < provinces.length; i++) {
             var provinceName = provinces[i];
@@ -13,25 +13,25 @@ export class HistoryChecker {
                 continue;
             }
 
-            HistoryChecker.checkHistory(Greeter.provincesHistory[provinceName]);
+            this.checkHistory(Greeter.provincesHistory[provinceName]);
         }
 
         // TODO: refactor alertsToShow
-        if (HistoryChecker.alertsToShow.length) {
-            var message = HistoryChecker.alertsToShow.join(", ");
+        if (this.alertsToShow.length) {
+            var message = this.alertsToShow.join(", ");
             console.log(message);
             alert(message);
-            HistoryChecker.alertsToShow = [];
+            this.alertsToShow = [];
         }
     }
 
-    public static alertsToShow: string[] = [];
+    alertsToShow: string[] = [];
 
-    public static reset() {
+    public reset() {
         this.alertsToShow = [];
     }
 
-    static checkHistory(history: any) {
+    checkHistory(history: any) {
         if (history.length === 0) {
             return;
         }
@@ -51,7 +51,7 @@ export class HistoryChecker {
             }
 
             if (counter > 5) {
-                HistoryChecker.alertsToShow.push(last.name + " is developing");
+                this.alertsToShow.push(last.name + " is developing");
             }
         }
     }
