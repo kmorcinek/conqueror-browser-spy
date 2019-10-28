@@ -37,7 +37,6 @@ export class ConquerorSpy {
         var turn = Greeter.getTurn();
 
         if (isNaN(turn)) {
-            console.log('turn is nan');
             return;
         }
 
