@@ -15,6 +15,7 @@
 
 ## How I test the code (new with TypeScript)
 
+* If you have already running container (even after system restart) you can just login from powershell to container: `docker exec -it sha512OfContainer /bin/bash`
 * In application folder: `docker image build -t ts-demo .`
 * Delete all files in src folder (leave folder empty) - folder needs to be empty to mount.
 * Run Docker in application folder (on Windows in PowerShell - better handling path): `docker container run --rm -it -v $PWD/output-volume:/usr/src/app/lib -v $PWD/src:/usr/src/app/src ts-demo bash`
