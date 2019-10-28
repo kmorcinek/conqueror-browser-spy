@@ -213,3 +213,5 @@ $RECYCLE.BIN/
 
 # pages downloaded for investigation
 **/detailsPage_*.html
+
+output-volume/**/*.js
