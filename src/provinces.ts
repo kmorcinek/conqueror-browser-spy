@@ -1,6 +1,6 @@
 export class Provinces {
 
-    static provinces: string[];
+    private static provinces: string[];
 
     static initialize() {
 

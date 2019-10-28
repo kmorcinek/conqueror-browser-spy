@@ -11,7 +11,7 @@ export class BuildingChecker {
     }
 
     public checkBuildingProvinces() {
-        let conqueredProvinces = this.provinceOwnership.conqueredProvinces;
+        let conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
         for (var i = 0; i < conqueredProvinces.length; i++) {
             var history = Greeter.provincesHistory[conqueredProvinces[i]];
 
@@ -106,7 +106,7 @@ export class BuildingChecker {
         this.buildingAdvices = [];
     }
 
-    parsePopulation(population: string) {
+    private parsePopulation(population: string) {
 
         let rest:string = population;
         var resources = 0;

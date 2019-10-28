@@ -10,7 +10,7 @@ export class Hud {
         this.provinceOwnership = provinceOwnership;
     }
 
-    initHud() {
+    private initHud() {
         if ($('#hud').length) {
             return;
         }
@@ -23,17 +23,17 @@ export class Hud {
         timerWrapper.append(hud);
     }
 
-    updateHud(text: string) {
+    private updateHud(text: string) {
         this.initHud();
         $('#hud').text(text);
     }
 
-    updateHudHtml(html: string) {
+    private updateHudHtml(html: string) {
         this.initHud();
         $('#hud').html(html);
     }
 
-    isTheSameProvinceExceptTurn(first:any, second:any) {
+    private isTheSameProvinceExceptTurn(first:any, second:any) {
         return first.population === second.population
             && first.culture === second.culture
             // && first.production === second.production // this is only our prediction
@@ -41,7 +41,7 @@ export class Hud {
             && first.fort === second.fort;
     }
 
-    isHistoryEntryUnique(history:any[], currentIndex:number) {
+    private isHistoryEntryUnique(history:any[], currentIndex:number) {
         if (currentIndex === 0) {
             return true;
         }
@@ -64,7 +64,7 @@ export class Hud {
             return details.turn + ": " + details.population + details.culture + fort + "," + details.soldiers;
         }
 
-        if (this.provinceOwnership.conqueredProvinces.includes(countryName)) {
+        if (this.provinceOwnership.getConqueredProvinces().includes(countryName)) {
             this.updateHud("");
             return;
         }

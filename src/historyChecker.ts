@@ -37,7 +37,7 @@ export class HistoryChecker {
         this.alertsToShow = [];
     }
 
-    checkHistory(history: any) {
+    private checkHistory(history: any) {
         if (history.length === 0) {
             return;
         }

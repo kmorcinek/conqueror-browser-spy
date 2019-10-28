@@ -5,7 +5,7 @@ export class ProvinceParser {
 
     // Get details of one province.
     // - (without turn)
-    getCountryDetails(countryName: string) {
+    private getCountryDetails(countryName: string) {
         function createId(prefix: string, province: string) {
             return prefix + province.toLowerCase();
         }
@@ -67,7 +67,7 @@ export class ProvinceParser {
         return countryDetails;
     }
 
-    getFort(svgDoc: any, countryName: string) {
+    private getFort(svgDoc: any, countryName: string) {
         function createFortId(prefix: string, province: string) {
             return prefix + province.toLowerCase() + "_0";
         }

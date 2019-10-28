@@ -38,7 +38,7 @@ export class ProvinceOwnership {
         }
     }
 
-    conqueredProvinces: string[] = [];
+    private conqueredProvinces: string[] = [];
 
     public getConqueredProvinces() {
         return this.conqueredProvinces;
