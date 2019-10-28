@@ -22,7 +22,7 @@ export class ConquerorSpy {
         clearInterval(refreshNameInterval);
         refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-        var toolVersion = '1.0';
+        var toolVersion = '1.1';
 
         console.log("tool version: " + toolVersion);
     }
