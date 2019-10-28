@@ -23,7 +23,7 @@ export class ConquerorSpy {
         ConquerorSpy.hud = new Hud(provinceOwnership);
     }
 
-    public static Start() {
+    public static start() {
         console.log('running conqueror-browser-spy');
 
         ConquerorSpy.cleanAllValues()
@@ -110,4 +110,4 @@ export class ConquerorSpy {
 }
 
 ConquerorSpy.initialize();
-ConquerorSpy.Start();
+ConquerorSpy.start();
