@@ -4,12 +4,18 @@ import { Provinces } from "./provinces";
 
 export class HistoryChecker {
 
+    private provinceOwnership: ProvinceOwnership;
+
+    constructor(provinceOwnership: ProvinceOwnership) {
+        this.provinceOwnership = provinceOwnership;
+    }
+
     public checkProvinces() {
         let provinces = Provinces.GetProvinces();
         for (var i = 0; i < provinces.length; i++) {
             var provinceName = provinces[i];
 
-            if (ProvinceOwnership.conqueredProvinces.includes(provinceName)) {
+            if (this.provinceOwnership.getConqueredProvinces().includes(provinceName)) {
                 continue;
             }
 
@@ -25,7 +31,7 @@ export class HistoryChecker {
         }
     }
 
-    alertsToShow: string[] = [];
+    private alertsToShow: string[] = [];
 
     public reset() {
         this.alertsToShow = [];

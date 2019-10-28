@@ -2,9 +2,7 @@ import { Provinces } from "./provinces";
 
 export class ProvinceOwnership {
 
-    public static conqueredProvinces: string[];
-
-    public static updateOwnedProvinces() {
+    public updateOwnedProvinces() {
         function createId(prefix: string, province: string) {
             return prefix + province.toLowerCase();
         }
@@ -13,7 +11,7 @@ export class ProvinceOwnership {
         for (var i = 0; i < provinces.length; i++) {
             let provinceName: string = provinces[i];
 
-            if ((ProvinceOwnership.conqueredProvinces as any).includes(provinceName)) {
+            if ((this.conqueredProvinces as any).includes(provinceName)) {
                 continue;
             }
 
@@ -34,9 +32,19 @@ export class ProvinceOwnership {
                 '#63319c', '#ce63ce', '#ce9c63', '#006363', '#319c9c'];
 
             if ((playerColors as any).includes(color)) {
-                ProvinceOwnership.conqueredProvinces.push(provinceName);
+                this.conqueredProvinces.push(provinceName);
                 console.log("conquered: ", provinceName);
             }
         }
+    }
+
+    conqueredProvinces: string[] = [];
+
+    public getConqueredProvinces() {
+        return this.conqueredProvinces;
+    }
+
+    public reset() {
+        this.conqueredProvinces = [];
     }
 }

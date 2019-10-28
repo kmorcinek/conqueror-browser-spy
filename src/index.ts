@@ -9,6 +9,20 @@ import { Hud } from "./hud";
 
 export class ConquerorSpy {
 
+    static provinceParser: ProvinceParser = new ProvinceParser();
+    static provinceOwnership: ProvinceOwnership;
+    static buildingChecker: BuildingChecker;
+    static historyChecker: HistoryChecker;
+    static hud: Hud;
+
+    static initialize() {
+        let provinceOwnership = new ProvinceOwnership();
+        ConquerorSpy.provinceOwnership = provinceOwnership;
+        ConquerorSpy.buildingChecker = new BuildingChecker(provinceOwnership);
+        ConquerorSpy.historyChecker = new HistoryChecker(provinceOwnership);
+        ConquerorSpy.hud = new Hud(provinceOwnership);
+    }
+
     public static Start() {
         console.log('running conqueror-browser-spy');
 
@@ -29,11 +43,6 @@ export class ConquerorSpy {
 
     public static lastTurn: number = NaN;
 
-    static provinceParser: ProvinceParser = new ProvinceParser();
-    static buildingChecker: BuildingChecker = new BuildingChecker();
-    static hud: Hud = new Hud();
-    static historyChecker: HistoryChecker = new HistoryChecker();
-
     static refreshTurn() {
         var turn = Greeter.getTurn();
 
@@ -50,7 +59,7 @@ export class ConquerorSpy {
             console.log("New turn: ", ConquerorSpy.lastTurn);
             ConquerorSpy.provinceParser.updateProvinces();
             ConquerorSpy.historyChecker.checkProvinces();
-            ProvinceOwnership.updateOwnedProvinces();
+            ConquerorSpy.provinceOwnership.updateOwnedProvinces();
             ConquerorSpy.buildingChecker.checkBuildingProvinces();
 
             console.log("refreshTurn() finished");
@@ -59,7 +68,6 @@ export class ConquerorSpy {
 
     static cleanAllValues() {
         //lastCountry = "";
-        ProvinceOwnership.conqueredProvinces = [];
 
         Greeter.provincesHistory = {};
 
@@ -71,6 +79,7 @@ export class ConquerorSpy {
 
         ConquerorSpy.historyChecker.reset();
         ConquerorSpy.buildingChecker.reset();
+        ConquerorSpy.provinceOwnership.reset();
     }
 
     static getCountry() {
@@ -100,4 +109,5 @@ export class ConquerorSpy {
 
 }
 
+ConquerorSpy.initialize();
 ConquerorSpy.Start();

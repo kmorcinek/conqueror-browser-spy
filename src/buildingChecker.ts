@@ -4,8 +4,14 @@ import { ProvinceOwnership } from "./provinceOwnership";
 export class BuildingChecker {
     buildingAdvices: string[] = [];
 
+    private provinceOwnership: ProvinceOwnership;
+
+    constructor(provinceOwnership: ProvinceOwnership) {
+        this.provinceOwnership = provinceOwnership;
+    }
+
     public checkBuildingProvinces() {
-        let conqueredProvinces = ProvinceOwnership.conqueredProvinces;
+        let conqueredProvinces = this.provinceOwnership.conqueredProvinces;
         for (var i = 0; i < conqueredProvinces.length; i++) {
             var history = Greeter.provincesHistory[conqueredProvinces[i]];
 

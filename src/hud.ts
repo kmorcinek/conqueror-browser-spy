@@ -4,6 +4,12 @@ import { ProvinceOwnership } from "./provinceOwnership";
 
 export class Hud {
 
+    private provinceOwnership: ProvinceOwnership;
+
+    constructor(provinceOwnership: ProvinceOwnership) {
+        this.provinceOwnership = provinceOwnership;
+    }
+
     initHud() {
         if ($('#hud').length) {
             return;
@@ -58,7 +64,7 @@ export class Hud {
             return details.turn + ": " + details.population + details.culture + fort + "," + details.soldiers;
         }
 
-        if (ProvinceOwnership.conqueredProvinces.includes(countryName)) {
+        if (this.provinceOwnership.conqueredProvinces.includes(countryName)) {
             this.updateHud("");
             return;
         }
