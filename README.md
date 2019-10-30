@@ -16,11 +16,12 @@
 ## How I test the code (new with TypeScript)
 
 * If you have already running container (even after system restart) you can just login from powershell to container: `docker exec -it sha512OfContainer /bin/bash`
-* In application folder: `docker image build -t ts-demo .`
-* Delete all files in src folder (leave folder empty) - folder needs to be empty to mount.
-* Run Docker in application folder (on Windows in PowerShell - better handling path): `docker container run --rm -it -v $PWD/output-volume:/usr/src/app/lib -v $PWD/src:/usr/src/app/src ts-demo bash`
+* If you run container for first time (or done changes to ie. 'package.json') then perform:j
+  * In application folder: `docker image build -t ts-demo .`
+  * Delete all files in src folder (leave folder empty) - folder needs to be empty to mount.
+  * Run Docker in application folder (on Windows in PowerShell - better handling path): `docker container run --rm -it -v $PWD/output-volume:/usr/src/app/lib -v $PWD/src:/usr/src/app/src ts-demo bash`
   * it will start interactive bash inside Docker Container in the same console window
-* In application folder `git reset --hard` - to get back previously deleted file
+  * In application folder `git reset --hard` - to get back previously deleted file
 * Edit any *.ts files in /src folder
 * Inside Docker Container run: `npm test` - it will run **browsify** and create one file 'output.js' in app-vol folder.
 * Włączyć dodatek (more tools->Extensions) chrome web server (Web Server for Chrome), domyślny katalog jest dobry, otwierasz folder "C:\Work\GitHub\kmorcinek\conqueror-spy\src" i plik wrapper.js, wkleić do przeglądarki F12 do consoli.
