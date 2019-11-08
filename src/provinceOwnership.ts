@@ -1,50 +1,58 @@
 import { Provinces } from "./provinces";
 
 export class ProvinceOwnership {
+  private conqueredProvinces: string[] = [];
 
-    public updateOwnedProvinces() {
-        function createId(prefix: string, province: string) {
-            return prefix + province.toLowerCase();
-        }
-
-        let provinces = Provinces.GetProvinces();
-        for (var i = 0; i < provinces.length; i++) {
-            let provinceName: string = provinces[i];
-
-            if ((this.conqueredProvinces as any).includes(provinceName)) {
-                continue;
-            }
-
-            // TODO: prefetch it
-            var a = document.getElementsByClassName("svgMap")[0];
-            var svgDoc = (a as any).contentDocument;
-
-            var map = svgDoc.getElementById(createId("field_", provinceName));
-
-            if (map == null) {
-                continue;
-            }
-
-            var color = map.getAttribute("fill");
-
-            var playerColors = [
-                '#ff3131', '#009c00', '#3131ff', '#ffce00', '#636300',
-                '#63319c', '#ce63ce', '#ce9c63', '#006363', '#319c9c'];
-
-            if ((playerColors as any).includes(color)) {
-                this.conqueredProvinces.push(provinceName);
-                console.log("conquered: ", provinceName);
-            }
-        }
+  updateOwnedProvinces() {
+    function createId(prefix: string, province: string) {
+      return prefix + province.toLowerCase();
     }
 
-    private conqueredProvinces: string[] = [];
+    const provinces = Provinces.GetProvinces();
+    for (let i = 0; i < provinces.length; i++) {
+      const provinceName: string = provinces[i];
 
-    public getConqueredProvinces() {
-        return this.conqueredProvinces;
-    }
+      if ((this.conqueredProvinces as any).includes(provinceName)) {
+        continue;
+      }
 
-    public reset() {
-        this.conqueredProvinces = [];
+      // TODO: prefetch it
+      const a = document.getElementsByClassName("svgMap")[0];
+      const svgDoc = (a as any).contentDocument;
+
+      const map = svgDoc.getElementById(createId("field_", provinceName));
+
+      if (map == null) {
+        continue;
+      }
+
+      const color = map.getAttribute("fill");
+
+      const playerColors = [
+        "#ff3131",
+        "#009c00",
+        "#3131ff",
+        "#ffce00",
+        "#636300",
+        "#63319c",
+        "#ce63ce",
+        "#ce9c63",
+        "#006363",
+        "#319c9c",
+      ];
+
+      if ((playerColors as any).includes(color)) {
+        this.conqueredProvinces.push(provinceName);
+        console.log("conquered: ", provinceName);
+      }
     }
+  }
+
+  getConqueredProvinces() {
+    return this.conqueredProvinces;
+  }
+
+  reset() {
+    this.conqueredProvinces = [];
+  }
 }
