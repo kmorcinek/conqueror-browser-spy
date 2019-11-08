@@ -3,62 +3,61 @@ import { ProvinceOwnership } from "./provinceOwnership";
 import { Provinces } from "./provinces";
 
 export class HistoryChecker {
+  private provinceOwnership: ProvinceOwnership;
 
-    private provinceOwnership: ProvinceOwnership;
+  private alertsToShow: string[] = [];
 
-    constructor(provinceOwnership: ProvinceOwnership) {
-        this.provinceOwnership = provinceOwnership;
+  constructor(provinceOwnership: ProvinceOwnership) {
+    this.provinceOwnership = provinceOwnership;
+  }
+
+  checkProvinces() {
+    const provinces = Provinces.GetProvinces();
+    for (let i = 0; i < provinces.length; i++) {
+      const provinceName = provinces[i];
+
+      if (this.provinceOwnership.getConqueredProvinces().includes(provinceName)) {
+        continue;
+      }
+
+      this.checkHistory(Greeter.provincesHistory[provinceName]);
     }
 
-    public checkProvinces() {
-        let provinces = Provinces.GetProvinces();
-        for (var i = 0; i < provinces.length; i++) {
-            var provinceName = provinces[i];
+    // TODO: refactor alertsToShow
+    if (this.alertsToShow.length) {
+      const message = this.alertsToShow.join(", ");
+      console.log(message);
+      alert(message);
+      this.alertsToShow = [];
+    }
+  }
 
-            if (this.provinceOwnership.getConqueredProvinces().includes(provinceName)) {
-                continue;
-            }
+  reset() {
+    this.alertsToShow = [];
+  }
 
-            this.checkHistory(Greeter.provincesHistory[provinceName]);
-        }
-
-        // TODO: refactor alertsToShow
-        if (this.alertsToShow.length) {
-            var message = this.alertsToShow.join(", ");
-            console.log(message);
-            alert(message);
-            this.alertsToShow = [];
-        }
+  private checkHistory(history: any) {
+    if (history.length === 0) {
+      return;
     }
 
-    private alertsToShow: string[] = [];
+    // population 3 is longer than x (5?) => developing
+    // -start from last one
+    const last = history[history.length - 1];
+    const lastSoldiersCount = last.soldiers;
 
-    public reset() {
-        this.alertsToShow = [];
-    }
-
-    private checkHistory(history: any) {
-        if (history.length === 0) {
-            return;
+    if (last.population === "3" && last.culture === "pri") {
+      let counter = 0;
+      for (let i = history.length - 2; i > -1; i--) {
+        const current = history[i];
+        if (current.population === "3" && lastSoldiersCount <= current.soldiers) {
+          counter++;
         }
+      }
 
-        // population 3 is longer than x (5?) => developing
-        // -start from last one
-        var last = history[history.length - 1];
-        var lastSoldiersCount = last.soldiers;
-
-        if (last.population === "3" && last.culture === "pri") {
-            var counter = 0;
-            for (var i = history.length - 2; i > -1; i--) {
-                var current = history[i];
-                if (current.population === "3" && lastSoldiersCount <= current.soldiers) {
-                    counter++;
-                }
-            }
-
-            if (counter > 5) {
-                this.alertsToShow.push(last.name + " is developing");
-            }
-        }
+      if (counter > 5) {
+        this.alertsToShow.push(last.name + " is developing");
+      }
     }
+  }
 }

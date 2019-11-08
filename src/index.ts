@@ -1,4 +1,4 @@
-import $ from "jquery"
+import $ from "jquery";
 import { Greeter } from "./globals";
 import { Provinces } from "./provinces";
 import { ProvinceOwnership } from "./provinceOwnership";
@@ -8,105 +8,108 @@ import { BuildingChecker } from "./buildingChecker";
 import { Hud } from "./hud";
 
 export class ConquerorSpy {
+  static provinceParser: ProvinceParser = new ProvinceParser();
+  static provinceOwnership: ProvinceOwnership;
+  static buildingChecker: BuildingChecker;
+  static historyChecker: HistoryChecker;
+  static hud: Hud;
 
-    static provinceParser: ProvinceParser = new ProvinceParser();
-    static provinceOwnership: ProvinceOwnership;
-    static buildingChecker: BuildingChecker;
-    static historyChecker: HistoryChecker;
-    static hud: Hud;
+  static lastTurn: number = NaN;
 
-    static initialize() {
-        let provinceOwnership = new ProvinceOwnership();
-        ConquerorSpy.provinceOwnership = provinceOwnership;
-        ConquerorSpy.buildingChecker = new BuildingChecker(provinceOwnership);
-        ConquerorSpy.historyChecker = new HistoryChecker(provinceOwnership);
-        ConquerorSpy.hud = new Hud(provinceOwnership);
+  static lastCountry: string = "";
+
+  static initialize() {
+    const provinceOwnership = new ProvinceOwnership();
+    ConquerorSpy.provinceOwnership = provinceOwnership;
+    ConquerorSpy.buildingChecker = new BuildingChecker(provinceOwnership);
+    ConquerorSpy.historyChecker = new HistoryChecker(provinceOwnership);
+    ConquerorSpy.hud = new Hud(provinceOwnership);
+  }
+
+  static start() {
+    console.log("running conqueror-browser-spy");
+
+    ConquerorSpy.cleanAllValues();
+
+    let refrestTurnInterval;
+    clearInterval(refrestTurnInterval);
+    refrestTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
+
+    let refreshNameInterval;
+    clearInterval(refreshNameInterval);
+    refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
+
+    const toolVersion = "1.1";
+
+    console.log("tool version: " + toolVersion);
+  }
+
+  static refreshTurn() {
+    const turn = Greeter.getTurn();
+
+    if (isNaN(turn)) {
+      return;
     }
 
-    public static start() {
-        console.log('running conqueror-browser-spy');
+    if (turn !== ConquerorSpy.lastTurn) {
+      if (turn === 1) {
+        ConquerorSpy.cleanAllValues();
+      }
 
-        ConquerorSpy.cleanAllValues()
+      ConquerorSpy.lastTurn = turn;
+      console.log("New turn: ", ConquerorSpy.lastTurn);
+      ConquerorSpy.provinceParser.updateProvinces();
+      ConquerorSpy.historyChecker.checkProvinces();
+      ConquerorSpy.provinceOwnership.updateOwnedProvinces();
+      ConquerorSpy.buildingChecker.checkBuildingProvinces();
 
-        var refrestTurnInterval;
-        clearInterval(refrestTurnInterval);
-        refrestTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
+      console.log("refreshTurn() finished");
+    }
+  }
 
-        var refreshNameInterval;
-        clearInterval(refreshNameInterval);
-        refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
+  static cleanAllValues() {
+    // lastCountry = "";
 
-        var toolVersion = '1.1';
+    Greeter.provincesHistory = {};
 
-        console.log("tool version: " + toolVersion);
+    const provinces = Provinces.GetProvinces();
+    for (let i = 0; i < provinces.length; i++) {
+      const provinceName = provinces[i];
+      Greeter.provincesHistory[provinceName] = [];
     }
 
-    public static lastTurn: number = NaN;
+    ConquerorSpy.historyChecker.reset();
+    ConquerorSpy.buildingChecker.reset();
+    ConquerorSpy.provinceOwnership.reset();
+  }
 
-    static refreshTurn() {
-        var turn = Greeter.getTurn();
+  static getCountry() {
+    const countrySelector =
+      "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldHeader > span";
+    let text = $(countrySelector)
+      .text()
+      .toLowerCase();
 
-        if (isNaN(turn)) {
-            return;
-        }
-
-        if (turn !== ConquerorSpy.lastTurn) {
-            if (turn === 1) {
-                ConquerorSpy.cleanAllValues();
-            }
-
-            ConquerorSpy.lastTurn = turn;
-            console.log("New turn: ", ConquerorSpy.lastTurn);
-            ConquerorSpy.provinceParser.updateProvinces();
-            ConquerorSpy.historyChecker.checkProvinces();
-            ConquerorSpy.provinceOwnership.updateOwnedProvinces();
-            ConquerorSpy.buildingChecker.checkBuildingProvinces();
-
-            console.log("refreshTurn() finished");
-        }
+    function removeDiacritics(str: string) {
+      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
 
-    static cleanAllValues() {
-        //lastCountry = "";
+    text = removeDiacritics(text);
 
-        Greeter.provincesHistory = {};
-
-        let provinces = Provinces.GetProvinces();
-        for (var i = 0; i < provinces.length; i++) {
-            var provinceName = provinces[i];
-            Greeter.provincesHistory[provinceName] = [];
-        }
-
-        ConquerorSpy.historyChecker.reset();
-        ConquerorSpy.buildingChecker.reset();
-        ConquerorSpy.provinceOwnership.reset();
+    if (text === "ile de france") {
+      text = "iledefrance";
     }
 
-    static getCountry() {
-        var countrySelector = '#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldHeader > span'
-        var text = $(countrySelector).text().toLowerCase();
+    return text;
+  }
 
-        function removeDiacritics(str:string) { return str.normalize('NFD').replace(/[\u0300-\u036f]/g, ""); }
-
-        text = removeDiacritics(text);
-
-        if (text === "ile de france") {
-            text = "iledefrance";
-        }
-
-        return text;
+  static refreshName() {
+    const country = ConquerorSpy.getCountry();
+    if (country !== ConquerorSpy.lastCountry) {
+      ConquerorSpy.lastCountry = country;
+      ConquerorSpy.hud.refreshHudHistory(country);
     }
-
-    static lastCountry: string = "";
-
-    static refreshName() {
-        var country = ConquerorSpy.getCountry();
-        if (country !== ConquerorSpy.lastCountry) {
-            ConquerorSpy.lastCountry = country;
-            ConquerorSpy.hud.refreshHudHistory(country);
-        }
-    }
-
+  }
 }
 
 ConquerorSpy.initialize();
