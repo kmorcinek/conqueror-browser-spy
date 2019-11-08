@@ -4,6 +4,7 @@ RUN apt-get update \
         vim
 RUN npm install browserify -g
 RUN npm install tsify -g
+RUN npm install http-server -g
 WORKDIR /usr/src/app
 COPY package.json .
 RUN npm install
