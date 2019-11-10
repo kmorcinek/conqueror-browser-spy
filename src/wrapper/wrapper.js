@@ -1,3 +1,4 @@
+/* tslint:disable */
 function loadScript(url) {
     (function(d, s) { s = d.createElement("script"); s.src = url; (d.head || d.documentElement).appendChild(s); })(document);
 }
