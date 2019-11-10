@@ -51,15 +51,15 @@ export class ProvinceParser {
     }
 
     function parseProduction(icon: string) {
-      let production = icon.replace("../common/images/icon_", "").replace(".png", "");
-      if (production === "castle_kind") {
-        production = "fort";
+      let parsedProduction = icon.replace("../common/images/icon_", "").replace(".png", "");
+      if (parsedProduction === "castle_kind") {
+        parsedProduction = "fort";
       }
 
       // possible values: {
       // "",
       // }
-      return production;
+      return parsedProduction;
     }
 
     const productionItem = svgDoc.getElementById(createId("prod_", countryName));
