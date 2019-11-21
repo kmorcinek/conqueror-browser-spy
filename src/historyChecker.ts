@@ -13,9 +13,7 @@ export class HistoryChecker {
 
   checkProvinces() {
     const provinces = Provinces.GetProvinces();
-    for (let i = 0; i < provinces.length; i++) {
-      const provinceName = provinces[i];
-
+    for (const provinceName of provinces) {
       if (this.provinceOwnership.getConqueredProvinces().includes(provinceName)) {
         continue;
       }

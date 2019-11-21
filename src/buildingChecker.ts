@@ -12,8 +12,8 @@ export class BuildingChecker {
 
   checkBuildingProvinces() {
     const conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
-    for (let i = 0; i < conqueredProvinces.length; i++) {
-      const history = Greeter.provincesHistory[conqueredProvinces[i]];
+    for (const conqueredProvince of conqueredProvinces) {
+      const history = Greeter.provincesHistory[conqueredProvince];
 
       const last = history[history.length - 1];
 
@@ -74,16 +74,12 @@ export class BuildingChecker {
         },
       ];
 
-      for (let j = 0; j < patterns.length; j++) {
-        const pattern = patterns[j];
-
+      for (const pattern of patterns) {
         pattern.resources = pattern.resources || 0;
         pattern.culture = pattern.culture || "pri";
       }
 
-      for (let j = 0; j < patterns.length; j++) {
-        const pattern = patterns[j];
-
+      for (const pattern of patterns) {
         if (
           original.farms === pattern.farms &&
           original.resources === pattern.resources &&
