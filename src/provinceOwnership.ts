@@ -9,9 +9,7 @@ export class ProvinceOwnership {
     }
 
     const provinces = Provinces.GetProvinces();
-    for (let i = 0; i < provinces.length; i++) {
-      const provinceName: string = provinces[i];
-
+    for (const provinceName of provinces) {
       if ((this.conqueredProvinces as any).includes(provinceName)) {
         continue;
       }

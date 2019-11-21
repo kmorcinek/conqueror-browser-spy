@@ -73,8 +73,7 @@ export class ConquerorSpy {
     Greeter.provincesHistory = {};
 
     const provinces = Provinces.GetProvinces();
-    for (let i = 0; i < provinces.length; i++) {
-      const provinceName = provinces[i];
+    for (const provinceName of provinces) {
       Greeter.provincesHistory[provinceName] = [];
     }
 
