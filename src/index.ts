@@ -82,7 +82,7 @@ export class ConquerorSpy {
     ConquerorSpy.provinceOwnership.reset();
   }
 
-  static getCountry() {
+  static getCountry(): string {
     const countrySelector =
       "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldHeader > span";
     let text = $(countrySelector)

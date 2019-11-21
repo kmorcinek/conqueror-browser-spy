@@ -1,4 +1,5 @@
 import { Greeter } from "./globals";
+import { Province } from "./Province";
 import { ProvinceOwnership } from "./provinceOwnership";
 
 export class BuildingChecker {
@@ -13,17 +14,9 @@ export class BuildingChecker {
   checkBuildingProvinces() {
     const conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
     for (const conqueredProvince of conqueredProvinces) {
-      const history = Greeter.provincesHistory[conqueredProvince];
+      const history: Province[] = Greeter.provincesHistory[conqueredProvince];
 
-      const last = history[history.length - 1];
-
-      const original = {
-        name: last.name,
-        farms: this.parsePopulation(last.population).farms,
-        resources: this.parsePopulation(last.population).resources,
-        culture: last.culture,
-        production: last.production,
-      };
+      const original = history[history.length - 1];
 
       const patterns = [
         {
@@ -101,26 +94,5 @@ export class BuildingChecker {
 
   reset() {
     this.buildingAdvices = [];
-  }
-
-  private parsePopulation(population: string) {
-    let rest: string = population;
-    let resources = 0;
-
-    while (true) {
-      // TODO: charCodeAt() should get a length of 'rest'
-      const lastChar = rest[rest.length - 1];
-      if (lastChar.charCodeAt(0) === 176) {
-        rest = rest.substring(0, rest.length - 1);
-        resources++;
-      } else {
-        break;
-      }
-    }
-
-    return {
-      farms: parseInt(rest),
-      resources,
-    };
   }
 }

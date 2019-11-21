@@ -1,5 +1,6 @@
 import $ from "jquery";
 import { Greeter } from "./globals";
+import { Province } from "./Province";
 import { ProvinceOwnership } from "./provinceOwnership";
 
 export class Hud {
@@ -10,14 +11,20 @@ export class Hud {
   }
 
   refreshHudHistory(countryName: string) {
-    function lineIt(details: any) {
+    function lineIt(details: Province) {
       let fort = "";
       if (details.fort) {
         fort = "," + details.fort[0];
       }
 
       return (
-        details.turn + ": " + details.population + details.culture + fort + "," + details.soldiers
+        details.turn +
+        ": " +
+        details.getPopulation() +
+        details.culture +
+        fort +
+        "," +
+        details.soldiers
       );
     }
 
@@ -26,7 +33,7 @@ export class Hud {
       return;
     }
 
-    const history = Greeter.provincesHistory[countryName];
+    const history: Province[] = Greeter.provincesHistory[countryName];
 
     const lines = [];
     for (let i = history.length - 1; i > -1; i--) {
@@ -62,9 +69,10 @@ export class Hud {
     $("#hud").html(html);
   }
 
-  private isTheSameProvinceExceptTurn(first: any, second: any) {
+  private isTheSameProvinceExceptTurn(first: Province, second: Province) {
     return (
-      first.population === second.population &&
+      first.farms === second.farms &&
+      first.resources === second.resources &&
       first.culture === second.culture &&
       // && first.production === second.production // this is only our prediction
       first.soldiers === second.soldiers &&
@@ -72,7 +80,7 @@ export class Hud {
     );
   }
 
-  private isHistoryEntryUnique(history: any[], currentIndex: number) {
+  private isHistoryEntryUnique(history: Province[], currentIndex: number) {
     if (currentIndex === 0) {
       return true;
     }

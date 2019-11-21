@@ -1,4 +1,6 @@
 import { Greeter } from "./globals";
+import { Province } from "./Province";
+import { Culture } from "./Culture";
 import { Provinces } from "./provinces";
 
 export class ProvinceParser {
@@ -24,9 +26,9 @@ export class ProvinceParser {
 
   // Get details of one province.
   // - (without turn)
-  private getCountryDetails(countryName: string) {
-    function createId(prefix: string, province: string) {
-      return prefix + province.toLowerCase();
+  private getCountryDetails(countryName: string): Province | null {
+    function createId(prefix: string, provinceName: string) {
+      return prefix + provinceName.toLowerCase();
     }
 
     // TODO: prefetch it
@@ -43,10 +45,11 @@ export class ProvinceParser {
       return null;
     }
 
-    let culture = populationItem.className.animVal;
-    if (culture === "") {
-      culture = "pri";
-    }
+    // let culture = populationItem.className.animVal;
+    // if (culture === "") {
+    //   culture = "pri";
+    // }
+    const culture = this.parseCulture(populationItem.className.animVal);
 
     function parseProduction(icon: string) {
       let parsedProduction = icon.replace("../common/images/icon_", "").replace(".png", "");
@@ -71,19 +74,33 @@ export class ProvinceParser {
 
     const soldierItem = svgDoc.getElementById(createId("info_", countryName));
 
-    const countryDetails = {
-      turn: Greeter.getTurn(),
-      name: countryName,
-      population: populationItem.textContent,
+    const province = new Province(
+      Greeter.getTurn(),
+      countryName,
+      populationItem.textContent,
       culture,
       production,
-      soldiers: soldierItem.textContent,
-      fort: this.getFort(svgDoc, countryName),
-    };
+      soldierItem.textContent,
+      this.getFort(svgDoc, countryName)
+    );
 
     console.log("province parsed:", countryName);
 
-    return countryDetails;
+    return province;
+  }
+
+  private parseCulture(str: string): Culture {
+    switch (str) {
+      case "":
+        return Culture.Primitive;
+      case "dev":
+        return Culture.Developed;
+      case "adv":
+        return Culture.Advanded;
+      default:
+        console.warn("new Culture value: " + str);
+        return Culture.Advanded;
+    }
   }
 
   private getFort(svgDoc: any, countryName: string) {

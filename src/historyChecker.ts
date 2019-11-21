@@ -1,4 +1,6 @@
 import { Greeter } from "./globals";
+import { Province } from "./Province";
+import { Culture } from "./Culture";
 import { ProvinceOwnership } from "./provinceOwnership";
 import { Provinces } from "./provinces";
 
@@ -34,7 +36,7 @@ export class HistoryChecker {
     this.alertsToShow = [];
   }
 
-  private checkHistory(history: any) {
+  private checkHistory(history: Province[]) {
     if (history.length === 0) {
       return;
     }
@@ -44,11 +46,11 @@ export class HistoryChecker {
     const last = history[history.length - 1];
     const lastSoldiersCount = last.soldiers;
 
-    if (last.population === "3" && last.culture === "pri") {
+    if (last.farms === 3 && last.resources === 0 && last.culture === Culture.Primitive) {
       let counter = 0;
       for (let i = history.length - 2; i > -1; i--) {
         const current = history[i];
-        if (current.population === "3" && lastSoldiersCount <= current.soldiers) {
+        if (current.farms === 3 && last.resources === 0 && lastSoldiersCount <= current.soldiers) {
           counter++;
         }
       }
