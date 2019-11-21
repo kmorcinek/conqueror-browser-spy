@@ -22,7 +22,7 @@
   * Run Docker in application folder (on Windows in PowerShell - better handling path): `docker container run --rm -it -v $PWD/output-volume:/usr/src/app/lib -v $PWD/src:/usr/src/app/src -p 8887:8080 ts-demo`
   * In application folder `git reset --hard` - to get back previously deleted file
 * Edit any *.ts files in /src folder
-* Inside Docker Container run: `npm test` - it will run **browsify** and create one file 'output.js' in app-vol folder and expose it as `localhost:8887/output.js`
+* Inside Docker Container run: `npm run browserify` - it will run **browsify** and create one file 'output.js' in app-vol folder and expose it as `localhost:8887/output.js`
 * Paste **wrapper.js** to console (F12 on page) (or just reload `refreshIt()` in console)
 
 ## How I test the code

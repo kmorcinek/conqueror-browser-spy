@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build:br",
+    "test": "npm run build",
     "start": "npm run build:live",
     "build": "tsc -p .",
-    "build:br": "browserify src/index.ts -p [ tsify --noImplicitAny ] > lib/output.js",
+    "browserify": "browserify src/index.ts -p [ tsify --noImplicitAny ] > lib/output.js",
     "build:live": "http-server lib",
     "format": "prettier --write '{src,test,types}/**/*.ts'",
     "lint": "tslint --project .",
