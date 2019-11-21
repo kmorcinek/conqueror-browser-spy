@@ -80,7 +80,7 @@ export class ProvinceParser {
       populationItem.textContent,
       culture,
       production,
-      soldierItem.textContent,
+      parseInt(soldierItem.textContent),
       this.getFort(svgDoc, countryName)
     );
 

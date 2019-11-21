@@ -7,7 +7,7 @@ export class Province {
   readonly resources: number;
   readonly culture: Culture;
   readonly production: string;
-  readonly soldiers: string;
+  readonly soldiers: number;
   readonly fort: string;
   private readonly population: string;
 
@@ -17,7 +17,7 @@ export class Province {
     population: string,
     culture: Culture,
     production: string,
-    soldiers: string,
+    soldiers: number,
     fort: string
   ) {
     this.turn = turn;
