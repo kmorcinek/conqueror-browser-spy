@@ -1,5 +1,6 @@
 import { Culture } from "../src/Culture";
 import { Province } from "../src/Province";
+import { Production } from "../src/Production";
 
 export class ProvinceFactory {
   turn: number = 1;
@@ -7,7 +8,7 @@ export class ProvinceFactory {
   farms: number = 3;
   resources: number = 0;
   culture: Culture = Culture.Primitive;
-  production: string = "soldier";
+  production: Production = Production.Soldier;
   soldiers: number = 2;
   fort: string = "fort";
 

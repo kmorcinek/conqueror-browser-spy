@@ -1,4 +1,5 @@
 import { Culture } from "./Culture";
+import { Production } from "./Production";
 
 export class Province {
   static parsePopulation(population: string) {
@@ -27,7 +28,7 @@ export class Province {
   readonly farms: number;
   readonly resources: number;
   readonly culture: Culture;
-  readonly production: string;
+  readonly production: Production | null;
   readonly soldiers: number;
   readonly fort: string;
 
@@ -37,7 +38,7 @@ export class Province {
     farms: number,
     resources: number,
     culture: Culture,
-    production: string,
+    production: Production | null,
     soldiers: number,
     fort: string
   ) {

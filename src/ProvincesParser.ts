@@ -1,6 +1,7 @@
 import { Greeter } from "./Globals";
 import { Province } from "./Province";
 import { Culture } from "./Culture";
+import { Production } from "./Production";
 import { Provinces } from "./Provinces";
 
 export class ProvinceParser {
@@ -51,25 +52,37 @@ export class ProvinceParser {
     // }
     const culture = this.parseCulture(populationItem.className.animVal);
 
-    function parseProduction(icon: string) {
-      let parsedProduction = icon.replace("../common/images/icon_", "").replace(".png", "");
-      if (parsedProduction === "castle_kind") {
-        parsedProduction = "fort";
-      }
+    function parseProduction(longIcon: string): Production {
+      const icon = longIcon.replace("../common/images/icon_", "").replace(".png", "");
 
-      // possible values: {
-      // "",
-      // }
-      return parsedProduction;
+      switch (icon) {
+        case "unit":
+          return Production.Soldier;
+        case "gold":
+          return Production.Gold;
+        case "farm":
+          return Production.Farm;
+        case "culture":
+          return Production.Culture;
+        case "castle_kind":
+          return Production.Fort;
+        case "diplomat":
+          return Production.Diplomat;
+        default:
+          const errorMessage = "new Production value: " + icon;
+          console.error(errorMessage);
+          throw new DOMException(errorMessage);
+      }
     }
 
     const productionItem = svgDoc.getElementById(createId("prod_", countryName));
-    let production = productionItem.getAttribute("xlink:href");
+    const productionString = productionItem.getAttribute("xlink:href");
+    let production: Production | null;
     const isHidden = productionItem.getAttribute("visibility") === "hidden";
     if (isHidden) {
-      production = "";
+      production = null;
     } else {
-      production = parseProduction(production);
+      production = parseProduction(productionString);
     }
 
     const soldierItem = svgDoc.getElementById(createId("info_", countryName));
