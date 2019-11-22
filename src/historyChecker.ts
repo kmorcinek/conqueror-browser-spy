@@ -1,16 +1,22 @@
 import { Greeter } from "./globals";
 import { Province } from "./Province";
 import { Culture } from "./Culture";
+import { ProcinceHistoryChecker } from "./ProvinceHistoryChecker";
 import { ProvinceOwnership } from "./provinceOwnership";
 import { Provinces } from "./provinces";
 
 export class HistoryChecker {
   private provinceOwnership: ProvinceOwnership;
+  private procinceHistoryChecker: ProcinceHistoryChecker;
 
   private alertsToShow: string[] = [];
 
-  constructor(provinceOwnership: ProvinceOwnership) {
+  constructor(
+    provinceOwnership: ProvinceOwnership,
+    procinceHistoryChecker: ProcinceHistoryChecker
+  ) {
     this.provinceOwnership = provinceOwnership;
+    this.procinceHistoryChecker = procinceHistoryChecker;
   }
 
   checkProvinces() {
@@ -20,7 +26,12 @@ export class HistoryChecker {
         continue;
       }
 
-      this.checkHistory(Greeter.provincesHistory[provinceName]);
+      const message = this.procinceHistoryChecker.checkHistory(
+        Greeter.provincesHistory[provinceName]
+      );
+      if (message !== null) {
+        this.alertsToShow.push(message);
+      }
     }
 
     // TODO: refactor alertsToShow
@@ -34,30 +45,5 @@ export class HistoryChecker {
 
   reset() {
     this.alertsToShow = [];
-  }
-
-  private checkHistory(history: Province[]) {
-    if (history.length === 0) {
-      return;
-    }
-
-    // population 3 is longer than x (5?) => developing
-    // -start from last one
-    const last = history[history.length - 1];
-    const lastSoldiersCount = last.soldiers;
-
-    if (last.farms === 3 && last.resources === 0 && last.culture === Culture.Primitive) {
-      let counter = 0;
-      for (let i = history.length - 2; i > -1; i--) {
-        const current = history[i];
-        if (current.farms === 3 && last.resources === 0 && lastSoldiersCount <= current.soldiers) {
-          counter++;
-        }
-      }
-
-      if (counter > 5) {
-        this.alertsToShow.push(last.name + " is developing");
-      }
-    }
   }
 }
