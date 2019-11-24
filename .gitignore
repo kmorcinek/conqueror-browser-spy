@@ -209,4 +209,4 @@ $RECYCLE.BIN/
 #####
 
 output-volume/**/*.js
-
+lib/output.js
