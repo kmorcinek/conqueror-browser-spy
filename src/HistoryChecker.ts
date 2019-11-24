@@ -1,22 +1,22 @@
 import { Greeter } from "./Globals";
 import { Province } from "./Province";
 import { Culture } from "./Culture";
-import { ProcinceHistoryChecker } from "./ProvinceHistoryChecker";
+import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { Provinces } from "./Provinces";
 
 export class HistoryChecker {
   private provinceOwnership: ProvinceOwnership;
-  private procinceHistoryChecker: ProcinceHistoryChecker;
+  private provinceHistoryChecker: ProvinceHistoryChecker;
 
   private alertsToShow: string[] = [];
 
   constructor(
     provinceOwnership: ProvinceOwnership,
-    procinceHistoryChecker: ProcinceHistoryChecker
+    procinceHistoryChecker: ProvinceHistoryChecker
   ) {
     this.provinceOwnership = provinceOwnership;
-    this.procinceHistoryChecker = procinceHistoryChecker;
+    this.provinceHistoryChecker = procinceHistoryChecker;
   }
 
   checkProvinces() {
@@ -26,7 +26,7 @@ export class HistoryChecker {
         continue;
       }
 
-      const message = this.procinceHistoryChecker.checkHistory(
+      const message = this.provinceHistoryChecker.checkHistory(
         Greeter.provincesHistory[provinceName]
       );
       if (message !== null) {

@@ -1,7 +1,7 @@
 import { Culture } from "./Culture";
 import { Province } from "./Province";
 
-export class ProcinceHistoryChecker {
+export class ProvinceHistoryChecker {
   checkHistory(history: Province[]): string | null {
     if (history.length === 0 || history.length === 1) {
       return null;

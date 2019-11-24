@@ -6,7 +6,7 @@ import { ProvinceParser } from "./ProvincesParser";
 import { HistoryChecker } from "./HistoryChecker";
 import { BuildingChecker } from "./BuildingChecker";
 import { Hud } from "./Hud";
-import { ProcinceHistoryChecker } from "./ProvinceHistoryChecker";
+import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser = new ProvinceParser();
@@ -25,7 +25,7 @@ export class ConquerorSpy {
     ConquerorSpy.buildingChecker = new BuildingChecker(provinceOwnership);
     ConquerorSpy.historyChecker = new HistoryChecker(
       provinceOwnership,
-      new ProcinceHistoryChecker()
+      new ProvinceHistoryChecker()
     );
     ConquerorSpy.hud = new Hud(provinceOwnership);
   }
