@@ -22,5 +22,6 @@ jobs:
         npm ci
         npm run lint
         npm test
+        npm run browserify
       env:
         CI: true
