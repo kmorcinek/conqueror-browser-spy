@@ -74,10 +74,13 @@ export class ProvinceParser {
 
     const soldierItem = svgDoc.getElementById(createId("info_", countryName));
 
+    const farmsWithResources = Province.parsePopulation(populationItem.textContent);
+
     const province = new Province(
       Greeter.getTurn(),
       countryName,
-      populationItem.textContent,
+      farmsWithResources.farms,
+      farmsWithResources.resources,
       culture,
       production,
       parseInt(soldierItem.textContent),
