@@ -208,10 +208,5 @@ $RECYCLE.BIN/
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
 
-# liteDB database files
-*.db
-
-# pages downloaded for investigation
-**/detailsPage_*.html
-
 output-volume/**/*.js
+
