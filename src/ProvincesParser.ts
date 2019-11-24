@@ -1,7 +1,7 @@
-import { Greeter } from "./globals";
+import { Greeter } from "./Globals";
 import { Province } from "./Province";
 import { Culture } from "./Culture";
-import { Provinces } from "./provinces";
+import { Provinces } from "./Provinces";
 
 export class ProvinceParser {
   // TODO: animVal vs baseVal?

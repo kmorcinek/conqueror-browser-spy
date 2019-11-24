@@ -1,11 +1,11 @@
 import $ from "jquery";
-import { Greeter } from "./globals";
-import { Provinces } from "./provinces";
-import { ProvinceOwnership } from "./provinceOwnership";
-import { ProvinceParser } from "./provincesParser";
-import { HistoryChecker } from "./historyChecker";
-import { BuildingChecker } from "./buildingChecker";
-import { Hud } from "./hud";
+import { Greeter } from "./Globals";
+import { Provinces } from "./Provinces";
+import { ProvinceOwnership } from "./ProvinceOwnership";
+import { ProvinceParser } from "./ProvincesParser";
+import { HistoryChecker } from "./HistoryChecker";
+import { BuildingChecker } from "./BuildingChecker";
+import { Hud } from "./Hud";
 import { ProcinceHistoryChecker } from "./ProvinceHistoryChecker";
 
 export class ConquerorSpy {

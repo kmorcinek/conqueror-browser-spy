@@ -1,9 +1,9 @@
-import { Greeter } from "./globals";
+import { Greeter } from "./Globals";
 import { Province } from "./Province";
 import { Culture } from "./Culture";
 import { ProcinceHistoryChecker } from "./ProvinceHistoryChecker";
-import { ProvinceOwnership } from "./provinceOwnership";
-import { Provinces } from "./provinces";
+import { ProvinceOwnership } from "./ProvinceOwnership";
+import { Provinces } from "./Provinces";
 
 export class HistoryChecker {
   private provinceOwnership: ProvinceOwnership;

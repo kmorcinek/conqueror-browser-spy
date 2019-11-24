@@ -1,7 +1,7 @@
 import $ from "jquery";
-import { Greeter } from "./globals";
+import { Greeter } from "./Globals";
 import { Province } from "./Province";
-import { ProvinceOwnership } from "./provinceOwnership";
+import { ProvinceOwnership } from "./ProvinceOwnership";
 
 export class Hud {
   private provinceOwnership: ProvinceOwnership;

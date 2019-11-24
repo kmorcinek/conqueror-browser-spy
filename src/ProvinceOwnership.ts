@@ -1,4 +1,4 @@
-import { Provinces } from "./provinces";
+import { Provinces } from "./Provinces";
 
 export class ProvinceOwnership {
   private conqueredProvinces: string[] = [];
