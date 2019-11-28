@@ -19,7 +19,7 @@
 * If you run container for first time (or done changes to ie. 'package.json') then perform:j
   * In application folder: `docker image build -t ts-demo .`
   * Delete all files in src folder (leave folder empty) - folder needs to be empty to mount.
-  * Run Docker in application folder (on Windows in PowerShell - better handling path): `docker container run --rm -it -v $PWD/output-volume:/usr/src/app/lib -v $PWD/src:/usr/src/app/src -p 8887:8080 ts-demo`
+  * Run Docker in application folder (on Windows in PowerShell - better handling path): `docker container run --rm -it -v $PWD/output-volume:/usr/src/app/lib -v $PWD/src:/usr/src/app/src -v $PWD/tests:/usr/src/app/tests -p 8887:8080 ts-demo`
   * In application folder `git reset --hard` - to get back previously deleted file
 * Edit any *.ts files in /src folder
 * Inside Docker Container run: `npm run browserify` - it will run **browsify** and create one file 'output.js' in app-vol folder and expose it as `localhost:8887/output.js`
