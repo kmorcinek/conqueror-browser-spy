@@ -91,7 +91,7 @@ export class ProvinceParser {
       this.getFort(svgDoc, countryName)
     );
 
-    console.log("province parsed:", countryName);
+    // console.log("province parsed:", countryName);
 
     return province;
   }
