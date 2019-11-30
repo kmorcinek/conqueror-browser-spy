@@ -2,15 +2,19 @@ import $ from "jquery";
 import { Greeter } from "./Globals";
 import { Province } from "./Province";
 import { ProvinceOwnership } from "./ProvinceOwnership";
+import { HistoryChecker } from "./HistoryChecker";
+import { Production } from "./Production";
 
 export class Hud {
   private provinceOwnership: ProvinceOwnership;
+  private historyChecker: HistoryChecker;
 
-  constructor(provinceOwnership: ProvinceOwnership) {
+  constructor(provinceOwnership: ProvinceOwnership, historyChecker: HistoryChecker) {
     this.provinceOwnership = provinceOwnership;
+    this.historyChecker = historyChecker;
   }
 
-  refreshHudHistory(countryName: string) {
+  refreshHudHistory(provinceName: string) {
     function lineIt(details: Province) {
       let fort = "";
       if (details.fort) {
@@ -28,14 +32,19 @@ export class Hud {
       );
     }
 
-    if (this.provinceOwnership.getConqueredProvinces().includes(countryName)) {
+    if (this.provinceOwnership.getConqueredProvinces().includes(provinceName)) {
       this.updateHud("");
       return;
     }
 
-    const history: Province[] = Greeter.provincesHistory[countryName];
+    const history: Province[] = Greeter.provincesHistory[provinceName];
 
     const lines = [];
+
+    const production: Production[] = this.historyChecker.getPrediction(provinceName);
+    if (production.length) {
+      lines.push(production[0]);
+    }
     for (let i = history.length - 1; i > -1; i--) {
       if (this.isHistoryEntryUnique(history, i)) {
         lines.push(lineIt(history[i]));

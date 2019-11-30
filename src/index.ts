@@ -27,7 +27,7 @@ export class ConquerorSpy {
       provinceOwnership,
       new ProvinceHistoryChecker()
     );
-    ConquerorSpy.hud = new Hud(provinceOwnership);
+    ConquerorSpy.hud = new Hud(provinceOwnership, ConquerorSpy.historyChecker);
   }
 
   static start() {

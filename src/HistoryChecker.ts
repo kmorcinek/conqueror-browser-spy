@@ -11,6 +11,7 @@ export class HistoryChecker {
   private provinceHistoryChecker: ProvinceHistoryChecker;
 
   private alertsToShow: string[] = [];
+  private buildingPredictions: Record<string, Production[]> = {};
 
   constructor(
     provinceOwnership: ProvinceOwnership,
@@ -18,6 +19,9 @@ export class HistoryChecker {
   ) {
     this.provinceOwnership = provinceOwnership;
     this.provinceHistoryChecker = procinceHistoryChecker;
+    for (const provinceName of Provinces.GetProvinces()) {
+      this.buildingPredictions[provinceName] = [];
+    }
   }
 
   checkProvinces() {
@@ -27,12 +31,15 @@ export class HistoryChecker {
         continue;
       }
 
+      const predictions = this.buildingPredictions[provinceName];
+      predictions.splice(0, predictions.length);
       const production = this.provinceHistoryChecker.checkHistory(
         Greeter.provincesHistory[provinceName]
       );
       if (production !== null) {
         const message = provinceName + " is " + production;
         this.alertsToShow.push(message);
+        predictions.push(production);
       }
     }
 
@@ -47,5 +54,9 @@ export class HistoryChecker {
 
   reset() {
     this.alertsToShow = [];
+  }
+
+  getPrediction(provinceName: string): Production[] {
+    return this.buildingPredictions[provinceName];
   }
 }
