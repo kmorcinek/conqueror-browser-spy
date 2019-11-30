@@ -4,6 +4,7 @@ import { Culture } from "./Culture";
 import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { Provinces } from "./Provinces";
+import { Production } from "./Production";
 
 export class HistoryChecker {
   private provinceOwnership: ProvinceOwnership;
@@ -26,10 +27,11 @@ export class HistoryChecker {
         continue;
       }
 
-      const message = this.provinceHistoryChecker.checkHistory(
+      const production = this.provinceHistoryChecker.checkHistory(
         Greeter.provincesHistory[provinceName]
       );
-      if (message !== null) {
+      if (production !== null) {
+        const message = provinceName + " is " + production;
         this.alertsToShow.push(message);
       }
     }

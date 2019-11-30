@@ -3,6 +3,7 @@ import { Province } from "../src/Province";
 import { Culture } from "../src/Culture";
 import { ProvinceHistoryChecker } from "../src/ProvinceHistoryChecker";
 import { ProvinceFactory } from "./ProvinceFactory";
+import { Production } from "../src/Production";
 
 describe("ProvinceHistoryChecker", () => {
   it("for one history entry message is empty", () => {
@@ -26,7 +27,7 @@ describe("ProvinceHistoryChecker", () => {
     }
     const message = sut.checkHistory(history);
     // tslint:disable-next-line: no-unused-expression
-    expect(message).to.equal("poland is developing");
+    expect(message).to.equal(Production.Culture);
   });
 
   it("suggest developing with 2 population and 1 resource at 11 turn", () => {
@@ -42,6 +43,6 @@ describe("ProvinceHistoryChecker", () => {
     }
     const message = sut.checkHistory(history);
     // tslint:disable-next-line: no-unused-expression
-    expect(message).to.equal("poland is developing");
+    expect(message).to.equal(Production.Culture);
   });
 });

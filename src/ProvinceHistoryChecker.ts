@@ -1,8 +1,9 @@
 import { Culture } from "./Culture";
 import { Province } from "./Province";
+import { Production } from "./Production";
 
 export class ProvinceHistoryChecker {
-  checkHistory(history: Province[]): string | null {
+  checkHistory(history: Province[]): Production | null {
     if (history.length === 0 || history.length === 1) {
       return null;
     }
@@ -15,7 +16,7 @@ export class ProvinceHistoryChecker {
     return this.checkHistory11turn3farmsDeveloping(history);
   }
 
-  checkHistory11turn3farmsDeveloping(history: Province[]): string | null {
+  checkHistory11turn3farmsDeveloping(history: Province[]): Production | null {
     // population 3 is longer than x (5?) => developing
     // -start from last one
     const last = history[history.length - 1];
@@ -31,14 +32,14 @@ export class ProvinceHistoryChecker {
       }
 
       if (counter > 5) {
-        return last.name + " is developing";
+        return Production.Culture;
       }
     }
 
     return null;
   }
 
-  checkHistory11turn2farmsPlus1Developing(history: Province[]): string | null {
+  checkHistory11turn2farmsPlus1Developing(history: Province[]): Production | null {
     // population 3 is longer than x (5?) => developing
     // -start from last one
     const last = history[history.length - 1];
@@ -54,7 +55,7 @@ export class ProvinceHistoryChecker {
       }
 
       if (counter > 5) {
-        return last.name + " is developing";
+        return Production.Culture;
       }
     }
 
