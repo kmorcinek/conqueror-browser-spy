@@ -8,12 +8,18 @@ export class ProvinceHistoryChecker {
       return null;
     }
 
-    const result = this.checkHistory11turn2farmsPlus1Developing(history);
-    if (result !== null) {
-      return result;
+    const results = [
+      this.checkHistory11turn2farmsPlus1Developing(history),
+      this.checkHistory11turn3farmsDeveloping(history),
+      this.checkDevelopingWith4Farms(history),
+    ];
+    for (const result of results) {
+      if (result !== null) {
+        return result;
+      }
     }
 
-    return this.checkHistory11turn3farmsDeveloping(history);
+    return null;
   }
 
   checkHistory11turn3farmsDeveloping(history: Province[]): Production | null {
@@ -55,6 +61,31 @@ export class ProvinceHistoryChecker {
       }
 
       if (counter > 5) {
+        return Production.Culture;
+      }
+    }
+
+    return null;
+  }
+
+  checkDevelopingWith4Farms(history: Province[]): Production | null {
+    const last = history[history.length - 1];
+    const lastSoldiersCount = last.soldiers;
+
+    if (last.farms === 4 && last.resources === 0 && last.culture === Culture.Primitive) {
+      let counter = 0;
+      for (let i = history.length - 2; i > -1; i--) {
+        const current = history[i];
+        if (
+          current.farms === 4 &&
+          current.resources === 0 &&
+          lastSoldiersCount <= current.soldiers
+        ) {
+          counter++;
+        }
+      }
+
+      if (counter > 3) {
         return Production.Culture;
       }
     }

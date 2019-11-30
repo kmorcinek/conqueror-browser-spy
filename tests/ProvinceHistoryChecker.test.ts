@@ -45,4 +45,20 @@ describe("ProvinceHistoryChecker", () => {
     // tslint:disable-next-line: no-unused-expression
     expect(message).to.equal(Production.Culture);
   });
+
+  it("Should predict Culture with 4 farms at turn 5", () => {
+    const sut = new ProvinceHistoryChecker();
+    const provinceFactory = new ProvinceFactory();
+    provinceFactory.farms = 4;
+    provinceFactory.resources = 0;
+    provinceFactory.culture = Culture.Primitive;
+    const province = provinceFactory.build();
+    const history: Province[] = [];
+    for (let i = 0; i < 5; i++) {
+      history.push(province);
+    }
+    const message = sut.checkHistory(history);
+    // tslint:disable-next-line: no-unused-expression
+    expect(message).to.equal(Production.Culture);
+  });
 });
