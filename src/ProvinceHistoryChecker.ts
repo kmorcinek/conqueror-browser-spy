@@ -2,6 +2,7 @@ import { Culture } from "./Culture";
 import { Province } from "./Province";
 import { Production } from "./Production";
 
+// Values from http://kmorcinek.github.io/conqueror-build-time/
 export class ProvinceHistoryChecker {
   checkHistory(history: Province[]): Production | null {
     if (history.length === 0 || history.length === 1) {

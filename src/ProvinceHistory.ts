@@ -1,6 +1,19 @@
 import { Province } from "./Province";
 
 export class ProvinceHistory {
+  static wasSomethingBuilt(current: Province, previous: Province) {
+    if (
+      current.farms === previous.farms &&
+      current.culture === previous.culture &&
+      current.soldiers <= previous.soldiers &&
+      current.fort === previous.fort
+    ) {
+      return false;
+    }
+
+    return true;
+  }
+
   history: Province[] = [];
 
   add(newProvince: Province) {
@@ -21,11 +34,33 @@ export class ProvinceHistory {
   }
 
   getLast(): Province {
-    return this.history[history.length - 1];
+    return this.history[this.history.length - 1];
   }
 
   getHistory() {
     // shallow copy
     return [...this.history];
+  }
+
+  getLength() {
+    return this.history.length;
+  }
+
+  findHistoryAfterBuildingFinished(): Province {
+    let previous: Province | null = null;
+    const reversedHistory = this.getHistory().reverse();
+    for (const current of reversedHistory) {
+      if (previous === null) {
+        previous = current;
+        continue;
+      }
+
+      if (ProvinceHistory.wasSomethingBuilt(current, previous)) {
+        return previous;
+      }
+      previous = current;
+    }
+
+    return this.history[0];
   }
 }
