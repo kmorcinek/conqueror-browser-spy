@@ -7,11 +7,6 @@ import { Provinces } from "./Provinces";
 export class ProvinceParser {
   // TODO: animVal vs baseVal?
   // svgItem.className.animVal
-
-  // #prod_crete
-  // < image id = "prod_crete" class="prod" height = "12" width = "12" x = "738.4375" y = "659" xlink:href = "../common/images/icon_unit.png" visibility = "inherit" transform = "translate(242.56000000000006,213.76)" />
-  // icon_farm.png, icon_unit.png, gold, culture, castle_kind, diplomat,
-
   updateProvinces() {
     const provinces = Provinces.GetProvinces();
     for (const provinceName of provinces) {
@@ -46,10 +41,6 @@ export class ProvinceParser {
       return null;
     }
 
-    // let culture = populationItem.className.animVal;
-    // if (culture === "") {
-    //   culture = "pri";
-    // }
     const culture = this.parseCulture(populationItem.className.animVal);
 
     function parseProduction(longIcon: string): Production {
