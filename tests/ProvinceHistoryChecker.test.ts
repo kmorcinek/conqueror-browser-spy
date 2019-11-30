@@ -14,6 +14,22 @@ describe("ProvinceHistoryChecker", () => {
     expect(message).to.be.null;
   });
 
+  it("should not suggest developing when soldiers count was growing and the decreased by attacking", () => {
+    const sut = new ProvinceHistoryChecker();
+    const provinceFactory = new ProvinceFactory();
+    provinceFactory.farms = 3;
+    provinceFactory.resources = 0;
+    provinceFactory.culture = Culture.Primitive;
+    const province = provinceFactory.build();
+    const history: Province[] = [];
+    for (let i = 0; i < 7; i++) {
+      history.push(province);
+    }
+    const message = sut.checkHistory(history);
+    // tslint:disable-next-line: no-unused-expression
+    expect(message).to.equal(Production.Culture);
+  });
+
   it("suggest developing with 3 population at 11 turn", () => {
     const sut = new ProvinceHistoryChecker();
     const provinceFactory = new ProvinceFactory();
