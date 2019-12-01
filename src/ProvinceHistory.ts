@@ -30,6 +30,12 @@ export class ProvinceHistory {
       throw new Error(`new province turn '${newProvince.turn}' has to greater than previous`);
     }
 
+    if (this.history.length > 0 && this.history[0].resources !== newProvince.resources) {
+      throw new Error(
+        `new province resources '${newProvince.resources}' differ from previous resources '${this.history[0].resources}'`
+      );
+    }
+
     this.history.push(newProvince);
   }
 

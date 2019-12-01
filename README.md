@@ -25,7 +25,9 @@
   * In application folder `git reset --hard` - to get back previously deleted file
 * Edit any *.ts files in /src folder
 * Inside Docker Container run: `npm run browserify` - it will run **browsify** and create one file 'output.js' in app-vol folder and expose it as `localhost:8887/output.js`
-* Paste **wrapper.js** to console (F12 on page) (or just reload `refreshIt()` in console)
+* Create bookmark in browser with js scripts from file `/src/wrapper/wrapper.jjj`
+  * One bookmark for PROD and one for testing
+  * Click the bookmark and scripts are loaded/reloaded
 
 ## Which game to set for testing
 
