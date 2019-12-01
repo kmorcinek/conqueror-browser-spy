@@ -4,6 +4,7 @@ import { Province } from "./Province";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { HistoryChecker } from "./HistoryChecker";
 import { Production } from "./Production";
+import { IPrediction } from "./IPrediction";
 
 export class Hud {
   private provinceOwnership: ProvinceOwnership;
@@ -41,9 +42,9 @@ export class Hud {
 
     const lines = [];
 
-    const production: Production[] = this.historyChecker.getPrediction(provinceName);
-    if (production.length) {
-      lines.push(production[0]);
+    const predictions: IPrediction[] = this.historyChecker.getPrediction(provinceName);
+    if (predictions.length) {
+      lines.push(predictions[0].getMessage());
     }
     for (let i = history.length - 1; i > -1; i--) {
       if (this.isHistoryEntryUnique(history, i)) {

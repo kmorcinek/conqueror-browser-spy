@@ -5,13 +5,15 @@ import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { Provinces } from "./Provinces";
 import { Production } from "./Production";
+import { IPrediction } from "./IPrediction";
+import { Prediction } from "./Prediction";
 
 export class HistoryChecker {
   private provinceOwnership: ProvinceOwnership;
   private provinceHistoryChecker: ProvinceHistoryChecker;
 
   private alertsToShow: string[] = [];
-  private buildingPredictions: Record<string, Production[]> = {};
+  private buildingPredictions: Record<string, IPrediction[]> = {};
 
   constructor(
     provinceOwnership: ProvinceOwnership,
@@ -39,7 +41,7 @@ export class HistoryChecker {
       if (production !== null) {
         const message = provinceName + " is " + production;
         this.alertsToShow.push(message);
-        predictions.push(production);
+        predictions.push(new Prediction(production));
       }
     }
 
@@ -56,7 +58,7 @@ export class HistoryChecker {
     this.alertsToShow = [];
   }
 
-  getPrediction(provinceName: string): Production[] {
+  getPrediction(provinceName: string): IPrediction[] {
     return this.buildingPredictions[provinceName];
   }
 }
