@@ -1,3 +1,5 @@
+# Conqueror browser spy
+
 ## Knows issues
 
 * livonia jest źle pokazywana, z jakiegoś powodu była w conqueredProvince. (zły kolor?).
@@ -24,13 +26,6 @@
 * Edit any *.ts files in /src folder
 * Inside Docker Container run: `npm run browserify` - it will run **browsify** and create one file 'output.js' in app-vol folder and expose it as `localhost:8887/output.js`
 * Paste **wrapper.js** to console (F12 on page) (or just reload `refreshIt()` in console)
-
-## How I test the code
-
-* change wrapper.js to point to some localhost
-* Włączyć dodatek (more tools->Extensions) chrome web server (Web Server for Chrome), domyślny katalog jest dobry, otwierasz folder "C:\Work\GitHub\kmorcinek\conqueror-spy\src" i plik wrapper.js, wkleić do przeglądarki F12 do consoli.
-* reload wrapper.js przeladuje wszystkie skrypty - wystarczy wpisać `refreshIt();` w consoli i też jest przeładowane
-* 
 
 ## Which game to set for testing
 
