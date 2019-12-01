@@ -34,7 +34,7 @@ export class HistoryChecker {
       const predictions = this.buildingPredictions[provinceName];
       predictions.splice(0, predictions.length);
       const production = this.provinceHistoryChecker.checkHistory(
-        Greeter.provincesHistory[provinceName]
+        Greeter.provincesHistory[provinceName].getHistory()
       );
       if (production !== null) {
         const message = provinceName + " is " + production;

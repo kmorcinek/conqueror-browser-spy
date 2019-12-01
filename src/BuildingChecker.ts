@@ -14,9 +14,7 @@ export class BuildingChecker {
   checkBuildingProvinces() {
     const conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
     for (const conqueredProvince of conqueredProvinces) {
-      const history: Province[] = Greeter.provincesHistory[conqueredProvince];
-
-      const original = history[history.length - 1];
+      const original = Greeter.provincesHistory[conqueredProvince].getLast();
 
       const patterns = [
         {

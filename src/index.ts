@@ -7,6 +7,7 @@ import { HistoryChecker } from "./HistoryChecker";
 import { BuildingChecker } from "./BuildingChecker";
 import { Hud } from "./Hud";
 import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
+import { ProvinceHistory } from "./ProvinceHistory";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser = new ProvinceParser();
@@ -78,7 +79,7 @@ export class ConquerorSpy {
 
     const provinces = Provinces.GetProvinces();
     for (const provinceName of provinces) {
-      Greeter.provincesHistory[provinceName] = [];
+      Greeter.provincesHistory[provinceName] = new ProvinceHistory();
     }
 
     ConquerorSpy.historyChecker.reset();

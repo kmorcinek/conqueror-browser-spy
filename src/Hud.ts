@@ -37,7 +37,7 @@ export class Hud {
       return;
     }
 
-    const history: Province[] = Greeter.provincesHistory[provinceName];
+    const history: Province[] = Greeter.provincesHistory[provinceName].getHistory();
 
     const lines = [];
 
