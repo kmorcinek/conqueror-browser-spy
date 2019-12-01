@@ -7,20 +7,25 @@ import { Provinces } from "./Provinces";
 import { Production } from "./Production";
 import { IPrediction } from "./IPrediction";
 import { Prediction } from "./Prediction";
+import { FarmHistoryChecker } from "./FarmHistoryChecker";
+import { FarmPrediction } from "./FarmPrediction";
 
 export class HistoryChecker {
   private provinceOwnership: ProvinceOwnership;
   private provinceHistoryChecker: ProvinceHistoryChecker;
+  private farmHistoryChecker: FarmHistoryChecker;
 
   private alertsToShow: string[] = [];
   private buildingPredictions: Record<string, IPrediction[]> = {};
 
   constructor(
     provinceOwnership: ProvinceOwnership,
-    procinceHistoryChecker: ProvinceHistoryChecker
+    procinceHistoryChecker: ProvinceHistoryChecker,
+    farmHistoryChecker: FarmHistoryChecker
   ) {
     this.provinceOwnership = provinceOwnership;
     this.provinceHistoryChecker = procinceHistoryChecker;
+    this.farmHistoryChecker = farmHistoryChecker;
     for (const provinceName of Provinces.GetProvinces()) {
       this.buildingPredictions[provinceName] = [];
     }
@@ -35,13 +40,17 @@ export class HistoryChecker {
 
       const predictions = this.buildingPredictions[provinceName];
       predictions.splice(0, predictions.length);
-      const production = this.provinceHistoryChecker.checkHistory(
-        Greeter.provincesHistory[provinceName].getHistory()
-      );
+      const provinceHistory = Greeter.provincesHistory[provinceName];
+      const production = this.provinceHistoryChecker.checkHistory(provinceHistory.getHistory());
       if (production !== null) {
         const message = provinceName + " is " + production;
         this.alertsToShow.push(message);
         predictions.push(new Prediction(production));
+      } else {
+        const nextFarm = this.farmHistoryChecker.whenNextFarm(provinceHistory);
+        if (nextFarm !== null) {
+          predictions.push(new FarmPrediction(nextFarm));
+        }
       }
     }
 
