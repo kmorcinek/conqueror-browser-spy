@@ -1,21 +1,15 @@
 /* tslint:disable */
 /* renamed to *.jjj cause 'npm run browserify' was failing */
 function loadScript(url) {
+	alert(url);
+	url += "&a=" + Math.random();
     (function(d, s) { s = d.createElement("script"); s.src = url; (d.head || d.documentElement).appendChild(s); })(document);
 }
 
-function refreshIt() {
+loadScript("http://conqueror-browser-spy.angelo.hostingasp.pl/output.js");
 
-    let baseUrl = "http://conqueror-browser-spy.angelo.hostingasp.pl/";
-	   let isLocalTesting = false;
-	   if (isLocalTesting) {
-		baseUrl = "http://127.0.0.1:8887/";
-    }
+// Bookmark for PROD env:
+javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t+"?a="+Math.random()),(e.head||e.documentElement).appendChild(o)})("http://conqueror-browser-spy.angelo.hostingasp.pl/output.js")
 
-    console.log("refreshing from server: ", baseUrl);
-
-	   var fileName = "output.js";
-	   loadScript(baseUrl + fileName);
-}
-
-refreshIt();
+// Bookmark for TEST env:
+javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t+"?a="+Math.random()),(e.head||e.documentElement).appendChild(o)})("http://localhost:8887/output.js")
