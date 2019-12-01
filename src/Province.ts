@@ -42,6 +42,9 @@ export class Province {
     soldiers: number,
     fort: string
   ) {
+    if (turn < 1) {
+      throw new Error(`turn '${turn}' cannot be less than 1`);
+    }
     this.turn = turn;
     this.name = name;
     this.farms = farms;
