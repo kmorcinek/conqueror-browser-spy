@@ -1,20 +1,24 @@
-import { Greeter } from "./Globals";
-import { Province } from "./Province";
 import { ProvinceOwnership } from "./ProvinceOwnership";
+import { ProvinceHistoryService } from "./ProvinceHistoryService";
 
 export class BuildingChecker {
   buildingAdvices: string[] = [];
 
   private provinceOwnership: ProvinceOwnership;
+  private provinceHistoryService: ProvinceHistoryService;
 
-  constructor(provinceOwnership: ProvinceOwnership) {
+  constructor(
+    provinceOwnership: ProvinceOwnership,
+    provinceHistoryService: ProvinceHistoryService
+  ) {
     this.provinceOwnership = provinceOwnership;
+    this.provinceHistoryService = provinceHistoryService;
   }
 
   checkBuildingProvinces() {
     const conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
     for (const conqueredProvince of conqueredProvinces) {
-      const original = Greeter.provincesHistory[conqueredProvince].getLast();
+      const original = this.provinceHistoryService.getByName(conqueredProvince).getLast();
 
       const patterns = [
         {

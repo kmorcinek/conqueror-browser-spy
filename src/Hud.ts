@@ -1,18 +1,23 @@
 import $ from "jquery";
-import { Greeter } from "./Globals";
 import { Province } from "./Province";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { HistoryChecker } from "./HistoryChecker";
-import { Production } from "./Production";
 import { IPrediction } from "./IPrediction";
+import { ProvinceHistoryService } from "./ProvinceHistoryService";
 
 export class Hud {
   private provinceOwnership: ProvinceOwnership;
   private historyChecker: HistoryChecker;
+  private provinceHistoryService: ProvinceHistoryService;
 
-  constructor(provinceOwnership: ProvinceOwnership, historyChecker: HistoryChecker) {
+  constructor(
+    provinceOwnership: ProvinceOwnership,
+    historyChecker: HistoryChecker,
+    provinceHistoryService: ProvinceHistoryService
+  ) {
     this.provinceOwnership = provinceOwnership;
     this.historyChecker = historyChecker;
+    this.provinceHistoryService = provinceHistoryService;
   }
 
   refreshHudHistory(provinceName: string) {
@@ -38,7 +43,7 @@ export class Hud {
       return;
     }
 
-    const history: Province[] = Greeter.provincesHistory[provinceName].getHistory();
+    const history: Province[] = this.provinceHistoryService.getByName(provinceName).getHistory();
 
     const lines = [];
 

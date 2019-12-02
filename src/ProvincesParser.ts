@@ -3,8 +3,15 @@ import { Province } from "./Province";
 import { Culture } from "./Culture";
 import { Production } from "./Production";
 import { Provinces } from "./Provinces";
+import { ProvinceHistoryService } from "./ProvinceHistoryService";
 
 export class ProvinceParser {
+  private provinceHistoryService: ProvinceHistoryService;
+
+  constructor(provinceHistoryService: ProvinceHistoryService) {
+    this.provinceHistoryService = provinceHistoryService;
+  }
+
   // TODO: animVal vs baseVal?
   // svgItem.className.animVal
   updateProvinces() {
@@ -16,7 +23,7 @@ export class ProvinceParser {
         continue;
       }
 
-      Greeter.provincesHistory[provinceName].add(province);
+      this.provinceHistoryService.getByName(provinceName).add(province);
     }
   }
 

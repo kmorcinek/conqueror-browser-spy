@@ -9,28 +9,38 @@ import { Hud } from "./Hud";
 import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
 import { ProvinceHistory } from "./ProvinceHistory";
 import { FarmHistoryChecker } from "./FarmHistoryChecker";
+import { ProvinceHistoryService } from "./ProvinceHistoryService";
 
 export class ConquerorSpy {
-  static provinceParser: ProvinceParser = new ProvinceParser();
+  static provinceParser: ProvinceParser;
   static provinceOwnership: ProvinceOwnership;
   static buildingChecker: BuildingChecker;
   static historyChecker: HistoryChecker;
   static hud: Hud;
+  static provinceHistoryService: ProvinceHistoryService;
 
   static lastTurn: number = NaN;
 
   static lastCountry: string = "";
 
   static initialize() {
+    const provinceHistoryService = new ProvinceHistoryService();
+    ConquerorSpy.provinceHistoryService = provinceHistoryService;
+    this.provinceParser = new ProvinceParser(provinceHistoryService);
     const provinceOwnership = new ProvinceOwnership();
     ConquerorSpy.provinceOwnership = provinceOwnership;
-    ConquerorSpy.buildingChecker = new BuildingChecker(provinceOwnership);
+    ConquerorSpy.buildingChecker = new BuildingChecker(provinceOwnership, provinceHistoryService);
     ConquerorSpy.historyChecker = new HistoryChecker(
       provinceOwnership,
       new ProvinceHistoryChecker(),
-      new FarmHistoryChecker()
+      new FarmHistoryChecker(),
+      provinceHistoryService
     );
-    ConquerorSpy.hud = new Hud(provinceOwnership, ConquerorSpy.historyChecker);
+    ConquerorSpy.hud = new Hud(
+      provinceOwnership,
+      ConquerorSpy.historyChecker,
+      provinceHistoryService
+    );
   }
 
   static start() {
@@ -77,13 +87,8 @@ export class ConquerorSpy {
   static cleanAllValues() {
     // lastCountry = "";
 
-    Greeter.provincesHistory = {};
-
-    const provinces = Provinces.GetProvinces();
-    for (const provinceName of provinces) {
-      Greeter.provincesHistory[provinceName] = new ProvinceHistory();
-    }
-
+    //
+    ConquerorSpy.provinceHistoryService.reset();
     ConquerorSpy.historyChecker.reset();
     ConquerorSpy.buildingChecker.reset();
     ConquerorSpy.provinceOwnership.reset();

@@ -1,4 +1,3 @@
-import { Greeter } from "./Globals";
 import { Province } from "./Province";
 import { Culture } from "./Culture";
 import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
@@ -9,11 +8,13 @@ import { IPrediction } from "./IPrediction";
 import { Prediction } from "./Prediction";
 import { FarmHistoryChecker } from "./FarmHistoryChecker";
 import { FarmPrediction } from "./FarmPrediction";
+import { ProvinceHistoryService } from "./ProvinceHistoryService";
 
 export class HistoryChecker {
   private provinceOwnership: ProvinceOwnership;
   private provinceHistoryChecker: ProvinceHistoryChecker;
   private farmHistoryChecker: FarmHistoryChecker;
+  private provinceHistoryService: ProvinceHistoryService;
 
   private alertsToShow: string[] = [];
   private buildingPredictions: Record<string, IPrediction[]> = {};
@@ -21,7 +22,8 @@ export class HistoryChecker {
   constructor(
     provinceOwnership: ProvinceOwnership,
     procinceHistoryChecker: ProvinceHistoryChecker,
-    farmHistoryChecker: FarmHistoryChecker
+    farmHistoryChecker: FarmHistoryChecker,
+    provinceHistoryService: ProvinceHistoryService
   ) {
     this.provinceOwnership = provinceOwnership;
     this.provinceHistoryChecker = procinceHistoryChecker;
@@ -29,6 +31,7 @@ export class HistoryChecker {
     for (const provinceName of Provinces.GetProvinces()) {
       this.buildingPredictions[provinceName] = [];
     }
+    this.provinceHistoryService = provinceHistoryService;
   }
 
   checkProvinces() {
@@ -40,7 +43,7 @@ export class HistoryChecker {
 
       const predictions = this.buildingPredictions[provinceName];
       predictions.splice(0, predictions.length);
-      const provinceHistory = Greeter.provincesHistory[provinceName];
+      const provinceHistory = this.provinceHistoryService.getByName(provinceName);
       const production = this.provinceHistoryChecker.checkHistory(provinceHistory.getHistory());
       if (production !== null) {
         const message = provinceName + " is " + production;
