@@ -10,7 +10,7 @@ export class ProvinceOwnership {
 
     const provinces = Provinces.GetProvinces();
     for (const provinceName of provinces) {
-      if ((this.conqueredProvinces as any).includes(provinceName)) {
+      if (this.conqueredProvinces.includes(provinceName)) {
         continue;
       }
 
@@ -39,7 +39,7 @@ export class ProvinceOwnership {
         "#319c9c",
       ];
 
-      if ((playerColors as any).includes(color)) {
+      if (playerColors.includes(color)) {
         this.conqueredProvinces.push(provinceName);
         console.log("conquered: ", provinceName);
       }
