@@ -56,7 +56,7 @@ export class ConquerorSpy {
     clearInterval(refreshNameInterval);
     refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.4 - Add info about farms next turn prediction to HUD";
+    const toolVersion = "1.5 - Better checking province - maybe";
 
     console.log("tool version: " + toolVersion);
   }
