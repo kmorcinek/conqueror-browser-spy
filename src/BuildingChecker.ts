@@ -23,9 +23,9 @@ export class BuildingChecker {
     const conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
     for (const conqueredProvince of conqueredProvinces) {
       const original = this.provinceHistoryService.getByName(conqueredProvince).getLast();
-      const unwantedProduction = this.checkBuildingProvince(original);
-      if (unwantedProduction !== null) {
-        this.buildingAdvices.push(original.name + " should not " + unwantedProduction);
+      const violatedPattern = this.checkBuildingProvince(original);
+      if (violatedPattern !== null) {
+        this.buildingAdvices.push(original.name + " should not " + violatedPattern.production);
       }
     }
 
@@ -41,7 +41,7 @@ export class BuildingChecker {
     this.buildingAdvices = [];
   }
 
-  checkBuildingProvince(original: Province): Production | null {
+  checkBuildingProvince(original: Province): BuildingPattern | null {
     const patterns: BuildingPattern[] = [
       {
         farms: 4,
@@ -102,7 +102,7 @@ export class BuildingChecker {
         original.culture === pattern.culture &&
         original.production === pattern.production
       ) {
-        return original.production;
+        return pattern;
       }
     }
 
