@@ -131,4 +131,5 @@ Tooly który będzie trzymał kto kiedy wygrał.
 
 ***
 
-
+2dev. - if 2 dev juz było po 
+1dev, 2dev od razu podbijać
