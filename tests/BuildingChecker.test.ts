@@ -3,6 +3,7 @@ import { Culture } from "../src/Culture";
 import { ProvinceFactory } from "./ProvinceFactory";
 import { BuildingChecker } from "../src/BuildingChecker";
 import { Production } from "../src/Production";
+import { BuildingPattern } from "../src/BuildingPattern";
 
 describe("BuildingChecker", () => {
   it("should [checkBuildingProvinces] work", () => {
@@ -14,8 +15,11 @@ describe("BuildingChecker", () => {
     const province = provinceFactory.build();
 
     const sut = new BuildingChecker(null as any, null as any);
-    const unwantedProduction = sut.checkBuildingProvince(province);
+    const unwantedProduction: BuildingPattern | null = sut.checkBuildingProvince(province);
     // tslint:disable-next-line: no-unused-expression
-    expect(unwantedProduction).to.equal(Production.Farm);
+    expect(unwantedProduction).to.not.equal(null);
+    expect(((unwantedProduction as unknown) as BuildingPattern).production).to.equal(
+      Production.Farm
+    );
   });
 });
