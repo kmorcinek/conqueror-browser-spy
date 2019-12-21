@@ -6,4 +6,5 @@ export interface BuildingPattern {
   resources?: number;
   culture?: Culture;
   production: Production;
+  changeTo: Production;
 }

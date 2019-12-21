@@ -10,6 +10,8 @@ import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
 import { ProvinceHistory } from "./ProvinceHistory";
 import { FarmHistoryChecker } from "./FarmHistoryChecker";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
+import { Clicker } from "./Clicker";
+import { BuildingChanger } from "./BuildingChanger";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -29,7 +31,13 @@ export class ConquerorSpy {
     this.provinceParser = new ProvinceParser(provinceHistoryService);
     const provinceOwnership = new ProvinceOwnership();
     ConquerorSpy.provinceOwnership = provinceOwnership;
-    ConquerorSpy.buildingChecker = new BuildingChecker(provinceOwnership, provinceHistoryService);
+    const clicker = new Clicker();
+    const buildingChanger = new BuildingChanger(clicker);
+    ConquerorSpy.buildingChecker = new BuildingChecker(
+      provinceOwnership,
+      provinceHistoryService,
+      buildingChanger
+    );
     ConquerorSpy.historyChecker = new HistoryChecker(
       provinceOwnership,
       new ProvinceHistoryChecker(),

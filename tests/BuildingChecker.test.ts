@@ -14,7 +14,7 @@ describe("BuildingChecker", () => {
     provinceFactory.production = Production.Farm;
     const province = provinceFactory.build();
 
-    const sut = new BuildingChecker(null as any, null as any);
+    const sut = new BuildingChecker(null as any, null as any, null as any);
     const unwantedProduction: BuildingPattern | null = sut.checkBuildingProvince(province);
     // tslint:disable-next-line: no-unused-expression
     expect(unwantedProduction).to.not.equal(null);
