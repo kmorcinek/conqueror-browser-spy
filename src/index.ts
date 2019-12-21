@@ -64,7 +64,7 @@ export class ConquerorSpy {
     clearInterval(refreshNameInterval);
     refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.6 - wider hud";
+    const toolVersion = "1.7 - change province production";
 
     console.log("tool version: " + toolVersion);
   }
