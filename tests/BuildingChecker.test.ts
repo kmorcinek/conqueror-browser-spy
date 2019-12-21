@@ -13,7 +13,8 @@ describe("BuildingChecker", () => {
     provinceFactory.production = Production.Farm;
     const province = provinceFactory.build();
 
-    const unwantedProduction = BuildingChecker.checkBuildingProvince(province);
+    const sut = new BuildingChecker(null as any, null as any);
+    const unwantedProduction = sut.checkBuildingProvince(province);
     // tslint:disable-next-line: no-unused-expression
     expect(unwantedProduction).to.equal(Production.Farm);
   });

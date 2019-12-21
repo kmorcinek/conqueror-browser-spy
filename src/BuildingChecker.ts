@@ -6,7 +6,42 @@ import { Culture } from "./Culture";
 import { BuildingPattern } from "./BuildingPattern";
 
 export class BuildingChecker {
-  static checkBuildingProvince(original: Province): Production | null {
+  buildingAdvices: string[] = [];
+
+  private provinceOwnership: ProvinceOwnership;
+  private provinceHistoryService: ProvinceHistoryService;
+
+  constructor(
+    provinceOwnership: ProvinceOwnership,
+    provinceHistoryService: ProvinceHistoryService
+  ) {
+    this.provinceOwnership = provinceOwnership;
+    this.provinceHistoryService = provinceHistoryService;
+  }
+
+  checkBuildingProvinces() {
+    const conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
+    for (const conqueredProvince of conqueredProvinces) {
+      const original = this.provinceHistoryService.getByName(conqueredProvince).getLast();
+      const unwantedProduction = this.checkBuildingProvince(original);
+      if (unwantedProduction !== null) {
+        this.buildingAdvices.push(original.name + " should not " + unwantedProduction);
+      }
+    }
+
+    if (this.buildingAdvices.length) {
+      const message = this.buildingAdvices.join(", ");
+      console.log(message);
+      alert(message);
+      this.buildingAdvices = [];
+    }
+  }
+
+  reset() {
+    this.buildingAdvices = [];
+  }
+
+  checkBuildingProvince(original: Province): Production | null {
     const patterns: BuildingPattern[] = [
       {
         farms: 4,
@@ -72,40 +107,5 @@ export class BuildingChecker {
     }
 
     return null;
-  }
-
-  buildingAdvices: string[] = [];
-
-  private provinceOwnership: ProvinceOwnership;
-  private provinceHistoryService: ProvinceHistoryService;
-
-  constructor(
-    provinceOwnership: ProvinceOwnership,
-    provinceHistoryService: ProvinceHistoryService
-  ) {
-    this.provinceOwnership = provinceOwnership;
-    this.provinceHistoryService = provinceHistoryService;
-  }
-
-  checkBuildingProvinces() {
-    const conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
-    for (const conqueredProvince of conqueredProvinces) {
-      const original = this.provinceHistoryService.getByName(conqueredProvince).getLast();
-      const unwantedProduction = BuildingChecker.checkBuildingProvince(original);
-      if (unwantedProduction !== null) {
-        this.buildingAdvices.push(original.name + " should not " + unwantedProduction);
-      }
-    }
-
-    if (this.buildingAdvices.length) {
-      const message = this.buildingAdvices.join(", ");
-      console.log(message);
-      alert(message);
-      this.buildingAdvices = [];
-    }
-  }
-
-  reset() {
-    this.buildingAdvices = [];
   }
 }
