@@ -4,19 +4,23 @@ import { Province } from "./Province";
 import { Production } from "./Production";
 import { Culture } from "./Culture";
 import { BuildingPattern } from "./BuildingPattern";
+import { BuildingChanger } from "./BuildingChanger";
 
 export class BuildingChecker {
   buildingAdvices: string[] = [];
 
   private provinceOwnership: ProvinceOwnership;
   private provinceHistoryService: ProvinceHistoryService;
+  private buildingChanger: BuildingChanger;
 
   constructor(
     provinceOwnership: ProvinceOwnership,
-    provinceHistoryService: ProvinceHistoryService
+    provinceHistoryService: ProvinceHistoryService,
+    buildingChanger: BuildingChanger
   ) {
     this.provinceOwnership = provinceOwnership;
     this.provinceHistoryService = provinceHistoryService;
+    this.buildingChanger = buildingChanger;
   }
 
   checkBuildingProvinces() {
@@ -26,6 +30,7 @@ export class BuildingChecker {
       const violatedPattern = this.checkBuildingProvince(original);
       if (violatedPattern !== null) {
         this.buildingAdvices.push(original.name + " should not " + violatedPattern.production);
+        this.buildingChanger.changeToBetterProduction(original.name, violatedPattern);
       }
     }
 
@@ -46,47 +51,63 @@ export class BuildingChecker {
       {
         farms: 4,
         production: Production.Farm,
+        changeTo: Production.Culture,
       },
       {
         farms: 5,
         production: Production.Farm,
+        changeTo: Production.Culture,
       },
       {
         farms: 6,
         culture: Culture.Developed,
         production: Production.Farm,
+        changeTo: Production.Culture,
+      },
+      {
+        farms: 7,
+        resources: 1,
+        culture: Culture.Developed,
+        production: Production.Farm,
+        changeTo: Production.Culture,
       },
       {
         farms: 4,
         culture: Culture.Developed,
         production: Production.Culture,
+        changeTo: Production.Farm,
       },
       {
         farms: 5,
         culture: Culture.Developed,
         production: Production.Culture,
+        changeTo: Production.Farm,
       },
       {
         farms: 4,
         resources: 2,
         culture: Culture.Developed,
         production: Production.Farm,
+        changeTo: Production.Culture,
       },
       {
         farms: 3,
         resources: 2,
         production: Production.Farm,
+        changeTo: Production.Culture,
       },
       {
         farms: 4,
         resources: 2,
         production: Production.Farm,
+        changeTo: Production.Culture,
       },
       {
         farms: 3,
         resources: 2,
         culture: Culture.Developed,
         production: Production.Culture,
+        changeTo: Production.Farm,
       },
     ];
 
