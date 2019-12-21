@@ -70,7 +70,9 @@ export class Hud {
 
     const timerWrapper = $(timerWrapperSelector);
 
-    const hud = $('<div id="hud" style="margin-top: 20px;"></div>');
+    const hud = $(
+      '<div id="hud" style="margin-top: 20px; color: blue; background-color: white;"></div>'
+    );
     timerWrapper.append(hud);
   }
 
