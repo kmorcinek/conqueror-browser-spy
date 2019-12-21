@@ -18,7 +18,7 @@
 ## How I test the code (new with TypeScript)
 
 * If you have already running container (even after system restart) you can just login from powershell to container: `docker exec -it sha512OfContainer /bin/bash`
-* If you run container for first time (or done changes to ie. 'package.json') then perform:j
+* If you run container for first time (or done changes to ie. 'package.json') then perform:
   * In application folder: `docker image build -t ts-demo .`
   * Delete all files in src folder (leave folder empty) - folder needs to be empty to mount.
   * Run Docker in application folder (on Windows in PowerShell - better handling path): `docker container run --rm -it -v $PWD/output-volume:/usr/src/app/lib -v $PWD/src:/usr/src/app/src -v $PWD/tests:/usr/src/app/tests -p 8887:8080 ts-demo`
