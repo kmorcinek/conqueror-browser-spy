@@ -93,9 +93,6 @@ export class ConquerorSpy {
   }
 
   static cleanAllValues() {
-    // lastCountry = "";
-
-    //
     ConquerorSpy.provinceHistoryService.reset();
     ConquerorSpy.historyChecker.reset();
     ConquerorSpy.buildingChecker.reset();
