@@ -57,12 +57,22 @@ export class ProvinceOwnership implements IProvinceOwnership {
   }
 
   getOwnedProvinces() {
-    return this.conqueredProvinces.filter(
-      provinceName =>
-        this.provinceHistoryService.getByName(provinceName).getLast().production !== null
-    );
+    return this.getOwned(this.conqueredProvinces);
   }
 
+  getOwned(provinces: string[]) {
+    return provinces.filter(provinceName => this.isOwned(provinceName));
+  }
+
+  getNotOwned(provinces: string[]) {
+    return provinces.filter(provinceName => this.isOwned(provinceName) === false);
+  }
+
+  private isOwned(province: string) {
+    return this.provinceHistoryService.getByName(province).getLast().production !== null;
+  }
+
+  // tslint:disable-next-line: member-ordering
   reset() {
     this.conqueredProvinces = [];
   }

@@ -1,6 +1,7 @@
 import { Culture } from "../src/Culture";
 import { Province } from "../src/Province";
 import { Production } from "../src/Production";
+import { Attitude } from "../src/Attitude";
 
 export class ProvinceFactory {
   turn: number = 1;
@@ -11,6 +12,7 @@ export class ProvinceFactory {
   production: Production | null = Production.Soldier;
   soldiers: number = 2;
   fort: string = "fort";
+  attitude: Attitude = Attitude.Content;
 
   build() {
     return new Province(
@@ -21,7 +23,8 @@ export class ProvinceFactory {
       this.culture,
       this.production,
       this.soldiers,
-      this.fort
+      this.fort,
+      this.attitude
     );
   }
 }
