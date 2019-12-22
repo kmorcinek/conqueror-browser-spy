@@ -1,13 +1,10 @@
-import $ from "jquery";
 import { Greeter } from "./Globals";
-import { Provinces } from "./Provinces";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { ProvinceParser } from "./ProvincesParser";
 import { HistoryChecker } from "./HistoryChecker";
 import { BuildingChecker } from "./BuildingChecker";
 import { Hud } from "./Hud";
 import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
-import { ProvinceHistory } from "./ProvinceHistory";
 import { FarmHistoryChecker } from "./FarmHistoryChecker";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Clicker } from "./Clicker";
@@ -99,28 +96,8 @@ export class ConquerorSpy {
     ConquerorSpy.provinceOwnership.reset();
   }
 
-  static getCountry(): string {
-    const countrySelector =
-      "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldHeader > span";
-    let text = $(countrySelector)
-      .text()
-      .toLowerCase();
-
-    function removeDiacritics(str: string) {
-      return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    }
-
-    text = removeDiacritics(text);
-
-    if (text === "ile de france") {
-      text = "iledefrance";
-    }
-
-    return text;
-  }
-
   static refreshName() {
-    const country = ConquerorSpy.getCountry();
+    const country = Greeter.getCountry();
     if (country !== ConquerorSpy.lastCountry) {
       ConquerorSpy.lastCountry = country;
       ConquerorSpy.hud.refreshHudHistory(country);
