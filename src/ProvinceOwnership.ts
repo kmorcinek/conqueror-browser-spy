@@ -1,11 +1,11 @@
 import { Provinces } from "./Provinces";
-import { ProvinceHistoryService } from "./ProvinceHistoryService";
+import { ProvinceHistoryServiceInterface } from "./ProvinceHistoryServiceInterface";
 
 export class ProvinceOwnership {
   private conqueredProvinces: string[] = [];
-  private provinceHistoryService: ProvinceHistoryService;
+  private provinceHistoryService: ProvinceHistoryServiceInterface;
 
-  constructor(provinceHistoryService: ProvinceHistoryService) {
+  constructor(provinceHistoryService: ProvinceHistoryServiceInterface) {
     this.provinceHistoryService = provinceHistoryService;
   }
 

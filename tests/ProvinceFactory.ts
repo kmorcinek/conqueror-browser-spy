@@ -8,7 +8,7 @@ export class ProvinceFactory {
   farms: number = 3;
   resources: number = 0;
   culture: Culture = Culture.Primitive;
-  production: Production = Production.Soldier;
+  production: Production | null = Production.Soldier;
   soldiers: number = 2;
   fort: string = "fort";
 
