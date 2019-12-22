@@ -14,16 +14,16 @@ export class Clicker {
     this.click(provinceElement);
   }
 
-  private click(element: any) {
+  private click(element: Element) {
     this.mouseDown(element);
     this.mouseUp(element);
   }
 
-  private mouseDown(element: any) {
+  private mouseDown(element: Element) {
     element.dispatchEvent(new Event("mousedown"));
   }
 
-  private mouseUp(element: any) {
+  private mouseUp(element: Element) {
     element.dispatchEvent(new Event("mouseup"));
   }
 
