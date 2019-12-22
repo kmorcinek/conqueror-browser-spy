@@ -49,6 +49,21 @@ export class BuildingChecker {
   checkBuildingProvince(original: Province): BuildingPattern | null {
     const patterns: BuildingPattern[] = [
       {
+        farms: 1,
+        production: Production.Culture,
+        changeTo: Production.Farm,
+      },
+      {
+        farms: 2,
+        production: Production.Culture,
+        changeTo: Production.Farm,
+      },
+      {
+        farms: 3,
+        production: Production.Culture,
+        changeTo: Production.Farm,
+      },
+      {
         farms: 4,
         production: Production.Farm,
         changeTo: Production.Culture,
@@ -63,6 +78,44 @@ export class BuildingChecker {
         culture: Culture.Developed,
         production: Production.Farm,
         changeTo: Production.Culture,
+      },
+      {
+        farms: 1,
+        resources: 1,
+        production: Production.Culture,
+        changeTo: Production.Farm,
+      },
+      {
+        farms: 2,
+        resources: 1,
+        production: Production.Culture,
+        changeTo: Production.Farm,
+      },
+      {
+        farms: 3,
+        resources: 1,
+        production: Production.Culture,
+        changeTo: Production.Farm,
+      },
+      // Depending if it takes 2 or 3 turns to build a farm
+      // {
+      //   farms: 4,
+      //   resources: 1,
+      //   production: Production.Culture,
+      //   changeTo: Production.Farm,
+      // },
+      {
+        farms: 5,
+        resources: 1,
+        production: Production.Farm,
+        changeTo: Production.Culture,
+      },
+      {
+        farms: 1,
+        resources: 1,
+        culture: Culture.Developed,
+        production: Production.Culture,
+        changeTo: Production.Farm,
       },
       {
         farms: 2,
