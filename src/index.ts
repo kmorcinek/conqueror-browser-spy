@@ -29,7 +29,7 @@ export class ConquerorSpy {
     const provinceHistoryService = new ProvinceHistoryService();
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
     this.provinceParser = new ProvinceParser(provinceHistoryService);
-    const provinceOwnership = new ProvinceOwnership();
+    const provinceOwnership = new ProvinceOwnership(provinceHistoryService);
     ConquerorSpy.provinceOwnership = provinceOwnership;
     const clicker = new Clicker();
     const buildingChanger = new BuildingChanger(clicker);

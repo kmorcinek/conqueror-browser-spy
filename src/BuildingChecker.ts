@@ -24,9 +24,9 @@ export class BuildingChecker {
   }
 
   checkBuildingProvinces() {
-    const conqueredProvinces = this.provinceOwnership.getConqueredProvinces();
-    for (const conqueredProvince of conqueredProvinces) {
-      const original = this.provinceHistoryService.getByName(conqueredProvince).getLast();
+    const ownedProvinces = this.provinceOwnership.getOwnedProvinces();
+    for (const ownedProvince of ownedProvinces) {
+      const original = this.provinceHistoryService.getByName(ownedProvince).getLast();
       const violatedPattern = this.checkBuildingProvince(original);
       if (violatedPattern !== null) {
         this.buildingAdvices.push(original.name + " should not " + violatedPattern.production);

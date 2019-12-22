@@ -1,7 +1,13 @@
 import { Provinces } from "./Provinces";
+import { ProvinceHistoryService } from "./ProvinceHistoryService";
 
 export class ProvinceOwnership {
   private conqueredProvinces: string[] = [];
+  private provinceHistoryService: ProvinceHistoryService;
+
+  constructor(provinceHistoryService: ProvinceHistoryService) {
+    this.provinceHistoryService = provinceHistoryService;
+  }
 
   updateOwnedProvinces() {
     function createId(prefix: string, province: string) {
@@ -48,6 +54,13 @@ export class ProvinceOwnership {
 
   getConqueredProvinces() {
     return this.conqueredProvinces;
+  }
+
+  getOwnedProvinces() {
+    return this.conqueredProvinces.filter(
+      provinceName =>
+        this.provinceHistoryService.getByName(provinceName).getLast().production !== null
+    );
   }
 
   reset() {
