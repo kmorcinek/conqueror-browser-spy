@@ -1,4 +1,5 @@
 import { Culture } from "./Culture";
+import { Attitude } from "./Attitude";
 import { Production } from "./Production";
 
 export class Province {
@@ -31,6 +32,7 @@ export class Province {
   readonly production: Production | null;
   readonly soldiers: number;
   readonly fort: string;
+  readonly attitude: Attitude | null;
 
   constructor(
     turn: number,
@@ -40,7 +42,8 @@ export class Province {
     culture: Culture,
     production: Production | null,
     soldiers: number,
-    fort: string
+    fort: string,
+    attitude: Attitude | null
   ) {
     if (turn < 1) {
       throw new Error(`turn '${turn}' cannot be less than 1`);
@@ -53,6 +56,7 @@ export class Province {
     this.production = production;
     this.soldiers = soldiers;
     this.fort = fort;
+    this.attitude = attitude;
   }
 
   getPopulation() {

@@ -11,6 +11,10 @@ import { Clicker } from "./Clicker";
 import { BuildingChanger } from "./BuildingChanger";
 import { ProductionWarningsHud } from "./ProductionWarningsHud";
 import { IProvinceOwnership } from "./IProvinceOwnership";
+import { ProvinceProductionAi } from "./ai/ProvinceProductionAi";
+import { ArmyMoverAi } from "./ai/ArmyMoverAi";
+import { ProvinceNeighborhood } from "./ProvinceNeighborhood";
+import { ProvinceNeighborhoods } from "./ProvinceNeighborhoods";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -19,6 +23,8 @@ export class ConquerorSpy {
   static historyChecker: HistoryChecker;
   static hud: Hud;
   static provinceHistoryService: ProvinceHistoryService;
+  static provinceProductionAi: ProvinceProductionAi;
+  static armyMoverAi: ArmyMoverAi;
 
   static lastTurn: number = NaN;
 
@@ -26,14 +32,32 @@ export class ConquerorSpy {
 
   static initialize() {
     ProductionWarningsHud.initHud();
+    const clicker = new Clicker();
     const productionWarningsHud = new ProductionWarningsHud();
     const provinceHistoryService = new ProvinceHistoryService();
+    const provinceNeighborhood = new ProvinceNeighborhood();
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
-    this.provinceParser = new ProvinceParser(provinceHistoryService);
+    this.provinceParser = new ProvinceParser(provinceHistoryService, clicker);
     const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(provinceHistoryService);
+    const provinceNeighborhoods = new ProvinceNeighborhoods(
+      provinceOwnership,
+      provinceNeighborhood
+    );
     ConquerorSpy.provinceOwnership = provinceOwnership;
-    const clicker = new Clicker();
     const buildingChanger = new BuildingChanger(clicker);
+    ConquerorSpy.provinceProductionAi = new ProvinceProductionAi(
+      clicker,
+      provinceOwnership,
+      provinceNeighborhood,
+      provinceHistoryService
+    );
+    ConquerorSpy.armyMoverAi = new ArmyMoverAi(
+      clicker,
+      provinceOwnership,
+      provinceNeighborhood,
+      provinceNeighborhoods,
+      provinceHistoryService
+    );
     ConquerorSpy.buildingChecker = new ProductionChecker(
       provinceOwnership,
       provinceHistoryService,
@@ -87,6 +111,9 @@ export class ConquerorSpy {
       ConquerorSpy.historyChecker.checkProvinces();
       ConquerorSpy.provinceOwnership.updateOwnedProvinces();
       ConquerorSpy.buildingChecker.checkBuildingProvinces();
+      // AI
+      ConquerorSpy.provinceProductionAi.updateAllProvinces();
+      ConquerorSpy.armyMoverAi.moveArmies();
 
       console.log("refreshTurn() finished");
     }

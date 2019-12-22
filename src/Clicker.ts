@@ -9,10 +9,39 @@ export class Clicker {
     this.clickProduction(production);
   }
 
-  private clickProvince(provinceName: string) {
-    const mapDocument = Greeter.getMapDocument();
-    const provinceElement = mapDocument.getElementById("field_" + provinceName);
+  clickProvince(provinceName: string) {
+    const provinceElement = this.getProvinceElement(provinceName);
     this.click(provinceElement);
+  }
+
+  moveArmy(sourceProvince: string, targetProvince: string, decrementArmySize: number) {
+    console.log("Moving soldiers from " + sourceProvince + " to " + targetProvince);
+
+    this.mouseDown(this.getProvinceElement(sourceProvince));
+    const targetProvinceElement = this.getProvinceElement(targetProvince);
+    this.mouseMove(targetProvinceElement);
+    this.mouseUp(targetProvinceElement);
+
+    for (let i = 0; i < decrementArmySize; i++) {
+      this.decrementArmy();
+    }
+
+    this.confirmArmy();
+  }
+
+  private getProvinceElement(provinceName: string) {
+    const mapDocument = Greeter.getMapDocument();
+    return mapDocument.getElementById("field_" + provinceName)!;
+  }
+
+  private decrementArmy() {
+    const submitButton = document.getElementsByClassName("decUnits")[0];
+    this.click(submitButton);
+  }
+
+  private confirmArmy() {
+    const submitButton = document.getElementsByClassName("submit")[0];
+    this.click(submitButton);
   }
 
   private click(element: Element | null) {
@@ -24,6 +53,10 @@ export class Clicker {
 
   private mouseDown(element: Element) {
     element.dispatchEvent(new Event("mousedown"));
+  }
+
+  private mouseMove(element: Element) {
+    element.dispatchEvent(new Event("mousemove"));
   }
 
   private mouseUp(element: Element) {

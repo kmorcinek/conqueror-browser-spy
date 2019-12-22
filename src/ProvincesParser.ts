@@ -1,15 +1,20 @@
+import $ from "jquery";
 import { Greeter } from "./Globals";
 import { Province } from "./Province";
 import { Culture } from "./Culture";
 import { Production } from "./Production";
 import { Provinces } from "./Provinces";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
+import { Attitude } from "./Attitude";
+import { Clicker } from "./Clicker";
 
 export class ProvinceParser {
   private provinceHistoryService: ProvinceHistoryService;
+  private clicker: Clicker;
 
-  constructor(provinceHistoryService: ProvinceHistoryService) {
+  constructor(provinceHistoryService: ProvinceHistoryService, clicker: Clicker) {
     this.provinceHistoryService = provinceHistoryService;
+    this.clicker = clicker;
   }
 
   // TODO: animVal vs baseVal?
@@ -51,11 +56,15 @@ export class ProvinceParser {
     const productionItem = mapDocument.getElementById(createId("prod_"));
     const productionString = productionItem!.getAttribute("xlink:href");
     let production: Production | null;
+    let attitude: Attitude | null;
     const isHidden = productionItem!.getAttribute("visibility") === "hidden";
     if (isHidden) {
       production = null;
+      attitude = null;
     } else {
       production = this.parseProduction(productionString!);
+      const attitudeLabel = this.getAttitudeLabel(provinceName);
+      attitude = this.parseAttitude(attitudeLabel);
     }
 
     const soldierItem = mapDocument.getElementById(createId("info_"));
@@ -70,7 +79,8 @@ export class ProvinceParser {
       culture,
       production,
       parseInt(soldierItem!.textContent!),
-      this.getFort(mapDocument, provinceName)
+      this.getFort(mapDocument, provinceName),
+      attitude
     );
 
     // console.log("province parsed:", countryName);
@@ -113,6 +123,37 @@ export class ProvinceParser {
         console.error(errorMessage);
         throw new DOMException(errorMessage);
     }
+  }
+
+  private getAttitudeLabel(provinceName: string) {
+    console.log("clicking when parsing:", provinceName);
+    this.clicker.clickProvince(provinceName);
+    const attitudeString =
+      "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldInfoAttitude > span:nth-child(1)";
+    const attitudeElement = $(attitudeString);
+    return attitudeElement.text();
+  }
+
+  private parseAttitude(label: string): Attitude {
+    label = label.replace(" to me", "");
+
+    const attitudes = [
+      Attitude.Rebellious,
+      Attitude.Restless,
+      Attitude.Content,
+      Attitude.Supportive,
+      Attitude.Devoted,
+    ];
+
+    for (const enumAttitude of attitudes) {
+      if (enumAttitude.toLowerCase() === label) {
+        return enumAttitude;
+      }
+    }
+
+    const errorMessage = "Missing attitude label: " + label;
+    console.error(errorMessage);
+    throw new DOMException(errorMessage);
   }
 
   private getFort(mapDocument: Document, countryName: string) {
