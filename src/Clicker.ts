@@ -15,7 +15,16 @@ export class Clicker {
   }
 
   private click(element: any) {
+    this.mouseDown(element);
+    this.mouseUp(element);
+  }
+
+  private mouseDown(element: any) {
     element.dispatchEvent(new Event("mousedown"));
+  }
+
+  private mouseUp(element: any) {
+    element.dispatchEvent(new Event("mouseup"));
   }
 
   private clickProduction(production: Production) {
