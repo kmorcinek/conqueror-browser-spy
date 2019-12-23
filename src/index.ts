@@ -53,13 +53,11 @@ export class ConquerorSpy {
 
     ConquerorSpy.cleanAllValues();
 
-    let refrestTurnInterval;
-    clearInterval(refrestTurnInterval);
-    refrestTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
+    clearInterval((document as any).refrestTurnInterval);
+    (document as any).refrestTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
 
-    let refreshNameInterval;
-    clearInterval(refreshNameInterval);
-    refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
+    clearInterval((document as any).refreshNameInterval);
+    (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
     const toolVersion = "1.7 - change province production";
 
