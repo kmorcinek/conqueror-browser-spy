@@ -35,8 +35,8 @@ export class ProvinceParser {
     }
 
     // TODO: prefetch it
-    const a = document.getElementsByClassName("svgMap")[0];
-    const svgDoc = (a as any).contentDocument;
+    const svg = document.getElementsByClassName("svgMap")[0];
+    const svgDoc = (svg as any).contentDocument;
 
     const populationItem = svgDoc.getElementById(createId("pop_", countryName));
     if (populationItem === null) {
