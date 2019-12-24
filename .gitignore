@@ -210,3 +210,4 @@ $RECYCLE.BIN/
 
 output-volume/**/*.js
 lib/output.js
+local-notes.txt
