@@ -9,6 +9,7 @@
 	- LOW
 	- kolejny raz.
 		- wrzucić 1s setTimeout.
+* `Uncaught (in promise) DOMException: The play() request was interrupted by a new load request.` - it means that where was Exception and was swallowed and hidden by this message.
 
 ## How I develop this application (tools, IDEs, etc)
 
