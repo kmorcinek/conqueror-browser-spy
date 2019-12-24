@@ -50,29 +50,6 @@ export class ProvinceParser {
 
     const culture = this.parseCulture(populationItem.className.animVal);
 
-    function parseProduction(longIcon: string): Production {
-      const icon = longIcon.replace("../common/images/icon_", "").replace(".png", "");
-
-      switch (icon) {
-        case "unit":
-          return Production.Soldier;
-        case "gold":
-          return Production.Gold;
-        case "farm":
-          return Production.Farm;
-        case "culture":
-          return Production.Culture;
-        case "castle_kind":
-          return Production.Fort;
-        case "diplomat":
-          return Production.Diplomat;
-        default:
-          const errorMessage = "new Production value: " + icon;
-          console.error(errorMessage);
-          throw new DOMException(errorMessage);
-      }
-    }
-
     const productionItem = svgDoc.getElementById(createId("prod_", countryName));
     const productionString = productionItem.getAttribute("xlink:href");
     let production: Production | null;
@@ -80,7 +57,7 @@ export class ProvinceParser {
     if (isHidden) {
       production = null;
     } else {
-      production = parseProduction(productionString);
+      production = this.parseProduction(productionString);
     }
 
     const soldierItem = svgDoc.getElementById(createId("info_", countryName));
@@ -114,6 +91,29 @@ export class ProvinceParser {
       default:
         console.warn("new Culture value: " + str);
         return Culture.Advanded;
+    }
+  }
+
+  private parseProduction(longIcon: string): Production {
+    const icon = longIcon.replace("../common/images/icon_", "").replace(".png", "");
+
+    switch (icon) {
+      case "unit":
+        return Production.Soldier;
+      case "gold":
+        return Production.Gold;
+      case "farm":
+        return Production.Farm;
+      case "culture":
+        return Production.Culture;
+      case "castle_kind":
+        return Production.Fort;
+      case "diplomat":
+        return Production.Diplomat;
+      default:
+        const errorMessage = "new Production value: " + icon;
+        console.error(errorMessage);
+        throw new DOMException(errorMessage);
     }
   }
 
