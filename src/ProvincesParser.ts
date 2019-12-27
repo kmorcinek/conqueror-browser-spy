@@ -29,8 +29,8 @@ export class ProvinceParser {
 
   // Get details of one province.
   // - (without turn)
-  private getCountryDetails(countryName: string): Province | null {
-    function createId(prefix: string, provinceName: string) {
+  private getCountryDetails(provinceName: string): Province | null {
+    function createId(prefix: string) {
       return prefix + provinceName.toLowerCase();
     }
 
@@ -38,7 +38,7 @@ export class ProvinceParser {
     const svg = document.getElementsByClassName("svgMap")[0];
     const svgDoc = (svg as any).contentDocument;
 
-    const populationItem = svgDoc.getElementById(createId("pop_", countryName));
+    const populationItem = svgDoc.getElementById(createId("pop_"));
     if (populationItem === null) {
       return null;
     }
@@ -50,7 +50,7 @@ export class ProvinceParser {
 
     const culture = this.parseCulture(populationItem.className.animVal);
 
-    const productionItem = svgDoc.getElementById(createId("prod_", countryName));
+    const productionItem = svgDoc.getElementById(createId("prod_"));
     const productionString = productionItem.getAttribute("xlink:href");
     let production: Production | null;
     const isHidden = productionItem.getAttribute("visibility") === "hidden";
@@ -60,19 +60,19 @@ export class ProvinceParser {
       production = this.parseProduction(productionString);
     }
 
-    const soldierItem = svgDoc.getElementById(createId("info_", countryName));
+    const soldierItem = svgDoc.getElementById(createId("info_"));
 
     const farmsWithResources = Province.parsePopulation(populationItem.textContent);
 
     const province = new Province(
       Greeter.getTurn(),
-      countryName,
+      provinceName,
       farmsWithResources.farms,
       farmsWithResources.resources,
       culture,
       production,
       parseInt(soldierItem.textContent),
-      this.getFort(svgDoc, countryName)
+      this.getFort(svgDoc, provinceName)
     );
 
     // console.log("province parsed:", countryName);
