@@ -1,11 +1,11 @@
 import { expect } from "chai";
 import { Culture } from "../src/Culture";
 import { ProvinceFactory } from "./ProvinceFactory";
-import { BuildingChecker } from "../src/BuildingChecker";
+import { ProductionChecker } from "../src/ProductionChecker";
 import { Production } from "../src/Production";
 import { BuildingPattern } from "../src/BuildingPattern";
 
-describe("BuildingChecker", () => {
+describe("ProductionChecker", () => {
   it("should [checkBuildingProvinces] work", () => {
     const provinceFactory = new ProvinceFactory();
     provinceFactory.farms = 4;
@@ -14,7 +14,7 @@ describe("BuildingChecker", () => {
     provinceFactory.production = Production.Farm;
     const province = provinceFactory.build();
 
-    const sut = new BuildingChecker(null as any, null as any, null as any, null as any);
+    const sut = new ProductionChecker(null as any, null as any, null as any, null as any);
     const unwantedProduction: BuildingPattern | null = sut.checkBuildingProvince(province);
     // tslint:disable-next-line: no-unused-expression
     expect(unwantedProduction).to.not.equal(null);

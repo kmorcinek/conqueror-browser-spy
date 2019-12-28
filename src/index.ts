@@ -2,7 +2,7 @@ import { Greeter } from "./Globals";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { ProvinceParser } from "./ProvincesParser";
 import { HistoryChecker } from "./HistoryChecker";
-import { BuildingChecker } from "./BuildingChecker";
+import { ProductionChecker } from "./ProductionChecker";
 import { Hud } from "./Hud";
 import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
 import { FarmHistoryChecker } from "./FarmHistoryChecker";
@@ -14,7 +14,7 @@ import { ProductionWarningsHud } from "./ProductionWarningsHud";
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
   static provinceOwnership: ProvinceOwnership;
-  static buildingChecker: BuildingChecker;
+  static buildingChecker: ProductionChecker;
   static historyChecker: HistoryChecker;
   static hud: Hud;
   static provinceHistoryService: ProvinceHistoryService;
@@ -33,7 +33,7 @@ export class ConquerorSpy {
     ConquerorSpy.provinceOwnership = provinceOwnership;
     const clicker = new Clicker();
     const buildingChanger = new BuildingChanger(clicker);
-    ConquerorSpy.buildingChecker = new BuildingChecker(
+    ConquerorSpy.buildingChecker = new ProductionChecker(
       provinceOwnership,
       provinceHistoryService,
       productionWarningsHud,

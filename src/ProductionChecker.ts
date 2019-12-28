@@ -7,7 +7,7 @@ import { BuildingPattern } from "./BuildingPattern";
 import { BuildingChanger } from "./BuildingChanger";
 import { ProductionWarningsHud } from "./ProductionWarningsHud";
 
-export class BuildingChecker {
+export class ProductionChecker {
   buildingAdvices: string[] = [];
 
   private provinceOwnership: ProvinceOwnership;
