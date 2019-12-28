@@ -1,5 +1,6 @@
 import { Provinces } from "./Provinces";
 import { ProvinceHistoryServiceInterface } from "./ProvinceHistoryServiceInterface";
+import { Greeter } from "./Globals";
 
 export class ProvinceOwnership {
   private conqueredProvinces: string[] = [];
@@ -20,17 +21,15 @@ export class ProvinceOwnership {
         continue;
       }
 
-      // TODO: prefetch it
-      const a = document.getElementsByClassName("svgMap")[0];
-      const svgDoc = (a as any).contentDocument;
+      const mapDocument = Greeter.getMapDocument();
 
-      const map = svgDoc.getElementById(createId("field_", provinceName));
+      const map = mapDocument.getElementById(createId("field_", provinceName));
 
       if (map == null) {
         continue;
       }
 
-      const color = map.getAttribute("fill");
+      const color = map.getAttribute("fill")!;
 
       const playerColors = [
         "#ff3131",

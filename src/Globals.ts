@@ -30,4 +30,10 @@ export class Greeter {
 
     return text;
   }
+
+  static getMapDocument(): Document {
+    // TODO: prefetch it
+    const map = document.getElementsByClassName("svgMap")[0] as HTMLObjectElement;
+    return map.contentDocument as Document;
+  }
 }

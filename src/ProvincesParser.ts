@@ -34,11 +34,9 @@ export class ProvinceParser {
       return prefix + provinceName.toLowerCase();
     }
 
-    // TODO: prefetch it
-    const svg = document.getElementsByClassName("svgMap")[0];
-    const svgDoc = (svg as any).contentDocument;
+    const mapDocument = Greeter.getMapDocument();
 
-    const populationItem = svgDoc.getElementById(createId("pop_"));
+    const populationItem = mapDocument.getElementById(createId("pop_"));
     if (populationItem === null) {
       return null;
     }
@@ -48,21 +46,21 @@ export class ProvinceParser {
       return null;
     }
 
-    const culture = this.parseCulture(populationItem.className.animVal);
+    const culture = this.parseCulture((populationItem.className as any).animVal);
 
-    const productionItem = svgDoc.getElementById(createId("prod_"));
-    const productionString = productionItem.getAttribute("xlink:href");
+    const productionItem = mapDocument.getElementById(createId("prod_"));
+    const productionString = productionItem!.getAttribute("xlink:href");
     let production: Production | null;
-    const isHidden = productionItem.getAttribute("visibility") === "hidden";
+    const isHidden = productionItem!.getAttribute("visibility") === "hidden";
     if (isHidden) {
       production = null;
     } else {
-      production = this.parseProduction(productionString);
+      production = this.parseProduction(productionString!);
     }
 
-    const soldierItem = svgDoc.getElementById(createId("info_"));
+    const soldierItem = mapDocument.getElementById(createId("info_"));
 
-    const farmsWithResources = Province.parsePopulation(populationItem.textContent);
+    const farmsWithResources = Province.parsePopulation(populationItem.textContent!);
 
     const province = new Province(
       Greeter.getTurn(),
@@ -71,8 +69,8 @@ export class ProvinceParser {
       farmsWithResources.resources,
       culture,
       production,
-      parseInt(soldierItem.textContent),
-      this.getFort(svgDoc, provinceName)
+      parseInt(soldierItem!.textContent!),
+      this.getFort(mapDocument, provinceName)
     );
 
     // console.log("province parsed:", countryName);
@@ -117,16 +115,16 @@ export class ProvinceParser {
     }
   }
 
-  private getFort(svgDoc: any, countryName: string) {
+  private getFort(mapDocument: Document, countryName: string) {
     function createFortId(prefix: string, province: string) {
       return prefix + province.toLowerCase() + "_0";
     }
 
-    const fortItem = svgDoc.getElementById(createFortId("fort_", countryName));
+    const fortItem = mapDocument.getElementById(createFortId("fort_", countryName));
     if (fortItem !== null) {
       return "fort";
     } else {
-      const keepItem = svgDoc.getElementById(createFortId("keep_", countryName));
+      const keepItem = mapDocument.getElementById(createFortId("keep_", countryName));
 
       if (keepItem !== null) {
         return "keep";

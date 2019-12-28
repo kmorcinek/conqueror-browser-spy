@@ -1,4 +1,5 @@
 import { Production } from "./Production";
+import { Greeter } from "./Globals";
 
 export class Clicker {
   changeProvinceProduction(provinceName: string, production: Production) {
@@ -9,14 +10,16 @@ export class Clicker {
   }
 
   private clickProvince(provinceName: string) {
-    const svgDoc = (document.getElementsByClassName("svgMap")[0] as any).contentDocument;
-    const provinceElement = svgDoc.getElementById("field_" + provinceName);
+    const mapDocument = Greeter.getMapDocument();
+    const provinceElement = mapDocument.getElementById("field_" + provinceName);
     this.click(provinceElement);
   }
 
-  private click(element: Element) {
-    this.mouseDown(element);
-    this.mouseUp(element);
+  private click(element: Element | null) {
+    if (element !== null) {
+      this.mouseDown(element);
+      this.mouseUp(element);
+    }
   }
 
   private mouseDown(element: Element) {
