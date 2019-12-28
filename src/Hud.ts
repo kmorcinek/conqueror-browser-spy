@@ -4,7 +4,7 @@ import { IProvinceOwnership } from "./IProvinceOwnership";
 import { HistoryChecker } from "./HistoryChecker";
 import { IPrediction } from "./IPrediction";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
-import { Greeter } from "./Globals";
+import { Globals } from "./Globals";
 
 export class Hud {
   private provinceOwnership: IProvinceOwnership;
@@ -67,7 +67,7 @@ export class Hud {
       return;
     }
 
-    const timerWrapper = $(Greeter.timerWrapperSelector);
+    const timerWrapper = $(Globals.timerWrapperSelector);
 
     const hud = $(
       '<div id="hud" style="margin-top: 20px; color: blue; background-color: white;"></div>'

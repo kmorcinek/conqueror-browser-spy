@@ -1,4 +1,4 @@
-import { Greeter } from "./Globals";
+import { Globals } from "./Globals";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { ProvinceParser } from "./ProvincesParser";
 import { HistoryChecker } from "./HistoryChecker";
@@ -15,16 +15,18 @@ import { ProvinceProductionAi } from "./ai/ProvinceProductionAi";
 import { ArmyMoverAi } from "./ai/ArmyMoverAi";
 import { ProvinceNeighborhood } from "./ProvinceNeighborhood";
 import { ProvinceNeighborhoods } from "./ProvinceNeighborhoods";
+import { GoldService } from "./GoldService";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
   static provinceOwnership: IProvinceOwnership;
-  static buildingChecker: ProductionChecker;
+  static productionChecker: ProductionChecker;
   static historyChecker: HistoryChecker;
   static hud: Hud;
   static provinceHistoryService: ProvinceHistoryService;
   static provinceProductionAi: ProvinceProductionAi;
   static armyMoverAi: ArmyMoverAi;
+  static goldService: GoldService;
 
   static lastTurn: number = NaN;
 
@@ -33,6 +35,8 @@ export class ConquerorSpy {
   static initialize() {
     ProductionWarningsHud.initHud();
     const clicker = new Clicker();
+    const goldService = new GoldService();
+    ConquerorSpy.goldService = goldService;
     const productionWarningsHud = new ProductionWarningsHud();
     const provinceHistoryService = new ProvinceHistoryService();
     const provinceNeighborhood = new ProvinceNeighborhood();
@@ -47,6 +51,7 @@ export class ConquerorSpy {
     const buildingChanger = new BuildingChanger(clicker);
     ConquerorSpy.provinceProductionAi = new ProvinceProductionAi(
       clicker,
+      goldService,
       provinceOwnership,
       provinceNeighborhood,
       provinceHistoryService
@@ -58,7 +63,7 @@ export class ConquerorSpy {
       provinceNeighborhoods,
       provinceHistoryService
     );
-    ConquerorSpy.buildingChecker = new ProductionChecker(
+    ConquerorSpy.productionChecker = new ProductionChecker(
       provinceOwnership,
       provinceHistoryService,
       productionWarningsHud,
@@ -94,7 +99,7 @@ export class ConquerorSpy {
   }
 
   static refreshTurn() {
-    const turn = Greeter.getTurn();
+    const turn = Globals.getTurn();
 
     if (isNaN(turn)) {
       return;
@@ -107,10 +112,11 @@ export class ConquerorSpy {
 
       ConquerorSpy.lastTurn = turn;
       console.log("New turn: ", ConquerorSpy.lastTurn);
+      ConquerorSpy.goldService.update();
       ConquerorSpy.provinceParser.updateProvinces();
       ConquerorSpy.historyChecker.checkProvinces();
       ConquerorSpy.provinceOwnership.updateOwnedProvinces();
-      ConquerorSpy.buildingChecker.checkBuildingProvinces();
+      ConquerorSpy.productionChecker.checkBuildingProvinces();
 
       // AI
       const runAi: boolean = false;
@@ -119,19 +125,19 @@ export class ConquerorSpy {
         ConquerorSpy.armyMoverAi.moveArmies();
       }
 
-      console.log("refreshTurn() finished");
+      console.log("---------- refreshTurn() finished");
     }
   }
 
   static cleanAllValues() {
     ConquerorSpy.provinceHistoryService.reset();
     ConquerorSpy.historyChecker.reset();
-    ConquerorSpy.buildingChecker.reset();
+    ConquerorSpy.productionChecker.reset();
     ConquerorSpy.provinceOwnership.reset();
   }
 
   static refreshName() {
-    const country = Greeter.getCountry();
+    const country = Globals.getCountry();
     if (country !== ConquerorSpy.lastCountry) {
       ConquerorSpy.lastCountry = country;
       ConquerorSpy.hud.refreshHudHistory(country);

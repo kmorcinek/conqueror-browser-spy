@@ -11,11 +11,13 @@ describe("ProvinceNeighborhoods", () => {
       getConqueredProvinces: () => [],
       getOwnedProvinces: () => ["natolia"],
       getNotOwned: (provinces: string[]) => provinces,
+      filterOpponents: (provinces: string[]) => provinces,
+      filterNeutral: (provinces: string[]) => provinces,
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
     const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood());
-    const neutralNeighbors = sut.getNotCounqueredNeighbors();
+    const neutralNeighbors = sut.getNotConqueredNeighbors();
     expect(neutralNeighbors.length).to.equal(3);
     expect(neutralNeighbors.includes("nicaea")).to.equal(true);
     expect(neutralNeighbors.includes("syria")).to.equal(true);
@@ -29,11 +31,13 @@ describe("ProvinceNeighborhoods", () => {
       getConqueredProvinces: () => [],
       getOwnedProvinces: () => ["natolia", "cyprus", "syria"],
       getNotOwned: (provinces: string[]) => provinces,
+      filterOpponents: (provinces: string[]) => provinces,
+      filterNeutral: (provinces: string[]) => provinces,
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
     const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood());
-    const neutralNeighbors = sut.getNotCounqueredNeighbors();
+    const neutralNeighbors = sut.getNotConqueredNeighbors();
     expect(neutralNeighbors.length).to.equal(2);
     expect(neutralNeighbors.includes("nicaea")).to.equal(true);
     expect(neutralNeighbors.includes("palestine")).to.equal(true);
@@ -46,11 +50,13 @@ describe("ProvinceNeighborhoods", () => {
       getConqueredProvinces: () => [],
       getOwnedProvinces: () => ["natolia", "cyprus", "syria", "palestine", "nicaea"],
       getNotOwned: (provinces: string[]) => provinces,
+      filterOpponents: (provinces: string[]) => provinces,
+      filterNeutral: (provinces: string[]) => provinces,
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
     const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood());
-    const neutralNeighbors = sut.getCloseNotCounqueredNeighbors("syria");
+    const neutralNeighbors = sut.getCloseNotConqueredNeighbors("syria");
     expect(neutralNeighbors.length).to.equal(1);
     expect(neutralNeighbors[0]).to.equal("egypt");
   });

@@ -1,17 +1,36 @@
 import { Production } from "./Production";
-import { Greeter } from "./Globals";
+import { Globals } from "./Globals";
+import { BuyProduction } from "./BuyProduction";
 
 export class Clicker {
-  changeProvinceProduction(provinceName: string, production: Production) {
+  changeProvinceProduction(provinceName: string, production: Production | BuyProduction) {
     console.log("clicking " + provinceName);
     this.clickProvince(provinceName);
-    console.log("clicking " + production);
+    if (production instanceof BuyProduction) {
+      this.buyProduction(production.production);
+    } else {
+      this.clickProduction(production);
+    }
+  }
+
+  buyProduction(production: Production) {
     this.clickProduction(production);
+    console.log("buying production for " + production);
+    if (production === Production.Soldier) {
+      this.click(this.getElementByClassName("fieldProdBuyButton2"));
+    } else {
+      this.click(this.getElementByClassName("fieldProdBuyButton1"));
+    }
   }
 
   clickProvince(provinceName: string) {
     const provinceElement = this.getProvinceElement(provinceName);
     this.click(provinceElement);
+  }
+
+  clickEndTurn() {
+    const endTurnButton = document.getElementsByClassName("endTurn")[0];
+    this.click(endTurnButton);
   }
 
   moveArmy(sourceProvince: string, targetProvince: string, decrementArmySize: number) {
@@ -30,13 +49,17 @@ export class Clicker {
   }
 
   private getProvinceElement(provinceName: string) {
-    const mapDocument = Greeter.getMapDocument();
+    const mapDocument = Globals.getMapDocument();
     return mapDocument.getElementById("field_" + provinceName)!;
   }
 
   private decrementArmy() {
-    const submitButton = document.getElementsByClassName("decUnits")[0];
+    const submitButton = this.getElementByClassName("decUnits");
     this.click(submitButton);
+  }
+
+  private getElementByClassName(className: string) {
+    return document.getElementsByClassName(className)[0];
   }
 
   private confirmArmy() {
@@ -64,6 +87,7 @@ export class Clicker {
   }
 
   private clickProduction(production: Production) {
+    console.log("changing production to " + production);
     const className = this.getProductionClass(production);
     this.clickByClassName(className);
   }

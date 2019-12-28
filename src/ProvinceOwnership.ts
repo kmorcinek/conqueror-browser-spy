@@ -1,10 +1,14 @@
 import { Provinces } from "./Provinces";
 import { ProvinceHistoryServiceInterface } from "./ProvinceHistoryServiceInterface";
-import { Greeter } from "./Globals";
+import { Globals } from "./Globals";
 import { IProvinceOwnership } from "./IProvinceOwnership";
 
 export class ProvinceOwnership implements IProvinceOwnership {
-  private conqueredProvinces: string[] = [];
+  // conqueredProvinces was removed cause after loosing a province it cannot be attacked again.
+  // private conqueredProvinces: string[] = [];
+  private ownedProvinces: string[] = [];
+  private opponentProvinces: string[] = [];
+  private neutralProvinces: string[] = [];
   private provinceHistoryService: ProvinceHistoryServiceInterface;
 
   constructor(provinceHistoryService: ProvinceHistoryServiceInterface) {
@@ -12,17 +16,18 @@ export class ProvinceOwnership implements IProvinceOwnership {
   }
 
   updateOwnedProvinces() {
+    this.reset();
     function createId(prefix: string, province: string) {
       return prefix + province.toLowerCase();
     }
 
-    const provinces = Provinces.GetProvinces();
+    const provinces = Provinces.getProvinces();
     for (const provinceName of provinces) {
-      if (this.conqueredProvinces.includes(provinceName)) {
-        continue;
-      }
+      // if (this.conqueredProvinces.includes(provinceName)) {
+      //   continue;
+      // }
 
-      const mapDocument = Greeter.getMapDocument();
+      const mapDocument = Globals.getMapDocument();
 
       const map = mapDocument.getElementById(createId("field_", provinceName));
 
@@ -32,6 +37,17 @@ export class ProvinceOwnership implements IProvinceOwnership {
 
       const color = map.getAttribute("fill")!;
 
+      console.log(`Color: '${color}'`);
+      const opponentColor = "#ff3131";
+      const myColor = "#009c00";
+
+      if (color === myColor) {
+        this.ownedProvinces.push(provinceName);
+      } else if (color === opponentColor) {
+        this.opponentProvinces.push(provinceName);
+      } else {
+        this.neutralProvinces.push(provinceName);
+      }
       const playerColors = [
         "#ff3131",
         "#009c00",
@@ -45,27 +61,35 @@ export class ProvinceOwnership implements IProvinceOwnership {
         "#319c9c",
       ];
 
-      if (playerColors.includes(color)) {
-        this.conqueredProvinces.push(provinceName);
-        console.log("conquered: ", provinceName);
-      }
+      // if (playerColors.includes(color)) {
+      //   this.conqueredProvinces.push(provinceName);
+      //   console.log("conquered: ", provinceName);
+      // }
     }
   }
 
   getConqueredProvinces() {
-    return this.conqueredProvinces;
+    return this.ownedProvinces.concat(this.opponentProvinces);
   }
 
   getOwnedProvinces() {
-    return this.getOwned(this.conqueredProvinces);
+    return this.ownedProvinces;
   }
 
-  getOwned(provinces: string[]) {
-    return provinces.filter(provinceName => this.isOwned(provinceName));
-  }
+  // getOwned(provinces: string[]) {
+  //   return provinces.filter(provinceName => this.isOwned(provinceName));
+  // }
 
   getNotOwned(provinces: string[]) {
     return provinces.filter(provinceName => this.isOwned(provinceName) === false);
+  }
+
+  filterOpponents(provinces: string[]): string[] {
+    return provinces.filter(name => this.opponentProvinces.includes(name));
+  }
+
+  filterNeutral(provinces: string[]): string[] {
+    return provinces.filter(name => this.neutralProvinces.includes(name));
   }
 
   private isOwned(province: string) {
@@ -74,6 +98,8 @@ export class ProvinceOwnership implements IProvinceOwnership {
 
   // tslint:disable-next-line: member-ordering
   reset() {
-    this.conqueredProvinces = [];
+    this.ownedProvinces = [];
+    this.opponentProvinces = [];
+    this.neutralProvinces = [];
   }
 }

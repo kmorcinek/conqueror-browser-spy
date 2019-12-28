@@ -28,14 +28,14 @@ export class HistoryChecker {
     this.provinceOwnership = provinceOwnership;
     this.provinceHistoryChecker = procinceHistoryChecker;
     this.farmHistoryChecker = farmHistoryChecker;
-    for (const provinceName of Provinces.GetProvinces()) {
+    for (const provinceName of Provinces.getProvinces()) {
       this.buildingPredictions[provinceName] = [];
     }
     this.provinceHistoryService = provinceHistoryService;
   }
 
   checkProvinces() {
-    const provinces = Provinces.GetProvinces();
+    const provinces = Provinces.getProvinces();
     for (const provinceName of provinces) {
       if (this.provinceOwnership.getConqueredProvinces().includes(provinceName)) {
         continue;

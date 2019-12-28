@@ -2,6 +2,7 @@ import { Culture } from "../src/Culture";
 import { Province } from "../src/Province";
 import { Production } from "../src/Production";
 import { Attitude } from "../src/Attitude";
+import { Fortification } from "../src/Fortification";
 
 export class ProvinceFactory {
   turn: number = 1;
@@ -11,7 +12,7 @@ export class ProvinceFactory {
   culture: Culture = Culture.Primitive;
   production: Production | null = Production.Soldier;
   soldiers: number = 2;
-  fort: string = "fort";
+  fort: Fortification = Fortification.Nothing;
   attitude: Attitude = Attitude.Content;
 
   build() {

@@ -1,6 +1,6 @@
 import $ from "jquery";
 
-export class Greeter {
+export class Globals {
   static timerWrapperSelector =
     "#gameWrapper > div > div.area.areaT > div.area.areaTM > div > div > div > div.turnTimer";
 
