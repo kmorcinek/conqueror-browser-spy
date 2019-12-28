@@ -1,7 +1,7 @@
 import { Province } from "./Province";
 import { Culture } from "./Culture";
 import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
-import { ProvinceOwnership } from "./ProvinceOwnership";
+import { IProvinceOwnership } from "./IProvinceOwnership";
 import { Provinces } from "./Provinces";
 import { Production } from "./Production";
 import { IPrediction } from "./IPrediction";
@@ -11,7 +11,7 @@ import { FarmPrediction } from "./FarmPrediction";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
 
 export class HistoryChecker {
-  private provinceOwnership: ProvinceOwnership;
+  private provinceOwnership: IProvinceOwnership;
   private provinceHistoryChecker: ProvinceHistoryChecker;
   private farmHistoryChecker: FarmHistoryChecker;
   private provinceHistoryService: ProvinceHistoryService;
@@ -20,7 +20,7 @@ export class HistoryChecker {
   private buildingPredictions: Record<string, IPrediction[]> = {};
 
   constructor(
-    provinceOwnership: ProvinceOwnership,
+    provinceOwnership: IProvinceOwnership,
     procinceHistoryChecker: ProvinceHistoryChecker,
     farmHistoryChecker: FarmHistoryChecker,
     provinceHistoryService: ProvinceHistoryService

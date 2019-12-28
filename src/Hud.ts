@@ -1,19 +1,19 @@
 import $ from "jquery";
 import { Province } from "./Province";
-import { ProvinceOwnership } from "./ProvinceOwnership";
+import { IProvinceOwnership } from "./IProvinceOwnership";
 import { HistoryChecker } from "./HistoryChecker";
 import { IPrediction } from "./IPrediction";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Greeter } from "./Globals";
 
 export class Hud {
-  private provinceOwnership: ProvinceOwnership;
+  private provinceOwnership: IProvinceOwnership;
   private historyChecker: HistoryChecker;
   private provinceHistoryService: ProvinceHistoryService;
   private selector = "#hud";
 
   constructor(
-    provinceOwnership: ProvinceOwnership,
+    provinceOwnership: IProvinceOwnership,
     historyChecker: HistoryChecker,
     provinceHistoryService: ProvinceHistoryService
   ) {

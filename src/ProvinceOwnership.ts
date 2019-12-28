@@ -1,8 +1,9 @@
 import { Provinces } from "./Provinces";
 import { ProvinceHistoryServiceInterface } from "./ProvinceHistoryServiceInterface";
 import { Greeter } from "./Globals";
+import { IProvinceOwnership } from "./IProvinceOwnership";
 
-export class ProvinceOwnership {
+export class ProvinceOwnership implements IProvinceOwnership {
   private conqueredProvinces: string[] = [];
   private provinceHistoryService: ProvinceHistoryServiceInterface;
 

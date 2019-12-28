@@ -1,4 +1,3 @@
-import { ProvinceOwnership } from "./ProvinceOwnership";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Province } from "./Province";
 import { Production } from "./Production";
@@ -6,17 +5,18 @@ import { Culture } from "./Culture";
 import { BuildingPattern } from "./BuildingPattern";
 import { BuildingChanger } from "./BuildingChanger";
 import { ProductionWarningsHud } from "./ProductionWarningsHud";
+import { IProvinceOwnership } from "./IProvinceOwnership";
 
 export class ProductionChecker {
   buildingAdvices: string[] = [];
 
-  private provinceOwnership: ProvinceOwnership;
+  private provinceOwnership: IProvinceOwnership;
   private provinceHistoryService: ProvinceHistoryService;
   private productionWarningsHud: ProductionWarningsHud;
   private buildingChanger: BuildingChanger;
 
   constructor(
-    provinceOwnership: ProvinceOwnership,
+    provinceOwnership: IProvinceOwnership,
     provinceHistoryService: ProvinceHistoryService,
     productionWarningsHud: ProductionWarningsHud,
     buildingChanger: BuildingChanger

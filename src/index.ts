@@ -10,10 +10,11 @@ import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Clicker } from "./Clicker";
 import { BuildingChanger } from "./BuildingChanger";
 import { ProductionWarningsHud } from "./ProductionWarningsHud";
+import { IProvinceOwnership } from "./IProvinceOwnership";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
-  static provinceOwnership: ProvinceOwnership;
+  static provinceOwnership: IProvinceOwnership;
   static buildingChecker: ProductionChecker;
   static historyChecker: HistoryChecker;
   static hud: Hud;
@@ -29,7 +30,7 @@ export class ConquerorSpy {
     const provinceHistoryService = new ProvinceHistoryService();
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
     this.provinceParser = new ProvinceParser(provinceHistoryService);
-    const provinceOwnership = new ProvinceOwnership(provinceHistoryService);
+    const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(provinceHistoryService);
     ConquerorSpy.provinceOwnership = provinceOwnership;
     const clicker = new Clicker();
     const buildingChanger = new BuildingChanger(clicker);
