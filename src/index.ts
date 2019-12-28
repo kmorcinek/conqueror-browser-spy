@@ -63,7 +63,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.7 - change province production";
+    const toolVersion = "1.8 - production warnings not as alerts";
 
     console.log("tool version: " + toolVersion);
   }
