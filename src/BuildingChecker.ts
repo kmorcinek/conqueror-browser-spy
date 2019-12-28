@@ -5,21 +5,25 @@ import { Production } from "./Production";
 import { Culture } from "./Culture";
 import { BuildingPattern } from "./BuildingPattern";
 import { BuildingChanger } from "./BuildingChanger";
+import { ProductionWarningsHud } from "./ProductionWarningsHud";
 
 export class BuildingChecker {
   buildingAdvices: string[] = [];
 
   private provinceOwnership: ProvinceOwnership;
   private provinceHistoryService: ProvinceHistoryService;
+  private productionWarningsHud: ProductionWarningsHud;
   private buildingChanger: BuildingChanger;
 
   constructor(
     provinceOwnership: ProvinceOwnership,
     provinceHistoryService: ProvinceHistoryService,
+    productionWarningsHud: ProductionWarningsHud,
     buildingChanger: BuildingChanger
   ) {
     this.provinceOwnership = provinceOwnership;
     this.provinceHistoryService = provinceHistoryService;
+    this.productionWarningsHud = productionWarningsHud;
     this.buildingChanger = buildingChanger;
   }
 
@@ -37,8 +41,10 @@ export class BuildingChecker {
     if (this.buildingAdvices.length) {
       const message = this.buildingAdvices.join(", ");
       console.log(message);
-      alert(message);
+      this.productionWarningsHud.update(message);
       this.buildingAdvices = [];
+    } else {
+      this.productionWarningsHud.update("");
     }
   }
 

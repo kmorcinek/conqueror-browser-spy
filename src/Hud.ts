@@ -4,11 +4,13 @@ import { ProvinceOwnership } from "./ProvinceOwnership";
 import { HistoryChecker } from "./HistoryChecker";
 import { IPrediction } from "./IPrediction";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
+import { Greeter } from "./Globals";
 
 export class Hud {
   private provinceOwnership: ProvinceOwnership;
   private historyChecker: HistoryChecker;
   private provinceHistoryService: ProvinceHistoryService;
+  private selector = "#hud";
 
   constructor(
     provinceOwnership: ProvinceOwnership,
@@ -61,14 +63,11 @@ export class Hud {
   }
 
   private initHud() {
-    if ($("#hud").length) {
+    if ($(this.selector).length) {
       return;
     }
 
-    const timerWrapperSelector =
-      "#gameWrapper > div > div.area.areaT > div.area.areaTM > div > div > div > div.turnTimer";
-
-    const timerWrapper = $(timerWrapperSelector);
+    const timerWrapper = $(Greeter.timerWrapperSelector);
 
     const hud = $(
       '<div id="hud" style="margin-top: 20px; color: blue; background-color: white;"></div>'
@@ -78,12 +77,12 @@ export class Hud {
 
   private updateHud(text: string) {
     this.initHud();
-    $("#hud").text(text);
+    $(this.selector).text(text);
   }
 
   private updateHudHtml(html: string) {
     this.initHud();
-    $("#hud").html(html);
+    $(this.selector).html(html);
   }
 
   private isTheSameProvinceExceptTurn(first: Province, second: Province) {

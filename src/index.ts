@@ -9,6 +9,7 @@ import { FarmHistoryChecker } from "./FarmHistoryChecker";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Clicker } from "./Clicker";
 import { BuildingChanger } from "./BuildingChanger";
+import { ProductionWarningsHud } from "./ProductionWarningsHud";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -23,6 +24,8 @@ export class ConquerorSpy {
   static lastCountry: string = "";
 
   static initialize() {
+    ProductionWarningsHud.initHud();
+    const productionWarningsHud = new ProductionWarningsHud();
     const provinceHistoryService = new ProvinceHistoryService();
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
     this.provinceParser = new ProvinceParser(provinceHistoryService);
@@ -33,6 +36,7 @@ export class ConquerorSpy {
     ConquerorSpy.buildingChecker = new BuildingChecker(
       provinceOwnership,
       provinceHistoryService,
+      productionWarningsHud,
       buildingChanger
     );
     ConquerorSpy.historyChecker = new HistoryChecker(
