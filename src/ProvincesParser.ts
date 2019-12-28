@@ -1,5 +1,4 @@
-import $ from "jquery";
-import { Greeter } from "./Globals";
+import { Globals } from "./Globals";
 import { Province } from "./Province";
 import { Culture } from "./Culture";
 import { Production } from "./Production";
@@ -7,6 +6,7 @@ import { Provinces } from "./Provinces";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Attitude } from "./Attitude";
 import { Clicker } from "./Clicker";
+import { Fortification } from "./Fortification";
 
 export class ProvinceParser {
   private provinceHistoryService: ProvinceHistoryService;
@@ -20,7 +20,7 @@ export class ProvinceParser {
   // TODO: animVal vs baseVal?
   // svgItem.className.animVal
   updateProvinces() {
-    const provinces = Provinces.GetProvinces();
+    const provinces = Provinces.getProvinces();
     for (const provinceName of provinces) {
       const province = this.getCountryDetails(provinceName);
 
@@ -39,7 +39,7 @@ export class ProvinceParser {
       return prefix + provinceName.toLowerCase();
     }
 
-    const mapDocument = Greeter.getMapDocument();
+    const mapDocument = Globals.getMapDocument();
 
     const populationItem = mapDocument.getElementById(createId("pop_"));
     if (populationItem === null) {
@@ -64,7 +64,7 @@ export class ProvinceParser {
     } else {
       production = this.parseProduction(productionString!);
       const attitudeLabel = this.getAttitudeLabel(provinceName);
-      attitude = this.parseAttitude(attitudeLabel);
+      attitude = this.parseAttitude(attitudeLabel!);
     }
 
     const soldierItem = mapDocument.getElementById(createId("info_"));
@@ -72,7 +72,7 @@ export class ProvinceParser {
     const farmsWithResources = Province.parsePopulation(populationItem.textContent!);
 
     const province = new Province(
-      Greeter.getTurn(),
+      Globals.getTurn(),
       provinceName,
       farmsWithResources.farms,
       farmsWithResources.resources,
@@ -128,10 +128,7 @@ export class ProvinceParser {
   private getAttitudeLabel(provinceName: string) {
     console.log("clicking when parsing:", provinceName);
     this.clicker.clickProvince(provinceName);
-    const attitudeString =
-      "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0.type_default > div > div.fieldHeaderWrapper > div.fieldInfoAttitude > span:nth-child(1)";
-    const attitudeElement = $(attitudeString);
-    return attitudeElement.text();
+    return document.getElementsByClassName("fieldInfoAttitude ")[0].childNodes[0].textContent;
   }
 
   private parseAttitude(label: string): Attitude {
@@ -151,26 +148,26 @@ export class ProvinceParser {
       }
     }
 
-    const errorMessage = "Missing attitude label: " + label;
+    const errorMessage = `Missing attitude label: '${label}'`;
     console.error(errorMessage);
     throw new DOMException(errorMessage);
   }
 
-  private getFort(mapDocument: Document, countryName: string) {
-    function createFortId(prefix: string, province: string) {
-      return prefix + province.toLowerCase() + "_0";
+  private getFort(mapDocument: Document, provinceName: string): Fortification {
+    function createFortId(prefix: string) {
+      return prefix + provinceName.toLowerCase() + "_0";
     }
 
-    const fortItem = mapDocument.getElementById(createFortId("fort_", countryName));
+    const fortItem = mapDocument.getElementById(createFortId("fort_"));
     if (fortItem !== null) {
-      return "fort";
+      return Fortification.Fort;
     } else {
-      const keepItem = mapDocument.getElementById(createFortId("keep_", countryName));
+      const keepItem = mapDocument.getElementById(createFortId("keep_"));
 
       if (keepItem !== null) {
-        return "keep";
+        return Fortification.Keep;
       } else {
-        return "";
+        return Fortification.Nothing;
       }
     }
   }

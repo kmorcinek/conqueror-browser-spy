@@ -84,7 +84,7 @@ export class Provinces {
     Provinces.provinces = europeProvinces.concat(generatedProvinces);
   }
 
-  static GetProvinces() {
+  static getProvinces() {
     return Provinces.provinces;
   }
 

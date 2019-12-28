@@ -16,7 +16,7 @@ export class ProvinceHistoryService implements ProvinceHistoryServiceInterface {
   reset() {
     this.provincesHistory = {};
 
-    const provinces = Provinces.GetProvinces();
+    const provinces = Provinces.getProvinces();
     for (const provinceName of provinces) {
       this.provincesHistory[provinceName] = new ProvinceHistory();
     }

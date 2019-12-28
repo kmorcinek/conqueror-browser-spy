@@ -1,8 +1,10 @@
 import { Culture } from "./Culture";
 import { Attitude } from "./Attitude";
 import { Production } from "./Production";
+import { Fortification } from "./Fortification";
 
 export class Province {
+  // tslint:disable-next-line: member-ordering
   static parsePopulation(population: string) {
     let rest: string = population;
     let resources = 0;
@@ -42,7 +44,7 @@ export class Province {
     culture: Culture,
     production: Production | null,
     soldiers: number,
-    fort: string,
+    fort: Fortification,
     attitude: Attitude | null
   ) {
     if (turn < 1) {
@@ -70,5 +72,24 @@ export class Province {
       population += resourceDot;
     }
     return population;
+  }
+
+  calculateValue() {
+    const retValue =
+      ((this.farms + 2 * this.resources) * this.getCultureMultiplication()) /
+      Math.max(1, this.soldiers);
+    // TODO: fort as last
+    return retValue;
+  }
+
+  getCultureMultiplication() {
+    switch (this.culture) {
+      case Culture.Primitive:
+        return 1;
+      case Culture.Developed:
+        return 2;
+      case Culture.Advanded:
+        return 3;
+    }
   }
 }

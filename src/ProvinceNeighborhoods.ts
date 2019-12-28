@@ -10,8 +10,8 @@ export class ProvinceNeighborhoods {
     this.provinceNeighborhood = provinceNeighborhood;
   }
 
-  getCloseNotCounqueredNeighbors(source: string) {
-    const neighbors = this.getNotCounqueredNeighbors();
+  getCloseNotConqueredNeighbors(source: string) {
+    const neighbors = this.getNotConqueredNeighbors();
 
     let smallestDistance: number = 300;
     for (const neighbor of neighbors) {
@@ -24,7 +24,7 @@ export class ProvinceNeighborhoods {
     );
   }
 
-  getNotCounqueredNeighbors() {
+  getNotConqueredNeighbors() {
     const ownedProvinces = this.provinceOwnership.getOwnedProvinces();
     const allNeighbors = new Set<string>();
     for (const ownedProvince of ownedProvinces) {

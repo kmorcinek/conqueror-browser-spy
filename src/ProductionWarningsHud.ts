@@ -1,5 +1,5 @@
 import $ from "jquery";
-import { Greeter } from "./Globals";
+import { Globals } from "./Globals";
 
 export class ProductionWarningsHud {
   static initHud() {
@@ -7,7 +7,7 @@ export class ProductionWarningsHud {
       return;
     }
 
-    const timerWrapper = $(Greeter.timerWrapperSelector);
+    const timerWrapper = $(Globals.timerWrapperSelector);
 
     const productionWarningsElement = $(
       '<div id="production-warnings" style="margin-top: 20px; color: blue; background-color: gray; width: 400px;">koniczek konicze koniczekk koniczek</div>'
