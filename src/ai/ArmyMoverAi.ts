@@ -77,6 +77,11 @@ export class ArmyMoverAi {
         console.log(
           `Attacking ${attackingSoldiersCount} soldiers from ${sourceProvinceName} to ${target.name}`
         );
+        if (attackingSoldiersCount > 2) {
+          const decrementArmySize = remainingSoldiers - attackingSoldiersCount;
+          this.clicker.moveArmy(sourceProvinceName, neighbor, decrementArmySize);
+          remainingSoldiers -= attackingSoldiersCount;
+        }
         if (attackingSoldiersCount > 0) {
           const decrementArmySize = remainingSoldiers - attackingSoldiersCount;
           this.clicker.moveArmy(sourceProvinceName, neighbor, decrementArmySize);
