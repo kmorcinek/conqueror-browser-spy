@@ -111,9 +111,13 @@ export class ConquerorSpy {
       ConquerorSpy.historyChecker.checkProvinces();
       ConquerorSpy.provinceOwnership.updateOwnedProvinces();
       ConquerorSpy.buildingChecker.checkBuildingProvinces();
+
       // AI
-      ConquerorSpy.provinceProductionAi.updateAllProvinces();
-      ConquerorSpy.armyMoverAi.moveArmies();
+      const runAi: boolean = false;
+      if (runAi) {
+        ConquerorSpy.provinceProductionAi.updateAllProvinces();
+        ConquerorSpy.armyMoverAi.moveArmies();
+      }
 
       console.log("refreshTurn() finished");
     }
