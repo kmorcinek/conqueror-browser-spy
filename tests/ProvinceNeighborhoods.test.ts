@@ -16,7 +16,7 @@ describe("ProvinceNeighborhoods", () => {
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
-    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood());
+    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood([]));
     const neutralNeighbors = sut.getNotConqueredNeighbors();
     expect(neutralNeighbors.length).to.equal(3);
     expect(neutralNeighbors.includes("nicaea")).to.equal(true);
@@ -36,7 +36,7 @@ describe("ProvinceNeighborhoods", () => {
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
-    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood());
+    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood([]));
     const neutralNeighbors = sut.getNotConqueredNeighbors();
     expect(neutralNeighbors.length).to.equal(2);
     expect(neutralNeighbors.includes("nicaea")).to.equal(true);
@@ -55,7 +55,7 @@ describe("ProvinceNeighborhoods", () => {
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
-    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood());
+    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood([]));
     const neutralNeighbors = sut.getCloseNotConqueredNeighbors("syria");
     expect(neutralNeighbors.length).to.equal(1);
     expect(neutralNeighbors[0]).to.equal("egypt");
