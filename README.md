@@ -16,7 +16,7 @@
 * Visual Studio Code - open folder
 * Visual Studio - open folder
 
-## How I test the code (new with TypeScript)
+## How I test the code
 
 * If you have already running container (even after system restart) you can just login from powershell to container: `docker exec -it sha512OfContainer /bin/bash`
 * If you run container for first time (or done changes to ie. 'package.json') then perform:
@@ -30,10 +30,15 @@
   * One bookmark for PROD and one for testing
   * Click the bookmark and scripts are loaded/reloaded
 
+## How I test the code on Ubuntu (above not always works)
+
+* run: `npm run browserify`
+* server file output.js port 8887 using ie Web Server for Chrome
+
 ## Which game to set for testing
 
 * Multiplayer
 * Fog of war - off
-* number of players - 2
+* number of players - 2 (I am as green) - only that setup works for AI
 * Turn timer - high ie. 8 minutes
-* Map: Big enough, Europe is good
+* Map: Big enough, Europe is good, but for testing AI Tiny Arena is best.
