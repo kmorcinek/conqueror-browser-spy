@@ -23,19 +23,3 @@ describe("ProductionChecker", () => {
     );
   });
 });
-
-describe("ProductionChecker", () => {
-  it("should [checkBuildingProvinces] not force change for 3f+1 and developing", () => {
-    const provinceFactory = new ProvinceFactory();
-    provinceFactory.farms = 3;
-    provinceFactory.resources = 1;
-    provinceFactory.culture = Culture.Primitive;
-    provinceFactory.production = Production.Culture;
-    const province = provinceFactory.build();
-
-    const sut = new ProductionChecker(null as any, null as any, null as any, null as any);
-    const unwantedProduction: BuildingPattern | null = sut.checkBuildingProvince(province);
-    // tslint:disable-next-line: no-unused-expression
-    expect(unwantedProduction).to.equal(null);
-  });
-});

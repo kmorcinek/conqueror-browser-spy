@@ -97,14 +97,12 @@ export class ProductionChecker {
         production: Production.Culture,
         changeTo: Production.Farm,
       },
-      // Do not force, it some situations it's better to first develop
-      // {
-      //   farms: 3,
-      //   resources: 1,
-      //   production: Production.Culture,
-      //   changeTo: Production.Farm,
-      // },
-
+      {
+        farms: 3,
+        resources: 1,
+        production: Production.Culture,
+        changeTo: Production.Farm,
+      },
       // Depending if it takes 2 or 3 turns to build a farm
       // {
       //   farms: 4,
