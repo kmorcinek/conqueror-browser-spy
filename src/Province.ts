@@ -4,6 +4,8 @@ import { Production } from "./Production";
 import { Fortification } from "./Fortification";
 
 export class Province {
+  private static MAX_VALUE = 100;
+
   // tslint:disable-next-line: member-ordering
   static parsePopulation(population: string) {
     let rest: string = population;
@@ -75,9 +77,13 @@ export class Province {
   }
 
   calculateValue() {
+    // Provinces that are without soldiers should be first attacked
+    if (this.soldiers === 0) {
+      return Province.MAX_VALUE;
+    }
+
     const retValue =
-      ((this.farms + 2 * this.resources) * this.getCultureMultiplication()) /
-      Math.max(1, this.soldiers);
+      ((this.farms + 2 * this.resources) * this.getCultureMultiplication()) / this.soldiers;
     // TODO: fort as last
     return retValue;
   }
