@@ -16,6 +16,7 @@ import { ArmyMoverAi } from "./ai/ArmyMoverAi";
 import { ProvinceNeighborhood } from "./ProvinceNeighborhood";
 import { ProvinceNeighborhoods } from "./ProvinceNeighborhoods";
 import { GoldService } from "./GoldService";
+import { TinyMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/TinyMapProvinceNeighbourhoodProvider";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -39,7 +40,9 @@ export class ConquerorSpy {
     ConquerorSpy.goldService = goldService;
     const productionWarningsHud = new ProductionWarningsHud();
     const provinceHistoryService = new ProvinceHistoryService();
-    const provinceNeighborhood = new ProvinceNeighborhood();
+    const provinceNeighborhood = new ProvinceNeighborhood([
+      new TinyMapProvinceNeighbourhoodProvider(),
+    ]);
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
     this.provinceParser = new ProvinceParser(provinceHistoryService, clicker);
     const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(provinceHistoryService);

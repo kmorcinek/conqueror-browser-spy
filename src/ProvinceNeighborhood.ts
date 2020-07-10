@@ -1,13 +1,17 @@
 import { Provinces } from "./Provinces";
+import { IProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/IProvinceNeighbourhoodProvider";
 
 export class ProvinceNeighborhood {
   neighbors: Record<string, string[]> = {};
   cachedDistances: Record<string, number> = {};
   cachedPath: Record<string, string[]> = {};
 
-  constructor() {
+  constructor(neighbourhoodProviders: IProvinceNeighbourhoodProvider[]) {
     this.assignEuropeProvinces();
-    this.assignRandomProvinces();
+
+    for (const provider of neighbourhoodProviders) {
+      this.assignProvinces(provider);
+    }
   }
 
   getNeighbors(provinceName: string) {
@@ -86,39 +90,6 @@ export class ProvinceNeighborhood {
     return bestPath;
   }
 
-  private assignRandomProvinces() {
-    // This setting is for Tiny Team Arena map
-    this.foo("a", ["b"]);
-    this.foo("b", ["a", "c"]);
-    this.foo("c", ["b", "d"]);
-    this.foo("d", ["c", "e"]);
-    this.foo("e", ["d"]);
-  }
-
-  private foo(heroLetter: string, neighborsLetters: string[]) {
-    const firstIndex = 1;
-    const lastIndex = 5;
-    for (let i = firstIndex; i < lastIndex; i++) {
-      const heroProvinceName = heroLetter + i;
-      const neighbors: string[] = [];
-      if (i - 1 > 0) {
-        neighbors.push(heroLetter + (i - 1));
-      }
-      if (i + 1 < lastIndex) {
-        neighbors.push(heroLetter + (i + 1));
-      }
-
-      for (const neighborLetter of neighborsLetters) {
-        if (i - 1 > 0) {
-          neighbors.push(neighborLetter + (i - 1));
-        }
-        neighbors.push(neighborLetter + i);
-      }
-
-      this.neighbors[heroProvinceName] = neighbors;
-    }
-  }
-
   private assignEuropeProvinces() {
     this.neighbors.natolia = ["nicaea", "syria", "cyprus"];
     this.neighbors.nicaea = ["natolia", "byzantium", "greece", "crete"];
@@ -177,6 +148,13 @@ export class ProvinceNeighborhood {
           throw new Error(message);
         }
       }
+    }
+  }
+
+  private assignProvinces(provider: IProvinceNeighbourhoodProvider) {
+    for (const province of Object.keys(provider.getNeighborhood())) {
+      const neighbors = provider.getNeighborhood()[province];
+      this.neighbors[province] = neighbors;
     }
   }
 }
