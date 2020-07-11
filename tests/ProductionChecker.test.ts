@@ -18,8 +18,8 @@ describe("ProductionChecker", () => {
     const unwantedProduction: BuildingPattern | null = sut.checkBuildingProvince(province);
     // tslint:disable-next-line: no-unused-expression
     expect(unwantedProduction).to.not.equal(null);
-    expect(((unwantedProduction as unknown) as BuildingPattern).production).to.equal(
-      Production.Farm
+    expect(((unwantedProduction as unknown) as BuildingPattern).changeTo).to.equal(
+      Production.Culture
     );
   });
 });
