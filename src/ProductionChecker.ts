@@ -205,6 +205,49 @@ export class ProductionChecker {
         production: Production.Culture,
         changeTo: Production.Farm,
       },
+      // Build gold
+      {
+        farms: 6,
+        resources: 0,
+        culture: Culture.Advanded,
+        production: Production.Farm,
+        changeTo: Production.Gold,
+      },
+      {
+        farms: 7,
+        resources: 1,
+        culture: Culture.Advanded,
+        production: Production.Farm,
+        changeTo: Production.Gold,
+      },
+      {
+        farms: 8,
+        resources: 2,
+        culture: Culture.Advanded,
+        production: Production.Farm,
+        changeTo: Production.Gold,
+      },
+      {
+        farms: 10,
+        resources: 0,
+        culture: Culture.Advanded,
+        production: Production.Farm,
+        changeTo: Production.Gold,
+      },
+      {
+        farms: 11,
+        resources: 1,
+        culture: Culture.Advanded,
+        production: Production.Farm,
+        changeTo: Production.Gold,
+      },
+      {
+        farms: 12,
+        resources: 2,
+        culture: Culture.Advanded,
+        production: Production.Farm,
+        changeTo: Production.Gold,
+      },
     ];
 
     for (const pattern of patterns) {

@@ -22,6 +22,21 @@ describe("ProductionChecker", () => {
       Production.Culture
     );
   });
+
+  it("should [checkBuildingProvinces] change to gold at 60k+0", () => {
+    const provinceFactory = new ProvinceFactory();
+    provinceFactory.farms = 6;
+    provinceFactory.resources = 0;
+    provinceFactory.culture = Culture.Advanded;
+    provinceFactory.production = Production.Farm;
+    const province = provinceFactory.build();
+
+    const sut = new ProductionChecker(null as any, null as any, null as any, null as any);
+    const unwantedProduction: BuildingPattern | null = sut.checkBuildingProvince(province);
+    // tslint:disable-next-line: no-unused-expression
+    expect(unwantedProduction).to.not.equal(null);
+    expect(((unwantedProduction as unknown) as BuildingPattern).changeTo).to.equal(Production.Gold);
+  });
 });
 
 describe("ProductionChecker", () => {
