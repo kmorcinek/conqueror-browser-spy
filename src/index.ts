@@ -96,7 +96,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.8.2 - AI is moving soldiers";
+    const toolVersion = "1.8.3 - tiny neighborhood";
 
     console.log("tool version: " + toolVersion);
   }
