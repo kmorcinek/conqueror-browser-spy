@@ -131,8 +131,8 @@ export class ArmyMoverAi {
   ) {
     const neighborsToAttack = this.sortByProvinceValue(notOwnedNeighbors);
     for (const neighbor of neighborsToAttack) {
-      const isLastProvinceToAttack = neighbor === neighborsToAttack[neighborsToAttack.length - 1];
       console.log("trying to move army to      " + neighbor);
+      const isLastProvinceToAttack = neighbor === neighborsToAttack[neighborsToAttack.length - 1];
       const target = this.provinceHistoryService.getByName(neighbor).getLast();
       let attackingSoldiersCount: number;
       if (isLastProvinceToAttack) {
