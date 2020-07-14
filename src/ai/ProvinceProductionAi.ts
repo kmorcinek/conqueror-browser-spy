@@ -64,6 +64,10 @@ export class ProvinceProductionAi {
       return Production.Soldier;
     }
 
+    if (province.soldiers < province.farms) {
+      return Production.Soldier;
+    }
+
     if (province.culture === Culture.Advanded) {
       if (
         (province.farms >= 6 && (province.resources === 0 || province.resources === 2)) ||
