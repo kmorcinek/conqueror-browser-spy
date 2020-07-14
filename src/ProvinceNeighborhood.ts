@@ -1,4 +1,3 @@
-import { Provinces } from "./Provinces";
 import { IProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/IProvinceNeighbourhoodProvider";
 
 export class ProvinceNeighborhood {
@@ -7,8 +6,6 @@ export class ProvinceNeighborhood {
   cachedPath: Record<string, string[]> = {};
 
   constructor(neighbourhoodProviders: IProvinceNeighbourhoodProvider[]) {
-    this.assignEuropeProvinces();
-
     for (const provider of neighbourhoodProviders) {
       this.assignProvinces(provider);
     }
@@ -88,67 +85,6 @@ export class ProvinceNeighborhood {
     }
 
     return bestPath;
-  }
-
-  private assignEuropeProvinces() {
-    this.neighbors.natolia = ["nicaea", "syria", "cyprus"];
-    this.neighbors.nicaea = ["natolia", "byzantium", "greece", "crete"];
-    this.neighbors.crete = ["greece", "nicaea"];
-    this.neighbors.greece = ["macedonia", "nicaea", "crete"];
-    this.neighbors.byzantium = ["macedonia", "nicaea", "bulgaria"];
-    this.neighbors.macedonia = ["bulgaria", "byzantium", "greece", "napoli", "dalmatia", "serbia"];
-    this.neighbors.dalmatia = ["macedonia", "venetia", "austria", "hungary", "serbia"];
-    this.neighbors.serbia = [
-      "dalmatia",
-      "macedonia",
-      "hungary",
-      "bulgaria",
-      "wallachia",
-      "transylvania",
-    ];
-    this.neighbors.wallachia = ["serbia", "moldavia", "bulgaria", "transylvania"];
-    this.neighbors.transylvania = ["hungary", "poland", "moldavia", "wallachia", "serbia"];
-    this.neighbors.moldavia = [
-      "poland",
-      "podolia",
-      "ukraine",
-      "crimea",
-      "bulgaria",
-      "wallachia",
-      "transylvania",
-    ];
-    this.neighbors.syria = ["natolia", "palestine", "cyprus"];
-    this.neighbors.cyprus = ["natolia", "palestine", "syria"];
-    this.neighbors.palestine = ["egypt", "cyprus", "syria"];
-    this.neighbors.egypt = ["cyrenaica", "palestine"];
-    this.neighbors.cyrenaica = ["egypt", "tripoli"];
-    this.neighbors.tripoli = ["cyrenaica", "tunis"];
-    this.neighbors.tunis = ["sardinia", "sicilia", "tripoli", "algiers"];
-    this.neighbors.algiers = ["tangiers", "tunis"];
-    this.neighbors.tangiers = ["grenada", "morocco", "algiers"];
-    this.neighbors.morocco = ["tangiers"];
-    this.neighbors.sardinia = ["tunis", "corsica"];
-    this.neighbors.corsica = ["sardinia", "provence", "genoa", "roma"];
-    this.neighbors.genoa = ["provence", "burgundy", "helvetica", "venetia", "roma", "corsica"];
-    this.neighbors.provence = ["aquitaine", "iledefrance", "burgundy", "genoa", "corsica"];
-    this.neighbors.sicilia = ["napoli", "tunis"];
-    this.neighbors.napoli = ["sicilia", "macedonia", "roma"];
-    this.neighbors.roma = ["corsica", "genoa", "napoli", "venetia"];
-    this.neighbors.venetia = ["genoa", "helvetica", "austria", "dalmatia", "roma"];
-
-    const validProvinces = Provinces.getProvinces();
-    for (const key of Object.keys(this.neighbors)) {
-      const neighbors = this.neighbors[key];
-      const toCheck = Object.assign([], neighbors);
-      toCheck.push(key);
-      for (const province of toCheck) {
-        if (validProvinces.includes(province) === false) {
-          const message = `Wrong neighbor province name '${province}'`;
-          console.error(message);
-          throw new Error(message);
-        }
-      }
-    }
   }
 
   private assignProvinces(provider: IProvinceNeighbourhoodProvider) {

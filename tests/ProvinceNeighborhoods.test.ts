@@ -2,8 +2,12 @@ import { expect } from "chai";
 import { ProvinceNeighborhoods } from "../src/ProvinceNeighborhoods";
 import { ProvinceNeighborhood } from "../src/ProvinceNeighborhood";
 import { IProvinceOwnership } from "../src/IProvinceOwnership";
+import { EuropeMapProvinceNeighbourhoodProvider } from "../src/ProvinceNeighborhood/EuropeMapProvinceNeighborhoodProvider";
 
 describe("ProvinceNeighborhoods", () => {
+  const provinceNeighborhood = new ProvinceNeighborhood([
+    new EuropeMapProvinceNeighbourhoodProvider(),
+  ]);
   it("should have neutral neighbors around natolia", () => {
     const provinceOwnershipMock: IProvinceOwnership = {
       // tslint:disable-next-line: no-empty
@@ -16,7 +20,7 @@ describe("ProvinceNeighborhoods", () => {
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
-    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood([]));
+    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, provinceNeighborhood);
     const neutralNeighbors = sut.getNotConqueredNeighbors();
     expect(neutralNeighbors.length).to.equal(3);
     expect(neutralNeighbors.includes("nicaea")).to.equal(true);
@@ -36,7 +40,7 @@ describe("ProvinceNeighborhoods", () => {
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
-    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood([]));
+    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, provinceNeighborhood);
     const neutralNeighbors = sut.getNotConqueredNeighbors();
     expect(neutralNeighbors.length).to.equal(2);
     expect(neutralNeighbors.includes("nicaea")).to.equal(true);
@@ -55,7 +59,7 @@ describe("ProvinceNeighborhoods", () => {
       // tslint:disable-next-line: no-empty
       reset: () => {},
     };
-    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, new ProvinceNeighborhood([]));
+    const sut = new ProvinceNeighborhoods(provinceOwnershipMock, provinceNeighborhood);
     const neutralNeighbors = sut.getCloseNotConqueredNeighbors("syria");
     expect(neutralNeighbors.length).to.equal(1);
     expect(neutralNeighbors[0]).to.equal("egypt");
