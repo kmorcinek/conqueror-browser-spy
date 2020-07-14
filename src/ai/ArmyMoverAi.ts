@@ -6,6 +6,8 @@ import { ProvinceHistoryService } from "../ProvinceHistoryService";
 import { Province } from "../Province";
 import { Attitude } from "../Attitude";
 import { Fortification } from "../Fortification";
+import { ArmyMovesRecorder } from "./ArmyMovesRecorder";
+import { ArmyMove } from "./ArmyMove";
 
 export class ArmyMoverAi {
   static attackingSoldiersCount(source: Province, remainingSoldiers: number, target: Province) {
@@ -61,26 +63,37 @@ export class ArmyMoverAi {
   private provinceNeighborhood: ProvinceNeighborhood;
   private provinceNeighborhoods: ProvinceNeighborhoods;
   private provinceHistoryService: ProvinceHistoryService;
+  private armyMovesRecorder: ArmyMovesRecorder;
 
   constructor(
     clicker: Clicker,
     provinceOwnership: IProvinceOwnership,
     provinceNeighborhood: ProvinceNeighborhood,
     provinceNeighborhoods: ProvinceNeighborhoods,
-    provinceHistoryService: ProvinceHistoryService
+    provinceHistoryService: ProvinceHistoryService,
+    armyMovesRecorder: ArmyMovesRecorder
   ) {
     this.clicker = clicker;
     this.provinceOwnership = provinceOwnership;
     this.provinceNeighborhood = provinceNeighborhood;
     this.provinceNeighborhoods = provinceNeighborhoods;
     this.provinceHistoryService = provinceHistoryService;
+    this.armyMovesRecorder = armyMovesRecorder;
   }
 
   moveArmies() {
     const ownedProvinces = this.provinceOwnership.getOwnedProvinces();
     for (const ownedProvince of ownedProvinces) {
+      if (this.armyMovesRecorder.isFull()) {
+        break;
+      }
       this.moveArmy(ownedProvince);
     }
+
+    for (const armyMove of this.armyMovesRecorder.getArmyMoves()) {
+      this.clicker.moveArmy(armyMove.source.name, armyMove.target, armyMove.toStay);
+    }
+    this.armyMovesRecorder.clearMoves();
   }
 
   private moveArmy(sourceProvinceName: string) {
@@ -121,6 +134,9 @@ export class ArmyMoverAi {
   ) {
     const neighborsToAttack = this.sortByProvinceValue(notOwnedNeighbors);
     for (const neighbor of neighborsToAttack) {
+      if (this.armyMovesRecorder.isFull()) {
+        return;
+      }
       console.log("trying to move army to      " + neighbor);
       const isLastProvinceToAttack = neighbor === neighborsToAttack[neighborsToAttack.length - 1];
       const target = this.provinceHistoryService.getByName(neighbor).getLast();
@@ -151,7 +167,7 @@ export class ArmyMoverAi {
 
   private moveWhenEnoughSoldier(sourceProvince: Province, toStay: number, target: string) {
     if (sourceProvince.soldiers - toStay > 0) {
-      this.clicker.moveArmy(sourceProvince.name, target, toStay);
+      this.armyMovesRecorder.addMove(new ArmyMove(sourceProvince, target, toStay));
     } else {
       console.log(
         `> Not enough soldiers. soldier:'${sourceProvince.soldiers}', toStay:'${toStay}'`

@@ -17,6 +17,7 @@ import { ProvinceNeighborhood } from "./ProvinceNeighborhood";
 import { ProvinceNeighborhoods } from "./ProvinceNeighborhoods";
 import { GoldService } from "./GoldService";
 import { TinyMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/TinyMapProvinceNeighbourhoodProvider";
+import { ArmyMovesRecorder } from "./ai/ArmyMovesRecorder";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -64,7 +65,8 @@ export class ConquerorSpy {
       provinceOwnership,
       provinceNeighborhood,
       provinceNeighborhoods,
-      provinceHistoryService
+      provinceHistoryService,
+      new ArmyMovesRecorder()
     );
     ConquerorSpy.productionChecker = new ProductionChecker(
       provinceOwnership,

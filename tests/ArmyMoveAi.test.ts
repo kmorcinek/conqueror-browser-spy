@@ -3,6 +3,7 @@ import { Culture } from "../src/Culture";
 import { ProvinceFactory } from "./ProvinceFactory";
 import { ArmyMoverAi } from "../src/ai/ArmyMoverAi";
 import { ProvinceHistoryService } from "../src/ProvinceHistoryService";
+import { ArmyMovesRecorder } from "../src/ai/ArmyMovesRecorder";
 
 describe("ArmyMoveAi", () => {
   it("should [sortByProvinceValue] work", () => {
@@ -24,7 +25,8 @@ describe("ArmyMoveAi", () => {
       null as any,
       null as any,
       null as any,
-      provinceHistoryService
+      provinceHistoryService,
+      null as any
     );
 
     const neighbors = [primitiveProvince.name, developedProvince.name];
