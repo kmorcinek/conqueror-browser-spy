@@ -61,7 +61,7 @@ export class HistoryChecker {
     if (this.alertsToShow.length) {
       const message = this.alertsToShow.join(", ");
       console.log(message);
-      alert(message);
+      // alert(message);
       this.alertsToShow = [];
     }
   }
