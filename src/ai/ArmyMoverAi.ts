@@ -14,7 +14,8 @@ export class ArmyMoverAi {
     if (target.fort !== Fortification.Nothing) {
       return ArmyMoverAi.attackFort(soldiersReadyToAttack, target);
     }
-    const soldiersToConquer = target.soldiers + 2 + Math.floor(target.farms / 3);
+    const soldiersToConquer =
+      target.soldiers + 2 + Math.floor(target.farms / 3) + Math.floor(target.soldiers + 1 / 9);
     return Math.min(soldiersReadyToAttack, soldiersToConquer);
   }
 
