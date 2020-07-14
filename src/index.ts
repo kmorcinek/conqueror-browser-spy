@@ -29,6 +29,7 @@ export class ConquerorSpy {
   static provinceProductionAi: ProvinceProductionAi;
   static armyMoverAi: ArmyMoverAi;
   static goldService: GoldService;
+  static clicker = new Clicker();
 
   static lastTurn: number = NaN;
 
@@ -36,7 +37,6 @@ export class ConquerorSpy {
 
   static initialize() {
     ProductionWarningsHud.initHud();
-    const clicker = new Clicker();
     const goldService = new GoldService();
     ConquerorSpy.goldService = goldService;
     const productionWarningsHud = new ProductionWarningsHud();
@@ -45,6 +45,7 @@ export class ConquerorSpy {
       new TinyMapProvinceNeighbourhoodProvider(),
     ]);
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
+    const clicker = ConquerorSpy.clicker;
     this.provinceParser = new ProvinceParser(provinceHistoryService, clicker);
     const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(provinceHistoryService);
     const provinceNeighborhoods = new ProvinceNeighborhoods(
@@ -128,6 +129,9 @@ export class ConquerorSpy {
       if (runAi) {
         ConquerorSpy.provinceProductionAi.updateAllProvinces();
         ConquerorSpy.armyMoverAi.moveArmies();
+        window.setTimeout(function() {
+          ConquerorSpy.clicker.clickEndTurn();
+        }, 2000);
       }
 
       console.log("---------- refreshTurn() finished");
