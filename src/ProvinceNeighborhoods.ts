@@ -10,7 +10,7 @@ export class ProvinceNeighborhoods {
     this.provinceNeighborhood = provinceNeighborhood;
   }
 
-  getCloseNotConqueredNeighbors(source: string) {
+  getCloseNotConqueredNeighbors(source: string): string[] {
     const neighbors = this.getNotConqueredNeighbors();
 
     let smallestDistance: number = 300;
