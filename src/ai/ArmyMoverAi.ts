@@ -114,16 +114,6 @@ export class ArmyMoverAi {
     }
   }
 
-  private moveWhenEnoughSoldier(sourceProvince: Province, toStay: number, target: string) {
-    if (sourceProvince.soldiers - toStay > 0) {
-      this.clicker.moveArmy(sourceProvince.name, target, toStay);
-    } else {
-      console.log(
-        `> Not enough soldiers. soldier:'${sourceProvince.soldiers}', toStay:'${toStay}'`
-      );
-    }
-  }
-
   private attackNeighbors(
     notOwnedNeighbors: string[],
     sourceProvince: Province,
@@ -156,6 +146,16 @@ export class ArmyMoverAi {
         this.moveWhenEnoughSoldier(sourceProvince, decrementArmySize, neighbor);
         remainingSoldiers -= attackingSoldiersCount;
       }
+    }
+  }
+
+  private moveWhenEnoughSoldier(sourceProvince: Province, toStay: number, target: string) {
+    if (sourceProvince.soldiers - toStay > 0) {
+      this.clicker.moveArmy(sourceProvince.name, target, toStay);
+    } else {
+      console.log(
+        `> Not enough soldiers. soldier:'${sourceProvince.soldiers}', toStay:'${toStay}'`
+      );
     }
   }
 
