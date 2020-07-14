@@ -50,6 +50,11 @@ export class ProvinceProductionAi {
       return BuyProduction.of(Production.Soldier);
     }
 
+    const hasNeighborOpponent: boolean = this.hasNeighborOpponent(province);
+    if (hasNeighborOpponent) {
+      return Production.Soldier;
+    }
+
     if (province.attitude === Attitude.Rebellious || province.attitude === Attitude.Restless) {
       return Production.Diplomat;
     }
@@ -98,5 +103,11 @@ export class ProvinceProductionAi {
     const conqueredProvinces = this.provinceOwnership.getOwnedProvinces();
     const neighbors = this.provinceNeighborhood.getNeighbors(province.name);
     return neighbors.filter(neighbor => conqueredProvinces.includes(neighbor) === false).length > 0;
+  }
+
+  private hasNeighborOpponent(province: Province): boolean {
+    const neighbors = this.provinceNeighborhood.getNeighbors(province.name);
+    const opponentNeighbors = this.provinceOwnership.filterOpponents(neighbors);
+    return opponentNeighbors.length > 0;
   }
 }
