@@ -88,7 +88,7 @@ export class Province {
     return retValue;
   }
 
-  getCultureMultiplication() {
+  private getCultureMultiplication() {
     switch (this.culture) {
       case Culture.Primitive:
         return 1;
