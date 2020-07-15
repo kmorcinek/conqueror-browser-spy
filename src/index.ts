@@ -19,6 +19,7 @@ import { GoldService } from "./GoldService";
 import { TinyMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/TinyMapProvinceNeighbourhoodProvider";
 import { ArmyMovesRecorder } from "./ai/ArmyMovesRecorder";
 import { BattleProvinceNeighborhoods } from "./ai/BattleProvinceNeighborhoods";
+import { Settings } from "./Settings";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -31,6 +32,7 @@ export class ConquerorSpy {
   static armyMoverAi: ArmyMoverAi;
   static goldService: GoldService;
   static battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
+  static settings: Settings;
   static clicker = new Clicker();
 
   static lastTurn: number = NaN;
@@ -40,6 +42,8 @@ export class ConquerorSpy {
   static initialize() {
     ProductionWarningsHud.initHud();
     const goldService = new GoldService();
+    const settings = new Settings();
+    ConquerorSpy.settings = settings;
     ConquerorSpy.goldService = goldService;
     const productionWarningsHud = new ProductionWarningsHud();
     const provinceHistoryService = new ProvinceHistoryService();
@@ -49,7 +53,10 @@ export class ConquerorSpy {
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
     const clicker = ConquerorSpy.clicker;
     this.provinceParser = new ProvinceParser(provinceHistoryService, clicker);
-    const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(provinceHistoryService);
+    const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(
+      provinceHistoryService,
+      settings
+    );
     const provinceNeighborhoods = new ProvinceNeighborhoods(
       provinceOwnership,
       provinceNeighborhood
@@ -118,6 +125,8 @@ export class ConquerorSpy {
       if (turn === 1) {
         ConquerorSpy.cleanAllValues();
       }
+
+      ConquerorSpy.settings.setMyCapital();
 
       ConquerorSpy.lastTurn = turn;
       console.log("New turn: ", ConquerorSpy.lastTurn);
