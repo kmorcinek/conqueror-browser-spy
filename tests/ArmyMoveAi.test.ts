@@ -3,7 +3,8 @@ import { Culture } from "../src/Culture";
 import { ProvinceFactory } from "./ProvinceFactory";
 import { ArmyMoverAi } from "../src/ai/ArmyMoverAi";
 import { ProvinceHistoryService } from "../src/ProvinceHistoryService";
-import { ArmyMovesRecorder } from "../src/ai/ArmyMovesRecorder";
+import { BattleProvince } from "../src/ai/BattleProvince";
+import { ProvinceOwner } from "../src/ProvinceOwner";
 
 describe("ArmyMoveAi", () => {
   it("should [sortByProvinceValue] work", () => {
@@ -20,18 +21,15 @@ describe("ArmyMoveAi", () => {
     const provinceHistoryService = new ProvinceHistoryService();
     provinceHistoryService.getByName(primitiveProvince.name).add(primitiveProvince);
     provinceHistoryService.getByName(developedProvince.name).add(developedProvince);
-    const sut = new ArmyMoverAi(
-      null as any,
-      null as any,
-      null as any,
-      null as any,
-      provinceHistoryService,
-      null as any
-    );
+    const sut = new ArmyMoverAi(null as any, null as any, null as any, null as any);
 
-    const neighbors = [primitiveProvince.name, developedProvince.name];
-    const sortedProvinces: string[] = sut.sortByProvinceValue(neighbors);
-    expect(sortedProvinces[0]).to.equal(developedProvince.name);
-    expect(sortedProvinces[1]).to.equal(primitiveProvince.name);
+    const neighbors = [
+      new BattleProvince(primitiveProvince, ProvinceOwner.Opponent),
+      new BattleProvince(developedProvince, ProvinceOwner.Opponent),
+    ];
+
+    const sortedProvinces: BattleProvince[] = sut.sortByProvinceValue(neighbors);
+    expect(sortedProvinces[0].name).to.equal(developedProvince.name);
+    expect(sortedProvinces[1].name).to.equal(primitiveProvince.name);
   });
 });

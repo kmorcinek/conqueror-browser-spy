@@ -1,68 +1,63 @@
 import { Clicker } from "../Clicker";
 import { ProvinceNeighborhood } from "../ProvinceNeighborhood";
-import { ProvinceNeighborhoods } from "../ProvinceNeighborhoods";
-import { IProvinceOwnership } from "../IProvinceOwnership";
-import { ProvinceHistoryService } from "../ProvinceHistoryService";
-import { Province } from "../Province";
 import { Attitude } from "../Attitude";
 import { Fortification } from "../Fortification";
 import { ArmyMovesRecorder } from "./ArmyMovesRecorder";
 import { ArmyMove } from "./ArmyMove";
+import { BattleProvinceNeighborhoods } from "./BattleProvinceNeighborhoods";
+import { BattleProvince } from "./BattleProvince";
 
 export class ArmyMoverAi {
   private clicker: Clicker;
-  private provinceOwnership: IProvinceOwnership;
   private provinceNeighborhood: ProvinceNeighborhood;
-  private provinceNeighborhoods: ProvinceNeighborhoods;
-  private provinceHistoryService: ProvinceHistoryService;
+  private battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
   private armyMovesRecorder: ArmyMovesRecorder;
 
   constructor(
     clicker: Clicker,
-    provinceOwnership: IProvinceOwnership,
     provinceNeighborhood: ProvinceNeighborhood,
-    provinceNeighborhoods: ProvinceNeighborhoods,
-    provinceHistoryService: ProvinceHistoryService,
+    battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
     armyMovesRecorder: ArmyMovesRecorder
   ) {
     this.clicker = clicker;
-    this.provinceOwnership = provinceOwnership;
     this.provinceNeighborhood = provinceNeighborhood;
-    this.provinceNeighborhoods = provinceNeighborhoods;
-    this.provinceHistoryService = provinceHistoryService;
+    this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
     this.armyMovesRecorder = armyMovesRecorder;
   }
 
   moveArmies() {
-    const ownedProvinces = this.provinceOwnership.getOwnedProvinces();
+    this.battleProvinceNeighborhoods.recreateNextTurn();
+    const ownedProvinces = this.battleProvinceNeighborhoods.getOwnedProvinces();
     for (const ownedProvince of ownedProvinces) {
       if (this.armyMovesRecorder.isFull()) {
         break;
       }
       this.moveArmy(ownedProvince);
     }
+    this.executeMoves();
+  }
 
+  private executeMoves() {
     for (const armyMove of this.armyMovesRecorder.getArmyMoves()) {
-      this.clicker.moveArmy(armyMove.source.name, armyMove.target, armyMove.toStay);
+      this.clicker.moveArmy(armyMove.source.name, armyMove.target.name, armyMove.toStay);
     }
     this.armyMovesRecorder.clearMoves();
   }
 
-  private moveArmy(sourceProvinceName: string) {
-    console.log("trying to move army from " + sourceProvinceName);
-    const sourceProvince = this.provinceHistoryService.getByName(sourceProvinceName).getLast();
-    const neighbors = this.provinceNeighborhood.getNeighbors(sourceProvinceName);
-    const opponentNeighbors = this.provinceOwnership.filterOpponents(neighbors);
-    const neutralNeighbors = this.provinceOwnership.filterNeutral(neighbors);
+  private moveArmy(sourceProvince: BattleProvince) {
+    console.log("trying to move army from " + sourceProvince.name);
+    const opponentNeighbors = sourceProvince.getOpponentNeighbors();
+    const neutralNeighbors = sourceProvince.getNeutralNeighbors();
     if (opponentNeighbors.length > 0) {
       this.attackNeighbors(opponentNeighbors, sourceProvince, sourceProvince.soldiers);
     } else if (neutralNeighbors.length > 0) {
       this.attackNeighbors(neutralNeighbors, sourceProvince, sourceProvince.soldiers);
     } else {
       console.log("> neighbors conquered. Moving armies");
-      const closeEnemiesOrNeutral = this.provinceNeighborhoods.getCloseNotConqueredNeighbors(
-        sourceProvinceName
+      const closeEnemiesOrNeutral = this.battleProvinceNeighborhoods.getCloseNotConqueredNeighbors(
+        sourceProvince
       );
+
       console.log("> Number of closeEnemiesOrNeutral:", closeEnemiesOrNeutral.length);
       const targetProvince = closeEnemiesOrNeutral[0];
       console.log("> Closest target:", targetProvince);
@@ -74,14 +69,18 @@ export class ArmyMoverAi {
       const path = this.provinceNeighborhood.getPath(sourceProvince.name, targetProvince);
       // TODO: when not all provinces has neighbors path sometimes have not sense
       if (path.length > 0) {
-        this.moveWhenEnoughSoldier(sourceProvince, toStay, path[0]);
+        this.moveWhenEnoughSoldier(
+          sourceProvince,
+          toStay,
+          this.battleProvinceNeighborhoods.getByName(path[0])
+        );
       }
     }
   }
 
   private attackNeighbors(
-    notOwnedNeighbors: string[],
-    sourceProvince: Province,
+    notOwnedNeighbors: BattleProvince[],
+    sourceProvince: BattleProvince,
     remainingSoldiers: number
   ) {
     const neighborsToAttack = this.sortByProvinceValue(notOwnedNeighbors);
@@ -89,9 +88,9 @@ export class ArmyMoverAi {
       if (this.armyMovesRecorder.isFull()) {
         return;
       }
-      console.log("trying to move army to      " + neighbor);
+      console.log("trying to move army to      " + neighbor.name);
       const isLastProvinceToAttack = neighbor === neighborsToAttack[neighborsToAttack.length - 1];
-      const target = this.provinceHistoryService.getByName(neighbor).getLast();
+      const target = neighbor;
       let attackingSoldiersCount: number;
       if (isLastProvinceToAttack) {
         attackingSoldiersCount = this.attackingSoldiersCountForLastProvince(
@@ -117,7 +116,11 @@ export class ArmyMoverAi {
     }
   }
 
-  private moveWhenEnoughSoldier(sourceProvince: Province, toStay: number, target: string) {
+  private moveWhenEnoughSoldier(
+    sourceProvince: BattleProvince,
+    toStay: number,
+    target: BattleProvince
+  ) {
     if (sourceProvince.soldiers - toStay > 0) {
       this.armyMovesRecorder.addMove(new ArmyMove(sourceProvince, target, toStay));
     } else {
@@ -128,20 +131,17 @@ export class ArmyMoverAi {
   }
 
   // tslint:disable-next-line: member-ordering
-  sortByProvinceValue(notOwnedNeighbors: string[]) {
+  sortByProvinceValue(notOwnedNeighbors: BattleProvince[]) {
     return notOwnedNeighbors.sort(
-      (first, second) => this.calculateProvinceValue(second) - this.calculateProvinceValue(first)
+      (first, second) => second.province.calculateValue() - first.province.calculateValue()
     );
   }
 
-  private calculateProvinceValue(provinceName: string) {
-    return this.provinceHistoryService
-      .getByName(provinceName)
-      .getLast()
-      .calculateValue();
-  }
-
-  private attackingSoldiersCount(source: Province, remainingSoldiers: number, target: Province) {
+  private attackingSoldiersCount(
+    source: BattleProvince,
+    remainingSoldiers: number,
+    target: BattleProvince
+  ) {
     const soldiersToStay = this.getNumberOfSoldiersToStay(source);
     const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
     if (target.fort !== Fortification.Nothing) {
@@ -153,9 +153,9 @@ export class ArmyMoverAi {
   }
 
   private attackingSoldiersCountForLastProvince(
-    source: Province,
+    source: BattleProvince,
     remainingSoldiers: number,
-    target: Province
+    target: BattleProvince
   ) {
     const soldiersToStay = this.getNumberOfSoldiersToStay(source);
     const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
@@ -165,7 +165,7 @@ export class ArmyMoverAi {
     return soldiersReadyToAttack;
   }
 
-  private attackFort(soldiersReadyToAttack: number, target: Province) {
+  private attackFort(soldiersReadyToAttack: number, target: BattleProvince) {
     if (soldiersReadyToAttack > target.soldiers + 4) {
       return target.soldiers + 5;
     } else {
@@ -173,7 +173,7 @@ export class ArmyMoverAi {
     }
   }
 
-  private getNumberOfSoldiersToStay(source: Province): number {
+  private getNumberOfSoldiersToStay(source: BattleProvince): number {
     switch (source.attitude) {
       case Attitude.Rebellious:
       case Attitude.Restless:

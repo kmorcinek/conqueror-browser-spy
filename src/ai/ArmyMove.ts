@@ -1,11 +1,11 @@
-import { Province } from "../Province";
+import { BattleProvince } from "./BattleProvince";
 
 export class ArmyMove {
-  readonly source: Province;
-  readonly target: string;
+  readonly source: BattleProvince;
+  readonly target: BattleProvince;
   readonly toStay: number;
 
-  constructor(source: Province, target: string, toStay: number) {
+  constructor(source: BattleProvince, target: BattleProvince, toStay: number) {
     this.source = source;
     this.target = target;
     this.toStay = toStay;
