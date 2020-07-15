@@ -32,7 +32,13 @@ export class ProvinceProductionAi {
   updateProduction(province: BattleProvince) {
     const productionGoal = this.getProductionGoal(province);
     if (productionGoal !== null) {
-      this.clicker.changeProvinceProduction(province.name, productionGoal);
+      if (province.production === productionGoal) {
+        console.log(
+          `no need to change. ${province.name} is already building ${province.production}`
+        );
+      } else {
+        this.clicker.changeProvinceProduction(province.name, productionGoal);
+      }
     }
   }
 
