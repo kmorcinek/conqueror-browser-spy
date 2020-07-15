@@ -65,9 +65,9 @@ export class ArmyMoverAi {
 
       console.log(">>> Closest target:", targetProvince.name);
       let toStay = this.getNumberOfSoldiersToStayByAttitude(sourceProvince);
-      if (sourceProvince.closestOpponentDistance === 2) {
-        toStay = Math.max(toStay, sourceProvince.farms);
-      }
+      // if (sourceProvince.closestOpponentDistance === 2) {
+      toStay = Math.max(toStay, sourceProvince.farms);
+      // }
       // TODO: UT for that
       const path = this.battleProvinceNeighborhoods.getPath(sourceProvince, targetProvince);
       // TODO: when not all provinces has neighbors path sometimes have not sense
