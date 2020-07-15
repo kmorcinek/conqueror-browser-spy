@@ -114,7 +114,15 @@ export class ConquerorSpy {
     console.log("tool version: " + toolVersion);
   }
 
-  static refreshTurn() {
+  private static refreshTurn() {
+    try {
+      ConquerorSpy.refreshTurnInternal();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  private static refreshTurnInternal() {
     const turn = Globals.getTurn();
 
     if (isNaN(turn)) {
@@ -151,14 +159,22 @@ export class ConquerorSpy {
     }
   }
 
-  static cleanAllValues() {
+  private static cleanAllValues() {
     ConquerorSpy.provinceHistoryService.reset();
     ConquerorSpy.historyChecker.reset();
     ConquerorSpy.productionChecker.reset();
     ConquerorSpy.provinceOwnership.reset();
   }
 
-  static refreshName() {
+  private static refreshName() {
+    try {
+      ConquerorSpy.refreshNameInternal();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  private static refreshNameInternal() {
     const country = Globals.getCountry();
     if (country !== ConquerorSpy.lastCountry) {
       ConquerorSpy.lastCountry = country;
