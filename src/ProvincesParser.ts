@@ -79,7 +79,7 @@ export class ProvinceParser {
       culture,
       production,
       parseInt(soldierItem!.textContent!),
-      this.getFort(mapDocument, provinceName),
+      this.parseFort(mapDocument, provinceName),
       attitude
     );
 
@@ -153,7 +153,7 @@ export class ProvinceParser {
     throw new DOMException(errorMessage);
   }
 
-  private getFort(mapDocument: Document, provinceName: string): Fortification {
+  private parseFort(mapDocument: Document, provinceName: string): Fortification {
     function createFortId(prefix: string) {
       return prefix + provinceName.toLowerCase() + "_0";
     }
