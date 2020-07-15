@@ -8,6 +8,8 @@ export class BattleProvince {
   readonly province: Province;
   readonly provinceOwner: ProvinceOwner;
   readonly neighbors: BattleProvince[] = [];
+  closestOpponent: BattleProvince | undefined;
+  closestOpponentDistance: number = 0;
 
   constructor(province: Province, provinceOwner: ProvinceOwner) {
     this.province = province;
@@ -40,6 +42,11 @@ export class BattleProvince {
 
   isOpponent() {
     return this.provinceOwner === ProvinceOwner.Opponent;
+  }
+
+  updateClosestOpponent(province: BattleProvince, distance: number) {
+    this.closestOpponent = province;
+    this.closestOpponentDistance = distance;
   }
 
   private filterNeighborsByOwner(provinceOwner: ProvinceOwner) {

@@ -63,7 +63,7 @@ export class ProvinceProductionAi {
       return Production.Soldier;
     }
 
-    if (province.soldiers < province.farms) {
+    if (province.closestOpponentDistance <= 2 && province.soldiers < province.farms) {
       return Production.Soldier;
     }
 

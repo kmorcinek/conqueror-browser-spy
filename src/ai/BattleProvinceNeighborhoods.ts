@@ -13,6 +13,7 @@ export class BattleProvinceNeighborhoods {
 
   private battleProvinces: Record<string, BattleProvince> = {};
   private ownedBattleProvinces: BattleProvince[] = [];
+  private opponentProvinces: BattleProvince[] = [];
 
   constructor(
     provinceOwnership: IProvinceOwnership,
@@ -32,7 +33,7 @@ export class BattleProvinceNeighborhoods {
     const ownedProvinces = this.provinceOwnership.getOwnedProvinces();
     this.ownedBattleProvinces = this.createBattleProvinces(ownedProvinces, ProvinceOwner.Me);
 
-    this.createBattleProvinces(
+    this.opponentProvinces = this.createBattleProvinces(
       this.provinceOwnership.getOpponentProvinces(),
       ProvinceOwner.Opponent
     );
@@ -99,7 +100,29 @@ export class BattleProvinceNeighborhoods {
         const neighborBattleProvince = this.battleProvinces[neighborName];
         battleProvince.addNeighbor(neighborBattleProvince);
       }
+
+      const closestOpponent = this.getClosestOpponent(battleProvince);
+      const distance = this.getDistance(battleProvince, closestOpponent);
+      battleProvince.updateClosestOpponent(closestOpponent, distance);
     }
+  }
+
+  private getClosestOpponent(province: BattleProvince): BattleProvince {
+    let smallestDistance: number = 300;
+    let closestOpponent;
+    for (const neighbor of this.opponentProvinces) {
+      const distance = this.getDistance(province, neighbor);
+
+      if (distance < smallestDistance) {
+        smallestDistance = distance;
+        closestOpponent = neighbor;
+      }
+    }
+
+    if (closestOpponent === undefined) {
+      throw new Error(`at least one opponent province have to be present`);
+    }
+    return closestOpponent;
   }
 
   private reset() {
