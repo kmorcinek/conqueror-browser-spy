@@ -61,7 +61,7 @@ export class ArmyMoverAi {
         .reverse()[0];
 
       console.log(">>> Closest target:", targetProvince.name);
-      let toStay = this.getNumberOfSoldiersToStay(sourceProvince);
+      let toStay = this.getNumberOfSoldiersToStayByAttitude(sourceProvince);
       if (this.battleProvinceNeighborhoods.getDistance(sourceProvince, targetProvince) === 2) {
         toStay = Math.max(toStay, sourceProvince.farms);
       }
@@ -142,7 +142,7 @@ export class ArmyMoverAi {
     remainingSoldiers: number,
     target: BattleProvince
   ) {
-    const soldiersToStay = this.getNumberOfSoldiersToStay(source);
+    const soldiersToStay = this.getNumberOfSoldiersToStayByAttitude(source);
     const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
     if (target.fort !== Fortification.Nothing) {
       return this.attackFort(soldiersReadyToAttack, target);
@@ -157,7 +157,7 @@ export class ArmyMoverAi {
     remainingSoldiers: number,
     target: BattleProvince
   ) {
-    const soldiersToStay = this.getNumberOfSoldiersToStay(source);
+    const soldiersToStay = this.getNumberOfSoldiersToStayByAttitude(source);
     const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
     if (target.fort !== Fortification.Nothing) {
       return this.attackFort(soldiersReadyToAttack, target);
@@ -173,7 +173,7 @@ export class ArmyMoverAi {
     }
   }
 
-  private getNumberOfSoldiersToStay(source: BattleProvince): number {
+  private getNumberOfSoldiersToStayByAttitude(source: BattleProvince): number {
     switch (source.attitude) {
       case Attitude.Rebellious:
       case Attitude.Restless:
