@@ -103,7 +103,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.8.4 - battle province refactoring";
+    const toolVersion = "1.8.5 - sort provinces by soldiers number";
 
     console.log("tool version: " + toolVersion);
   }
