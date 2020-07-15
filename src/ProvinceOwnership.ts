@@ -106,8 +106,8 @@ export class ProvinceOwnership implements IProvinceOwnership {
 
   // tslint:disable-next-line: member-ordering
   reset() {
-    this.ownedProvinces = [];
-    this.opponentProvinces = [];
-    this.neutralProvinces = [];
+    this.ownedProvinces.splice(0, this.ownedProvinces.length);
+    this.opponentProvinces.splice(0, this.opponentProvinces.length);
+    this.neutralProvinces.splice(0, this.neutralProvinces.length);
   }
 }
