@@ -45,7 +45,7 @@ export class TinyMapProvinceNeighbourhoodProvider implements IProvinceNeighbourh
   }
 
   private push(neighbors: string[], neighbor: string) {
-    const notExistingProvinces = ["a1", "a4", "e4"];
+    const notExistingProvinces = ["a1", "a4", "e4", "b5", "d5"];
     if (notExistingProvinces.includes(neighbor)) {
       return;
     }

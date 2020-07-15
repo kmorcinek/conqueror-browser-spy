@@ -98,6 +98,9 @@ export class BattleProvinceNeighborhoods {
 
       for (const neighborName of neighbors) {
         const neighborBattleProvince = this.battleProvinces[neighborName];
+        if (neighborBattleProvince === undefined) {
+          throw new Error(`neighbor with name '${neighborName}' is not yet in battleProvinces`);
+        }
         battleProvince.addNeighbor(neighborBattleProvince);
       }
 
