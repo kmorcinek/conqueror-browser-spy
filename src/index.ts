@@ -109,7 +109,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.8.5 - sort provinces by soldiers number";
+    const toolVersion = "1.8.6 - PROD version is not showing history for owned provinces";
 
     console.log("tool version: " + toolVersion);
   }
