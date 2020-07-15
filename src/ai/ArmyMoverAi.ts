@@ -10,54 +10,6 @@ import { ArmyMovesRecorder } from "./ArmyMovesRecorder";
 import { ArmyMove } from "./ArmyMove";
 
 export class ArmyMoverAi {
-  static attackingSoldiersCount(source: Province, remainingSoldiers: number, target: Province) {
-    const soldiersToStay = ArmyMoverAi.getNumberOfSoldiersToStay(source);
-    const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
-    if (target.fort !== Fortification.Nothing) {
-      return ArmyMoverAi.attackFort(soldiersReadyToAttack, target);
-    }
-    const soldiersToConquer =
-      target.soldiers + 2 + Math.floor(target.farms / 3) + Math.floor(target.soldiers + 1 / 9);
-    return Math.min(soldiersReadyToAttack, soldiersToConquer);
-  }
-
-  static attackingSoldiersCountForLastProvince(
-    source: Province,
-    remainingSoldiers: number,
-    target: Province
-  ) {
-    const soldiersToStay = ArmyMoverAi.getNumberOfSoldiersToStay(source);
-    const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
-    if (target.fort !== Fortification.Nothing) {
-      return ArmyMoverAi.attackFort(soldiersReadyToAttack, target);
-    }
-    return soldiersReadyToAttack;
-  }
-
-  static attackFort(soldiersReadyToAttack: number, target: Province) {
-    if (soldiersReadyToAttack > target.soldiers + 4) {
-      return target.soldiers + 5;
-    } else {
-      return 0;
-    }
-  }
-
-  private static getNumberOfSoldiersToStay(source: Province): number {
-    switch (source.attitude) {
-      case Attitude.Rebellious:
-      case Attitude.Restless:
-        return Math.ceil(source.farms / 2);
-      case Attitude.Content:
-        return Math.ceil(source.farms / 4);
-      case Attitude.Supportive:
-      case Attitude.Devoted:
-        return 0;
-      default:
-        console.error("Missing Attitude");
-        throw new Error("Missing Attitude");
-    }
-  }
-
   private clicker: Clicker;
   private provinceOwnership: IProvinceOwnership;
   private provinceNeighborhood: ProvinceNeighborhood;
@@ -114,7 +66,7 @@ export class ArmyMoverAi {
       console.log("> Number of closeEnemiesOrNeutral:", closeEnemiesOrNeutral.length);
       const targetProvince = closeEnemiesOrNeutral[0];
       console.log("> Closest target:", targetProvince);
-      let toStay = ArmyMoverAi.getNumberOfSoldiersToStay(sourceProvince);
+      let toStay = this.getNumberOfSoldiersToStay(sourceProvince);
       if (this.provinceNeighborhood.getDistance(sourceProvince.name, targetProvince) === 2) {
         toStay = Math.max(toStay, sourceProvince.farms);
       }
@@ -142,13 +94,13 @@ export class ArmyMoverAi {
       const target = this.provinceHistoryService.getByName(neighbor).getLast();
       let attackingSoldiersCount: number;
       if (isLastProvinceToAttack) {
-        attackingSoldiersCount = ArmyMoverAi.attackingSoldiersCountForLastProvince(
+        attackingSoldiersCount = this.attackingSoldiersCountForLastProvince(
           sourceProvince,
           remainingSoldiers,
           target
         );
       } else {
-        attackingSoldiersCount = ArmyMoverAi.attackingSoldiersCount(
+        attackingSoldiersCount = this.attackingSoldiersCount(
           sourceProvince,
           remainingSoldiers,
           target
@@ -187,5 +139,53 @@ export class ArmyMoverAi {
       .getByName(provinceName)
       .getLast()
       .calculateValue();
+  }
+
+  private attackingSoldiersCount(source: Province, remainingSoldiers: number, target: Province) {
+    const soldiersToStay = this.getNumberOfSoldiersToStay(source);
+    const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
+    if (target.fort !== Fortification.Nothing) {
+      return this.attackFort(soldiersReadyToAttack, target);
+    }
+    const soldiersToConquer =
+      target.soldiers + 2 + Math.floor(target.farms / 3) + Math.floor(target.soldiers + 1 / 9);
+    return Math.min(soldiersReadyToAttack, soldiersToConquer);
+  }
+
+  private attackingSoldiersCountForLastProvince(
+    source: Province,
+    remainingSoldiers: number,
+    target: Province
+  ) {
+    const soldiersToStay = this.getNumberOfSoldiersToStay(source);
+    const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
+    if (target.fort !== Fortification.Nothing) {
+      return this.attackFort(soldiersReadyToAttack, target);
+    }
+    return soldiersReadyToAttack;
+  }
+
+  private attackFort(soldiersReadyToAttack: number, target: Province) {
+    if (soldiersReadyToAttack > target.soldiers + 4) {
+      return target.soldiers + 5;
+    } else {
+      return 0;
+    }
+  }
+
+  private getNumberOfSoldiersToStay(source: Province): number {
+    switch (source.attitude) {
+      case Attitude.Rebellious:
+      case Attitude.Restless:
+        return Math.ceil(source.farms / 2);
+      case Attitude.Content:
+        return Math.ceil(source.farms / 4);
+      case Attitude.Supportive:
+      case Attitude.Devoted:
+        return 0;
+      default:
+        console.error("Missing Attitude");
+        throw new Error("Missing Attitude");
+    }
   }
 }
