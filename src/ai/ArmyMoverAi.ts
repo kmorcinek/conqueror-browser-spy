@@ -58,9 +58,9 @@ export class ArmyMoverAi {
         sourceProvince
       );
 
-      console.log("> Number of closeEnemiesOrNeutral:", closeEnemiesOrNeutral.length);
+      console.log(">> Number of closeEnemiesOrNeutral:", closeEnemiesOrNeutral.length);
       const targetProvince = closeEnemiesOrNeutral[0];
-      console.log("> Closest target:", targetProvince);
+      console.log(">>> Closest target:", targetProvince);
       let toStay = this.getNumberOfSoldiersToStay(sourceProvince);
       if (this.provinceNeighborhood.getDistance(sourceProvince.name, targetProvince) === 2) {
         toStay = Math.max(toStay, sourceProvince.farms);
@@ -125,7 +125,7 @@ export class ArmyMoverAi {
       this.armyMovesRecorder.addMove(new ArmyMove(sourceProvince, target, toStay));
     } else {
       console.log(
-        `> Not enough soldiers. soldier:'${sourceProvince.soldiers}', toStay:'${toStay}'`
+        `>>>> Not enough soldiers. soldier:'${sourceProvince.soldiers}', toStay:'${toStay}'`
       );
     }
   }
