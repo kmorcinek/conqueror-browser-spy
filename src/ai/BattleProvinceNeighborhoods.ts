@@ -51,8 +51,10 @@ export class BattleProvinceNeighborhoods {
   }
 
   getClosestNotConqueredNeighbors(battleProvince: BattleProvince): BattleProvince[] {
-    const closeNotConqueredNeighborNames = this.provinceNeighborhoods.getCloseNotConqueredNeighbors(battleProvince.name);
-    return closeNotConqueredNeighborNames.map((name) => {
+    const closeNotConqueredNeighborNames = this.provinceNeighborhoods.getCloseNotConqueredNeighbors(
+      battleProvince.name
+    );
+    return closeNotConqueredNeighborNames.map(name => {
       return this.battleProvinces[name];
     });
   }
@@ -62,7 +64,7 @@ export class BattleProvinceNeighborhoods {
   }
 
   getPath(source: BattleProvince, target: BattleProvince): string[] {
-    return  this.provinceNeighborhood.getPath(source.name, target.name);
+    return this.provinceNeighborhood.getPath(source.name, target.name);
   }
 
   private createBattleProvinces(

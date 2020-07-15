@@ -30,6 +30,7 @@ export class ConquerorSpy {
   static provinceProductionAi: ProvinceProductionAi;
   static armyMoverAi: ArmyMoverAi;
   static goldService: GoldService;
+  static battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
   static clicker = new Clicker();
 
   static lastTurn: number = NaN;
@@ -55,21 +56,20 @@ export class ConquerorSpy {
     );
     ConquerorSpy.provinceOwnership = provinceOwnership;
     const buildingChanger = new BuildingChanger(clicker);
-    ConquerorSpy.provinceProductionAi = new ProvinceProductionAi(
-      clicker,
-      goldService,
+    ConquerorSpy.battleProvinceNeighborhoods = new BattleProvinceNeighborhoods(
       provinceOwnership,
       provinceNeighborhood,
+      provinceNeighborhoods,
       provinceHistoryService
+    );
+    ConquerorSpy.provinceProductionAi = new ProvinceProductionAi(
+      clicker,
+      ConquerorSpy.battleProvinceNeighborhoods,
+      goldService
     );
     ConquerorSpy.armyMoverAi = new ArmyMoverAi(
       clicker,
-      new BattleProvinceNeighborhoods(
-        provinceOwnership,
-        provinceNeighborhood,
-        provinceNeighborhoods,
-        provinceHistoryService
-      ),
+      ConquerorSpy.battleProvinceNeighborhoods,
       new ArmyMovesRecorder()
     );
     ConquerorSpy.productionChecker = new ProductionChecker(
@@ -130,6 +130,7 @@ export class ConquerorSpy {
       // AI
       const runAi: boolean = false;
       if (runAi) {
+        ConquerorSpy.battleProvinceNeighborhoods.recreateNextTurn();
         ConquerorSpy.provinceProductionAi.updateAllProvinces();
         ConquerorSpy.armyMoverAi.moveArmies();
         window.setTimeout(function() {

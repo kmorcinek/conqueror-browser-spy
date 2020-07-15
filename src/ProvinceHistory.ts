@@ -17,7 +17,7 @@ export class ProvinceHistory {
   history: Province[] = [];
 
   add(newProvince: Province) {
-    const turns = this.history.map((province: Province) => province.turn );
+    const turns = this.history.map((province: Province) => province.turn);
 
     if (turns.includes(newProvince.turn)) {
       throw new Error(`turn '${newProvince.turn}' already exists in history`);

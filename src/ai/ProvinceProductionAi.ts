@@ -1,57 +1,47 @@
 import { Clicker } from "../Clicker";
-import { Province } from "../Province";
 import { Production } from "../Production";
-import { ProvinceHistoryService } from "../ProvinceHistoryService";
-import { ProvinceNeighborhood } from "../ProvinceNeighborhood";
 import { Culture } from "../Culture";
 import { Attitude } from "../Attitude";
-import { IProvinceOwnership } from "../IProvinceOwnership";
 import { BuyProduction } from "../BuyProduction";
 import { GoldService } from "../GoldService";
+import { BattleProvinceNeighborhoods } from "./BattleProvinceNeighborhoods";
+import { BattleProvince } from "./BattleProvince";
 
 export class ProvinceProductionAi {
   private clicker: Clicker;
+  private battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
   private goldService: GoldService;
-  private provinceOwnership: IProvinceOwnership;
-  private provinceNeighborhood: ProvinceNeighborhood;
-  private provinceHistoryService: ProvinceHistoryService;
 
   constructor(
     clicker: Clicker,
-    goldService: GoldService,
-    provinceOwnership: IProvinceOwnership,
-    provinceNeighborhood: ProvinceNeighborhood,
-    provinceHistoryService: ProvinceHistoryService
+    battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
+    goldService: GoldService
   ) {
     this.clicker = clicker;
+    this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
     this.goldService = goldService;
-    this.provinceOwnership = provinceOwnership;
-    this.provinceNeighborhood = provinceNeighborhood;
-    this.provinceHistoryService = provinceHistoryService;
   }
 
   updateAllProvinces() {
-    const conqueredProvinces = this.provinceOwnership.getOwnedProvinces();
-    for (const conqueredProvince of conqueredProvinces) {
-      const original = this.provinceHistoryService.getByName(conqueredProvince).getLast();
-      this.updateProduction(original);
+    const ownedProvinces = this.battleProvinceNeighborhoods.getOwnedProvinces();
+    for (const province of ownedProvinces) {
+      this.updateProduction(province);
     }
   }
 
-  updateProduction(province: Province) {
+  updateProduction(province: BattleProvince) {
     const productionGoal = this.getProductionGoal(province);
     if (productionGoal !== null) {
       this.clicker.changeProvinceProduction(province.name, productionGoal);
     }
   }
 
-  private getProductionGoal(province: Province): Production | BuyProduction | null {
-    if (province.turn === 1) {
+  private getProductionGoal(province: BattleProvince): Production | BuyProduction | null {
+    if (province.province.turn === 1) {
       return BuyProduction.of(Production.Soldier);
     }
 
-    const hasNeighborOpponent: boolean = this.hasNeighborOpponent(province);
-    if (hasNeighborOpponent) {
+    if (province.hasNeighborOpponent()) {
       return Production.Soldier;
     }
 
@@ -59,8 +49,7 @@ export class ProvinceProductionAi {
       return Production.Diplomat;
     }
 
-    const hasNeighborToConquer: boolean = this.hasNeighborToConquer(province);
-    if (hasNeighborToConquer && province.culture !== Culture.Primitive) {
+    if (province.hasNeighborToConquer() && province.culture !== Culture.Primitive) {
       return Production.Soldier;
     }
 
@@ -79,8 +68,9 @@ export class ProvinceProductionAi {
     }
 
     // Buy Culture if you can
+    // TODO: more checks here, if the neighbor is opponent or neutral and if opponent has more armies than we
     if (
-      hasNeighborToConquer &&
+      province.hasNeighborToConquer() &&
       province.culture === Culture.Primitive &&
       province.farms >= 3 &&
       this.isEnoughGold(Production.Culture)
@@ -102,17 +92,5 @@ export class ProvinceProductionAi {
     }
 
     return false;
-  }
-
-  private hasNeighborToConquer(province: Province): boolean {
-    const conqueredProvinces = this.provinceOwnership.getOwnedProvinces();
-    const neighbors = this.provinceNeighborhood.getNeighbors(province.name);
-    return neighbors.filter(neighbor => conqueredProvinces.includes(neighbor) === false).length > 0;
-  }
-
-  private hasNeighborOpponent(province: Province): boolean {
-    const neighbors = this.provinceNeighborhood.getNeighbors(province.name);
-    const opponentNeighbors = this.provinceOwnership.filterOpponents(neighbors);
-    return opponentNeighbors.length > 0;
   }
 }

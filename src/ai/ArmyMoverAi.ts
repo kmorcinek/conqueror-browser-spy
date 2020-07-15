@@ -22,7 +22,6 @@ export class ArmyMoverAi {
   }
 
   moveArmies() {
-    this.battleProvinceNeighborhoods.recreateNextTurn();
     let ownedProvinces = this.battleProvinceNeighborhoods.getOwnedProvinces();
     ownedProvinces = this.sortByNumberOfSoldier(ownedProvinces);
     for (const ownedProvince of ownedProvinces) {
@@ -56,10 +55,10 @@ export class ArmyMoverAi {
       );
       console.log(">> Number of closeEnemiesOrNeutral:", closeOpponentOrNeutralNeighbors.length);
 
-      let opponentToNumber = (bp: BattleProvince) => bp.isOpponent() ? 1 : 0;
-      const targetProvince  = closeOpponentOrNeutralNeighbors.sort(
-        (first, second) => opponentToNumber(first) - opponentToNumber(second)
-      ).reverse()[0];
+      const opponentToNumber = (bp: BattleProvince) => (bp.isOpponent() ? 1 : 0);
+      const targetProvince = closeOpponentOrNeutralNeighbors
+        .sort((first, second) => opponentToNumber(first) - opponentToNumber(second))
+        .reverse()[0];
 
       console.log(">>> Closest target:", targetProvince.name);
       let toStay = this.getNumberOfSoldiersToStay(sourceProvince);
@@ -133,9 +132,9 @@ export class ArmyMoverAi {
 
   // tslint:disable-next-line: member-ordering
   sortByProvinceValue(notOwnedNeighbors: BattleProvince[]) {
-    return notOwnedNeighbors.sort(
-      (first, second) => first.province.calculateValue() - second.province.calculateValue()
-    ).reverse();
+    return notOwnedNeighbors
+      .sort((first, second) => first.province.calculateValue() - second.province.calculateValue())
+      .reverse();
   }
 
   private attackingSoldiersCount(
@@ -191,8 +190,6 @@ export class ArmyMoverAi {
   }
 
   private sortByNumberOfSoldier(ownedProvinces: BattleProvince[]) {
-    return ownedProvinces.sort(
-      (first, second) => second.soldiers - first.soldiers
-    );
+    return ownedProvinces.sort((first, second) => second.soldiers - first.soldiers);
   }
 }
