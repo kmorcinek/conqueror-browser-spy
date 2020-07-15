@@ -134,8 +134,8 @@ export class ArmyMoverAi {
   // tslint:disable-next-line: member-ordering
   sortByProvinceValue(notOwnedNeighbors: BattleProvince[]) {
     return notOwnedNeighbors.sort(
-      (first, second) => second.province.calculateValue() - first.province.calculateValue()
-    );
+      (first, second) => first.province.calculateValue() - second.province.calculateValue()
+    ).reverse();
   }
 
   private attackingSoldiersCount(
