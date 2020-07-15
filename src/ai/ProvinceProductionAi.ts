@@ -41,6 +41,16 @@ export class ProvinceProductionAi {
       return BuyProduction.of(Production.Soldier);
     }
 
+    // TODO if is capitol
+    if (
+      province.culture === Culture.Developed &&
+      province.farms === 3 &&
+      province.hasNeighborToConquer() &&
+      province.province.turn < 10
+    ) {
+      return BuyProduction.of(Production.Soldier);
+    }
+
     if (province.hasNeighborOpponent()) {
       return Production.Soldier;
     }
