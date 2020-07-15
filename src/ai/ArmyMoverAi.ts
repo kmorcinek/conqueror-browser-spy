@@ -163,7 +163,15 @@ export class ArmyMoverAi {
     }
     const soldiersToConquer =
       target.soldiers + 2 + Math.floor(target.farms / 3) + Math.floor(target.soldiers + 1 / 9);
-    return Math.min(soldiersReadyToAttack, soldiersToConquer);
+
+    if (target.isOpponent()) {
+      if (soldiersReadyToAttack >= soldiersToConquer) {
+        return soldiersToConquer;
+      }
+      return 0;
+    } else {
+      return Math.min(soldiersReadyToAttack, soldiersToConquer);
+    }
   }
 
   private attackingSoldiersCountForLastProvince(
@@ -176,7 +184,18 @@ export class ArmyMoverAi {
     if (target.fort !== Fortification.Nothing) {
       return this.attackFort(soldiersReadyToAttack, target);
     }
-    return soldiersReadyToAttack;
+
+    const soldiersToConquer =
+      target.soldiers + 2 + Math.floor(target.farms / 3) + Math.floor(target.soldiers + 1 / 9);
+
+    if (target.isOpponent()) {
+      if (soldiersReadyToAttack >= soldiersToConquer) {
+        return soldiersReadyToAttack;
+      }
+      return 0;
+    } else {
+      return soldiersReadyToAttack;
+    }
   }
 
   private attackFort(soldiersReadyToAttack: number, target: BattleProvince) {
