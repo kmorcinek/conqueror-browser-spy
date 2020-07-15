@@ -50,7 +50,7 @@ export class ArmyMoverAi {
     } else if (neutralNeighbors.length > 0) {
       this.attackNeighbors(neutralNeighbors, sourceProvince, sourceProvince.soldiers);
     } else {
-      console.log("> neighbors conquered. Moving armies");
+      console.log("> close neighbors already conquered. Moving armies");
       const closeOpponentOrNeutralNeighbors = this.battleProvinceNeighborhoods.getClosestNotConqueredNeighbors(
         sourceProvince
       );
