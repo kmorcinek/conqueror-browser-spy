@@ -169,8 +169,12 @@ export class ArmyMoverAi {
   }
 
   private attackFort(soldiersReadyToAttack: number, target: BattleProvince) {
-    const fortOverAttack = 5;
+    const fortOverAttack = 5 + Math.floor(target.soldiers / 5);
     if (soldiersReadyToAttack >= target.soldiers + fortOverAttack) {
+      // Attack Opponent with everything
+      if (target.isOpponent()) {
+        return soldiersReadyToAttack;
+      }
       return target.soldiers + fortOverAttack;
     } else {
       return 0;
