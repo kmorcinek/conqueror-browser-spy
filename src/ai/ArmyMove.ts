@@ -10,4 +10,8 @@ export class ArmyMove {
     this.target = target;
     this.toStay = toStay;
   }
+
+  get armySize(): number {
+    return this.source.soldiers - this.toStay;
+  }
 }

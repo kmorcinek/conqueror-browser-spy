@@ -10,6 +10,9 @@ export class ArmyMovesRecorder {
     if (this.isFull()) {
       throw new Error(`Only '${ArmyMovesRecorder.MAX_MOVES_PER_TURN}' per turn are allowed`);
     }
+    console.log(
+      `>>>> adding move from ${armyMove.source.name} to ${armyMove.target.name}, army size ${armyMove.armySize}`
+    );
     this.armyMoves.push(armyMove);
   }
 
