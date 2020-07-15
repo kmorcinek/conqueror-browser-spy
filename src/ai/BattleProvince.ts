@@ -25,6 +25,14 @@ export class BattleProvince {
     return this.filterNeighborsByOwner(ProvinceOwner.Neutral);
   }
 
+  isMine() {
+    return this.provinceOwner === ProvinceOwner.Me;
+  }
+
+  isOpponent() {
+    return this.provinceOwner === ProvinceOwner.Opponent;
+  }
+
   private filterNeighborsByOwner(provinceOwner: ProvinceOwner) {
     return this.neighbors.filter(neighbor => neighbor.provinceOwner === provinceOwner);
   }

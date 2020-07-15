@@ -64,7 +64,6 @@ export class ConquerorSpy {
     );
     ConquerorSpy.armyMoverAi = new ArmyMoverAi(
       clicker,
-      provinceNeighborhood,
       new BattleProvinceNeighborhoods(
         provinceOwnership,
         provinceNeighborhood,

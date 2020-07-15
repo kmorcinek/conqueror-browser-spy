@@ -1,5 +1,4 @@
 import { Clicker } from "../Clicker";
-import { ProvinceNeighborhood } from "../ProvinceNeighborhood";
 import { Attitude } from "../Attitude";
 import { Fortification } from "../Fortification";
 import { ArmyMovesRecorder } from "./ArmyMovesRecorder";
@@ -9,18 +8,15 @@ import { BattleProvince } from "./BattleProvince";
 
 export class ArmyMoverAi {
   private clicker: Clicker;
-  private provinceNeighborhood: ProvinceNeighborhood;
   private battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
   private armyMovesRecorder: ArmyMovesRecorder;
 
   constructor(
     clicker: Clicker,
-    provinceNeighborhood: ProvinceNeighborhood,
     battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
     armyMovesRecorder: ArmyMovesRecorder
   ) {
     this.clicker = clicker;
-    this.provinceNeighborhood = provinceNeighborhood;
     this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
     this.armyMovesRecorder = armyMovesRecorder;
   }
@@ -55,19 +51,23 @@ export class ArmyMoverAi {
       this.attackNeighbors(neutralNeighbors, sourceProvince, sourceProvince.soldiers);
     } else {
       console.log("> neighbors conquered. Moving armies");
-      const closeEnemiesOrNeutral = this.battleProvinceNeighborhoods.getCloseNotConqueredNeighbors(
+      const closeOpponentOrNeutralNeighbors = this.battleProvinceNeighborhoods.getClosestNotConqueredNeighbors(
         sourceProvince
       );
+      console.log(">> Number of closeEnemiesOrNeutral:", closeOpponentOrNeutralNeighbors.length);
 
-      console.log(">> Number of closeEnemiesOrNeutral:", closeEnemiesOrNeutral.length);
-      const targetProvince = closeEnemiesOrNeutral[0];
-      console.log(">>> Closest target:", targetProvince);
+      let opponentToNumber = (bp: BattleProvince) => bp.isOpponent() ? 1 : 0;
+      const targetProvince  = closeOpponentOrNeutralNeighbors.sort(
+        (first, second) => opponentToNumber(first) - opponentToNumber(second)
+      ).reverse()[0];
+
+      console.log(">>> Closest target:", targetProvince.name);
       let toStay = this.getNumberOfSoldiersToStay(sourceProvince);
-      if (this.provinceNeighborhood.getDistance(sourceProvince.name, targetProvince) === 2) {
+      if (this.battleProvinceNeighborhoods.getDistance(sourceProvince, targetProvince) === 2) {
         toStay = Math.max(toStay, sourceProvince.farms);
       }
       // TODO: UT for that
-      const path = this.provinceNeighborhood.getPath(sourceProvince.name, targetProvince);
+      const path = this.battleProvinceNeighborhoods.getPath(sourceProvince, targetProvince);
       // TODO: when not all provinces has neighbors path sometimes have not sense
       if (path.length > 0) {
         this.moveWhenEnoughSoldier(

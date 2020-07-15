@@ -21,7 +21,7 @@ describe("ArmyMoveAi", () => {
     const provinceHistoryService = new ProvinceHistoryService();
     provinceHistoryService.getByName(primitiveProvince.name).add(primitiveProvince);
     provinceHistoryService.getByName(developedProvince.name).add(developedProvince);
-    const sut = new ArmyMoverAi(null as any, null as any, null as any, null as any);
+    const sut = new ArmyMoverAi(null as any, null as any, null as any);
 
     const neighbors = [
       new BattleProvince(primitiveProvince, ProvinceOwner.Opponent),
