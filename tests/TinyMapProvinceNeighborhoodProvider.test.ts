@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { TinyMapProvinceNeighbourhoodProvider } from "../../src/ProvinceNeighborhood/TinyMapProvinceNeighbourhoodProvider";
+import { TinyMapProvinceNeighbourhoodProvider } from "../src/ProvinceNeighborhood/TinyMapProvinceNeighbourhoodProvider";
 
 describe("TinyProvinceNeighborhoodsProvider", () => {
   it("tiny map around b2", () => {
