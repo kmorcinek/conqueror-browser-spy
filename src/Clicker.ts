@@ -29,8 +29,8 @@ export class Clicker {
   }
 
   clickEndTurn() {
-    const endTurnButton = document.getElementsByClassName("endTurn")[0];
-    this.click(endTurnButton);
+    console.log("clicking end turn");
+    this.clickByClassName("endTurn");
   }
 
   moveArmy(sourceProvince: string, targetProvince: string, decrementArmySize: number) {
@@ -46,6 +46,7 @@ export class Clicker {
     }
 
     this.confirmArmy();
+    console.log("soldiers moved");
   }
 
   private getProvinceElement(provinceName: string) {
@@ -54,8 +55,7 @@ export class Clicker {
   }
 
   private decrementArmy() {
-    const submitButton = this.getElementByClassName("decUnits");
-    this.click(submitButton);
+    this.clickByClassName("decUnits");
   }
 
   private getElementByClassName(className: string) {
@@ -63,8 +63,7 @@ export class Clicker {
   }
 
   private confirmArmy() {
-    const submitButton = document.getElementsByClassName("submit")[0];
-    this.click(submitButton);
+    this.clickByClassName("submit");
   }
 
   private click(element: Element | null) {
@@ -110,7 +109,7 @@ export class Clicker {
   }
 
   private clickByClassName(className: string) {
-    const element = document.getElementsByClassName(className)[0];
+    const element = this.getElementByClassName(className);
     this.click(element);
   }
 }
