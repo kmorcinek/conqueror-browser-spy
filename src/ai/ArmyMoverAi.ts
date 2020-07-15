@@ -27,7 +27,8 @@ export class ArmyMoverAi {
 
   moveArmies() {
     this.battleProvinceNeighborhoods.recreateNextTurn();
-    const ownedProvinces = this.battleProvinceNeighborhoods.getOwnedProvinces();
+    let ownedProvinces = this.battleProvinceNeighborhoods.getOwnedProvinces();
+    ownedProvinces = this.sortByNumberOfSoldier(ownedProvinces);
     for (const ownedProvince of ownedProvinces) {
       if (this.armyMovesRecorder.isFull()) {
         break;
@@ -187,5 +188,11 @@ export class ArmyMoverAi {
         console.error("Missing Attitude");
         throw new Error("Missing Attitude");
     }
+  }
+
+  private sortByNumberOfSoldier(ownedProvinces: BattleProvince[]) {
+    return ownedProvinces.sort(
+      (first, second) => second.soldiers - first.soldiers
+    );
   }
 }
