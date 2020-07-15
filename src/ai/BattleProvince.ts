@@ -3,6 +3,7 @@ import { ProvinceOwner } from "../ProvinceOwner";
 import { Culture } from "../Culture";
 import { Attitude } from "../Attitude";
 import { Production } from "../Production";
+import { Fortification } from "../Fortification";
 
 export class BattleProvince {
   readonly province: Province;
@@ -77,7 +78,7 @@ export class BattleProvince {
     return this.province.soldiers;
   }
 
-  get fort(): string {
+  get fort(): Fortification {
     return this.province.fort;
   }
 

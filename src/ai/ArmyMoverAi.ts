@@ -87,13 +87,24 @@ export class ArmyMoverAi {
     remainingSoldiers: number
   ) {
     const neighborsToAttack = this.sortByProvinceValue(notOwnedNeighbors);
-    for (const neighbor of neighborsToAttack) {
+    for (const target of neighborsToAttack) {
       if (this.armyMovesRecorder.isFull()) {
         return;
       }
-      console.log("trying to move army to      " + neighbor.name);
-      const isLastProvinceToAttack = neighbor === neighborsToAttack[neighborsToAttack.length - 1];
-      const target = neighbor;
+      console.log("trying to move army to      " + target.name);
+      const isLastProvinceToAttack = target === neighborsToAttack[neighborsToAttack.length - 1];
+
+      // Stay in fort
+      if (sourceProvince.fort !== Fortification.Nothing && target.isOpponent()) {
+        // any of them has similar then stay
+        if (neighborsToAttack.filter(x => x.soldiers >= sourceProvince.soldiers).length > 0) {
+          console.log(
+            `> don't leave fort when opponents nearby of ${sourceProvince.name} are strong`
+          );
+          return;
+        }
+      }
+
       let attackingSoldiersCount: number;
       if (isLastProvinceToAttack) {
         attackingSoldiersCount = this.attackingSoldiersCountForLastProvince(
@@ -113,7 +124,7 @@ export class ArmyMoverAi {
       );
       if (attackingSoldiersCount > 0) {
         const decrementArmySize = remainingSoldiers - attackingSoldiersCount;
-        this.moveWhenEnoughSoldier(sourceProvince, decrementArmySize, neighbor);
+        this.moveWhenEnoughSoldier(sourceProvince, decrementArmySize, target);
         remainingSoldiers -= attackingSoldiersCount;
       }
     }

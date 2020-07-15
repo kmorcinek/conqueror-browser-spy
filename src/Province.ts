@@ -35,7 +35,7 @@ export class Province {
   readonly culture: Culture;
   readonly production: Production | null;
   readonly soldiers: number;
-  readonly fort: string;
+  readonly fort: Fortification;
   readonly attitude: Attitude | null;
 
   constructor(
