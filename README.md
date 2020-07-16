@@ -27,7 +27,7 @@
   * In application folder `git reset --hard` - to get back previously deleted file
 * Edit any *.ts files in /src folder
 * Inside Docker Container run: `npm run browserify` - it will run **browsify** and create one file 'output.js' in app-vol folder and expose it as http://127.0.0.1:8887/output.js
-* Create bookmark in browser with js scripts from file `/src/wrapper/wrapper.jjj`
+* Create bookmark in browser with js scripts from file `/wrapper/wrapper.jjj`
   * One bookmark for PROD and one for testing
   * Click the bookmark and scripts are loaded/reloaded
 
