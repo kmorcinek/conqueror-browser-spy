@@ -86,9 +86,19 @@ export class Clicker {
   }
 
   private clickProduction(production: Production) {
+    if (this.isActive(production)) {
+      console.log(`Production ${production} is already active`);
+      return;
+    }
     console.log("changing production to " + production);
     const className = this.getProductionClass(production);
     this.clickByClassName(className);
+  }
+
+  private isActive(production: Production) {
+    const className = this.getProductionClass(production);
+    const element = this.getElementByClassName(className);
+    return element.classList.contains("fieldPropActive");
   }
 
   private getProductionClass(production: Production): string {
