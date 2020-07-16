@@ -59,6 +59,13 @@ export class BattleProvince {
     return this.closestOpponentDistance;
   }
 
+  getClosestOpponent(): BattleProvince {
+    if (this.closestOpponent === undefined) {
+      throw new Error(`closestOpponent  is not set yet`);
+    }
+    return this.closestOpponent;
+  }
+
   getNumberOfSoldiersToStayByAttitude(): number {
     switch (this.attitude) {
       case Attitude.Rebellious:

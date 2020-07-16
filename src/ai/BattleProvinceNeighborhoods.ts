@@ -4,8 +4,9 @@ import { ProvinceNeighborhood } from "../ProvinceNeighborhood";
 import { ProvinceNeighborhoods } from "../ProvinceNeighborhoods";
 import { ProvinceHistoryService } from "../ProvinceHistoryService";
 import { ProvinceOwner } from "../ProvinceOwner";
+import { IBattleProvinceNeighborhoods } from "./IBattleProvinceNeighborhoods";
 
-export class BattleProvinceNeighborhoods {
+export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods {
   private readonly provinceOwnership: IProvinceOwnership;
   private readonly provinceNeighborhood: ProvinceNeighborhood;
   private readonly provinceNeighborhoods: ProvinceNeighborhoods;
@@ -55,9 +56,7 @@ export class BattleProvinceNeighborhoods {
     const closeNotConqueredNeighborNames = this.provinceNeighborhoods.getCloseNotConqueredNeighbors(
       battleProvince.name
     );
-    return closeNotConqueredNeighborNames.map(name => {
-      return this.battleProvinces[name];
-    });
+    return this.getByNames(closeNotConqueredNeighborNames);
   }
 
   getDistance(source: BattleProvince, target: BattleProvince): number {
@@ -66,6 +65,16 @@ export class BattleProvinceNeighborhoods {
 
   getPath(source: BattleProvince, target: BattleProvince): string[] {
     return this.provinceNeighborhood.getPath(source.name, target.name);
+  }
+
+  getManyPathWithDistance2(source: BattleProvince, target: BattleProvince): BattleProvince[][] {
+    return this.provinceNeighborhood
+      .getManyPathWithDistance2(source.name, target.name)
+      .map(first => this.getByNames(first));
+  }
+
+  private getByNames(names: string[]): BattleProvince[] {
+    return names.map(name => this.getByName(name));
   }
 
   private createBattleProvinces(

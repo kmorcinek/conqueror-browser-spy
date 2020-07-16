@@ -6,6 +6,7 @@ export class ProvinceNeighborhood {
 
   private readonly distanceCache: Cache<number> = new Cache<number>();
   private readonly pathCache: Cache<string[]> = new Cache<string[]>();
+  private readonly manyPathCache: Cache<string[][]> = new Cache<string[][]>();
 
   constructor(
     neighbourhoodProviders: IProvinceNeighbourhoodProvider[],
@@ -48,6 +49,31 @@ export class ProvinceNeighborhood {
     return this.distanceCache.getCached(source, target, (src, dest) =>
       this.getDistanceNotCached(src, dest)
     );
+  }
+
+  getManyPathWithDistance2(source: string, target: string): string[][] {
+    return this.manyPathCache.getCached(source, target, (src, dest) =>
+      this.getManyPathWithDistance2NotCached(src, dest)
+    );
+  }
+
+  private getManyPathWithDistance2NotCached(source: string, target: string): string[][] {
+    const manyPath: string[][] = [];
+    if (this.getDistance(source, target) !== 2) {
+      throw new Error(`distance from ${source} to ${target} is required to be 2`);
+    }
+
+    const firstLineOfNeighbors = this.getNeighbors(source);
+    for (const firstNeighbor of firstLineOfNeighbors) {
+      const secondLineOfNeighbors = this.getNeighbors(firstNeighbor);
+      for (const secondNeighbor of secondLineOfNeighbors) {
+        if (secondNeighbor === target) {
+          manyPath.push([firstNeighbor, secondNeighbor]);
+        }
+      }
+    }
+
+    return manyPath;
   }
 
   private getDistanceNotCached(source: string, target: string): number {
