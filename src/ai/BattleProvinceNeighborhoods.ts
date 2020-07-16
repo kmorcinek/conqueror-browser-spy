@@ -113,28 +113,30 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
         battleProvince.addNeighbor(neighborBattleProvince);
       }
 
-      const closestOpponent = this.getClosestOpponent(battleProvince);
-      const distance = this.getDistance(battleProvince, closestOpponent);
-      battleProvince.updateClosestOpponent(closestOpponent, distance);
+      const closestOpponents = this.getClosestOpponents(battleProvince);
+      const distance = this.getDistance(battleProvince, closestOpponents[0]);
+      battleProvince.updateClosestOpponents(closestOpponents, distance);
     }
   }
 
-  private getClosestOpponent(province: BattleProvince): BattleProvince {
+  private getClosestOpponents(province: BattleProvince): BattleProvince[] {
     let smallestDistance: number = 300;
-    let closestOpponent;
+    let closestOpponents: BattleProvince[] = [];
     for (const neighbor of this.opponentProvinces) {
       const distance = this.getDistance(province, neighbor);
 
       if (distance < smallestDistance) {
         smallestDistance = distance;
-        closestOpponent = neighbor;
+        closestOpponents = [neighbor];
+      } else if (distance === smallestDistance) {
+        closestOpponents.push(neighbor);
       }
     }
 
-    if (closestOpponent === undefined) {
+    if (closestOpponents.length === 0) {
       throw new Error(`at least one opponent province have to be present`);
     }
-    return closestOpponent;
+    return closestOpponents;
   }
 
   private reset() {

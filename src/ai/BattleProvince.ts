@@ -9,7 +9,7 @@ export class BattleProvince {
   readonly province: Province;
   private readonly provinceOwner: ProvinceOwner;
   private readonly neighbors: BattleProvince[] = [];
-  private closestOpponent: BattleProvince | undefined;
+  private closestOpponents: BattleProvince[] = [];
   private closestOpponentDistance: number = 0;
   private remainingSoldiersInternal: number;
 
@@ -50,8 +50,8 @@ export class BattleProvince {
     return this.provinceOwner === ProvinceOwner.Opponent;
   }
 
-  updateClosestOpponent(province: BattleProvince, distance: number) {
-    this.closestOpponent = province;
+  updateClosestOpponents(provinces: BattleProvince[], distance: number) {
+    this.closestOpponents = provinces;
     this.closestOpponentDistance = distance;
   }
 
@@ -59,11 +59,11 @@ export class BattleProvince {
     return this.closestOpponentDistance;
   }
 
-  getClosestOpponent(): BattleProvince {
-    if (this.closestOpponent === undefined) {
+  getClosestOpponents(): BattleProvince[] {
+    if (this.closestOpponents.length === 0) {
       throw new Error(`closestOpponent  is not set yet`);
     }
-    return this.closestOpponent;
+    return this.closestOpponents;
   }
 
   getNumberOfSoldiersToStayByAttitude(): number {

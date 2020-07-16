@@ -30,6 +30,10 @@ export class ArmyMarcher {
     this.marchToTarget(sourceProvince, targetProvince);
   }
 
+  marchToPossibleTargets(sourceProvince: BattleProvince, possibleTargets: BattleProvince[]) {
+    this.marchToTarget(sourceProvince, possibleTargets[0]);
+  }
+
   marchToTarget(sourceProvince: BattleProvince, targetProvince: BattleProvince) {
     console.log(">>> Closest target:", targetProvince.name);
     // TODO: UT for that
