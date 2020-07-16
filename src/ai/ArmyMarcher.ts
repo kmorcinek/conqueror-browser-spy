@@ -50,11 +50,12 @@ export class ArmyMarcher {
     toStay: number,
     target: BattleProvince
   ) {
-    if (sourceProvince.soldiers - toStay > 0) {
+    if (sourceProvince.remainingSoldiers - toStay > 0) {
       this.armyMovesRecorder.addMove(new ArmyMove(sourceProvince, target, toStay));
+      sourceProvince.moveOutSoldiers(sourceProvince.remainingSoldiers - toStay);
     } else {
       console.log(
-        `>>>> Not enough soldiers. soldier:'${sourceProvince.soldiers}', toStay:'${toStay}'`
+        `>>>> Not enough soldiers. soldier:'${sourceProvince.remainingSoldiers}', toStay:'${toStay}'`
       );
     }
   }

@@ -9,12 +9,14 @@ export class BattleProvince {
   readonly province: Province;
   readonly provinceOwner: ProvinceOwner;
   readonly neighbors: BattleProvince[] = [];
-  closestOpponent: BattleProvince | undefined;
-  closestOpponentDistance: number = 0;
+  private closestOpponent: BattleProvince | undefined;
+  private closestOpponentDistance: number = 0;
+  private remainingSoldiersInternal: number;
 
   constructor(province: Province, provinceOwner: ProvinceOwner) {
     this.province = province;
     this.provinceOwner = provinceOwner;
+    this.remainingSoldiersInternal = province.soldiers;
   }
 
   addNeighbor(neighbor: BattleProvince) {
@@ -50,6 +52,10 @@ export class BattleProvince {
     this.closestOpponentDistance = distance;
   }
 
+  getClosestOpponentDistance() {
+    return this.closestOpponentDistance;
+  }
+
   getNumberOfSoldiersToStayByAttitude(): number {
     switch (this.attitude) {
       case Attitude.Rebellious:
@@ -64,6 +70,10 @@ export class BattleProvince {
         console.error("Missing Attitude");
         throw new Error("Missing Attitude");
     }
+  }
+
+  moveOutSoldiers(soldiers: number) {
+    this.remainingSoldiersInternal -= soldiers;
   }
 
   private filterNeighborsByOwner(provinceOwner: ProvinceOwner) {
@@ -90,8 +100,8 @@ export class BattleProvince {
     return this.province.production;
   }
 
-  get soldiers(): number {
-    return this.province.soldiers;
+  get remainingSoldiers(): number {
+    return this.remainingSoldiersInternal;
   }
 
   get fort(): Fortification {
