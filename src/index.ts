@@ -23,6 +23,7 @@ import { Settings } from "./Settings";
 import { ArmyMarcher } from "./ai/ArmyMarcher";
 import { ProvinceMapValidator } from "./ProvinceNeighborhood/ProvinceMapValidator";
 import { EuropeMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/EuropeMapProvinceNeighborhoodProvider";
+import { AiManager } from "./ai/AiManager";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -31,11 +32,9 @@ export class ConquerorSpy {
   static historyChecker: HistoryChecker;
   static hud: Hud;
   static provinceHistoryService: ProvinceHistoryService;
-  static provinceProductionAi: ProvinceProductionAi;
-  static armyMoverAi: ArmyMoverAi;
   static goldService: GoldService;
-  static battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
   static settings: Settings;
+  static aiManager: AiManager;
   static provinceMapValidator: ProvinceMapValidator = new ProvinceMapValidator();
   static clicker = new Clicker();
 
@@ -69,24 +68,6 @@ export class ConquerorSpy {
     );
     ConquerorSpy.provinceOwnership = provinceOwnership;
     const buildingChanger = new BuildingChanger(clicker);
-    ConquerorSpy.battleProvinceNeighborhoods = new BattleProvinceNeighborhoods(
-      provinceOwnership,
-      provinceNeighborhood,
-      provinceNeighborhoods,
-      provinceHistoryService
-    );
-    ConquerorSpy.provinceProductionAi = new ProvinceProductionAi(
-      clicker,
-      ConquerorSpy.battleProvinceNeighborhoods,
-      goldService
-    );
-    const armyMovesRecorder = new ArmyMovesRecorder();
-    ConquerorSpy.armyMoverAi = new ArmyMoverAi(
-      clicker,
-      ConquerorSpy.battleProvinceNeighborhoods,
-      new ArmyMarcher(ConquerorSpy.battleProvinceNeighborhoods, armyMovesRecorder),
-      armyMovesRecorder
-    );
     ConquerorSpy.productionChecker = new ProductionChecker(
       provinceOwnership,
       provinceHistoryService,
@@ -103,6 +84,29 @@ export class ConquerorSpy {
       provinceOwnership,
       ConquerorSpy.historyChecker,
       provinceHistoryService
+    );
+    const battleProvinceNeighborhoods = new BattleProvinceNeighborhoods(
+      provinceOwnership,
+      provinceNeighborhood,
+      provinceNeighborhoods,
+      provinceHistoryService
+    );
+    const provinceProductionAi = new ProvinceProductionAi(
+      clicker,
+      battleProvinceNeighborhoods,
+      goldService
+    );
+    const armyMovesRecorder = new ArmyMovesRecorder();
+    const armyMoverAi = new ArmyMoverAi(
+      clicker,
+      battleProvinceNeighborhoods,
+      new ArmyMarcher(battleProvinceNeighborhoods, armyMovesRecorder),
+      armyMovesRecorder
+    );
+    ConquerorSpy.aiManager = new AiManager(
+      battleProvinceNeighborhoods,
+      armyMoverAi,
+      provinceProductionAi
     );
   }
 
@@ -152,16 +156,7 @@ export class ConquerorSpy {
       ConquerorSpy.provinceOwnership.updateOwnedProvinces();
       ConquerorSpy.productionChecker.checkBuildingProvinces();
 
-      // AI
-      const runAi: boolean = false;
-      if (runAi) {
-        ConquerorSpy.battleProvinceNeighborhoods.recreateNextTurn();
-        ConquerorSpy.provinceProductionAi.updateAllProvinces();
-        ConquerorSpy.armyMoverAi.moveArmies();
-        window.setTimeout(function() {
-          ConquerorSpy.clicker.clickEndTurn();
-        }, 2000);
-      }
+      ConquerorSpy.aiManager.run();
 
       console.log("---------- refreshTurn() finished");
     }
