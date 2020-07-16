@@ -4,8 +4,8 @@ import { BattleProvinceNeighborhoods } from "./BattleProvinceNeighborhoods";
 import { BattleProvince } from "./BattleProvince";
 
 export class ArmyMarcher {
-  private battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
-  private armyMovesRecorder: ArmyMovesRecorder;
+  private readonly battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
+  private readonly armyMovesRecorder: ArmyMovesRecorder;
 
   constructor(
     battleProvinceNeighborhoods: BattleProvinceNeighborhoods,

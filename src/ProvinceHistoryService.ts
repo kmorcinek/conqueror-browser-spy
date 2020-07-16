@@ -3,7 +3,7 @@ import { Provinces } from "./Provinces";
 import { ProvinceHistoryServiceInterface } from "./ProvinceHistoryServiceInterface";
 
 export class ProvinceHistoryService implements ProvinceHistoryServiceInterface {
-  provincesHistory: Record<string, ProvinceHistory> = {};
+  private provincesHistory: Record<string, ProvinceHistory> = {};
 
   constructor() {
     this.reset();

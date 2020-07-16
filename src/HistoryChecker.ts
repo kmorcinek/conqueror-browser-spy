@@ -1,9 +1,6 @@
-import { Province } from "./Province";
-import { Culture } from "./Culture";
 import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
 import { IProvinceOwnership } from "./IProvinceOwnership";
 import { Provinces } from "./Provinces";
-import { Production } from "./Production";
 import { IPrediction } from "./IPrediction";
 import { Prediction } from "./Prediction";
 import { FarmHistoryChecker } from "./FarmHistoryChecker";
@@ -11,22 +8,22 @@ import { FarmPrediction } from "./FarmPrediction";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
 
 export class HistoryChecker {
-  private provinceOwnership: IProvinceOwnership;
-  private provinceHistoryChecker: ProvinceHistoryChecker;
-  private farmHistoryChecker: FarmHistoryChecker;
-  private provinceHistoryService: ProvinceHistoryService;
+  private readonly provinceOwnership: IProvinceOwnership;
+  private readonly provinceHistoryChecker: ProvinceHistoryChecker;
+  private readonly farmHistoryChecker: FarmHistoryChecker;
+  private readonly provinceHistoryService: ProvinceHistoryService;
 
   private alertsToShow: string[] = [];
   private buildingPredictions: Record<string, IPrediction[]> = {};
 
   constructor(
     provinceOwnership: IProvinceOwnership,
-    procinceHistoryChecker: ProvinceHistoryChecker,
+    provinceHistoryChecker: ProvinceHistoryChecker,
     farmHistoryChecker: FarmHistoryChecker,
     provinceHistoryService: ProvinceHistoryService
   ) {
     this.provinceOwnership = provinceOwnership;
-    this.provinceHistoryChecker = procinceHistoryChecker;
+    this.provinceHistoryChecker = provinceHistoryChecker;
     this.farmHistoryChecker = farmHistoryChecker;
     for (const provinceName of Provinces.getProvinces()) {
       this.buildingPredictions[provinceName] = [];

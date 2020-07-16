@@ -8,9 +8,9 @@ import { BattleProvinceNeighborhoods } from "./BattleProvinceNeighborhoods";
 import { BattleProvince } from "./BattleProvince";
 
 export class ProvinceProductionAi {
-  private clicker: Clicker;
-  private battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
-  private goldService: GoldService;
+  private readonly clicker: Clicker;
+  private readonly battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
+  private readonly goldService: GoldService;
 
   constructor(
     clicker: Clicker,

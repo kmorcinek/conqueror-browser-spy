@@ -6,10 +6,10 @@ import { ProvinceHistoryService } from "../ProvinceHistoryService";
 import { ProvinceOwner } from "../ProvinceOwner";
 
 export class BattleProvinceNeighborhoods {
-  private provinceOwnership: IProvinceOwnership;
-  private provinceNeighborhood: ProvinceNeighborhood;
-  private provinceNeighborhoods: ProvinceNeighborhoods;
-  private provinceHistoryService: ProvinceHistoryService;
+  private readonly provinceOwnership: IProvinceOwnership;
+  private readonly provinceNeighborhood: ProvinceNeighborhood;
+  private readonly provinceNeighborhoods: ProvinceNeighborhoods;
+  private readonly provinceHistoryService: ProvinceHistoryService;
 
   private battleProvinces: Record<string, BattleProvince> = {};
   private ownedBattleProvinces: BattleProvince[] = [];

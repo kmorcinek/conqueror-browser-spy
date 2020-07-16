@@ -10,10 +10,10 @@ import { IProvinceOwnership } from "./IProvinceOwnership";
 export class ProductionChecker {
   buildingAdvices: string[] = [];
 
-  private provinceOwnership: IProvinceOwnership;
-  private provinceHistoryService: ProvinceHistoryService;
-  private productionWarningsHud: ProductionWarningsHud;
-  private buildingChanger: BuildingChanger;
+  private readonly provinceOwnership: IProvinceOwnership;
+  private readonly provinceHistoryService: ProvinceHistoryService;
+  private readonly productionWarningsHud: ProductionWarningsHud;
+  private readonly buildingChanger: BuildingChanger;
 
   constructor(
     provinceOwnership: IProvinceOwnership,

@@ -2,8 +2,8 @@ import { ProvinceNeighborhood } from "./ProvinceNeighborhood";
 import { IProvinceOwnership } from "./IProvinceOwnership";
 
 export class ProvinceNeighborhoods {
-  private provinceOwnership: IProvinceOwnership;
-  private provinceNeighborhood: ProvinceNeighborhood;
+  private readonly provinceOwnership: IProvinceOwnership;
+  private readonly provinceNeighborhood: ProvinceNeighborhood;
 
   constructor(provinceOwnership: IProvinceOwnership, provinceNeighborhood: ProvinceNeighborhood) {
     this.provinceOwnership = provinceOwnership;
