@@ -30,6 +30,7 @@ export class ArmyMoverAi {
 
     let ownedProvinces = this.battleProvinceNeighborhoods.getOwnedProvinces();
     ownedProvinces = this.sortByNumberOfSoldier(ownedProvinces);
+    this.logOrderOfProvinces(ownedProvinces);
     for (const ownedProvince of ownedProvinces) {
       if (this.armyMovesRecorder.isFull()) {
         break;
@@ -181,5 +182,10 @@ export class ArmyMoverAi {
     return ownedProvinces.sort(
       (first, second) => second.remainingSoldiers - first.remainingSoldiers
     );
+  }
+
+  private logOrderOfProvinces(ownedProvinces: BattleProvince[]) {
+    const names = ownedProvinces.map(x => x.name);
+    console.log(`Sorted provinces by number of soldiers`, names);
   }
 }
