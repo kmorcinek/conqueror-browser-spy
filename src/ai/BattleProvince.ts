@@ -50,6 +50,22 @@ export class BattleProvince {
     this.closestOpponentDistance = distance;
   }
 
+  getNumberOfSoldiersToStayByAttitude(): number {
+    switch (this.attitude) {
+      case Attitude.Rebellious:
+      case Attitude.Restless:
+        return Math.ceil(this.farms / 2);
+      case Attitude.Content:
+        return Math.ceil(this.farms / 4);
+      case Attitude.Supportive:
+      case Attitude.Devoted:
+        return 0;
+      default:
+        console.error("Missing Attitude");
+        throw new Error("Missing Attitude");
+    }
+  }
+
   private filterNeighborsByOwner(provinceOwner: ProvinceOwner) {
     return this.neighbors.filter(neighbor => neighbor.provinceOwner === provinceOwner);
   }
