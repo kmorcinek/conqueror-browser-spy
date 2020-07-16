@@ -11,8 +11,7 @@ export class ArmyMove {
     this.toStay = toStay;
   }
 
-  // TODO: wrong, cause source.soldiers does not know about already moved soldiers
   get armySize(): number {
-    return this.source.soldiers - this.toStay;
+    return this.source.remainingSoldiers - this.toStay;
   }
 }

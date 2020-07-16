@@ -51,9 +51,9 @@ export class ArmyMoverAi {
     const opponentNeighbors = sourceProvince.getOpponentNeighbors();
     const neutralNeighbors = sourceProvince.getNeutralNeighbors();
     if (opponentNeighbors.length > 0) {
-      this.attackNeighbors(opponentNeighbors, sourceProvince, sourceProvince.soldiers);
+      this.attackNeighbors(opponentNeighbors, sourceProvince, sourceProvince.remainingSoldiers);
     } else if (neutralNeighbors.length > 0) {
-      this.attackNeighbors(neutralNeighbors, sourceProvince, sourceProvince.soldiers);
+      this.attackNeighbors(neutralNeighbors, sourceProvince, sourceProvince.remainingSoldiers);
     } else {
       console.log("> close neighbors already conquered. Moving armies");
       this.armyMarcher.marchArmy(sourceProvince);
@@ -76,7 +76,10 @@ export class ArmyMoverAi {
       // Stay in fort
       if (sourceProvince.fort !== Fortification.Nothing && target.isOpponent()) {
         // any of them has similar then stay
-        if (neighborsToAttack.filter(x => x.soldiers >= sourceProvince.soldiers).length > 0) {
+        if (
+          neighborsToAttack.filter(x => x.remainingSoldiers >= sourceProvince.remainingSoldiers)
+            .length > 0
+        ) {
           console.log(
             `> don't leave fort when opponents nearby of ${sourceProvince.name} are strong`
           );
@@ -117,11 +120,12 @@ export class ArmyMoverAi {
     toStay: number,
     target: BattleProvince
   ) {
-    if (sourceProvince.soldiers - toStay > 0) {
+    if (sourceProvince.remainingSoldiers - toStay > 0) {
       this.armyMovesRecorder.addMove(new ArmyMove(sourceProvince, target, toStay));
+      sourceProvince.moveOutSoldiers(sourceProvince.remainingSoldiers - toStay);
     } else {
       console.log(
-        `>>>> Not enough soldiers. soldier:'${sourceProvince.soldiers}', toStay:'${toStay}'`
+        `>>>> Not enough soldiers. soldier:'${sourceProvince.remainingSoldiers}', toStay:'${toStay}'`
       );
     }
   }
@@ -144,7 +148,10 @@ export class ArmyMoverAi {
       return this.attackFort(soldiersReadyToAttack, target);
     }
     const soldiersToConquer =
-      target.soldiers + 2 + Math.floor(target.farms / 3) + Math.floor(target.soldiers + 1 / 9);
+      target.remainingSoldiers +
+      2 +
+      Math.floor(target.farms / 3) +
+      Math.floor(target.remainingSoldiers + 1 / 9);
     return Math.min(soldiersReadyToAttack, soldiersToConquer);
   }
 
@@ -162,19 +169,21 @@ export class ArmyMoverAi {
   }
 
   private attackFort(soldiersReadyToAttack: number, target: BattleProvince) {
-    const fortOverAttack = 5 + Math.floor(target.soldiers / 5);
-    if (soldiersReadyToAttack >= target.soldiers + fortOverAttack) {
+    const fortOverAttack = 5 + Math.floor(target.remainingSoldiers / 5);
+    if (soldiersReadyToAttack >= target.remainingSoldiers + fortOverAttack) {
       // Attack Opponent with everything
       if (target.isOpponent()) {
         return soldiersReadyToAttack;
       }
-      return target.soldiers + fortOverAttack;
+      return target.remainingSoldiers + fortOverAttack;
     } else {
       return 0;
     }
   }
 
   private sortByNumberOfSoldier(ownedProvinces: BattleProvince[]) {
-    return ownedProvinces.sort((first, second) => second.soldiers - first.soldiers);
+    return ownedProvinces.sort(
+      (first, second) => second.remainingSoldiers - first.remainingSoldiers
+    );
   }
 }
