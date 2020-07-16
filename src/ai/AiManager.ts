@@ -20,7 +20,7 @@ export class AiManager {
   }
 
   run() {
-    const runAi: boolean = false;
+    const runAi: boolean = true;
     if (runAi) {
       this.battleProvinceNeighborhoods.recreateNextTurn();
       this.provinceProductionAi.updateAllProvinces();
