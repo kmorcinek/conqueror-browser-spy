@@ -14,6 +14,9 @@ export class BattleProvince {
   private remainingSoldiersInternal: number;
 
   constructor(province: Province, provinceOwner: ProvinceOwner) {
+    if (province == null) {
+      throw new Error(`province is null`);
+    }
     this.province = province;
     this.provinceOwner = provinceOwner;
     this.remainingSoldiersInternal = province.soldiers;
