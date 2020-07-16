@@ -47,7 +47,7 @@ export class ProvinceProductionAi {
       return BuyProduction.of(Production.Soldier);
     }
 
-    // TODO if is capitol
+    // TODO if is capital
     if (
       province.culture === Culture.Developed &&
       province.farms === 3 &&

@@ -5,10 +5,11 @@ export class Settings {
 
   setMyCapital() {
     if (this.myColor === undefined) {
-      const capitalName = this.getCapitol();
+      const capitalName = this.getCapital();
 
-      console.warn(`Capitol is ${capitalName}`);
+      console.warn(`Capital is ${capitalName}`);
       this.myColor = ColorPicker.getColor(capitalName);
+      console.log(`Capital color is ${this.myColor}`);
     }
   }
 
@@ -19,15 +20,15 @@ export class Settings {
     return this.myColor;
   }
 
-  private getCapitol() {
+  private getCapital() {
     const spotName = document.getElementsByClassName("spotName")[0];
     if (spotName.textContent === null) {
       throw new Error(`text of .spotName cannot be accessed`);
     }
-    return this.parseCapitol(spotName.textContent);
+    return this.parseCapital(spotName.textContent);
   }
 
-  private parseCapitol(text: string) {
+  private parseCapital(text: string) {
     // "Lord of a3"
     const startOf = text.indexOf("of");
     return text.substring(startOf + 3);
