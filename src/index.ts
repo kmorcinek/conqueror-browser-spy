@@ -21,6 +21,8 @@ import { ArmyMovesRecorder } from "./ai/ArmyMovesRecorder";
 import { BattleProvinceNeighborhoods } from "./ai/BattleProvinceNeighborhoods";
 import { Settings } from "./Settings";
 import { ArmyMarcher } from "./ai/ArmyMarcher";
+import { ProvinceMapValidator } from "./ProvinceNeighborhood/ProvinceMapValidator";
+import { EuropeMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/EuropeMapProvinceNeighborhoodProvider";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -34,6 +36,7 @@ export class ConquerorSpy {
   static goldService: GoldService;
   static battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
   static settings: Settings;
+  static provinceMapValidator: ProvinceMapValidator = new ProvinceMapValidator();
   static clicker = new Clicker();
 
   static lastTurn: number = NaN;
@@ -48,14 +51,16 @@ export class ConquerorSpy {
     ConquerorSpy.goldService = goldService;
     const productionWarningsHud = new ProductionWarningsHud();
     const provinceHistoryService = new ProvinceHistoryService();
-    const provinceNeighborhood = new ProvinceNeighborhood([
-      new TinyMapProvinceNeighbourhoodProvider(),
-    ]);
+    const provinceNeighborhood = new ProvinceNeighborhood(
+      [new EuropeMapProvinceNeighbourhoodProvider(), new TinyMapProvinceNeighbourhoodProvider()],
+      ConquerorSpy.provinceMapValidator
+    );
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
     const clicker = ConquerorSpy.clicker;
     this.provinceParser = new ProvinceParser(provinceHistoryService, clicker);
     const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(
       provinceHistoryService,
+      ConquerorSpy.provinceMapValidator,
       settings
     );
     const provinceNeighborhoods = new ProvinceNeighborhoods(

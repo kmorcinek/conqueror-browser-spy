@@ -3,28 +3,38 @@ import { ProvinceHistoryServiceInterface } from "./ProvinceHistoryServiceInterfa
 import { IProvinceOwnership } from "./IProvinceOwnership";
 import { ColorPicker } from "./ColorPicker";
 import { Settings } from "./Settings";
+import { IProvinceMapValidator } from "./ProvinceNeighborhood/IProvinceMapValidator";
 
 export class ProvinceOwnership implements IProvinceOwnership {
   private provinceHistoryService: ProvinceHistoryServiceInterface;
+  private provinceMapValidator: IProvinceMapValidator;
   private settings: Settings;
 
   private ownedProvinces: string[] = [];
   private opponentProvinces: string[] = [];
   private neutralProvinces: string[] = [];
 
-  constructor(provinceHistoryService: ProvinceHistoryServiceInterface, settings: Settings) {
+  constructor(
+    provinceHistoryService: ProvinceHistoryServiceInterface,
+    provinceMapValidator: IProvinceMapValidator,
+    settings: Settings
+  ) {
     this.provinceHistoryService = provinceHistoryService;
+    this.provinceMapValidator = provinceMapValidator;
     this.settings = settings;
   }
 
   updateOwnedProvinces() {
     this.reset();
 
+    // TODO: now are two ways of taking provinces to deal with
     const provinces = Provinces.getProvinces();
     for (const provinceName of provinces) {
+      if (!this.provinceMapValidator.exists(provinceName)) {
+        continue;
+      }
       const color = ColorPicker.getColor(provinceName);
-
-      // console.log(`Color: '${color}'`);
+      // console.log(`Province: ${provinceName}, Color: '${color}'`);
       const myColor = this.settings.getMyColor();
 
       const playerColors = [

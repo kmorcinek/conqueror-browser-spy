@@ -7,19 +7,13 @@ export class ColorPicker {
     }
 
     const mapDocument = Globals.getMapDocument();
-
     const map = mapDocument.getElementById(createId("field_", provinceName));
-
     if (map == null) {
-      return "";
-      // console.error(`map is null when picking color`);
-      // throw new Error(`map is null when picking color`);
+      throw new Error(`map is null when picking color`);
     }
 
     const color = map.getAttribute("fill")!;
-
-    console.log(`Color: '${color}'`);
-
+    // console.log(`Color: '${color}'`);
     return color;
   }
 }
