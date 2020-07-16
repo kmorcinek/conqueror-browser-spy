@@ -6,19 +6,27 @@ import { BuyProduction } from "../BuyProduction";
 import { GoldService } from "../GoldService";
 import { BattleProvinceNeighborhoods } from "./BattleProvinceNeighborhoods";
 import { BattleProvince } from "./BattleProvince";
+import { Backlands } from "./backland/Backlands";
+import { BacklandProductionAi } from "./backland/BacklandProductionAi";
 
 export class ProvinceProductionAi {
   private readonly clicker: Clicker;
   private readonly battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
+  private readonly backlands: Backlands;
+  private readonly backlandProductionAi: BacklandProductionAi;
   private readonly goldService: GoldService;
 
   constructor(
     clicker: Clicker,
     battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
+    backlands: Backlands,
+    backlandProductionAi: BacklandProductionAi,
     goldService: GoldService
   ) {
     this.clicker = clicker;
     this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
+    this.backlands = backlands;
+    this.backlandProductionAi = backlandProductionAi;
     this.goldService = goldService;
   }
 
@@ -30,7 +38,14 @@ export class ProvinceProductionAi {
   }
 
   updateProduction(province: BattleProvince) {
-    const productionGoal = this.getProductionGoal(province);
+    let productionGoal: Production | BuyProduction | null;
+    if (this.backlands.isBackland(province.name)) {
+      productionGoal = this.backlandProductionAi.getProductionGoal(province);
+      console.log(`backland choose to produce ${productionGoal}`);
+    } else {
+      productionGoal = this.getProductionGoal(province);
+    }
+
     if (productionGoal !== null) {
       if (province.production === productionGoal) {
         console.log(
