@@ -7,8 +7,8 @@ import { Fortification } from "../Fortification";
 
 export class BattleProvince {
   readonly province: Province;
-  readonly provinceOwner: ProvinceOwner;
-  readonly neighbors: BattleProvince[] = [];
+  private readonly provinceOwner: ProvinceOwner;
+  private readonly neighbors: BattleProvince[] = [];
   private closestOpponent: BattleProvince | undefined;
   private closestOpponentDistance: number = 0;
   private remainingSoldiersInternal: number;
