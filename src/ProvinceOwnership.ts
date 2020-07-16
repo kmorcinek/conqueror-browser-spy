@@ -6,9 +6,9 @@ import { Settings } from "./Settings";
 import { IProvinceMapValidator } from "./ProvinceNeighborhood/IProvinceMapValidator";
 
 export class ProvinceOwnership implements IProvinceOwnership {
-  private provinceHistoryService: ProvinceHistoryServiceInterface;
-  private provinceMapValidator: IProvinceMapValidator;
-  private settings: Settings;
+  private readonly provinceHistoryService: ProvinceHistoryServiceInterface;
+  private readonly provinceMapValidator: IProvinceMapValidator;
+  private readonly settings: Settings;
 
   private ownedProvinces: string[] = [];
   private opponentProvinces: string[] = [];

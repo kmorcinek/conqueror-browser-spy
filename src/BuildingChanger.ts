@@ -1,9 +1,8 @@
 import { BuildingPattern } from "./BuildingPattern";
 import { Clicker } from "./Clicker";
-import { Production } from "./Production";
 
 export class BuildingChanger {
-  private clicker: Clicker;
+  private readonly clicker: Clicker;
 
   constructor(clicker: Clicker) {
     this.clicker = clicker;

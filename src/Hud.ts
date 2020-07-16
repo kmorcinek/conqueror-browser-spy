@@ -7,10 +7,10 @@ import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Globals } from "./Globals";
 
 export class Hud {
-  private provinceOwnership: IProvinceOwnership;
-  private historyChecker: HistoryChecker;
-  private provinceHistoryService: ProvinceHistoryService;
-  private selector = "#hud";
+  private readonly provinceOwnership: IProvinceOwnership;
+  private readonly historyChecker: HistoryChecker;
+  private readonly provinceHistoryService: ProvinceHistoryService;
+  private readonly selector = "#hud";
 
   constructor(
     provinceOwnership: IProvinceOwnership,

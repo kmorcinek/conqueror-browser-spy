@@ -4,7 +4,7 @@ export class ArmyMovesRecorder {
   private static MAX_MOVES_PER_TURN = 5;
 
   // tslint:disable-next-line: member-ordering
-  armyMoves: ArmyMove[] = [];
+  private readonly armyMoves: ArmyMove[] = [];
 
   addMove(armyMove: ArmyMove) {
     if (this.isFull()) {

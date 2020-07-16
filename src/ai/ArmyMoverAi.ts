@@ -7,10 +7,10 @@ import { BattleProvince } from "./BattleProvince";
 import { ArmyMarcher } from "./ArmyMarcher";
 
 export class ArmyMoverAi {
-  private clicker: Clicker;
-  private battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
-  private armyMovesRecorder: ArmyMovesRecorder;
-  private armyMarcher: ArmyMarcher;
+  private readonly clicker: Clicker;
+  private readonly battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
+  private readonly armyMovesRecorder: ArmyMovesRecorder;
+  private readonly armyMarcher: ArmyMarcher;
 
   constructor(
     clicker: Clicker,

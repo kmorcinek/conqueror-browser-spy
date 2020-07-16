@@ -10,8 +10,8 @@ import { Fortification } from "./Fortification";
 import { MapUtils } from "./MapUtils";
 
 export class ProvinceParser {
-  private provinceHistoryService: ProvinceHistoryService;
-  private clicker: Clicker;
+  private readonly provinceHistoryService: ProvinceHistoryService;
+  private readonly clicker: Clicker;
 
   constructor(provinceHistoryService: ProvinceHistoryService, clicker: Clicker) {
     this.provinceHistoryService = provinceHistoryService;
