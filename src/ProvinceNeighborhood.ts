@@ -2,9 +2,10 @@ import { IProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/IProvince
 import { IProvinceMapValidator } from "./ProvinceNeighborhood/IProvinceMapValidator";
 
 export class ProvinceNeighborhood {
-  neighbors: Record<string, string[]> = {};
-  cachedDistances: Record<string, number> = {};
-  cachedPath: Record<string, string[]> = {};
+  private readonly neighbors: Record<string, string[]> = {};
+
+  private readonly distanceCache: Cache<number> = new Cache<number>();
+  private readonly pathCache: Cache<string[]> = new Cache<string[]>();
 
   constructor(
     neighbourhoodProviders: IProvinceNeighbourhoodProvider[],
@@ -27,15 +28,9 @@ export class ProvinceNeighborhood {
   }
 
   getPath(source: string, target: string): string[] {
-    const key = this.concatWay(source, target);
-    const cachedPath = this.cachedPath[key];
-    if (cachedPath !== undefined) {
-      return cachedPath;
-    }
-
-    const path = this.getPathNotCached(source, target);
-    this.cachedPath[key] = path;
-    return path;
+    return this.pathCache.getCached(source, target, (src, dest) =>
+      this.getPathNotCached(src, dest)
+    );
   }
 
   getPathNotCached(source: string, target: string): string[] {
@@ -50,19 +45,9 @@ export class ProvinceNeighborhood {
   }
 
   getDistance(source: string, target: string): number {
-    const key = this.concatWay(source, target);
-    const cachedDistance = this.cachedDistances[key];
-    if (cachedDistance !== undefined) {
-      return cachedDistance;
-    }
-
-    const distance = this.getDistanceNotCached(source, target);
-    this.cachedDistances[key] = distance;
-    return distance;
-  }
-
-  private concatWay(source: string, target: string) {
-    return source + ";" + target;
+    return this.distanceCache.getCached(source, target, (src, dest) =>
+      this.getDistanceNotCached(src, dest)
+    );
   }
 
   private getDistanceNotCached(source: string, target: string): number {
@@ -105,6 +90,27 @@ export class ProvinceNeighborhood {
         );
       }
     }
+  }
+}
+
+class Cache<T> {
+  dictionary: Record<string, T> = {};
+
+  getCached(source: string, target: string, getFreshData: (a: string, b: string) => T): T {
+    const key = Cache.concatWay(source, target);
+    const cachedData = this.dictionary[key];
+    if (cachedData !== undefined) {
+      return cachedData;
+    }
+
+    const freshData = getFreshData(source, target);
+    this.dictionary[key] = freshData;
+    return freshData;
+  }
+
+  // tslint:disable-next-line: member-ordering
+  private static concatWay(source: string, target: string) {
+    return source + ";" + target;
   }
 }
 
