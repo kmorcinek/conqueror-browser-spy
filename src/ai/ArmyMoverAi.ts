@@ -129,6 +129,9 @@ export class ArmyMoverAi {
     }
   }
 
+  // TODO: this method is not correct as .soldiers is only the initial value, later can be decreased by other moves
+  // this is where is a bug, later "decrease" button cannot be clicked.
+  // .initialSoldiers vs .remainingSoldiers.
   private moveWhenEnoughSoldier(
     sourceProvince: BattleProvince,
     toStay: number,
