@@ -79,6 +79,10 @@ export class BattleProvince {
     this.remainingSoldiersInternal -= soldiers;
   }
 
+  hasAnyFort(): boolean {
+    return this.province.fort !== Fortification.Nothing;
+  }
+
   private filterNeighborsByOwner(provinceOwner: ProvinceOwner) {
     return this.neighbors.filter(neighbor => neighbor.provinceOwner === provinceOwner);
   }

@@ -24,6 +24,8 @@ import { ArmyMarcher } from "./ai/ArmyMarcher";
 import { ProvinceMapValidator } from "./ProvinceNeighborhood/ProvinceMapValidator";
 import { EuropeMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/EuropeMapProvinceNeighborhoodProvider";
 import { AiManager } from "./ai/AiManager";
+import { OpponentAttacker } from "./ai/OpponentAttacker";
+import { NeutralAttacker } from "./ai/NeutralAttacker";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -101,6 +103,8 @@ export class ConquerorSpy {
       clicker,
       battleProvinceNeighborhoods,
       new ArmyMarcher(battleProvinceNeighborhoods, armyMovesRecorder),
+      new OpponentAttacker(armyMovesRecorder),
+      new NeutralAttacker(armyMovesRecorder),
       armyMovesRecorder
     );
     ConquerorSpy.aiManager = new AiManager(

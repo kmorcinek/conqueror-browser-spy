@@ -1,6 +1,7 @@
 import { ArmyMove } from "./ArmyMove";
+import { IArmyMovesRecorder } from "./IArmyMovesRecorder";
 
-export class ArmyMovesRecorder {
+export class ArmyMovesRecorder implements IArmyMovesRecorder {
   private static MAX_MOVES_PER_TURN = 5;
 
   // tslint:disable-next-line: member-ordering
