@@ -1,5 +1,4 @@
 import { Clicker } from "../Clicker";
-import { Attitude } from "../Attitude";
 import { Fortification } from "../Fortification";
 import { ArmyMovesRecorder } from "./ArmyMovesRecorder";
 import { ArmyMove } from "./ArmyMove";
@@ -64,7 +63,7 @@ export class ArmyMoverAi {
         .reverse()[0];
 
       console.log(">>> Closest target:", targetProvince.name);
-      let toStay = this.getNumberOfSoldiersToStayByAttitude(sourceProvince);
+      let toStay = sourceProvince.getNumberOfSoldiersToStayByAttitude();
       // if (sourceProvince.closestOpponentDistance === 2) {
       toStay = Math.max(toStay, sourceProvince.farms);
       // }
@@ -156,7 +155,7 @@ export class ArmyMoverAi {
     remainingSoldiers: number,
     target: BattleProvince
   ) {
-    const soldiersToStay = this.getNumberOfSoldiersToStayByAttitude(source);
+    const soldiersToStay = source.getNumberOfSoldiersToStayByAttitude();
     const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
     if (target.fort !== Fortification.Nothing) {
       return this.attackFort(soldiersReadyToAttack, target);
@@ -171,7 +170,7 @@ export class ArmyMoverAi {
     remainingSoldiers: number,
     target: BattleProvince
   ) {
-    const soldiersToStay = this.getNumberOfSoldiersToStayByAttitude(source);
+    const soldiersToStay = source.getNumberOfSoldiersToStayByAttitude();
     const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
     if (target.fort !== Fortification.Nothing) {
       return this.attackFort(soldiersReadyToAttack, target);
@@ -189,22 +188,6 @@ export class ArmyMoverAi {
       return target.soldiers + fortOverAttack;
     } else {
       return 0;
-    }
-  }
-
-  private getNumberOfSoldiersToStayByAttitude(source: BattleProvince): number {
-    switch (source.attitude) {
-      case Attitude.Rebellious:
-      case Attitude.Restless:
-        return Math.ceil(source.farms / 2);
-      case Attitude.Content:
-        return Math.ceil(source.farms / 4);
-      case Attitude.Supportive:
-      case Attitude.Devoted:
-        return 0;
-      default:
-        console.error("Missing Attitude");
-        throw new Error("Missing Attitude");
     }
   }
 
