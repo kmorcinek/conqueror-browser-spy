@@ -20,6 +20,7 @@ import { TinyMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/Tin
 import { ArmyMovesRecorder } from "./ai/ArmyMovesRecorder";
 import { BattleProvinceNeighborhoods } from "./ai/BattleProvinceNeighborhoods";
 import { Settings } from "./Settings";
+import { ArmyMarcher } from "./ai/ArmyMarcher";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -74,10 +75,12 @@ export class ConquerorSpy {
       ConquerorSpy.battleProvinceNeighborhoods,
       goldService
     );
+    const armyMovesRecorder = new ArmyMovesRecorder();
     ConquerorSpy.armyMoverAi = new ArmyMoverAi(
       clicker,
       ConquerorSpy.battleProvinceNeighborhoods,
-      new ArmyMovesRecorder()
+      new ArmyMarcher(ConquerorSpy.battleProvinceNeighborhoods, armyMovesRecorder),
+      armyMovesRecorder
     );
     ConquerorSpy.productionChecker = new ProductionChecker(
       provinceOwnership,
