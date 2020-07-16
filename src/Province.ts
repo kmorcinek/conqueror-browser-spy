@@ -83,7 +83,14 @@ export class Province {
     }
 
     const retValue =
-      ((this.farms + 2 * this.resources) * this.getCultureMultiplication()) / this.soldiers;
+      ((this.farms + 2 * this.resources + (this.getCultureMultiplication() - 1)) *
+        this.getCultureMultiplication()) /
+      this.soldiers;
+    // 3k = 3/1 = 3
+    // 2k dev = 4 / 2 = 2
+
+    // 3k = 3/1 = 3
+    // 2k dev = 6 / 2 = 3
     // TODO: fort as last
     return retValue;
   }
@@ -93,9 +100,9 @@ export class Province {
       case Culture.Primitive:
         return 1;
       case Culture.Developed:
-        return 2;
+        return 2.5;
       case Culture.Advanded:
-        return 3;
+        return 4;
     }
   }
 }
