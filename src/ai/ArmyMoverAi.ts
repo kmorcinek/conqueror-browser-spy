@@ -64,7 +64,6 @@ export class ArmyMoverAi {
     notOwnedNeighbors: BattleProvince[],
     sourceProvince: BattleProvince
   ) {
-    let remainingSoldiers = sourceProvince.remainingSoldiers;
     const neighborsToAttack = this.sortByProvinceValue(notOwnedNeighbors);
     for (const target of neighborsToAttack) {
       if (this.armyMovesRecorder.isFull()) {
@@ -91,13 +90,11 @@ export class ArmyMoverAi {
       if (isLastProvinceToAttack) {
         attackingSoldiersCount = this.attackingSoldiersCountForLastProvince(
           sourceProvince,
-          remainingSoldiers,
           target
         );
       } else {
         attackingSoldiersCount = this.attackingSoldiersCount(
           sourceProvince,
-          remainingSoldiers,
           target
         );
       }
@@ -105,9 +102,8 @@ export class ArmyMoverAi {
         `> Attacking ${attackingSoldiersCount} soldiers from ${sourceProvince.name} to ${target.name}`
       );
       if (attackingSoldiersCount > 0) {
-        const decrementArmySize = remainingSoldiers - attackingSoldiersCount;
+        const decrementArmySize = sourceProvince.remainingSoldiers - attackingSoldiersCount;
         this.moveWhenEnoughSoldier(sourceProvince, decrementArmySize, target);
-        remainingSoldiers -= attackingSoldiersCount;
       }
     }
   }
@@ -139,9 +135,9 @@ export class ArmyMoverAi {
 
   private attackingSoldiersCount(
     source: BattleProvince,
-    remainingSoldiers: number,
     target: BattleProvince
   ) {
+    const remainingSoldiers = source.remainingSoldiers;
     const soldiersToStay = source.getNumberOfSoldiersToStayByAttitude();
     const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
     if (target.fort !== Fortification.Nothing) {
@@ -157,9 +153,9 @@ export class ArmyMoverAi {
 
   private attackingSoldiersCountForLastProvince(
     source: BattleProvince,
-    remainingSoldiers: number,
     target: BattleProvince
   ) {
+    const remainingSoldiers = source.remainingSoldiers;
     const soldiersToStay = source.getNumberOfSoldiersToStayByAttitude();
     const soldiersReadyToAttack = Math.max(remainingSoldiers - soldiersToStay, 0);
     if (target.fort !== Fortification.Nothing) {
