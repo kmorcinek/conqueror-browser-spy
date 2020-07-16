@@ -3,11 +3,13 @@ import { ProvinceNeighborhoods } from "../src/ProvinceNeighborhoods";
 import { ProvinceNeighborhood } from "../src/ProvinceNeighborhood";
 import { IProvinceOwnership } from "../src/IProvinceOwnership";
 import { EuropeMapProvinceNeighbourhoodProvider } from "../src/ProvinceNeighborhood/EuropeMapProvinceNeighborhoodProvider";
+import { ProvinceMapValidatorMock } from "./ProvinceMapValidatorMock";
 
 describe("ProvinceNeighborhoods", () => {
-  const provinceNeighborhood = new ProvinceNeighborhood([
-    new EuropeMapProvinceNeighbourhoodProvider(),
-  ]);
+  const provinceNeighborhood = new ProvinceNeighborhood(
+    [new EuropeMapProvinceNeighbourhoodProvider()],
+    new ProvinceMapValidatorMock([])
+  );
   it("should have neutral neighbors around natolia", () => {
     const provinceOwnershipMock: IProvinceOwnership = {
       // tslint:disable-next-line: no-empty

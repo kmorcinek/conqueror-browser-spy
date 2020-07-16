@@ -1,14 +1,20 @@
 import { IProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/IProvinceNeighbourhoodProvider";
+import { IProvinceMapValidator } from "./ProvinceNeighborhood/IProvinceMapValidator";
 
 export class ProvinceNeighborhood {
   neighbors: Record<string, string[]> = {};
   cachedDistances: Record<string, number> = {};
   cachedPath: Record<string, string[]> = {};
 
-  constructor(neighbourhoodProviders: IProvinceNeighbourhoodProvider[]) {
+  constructor(
+    neighbourhoodProviders: IProvinceNeighbourhoodProvider[],
+    provinceMapValidator: IProvinceMapValidator
+  ) {
     for (const provider of neighbourhoodProviders) {
-      this.assignProvinces(provider);
+      this.assignProvinces(provider, provinceMapValidator);
     }
+    const length = Object.keys(this.neighbors).length;
+    console.log(`provinces on the map ${length}`);
   }
 
   getNeighbors(provinceName: string) {
@@ -87,10 +93,17 @@ export class ProvinceNeighborhood {
     return bestPath;
   }
 
-  private assignProvinces(provider: IProvinceNeighbourhoodProvider) {
-    for (const province of Object.keys(provider.getNeighborhood())) {
-      const neighbors = provider.getNeighborhood()[province];
-      this.neighbors[province] = neighbors;
+  private assignProvinces(
+    provider: IProvinceNeighbourhoodProvider,
+    provinceMapValidator: IProvinceMapValidator
+  ) {
+    const neighborhood = provider.getNeighborhood();
+    for (const province of Object.keys(neighborhood)) {
+      if (provinceMapValidator.exists(province)) {
+        this.neighbors[province] = neighborhood[province].filter(name =>
+          provinceMapValidator.exists(name)
+        );
+      }
     }
   }
 }

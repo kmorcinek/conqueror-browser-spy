@@ -5,7 +5,8 @@ describe("TinyProvinceNeighborhoodsProvider", () => {
   it("tiny map around b2", () => {
     const sut = new TinyMapProvinceNeighbourhoodProvider();
     const neighbors = sut.getNeighborhood().b2;
-    expect(neighbors.length).to.equal(5);
+    expect(neighbors.length).to.equal(6);
+    expect(neighbors.includes("a1")).to.equal(true);
     expect(neighbors.includes("a2")).to.equal(true);
     expect(neighbors.includes("b1")).to.equal(true);
     expect(neighbors.includes("b3")).to.equal(true);

@@ -25,31 +25,22 @@ export class TinyMapProvinceNeighbourhoodProvider implements IProvinceNeighbourh
     for (let i = firstIndex; i < lastIndex; i++) {
       const neighbors: string[] = [];
       if (i - 1 > 0) {
-        this.push(neighbors, heroLetter + (i - 1));
+        neighbors.push(heroLetter + (i - 1));
       }
       if (i + 1 < lastIndex) {
-        this.push(neighbors, heroLetter + (i + 1));
+        neighbors.push(heroLetter + (i + 1));
       }
 
       for (const neighborLetter of neighborsLetters) {
         const currentIndex = i + additionalShift;
         if (currentIndex - 1 > 0) {
-          this.push(neighbors, neighborLetter + (currentIndex - 1));
+          neighbors.push(neighborLetter + (currentIndex - 1));
         }
-        this.push(neighbors, neighborLetter + currentIndex);
+        neighbors.push(neighborLetter + currentIndex);
       }
 
       const heroProvinceName: string = heroLetter + i;
       neighborhood[heroProvinceName] = neighbors;
     }
-  }
-
-  private push(neighbors: string[], neighbor: string) {
-    const notExistingProvinces = ["a1", "a4", "e4", "b5", "d5"];
-    if (notExistingProvinces.includes(neighbor)) {
-      return;
-    }
-
-    neighbors.push(neighbor);
   }
 }
