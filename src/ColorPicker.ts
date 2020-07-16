@@ -1,13 +1,10 @@
 import { Globals } from "./Globals";
+import { MapUtils } from "./MapUtils";
 
 export class ColorPicker {
   static getColor(provinceName: string) {
-    function createId(prefix: string, province: string) {
-      return prefix + province.toLowerCase();
-    }
-
     const mapDocument = Globals.getMapDocument();
-    const map = mapDocument.getElementById(createId("field_", provinceName));
+    const map = mapDocument.getElementById(MapUtils.createId("field_", provinceName));
     if (map == null) {
       throw new Error(`map is null when picking color`);
     }
