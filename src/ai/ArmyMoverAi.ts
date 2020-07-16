@@ -51,9 +51,9 @@ export class ArmyMoverAi {
     const opponentNeighbors = sourceProvince.getOpponentNeighbors();
     const neutralNeighbors = sourceProvince.getNeutralNeighbors();
     if (opponentNeighbors.length > 0) {
-      this.attackNeighbors(opponentNeighbors, sourceProvince, sourceProvince.remainingSoldiers);
+      this.attackNeighbors(opponentNeighbors, sourceProvince);
     } else if (neutralNeighbors.length > 0) {
-      this.attackNeighbors(neutralNeighbors, sourceProvince, sourceProvince.remainingSoldiers);
+      this.attackNeighbors(neutralNeighbors, sourceProvince);
     } else {
       console.log("> close neighbors already conquered. Moving armies");
       this.armyMarcher.marchArmy(sourceProvince);
@@ -62,9 +62,9 @@ export class ArmyMoverAi {
 
   private attackNeighbors(
     notOwnedNeighbors: BattleProvince[],
-    sourceProvince: BattleProvince,
-    remainingSoldiers: number
+    sourceProvince: BattleProvince
   ) {
+    let remainingSoldiers = sourceProvince.remainingSoldiers;
     const neighborsToAttack = this.sortByProvinceValue(notOwnedNeighbors);
     for (const target of neighborsToAttack) {
       if (this.armyMovesRecorder.isFull()) {
