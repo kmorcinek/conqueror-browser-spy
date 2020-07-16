@@ -60,7 +60,12 @@ export class ArmyMoverAi {
     if (opponentNeighbors.length > 0) {
       this.opponentAttacker.attackOpponents(opponentNeighbors, sourceProvince);
     } else if (neutralNeighbors.length > 0) {
-      this.neutralAttacker.attackNeutrals(neutralNeighbors, sourceProvince);
+      if (sourceProvince.getClosestOpponentDistance() === 2) {
+        console.log("> Instead of attacking neutral move closer to near (2 distance) opponent");
+        this.armyMarcher.marchToTarget(sourceProvince, sourceProvince.getClosestOpponent());
+      } else {
+        this.neutralAttacker.attackNeutrals(neutralNeighbors, sourceProvince);
+      }
     } else {
       console.log("> close neighbors already conquered. Moving armies");
       this.armyMarcher.marchArmy(sourceProvince);

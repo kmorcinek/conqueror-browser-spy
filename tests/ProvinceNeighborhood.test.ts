@@ -60,4 +60,13 @@ describe("ProvinceNeighborhood", () => {
     expect(neighbors.includes("c1")).to.equal(true);
     expect(neighbors.includes("c2")).to.equal(true);
   });
+
+  it("should have 2 different path from natolia to palestine", () => {
+    const manyPath = sut.getManyPathWithDistance2("natolia", "palestine");
+    expect(manyPath.length).to.equal(2);
+    expect(manyPath[0][0]).to.equal("syria");
+    expect(manyPath[0][1]).to.equal("palestine");
+    expect(manyPath[1][0]).to.equal("cyprus");
+    expect(manyPath[1][1]).to.equal("palestine");
+  });
 });
