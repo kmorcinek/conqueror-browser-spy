@@ -62,7 +62,10 @@ export class ArmyMoverAi {
     } else if (neutralNeighbors.length > 0) {
       if (sourceProvince.getClosestOpponentDistance() === 2) {
         console.log("> Instead of attacking neutral move closer to near (2 distance) opponent");
-        this.armyMarcher.marchToTarget(sourceProvince, sourceProvince.getClosestOpponent());
+        this.armyMarcher.marchToPossibleTargets(
+          sourceProvince,
+          sourceProvince.getClosestOpponents()
+        );
       } else {
         this.neutralAttacker.attackNeutrals(neutralNeighbors, sourceProvince);
       }
