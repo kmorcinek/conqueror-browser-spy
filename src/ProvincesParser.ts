@@ -7,6 +7,7 @@ import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Attitude } from "./Attitude";
 import { Clicker } from "./Clicker";
 import { Fortification } from "./Fortification";
+import { MapUtils } from "./MapUtils";
 
 export class ProvinceParser {
   private provinceHistoryService: ProvinceHistoryService;
@@ -36,7 +37,7 @@ export class ProvinceParser {
   // - (without turn)
   private getCountryDetails(provinceName: string): Province | null {
     function createId(prefix: string) {
-      return prefix + provinceName.toLowerCase();
+      return MapUtils.createId(prefix, provinceName);
     }
 
     const mapDocument = Globals.getMapDocument();
