@@ -143,12 +143,12 @@ export class ArmyMoverAi {
     if (target.fort !== Fortification.Nothing) {
       return this.attackFort(soldiersReadyToAttack, target);
     }
-    const soldiersToConquer =
+    const soldiersRequiredToConquer =
       target.remainingSoldiers +
       2 +
       Math.floor(target.farms / 3) +
       Math.floor(target.remainingSoldiers + 1 / 9);
-    return Math.min(soldiersReadyToAttack, soldiersToConquer);
+    return Math.min(soldiersReadyToAttack, soldiersRequiredToConquer);
   }
 
   private attackingSoldiersCountForLastProvince(
