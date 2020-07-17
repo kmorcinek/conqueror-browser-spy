@@ -23,9 +23,9 @@ export class AiManager {
     const runAi: boolean = false;
     if (runAi) {
       this.battleProvinceNeighborhoods.recreateNextTurn();
-      this.provinceProductionAi.updateAllProvinces();
       this.armyMoverAi.moveArmies();
-      
+      this.provinceProductionAi.updateAllProvinces();
+
       const autoEndTurn: boolean = true;
       if (autoEndTurn) {
         window.setTimeout(() => {
