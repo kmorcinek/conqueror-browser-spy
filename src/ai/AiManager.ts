@@ -25,9 +25,13 @@ export class AiManager {
       this.battleProvinceNeighborhoods.recreateNextTurn();
       this.provinceProductionAi.updateAllProvinces();
       this.armyMoverAi.moveArmies();
-      window.setTimeout(() => {
-        this.clicker.clickEndTurn();
-      }, 2000);
+      
+      const autoEndTurn: boolean = true;
+      if (autoEndTurn) {
+        window.setTimeout(() => {
+          this.clicker.clickEndTurn();
+        }, 2000);
+      }
     }
   }
 }
