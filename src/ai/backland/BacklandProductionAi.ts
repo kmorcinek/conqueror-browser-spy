@@ -1,22 +1,14 @@
-import { Clicker } from "../../Clicker";
 import { Production } from "../../Production";
 import { Culture } from "../../Culture";
 import { GoldService } from "../../GoldService";
-import { BattleProvinceNeighborhoods } from "../BattleProvinceNeighborhoods";
 import { BattleProvince } from "../BattleProvince";
 
 export class BacklandProductionAi {
-  private readonly clicker: Clicker;
-  private readonly battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
   private readonly goldService: GoldService;
 
   constructor(
-    clicker: Clicker,
-    battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
     goldService: GoldService
   ) {
-    this.clicker = clicker;
-    this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
     this.goldService = goldService;
   }
 
@@ -24,7 +16,10 @@ export class BacklandProductionAi {
     // TODO: seasons not known.
 
     // enough gold
-    
+    const safeAmount = 50;
+    if (this.goldService.getCurrent() - safeAmount < this.goldService.getSupport()) {
+      return Production.Gold;
+    }
 
     if (province.culture === Culture.Primitive && province.farms < 5) {
       return Production.Farm;
@@ -42,10 +37,6 @@ export class BacklandProductionAi {
       return Production.Soldier;
     }
 
-    if (province.hasNeighborToConquer() && province.culture !== Culture.Primitive) {
-      return Production.Soldier;
-    }
-
     if (province.getClosestOpponentDistance() <= 2 && province.remainingSoldiers < province.farms) {
       return Production.Soldier;
     }
@@ -58,17 +49,6 @@ export class BacklandProductionAi {
       ) {
         return Production.Gold;
       }
-    }
-
-    // Buy Culture if you can
-    // TODO: more checks here, if the neighbor is opponent or neutral and if opponent has more armies than we
-    if (
-      province.hasNeighborToConquer() &&
-      province.culture === Culture.Primitive &&
-      province.farms >= 3 &&
-      this.isEnoughGold(Production.Culture)
-    ) {
-      // return BuyProduction.of(Production.Culture);
     }
 
     if (province.production !== Production.Farm && province.production !== Production.Culture) {

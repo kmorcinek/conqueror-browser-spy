@@ -41,6 +41,7 @@ export class ProvinceProductionAi {
     let productionGoal: Production | BuyProduction | null;
     if (this.backlands.isBackland(province.name)) {
       productionGoal = this.backlandProductionAi.getProductionGoal(province);
+      console.log(`backland choose to produce ${productionGoal}`);
     } else {
       productionGoal = this.getProductionGoal(province);
     }

@@ -1,40 +1,36 @@
 import { BattleProvinceNeighborhoods } from "../BattleProvinceNeighborhoods";
-import { ProvinceProductionAi } from "../ProvinceProductionAi";
-import { ArmyMoverAi } from "../ArmyMoverAi";
-import { Clicker } from "../../Clicker";
+import { BattleProvince } from "../BattleProvince";
 
 export class Backlands {
   private readonly battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
-  private readonly armyMoverAi: ArmyMoverAi;
-  private readonly provinceProductionAi: ProvinceProductionAi;
-  private readonly clicker = new Clicker();
+
+  private chosen: string | undefined;
 
   constructor(
     battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
-    armyMoverAi: ArmyMoverAi,
-    provinceProductionAi: ProvinceProductionAi
   ) {
     this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
-    this.armyMoverAi = armyMoverAi;
-    this.provinceProductionAi = provinceProductionAi;
   }
 
   isBackland(provinceName: string): boolean {
-    return false;
+    return provinceName === this.chosen;
   }
 
   run() {
     // choose one as backland based on distance from opponent.
     // choose by provinceName.
     // all neighbors are mine.
-    const runAi: boolean = false;
-    if (runAi) {
-      this.battleProvinceNeighborhoods.recreateNextTurn();
-      this.provinceProductionAi.updateAllProvinces();
-      this.armyMoverAi.moveArmies();
-      window.setTimeout(() => {
-        this.clicker.clickEndTurn();
-      }, 2000);
+    // start from some turn
+    const turn = this.battleProvinceNeighborhoods.getOwnedProvinces()[0].province.turn;
+
+    if (turn > 5) {
+      if (this.chosen === undefined) {
+        const farthestFromOpponent: BattleProvince = this.battleProvinceNeighborhoods.getOwnedProvinces().sort((first, second) => first.getClosestOpponentDistance() - second.getClosestOpponentDistance())
+          .reverse()[0];
+
+        this.chosen = farthestFromOpponent.name;
+        console.log(`Choose ${this.chosen} as backland`);
+      }
     }
   }
 }

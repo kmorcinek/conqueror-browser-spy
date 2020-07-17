@@ -26,6 +26,8 @@ import { EuropeMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/E
 import { AiManager } from "./ai/AiManager";
 import { OpponentAttacker } from "./ai/OpponentAttacker";
 import { NeutralAttacker } from "./ai/NeutralAttacker";
+import { Backlands } from "./ai/backland/Backlands";
+import { BacklandProductionAi } from "./ai/backland/BacklandProductionAi";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -93,9 +95,13 @@ export class ConquerorSpy {
       provinceNeighborhoods,
       provinceHistoryService
     );
+    const backlands = new Backlands(battleProvinceNeighborhoods);
+    const backlandProductionAi = new BacklandProductionAi(goldService);
     const provinceProductionAi = new ProvinceProductionAi(
       clicker,
       battleProvinceNeighborhoods,
+      backlands,
+      backlandProductionAi,
       goldService
     );
     const armyMovesRecorder = new ArmyMovesRecorder();
@@ -109,6 +115,7 @@ export class ConquerorSpy {
     );
     ConquerorSpy.aiManager = new AiManager(
       battleProvinceNeighborhoods,
+      backlands,
       armyMoverAi,
       provinceProductionAi
     );
