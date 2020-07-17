@@ -70,7 +70,15 @@ export class Hud {
     const timerWrapper = $(Globals.timerWrapperSelector);
 
     const hud = $(
-      '<div id="hud" style="margin-top: 20px; color: blue; background-color: white;"></div>'
+      "<div>" +
+        '  <label for="run-ai">Run AI</label>' +
+        '  <input type="checkbox" name="run-ai" id="run-ai" onchange="conquerorSpy.updateRunAi()" checked="checked">' +
+        "</div>" +
+        "<div>" +
+        '  <label for="auto-end-turn">Auto et</label>' +
+        '  <input type="checkbox" name="auto-end-turn" id="auto-end-turn" onchange="conquerorSpy.updateAutoEndTurn()">' +
+        "</div>" +
+        '<div id="hud" style="color: blue; background-color: white;"></div>'
     );
     timerWrapper.append(hud);
   }

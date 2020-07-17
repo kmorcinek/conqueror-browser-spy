@@ -138,6 +138,16 @@ export class ConquerorSpy {
     console.log("Tool version: " + toolVersion);
   }
 
+  static updateRunAi() {
+    const checked = (document.getElementById("run-ai")! as any).checked;
+    ConquerorSpy.aiManager.updateRunAi(checked);
+  }
+
+  static updateAutoEndTurn() {
+    const checked = (document.getElementById("auto-end-turn")! as any).checked;
+    ConquerorSpy.aiManager.updateAutoEndTurn(checked);
+  }
+
   private static refreshTurn() {
     try {
       ConquerorSpy.refreshTurnInternal();

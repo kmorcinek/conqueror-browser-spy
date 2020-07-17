@@ -11,6 +11,9 @@ export class AiManager {
   private readonly provinceProductionAi: ProvinceProductionAi;
   private readonly clicker = new Clicker();
 
+  private runAi: boolean = true;
+  private autoEndTurn: boolean = false;
+
   constructor(
     battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
     backlands: Backlands,
@@ -23,17 +26,25 @@ export class AiManager {
     this.provinceProductionAi = provinceProductionAi;
   }
 
+  updateRunAi(runAi: boolean) {
+    console.log(`Updating runAi to ${runAi}`);
+    this.runAi = runAi;
+  }
+
+  updateAutoEndTurn(autoEndTurn: boolean) {
+    console.log(`Updating autoEndTurn to ${autoEndTurn}`);
+    this.autoEndTurn = autoEndTurn;
+  }
+
   run() {
-    const runAi: boolean = false;
-    if (runAi) {
+    if (this.runAi) {
       this.battleProvinceNeighborhoods.recreateNextTurn();
 
       this.backlands.run();
       this.armyMoverAi.moveArmies();
       this.provinceProductionAi.updateAllProvinces();
 
-      const autoEndTurn: boolean = true;
-      if (autoEndTurn) {
+      if (this.autoEndTurn) {
         window.setTimeout(() => {
           this.clicker.clickEndTurn();
         }, 2000);
