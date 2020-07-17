@@ -27,7 +27,7 @@ describe("ProductionChecker", () => {
     const provinceFactory = new ProvinceFactory();
     provinceFactory.farms = 6;
     provinceFactory.resources = 0;
-    provinceFactory.culture = Culture.Advanded;
+    provinceFactory.culture = Culture.Advanced;
     provinceFactory.production = Production.Farm;
     const province = provinceFactory.build();
 

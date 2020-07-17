@@ -40,7 +40,7 @@ export class BacklandProductionAi {
     }
 
     // TODO: Maybe remove this check as it is done without AI
-    if (province.culture === Culture.Advanded) {
+    if (province.culture === Culture.Advanced) {
       if (
         (province.farms >= 6 && (province.resources === 0 || province.resources === 2)) ||
         province.farms >= 7

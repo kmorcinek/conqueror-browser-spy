@@ -96,10 +96,10 @@ export class ProvinceParser {
       case "dev":
         return Culture.Developed;
       case "adv":
-        return Culture.Advanded;
+        return Culture.Advanced;
       default:
         console.warn("new Culture value: " + str);
-        return Culture.Advanded;
+        return Culture.Advanced;
     }
   }
 

@@ -101,7 +101,7 @@ export class Province {
         return 1;
       case Culture.Developed:
         return 2.5;
-      case Culture.Advanded:
+      case Culture.Advanced:
         return 4;
     }
   }
