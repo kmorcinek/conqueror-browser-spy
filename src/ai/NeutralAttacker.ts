@@ -1,6 +1,7 @@
 import { ArmyMovesRecorder } from "./ArmyMovesRecorder";
 import { ArmyMove } from "./ArmyMove";
 import { BattleProvince } from "./BattleProvince";
+import { Fortification } from "../Fortification";
 
 export class NeutralAttacker {
   private readonly armyMovesRecorder: ArmyMovesRecorder;
@@ -58,7 +59,10 @@ export class NeutralAttacker {
   }
 
   private attackFort(soldiersReadyToAttack: number, target: BattleProvince) {
-    const fortOverAttack = 5 + Math.floor(target.remainingSoldiers / 5);
+    let fortOverAttack = 4 + Math.floor(target.remainingSoldiers / 5);
+    if (target.fort === Fortification.Keep) {
+      fortOverAttack += 3;
+    }
     if (soldiersReadyToAttack >= target.remainingSoldiers + fortOverAttack) {
       // Attack Opponent with everything
       if (target.isOpponent()) {

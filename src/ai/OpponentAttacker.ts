@@ -1,6 +1,7 @@
 import { ArmyMove } from "./ArmyMove";
 import { BattleProvince } from "./BattleProvince";
 import { IArmyMovesRecorder } from "./IArmyMovesRecorder";
+import { Fortification } from "../Fortification";
 
 export class OpponentAttacker {
   private readonly armyMovesRecorder: IArmyMovesRecorder;
@@ -84,7 +85,10 @@ export class OpponentAttacker {
   }
 
   private attackFort(soldiersReadyToAttack: number, target: BattleProvince) {
-    const fortOverAttack = 5 + Math.floor(target.remainingSoldiers / 5);
+    let fortOverAttack = 5 + Math.floor(target.remainingSoldiers / 5);
+    if (target.fort === Fortification.Keep) {
+      fortOverAttack += 4;
+    }
     if (soldiersReadyToAttack >= target.remainingSoldiers + fortOverAttack) {
       // Attack Opponent with everything
       if (target.isOpponent()) {
