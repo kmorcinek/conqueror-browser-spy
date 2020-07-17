@@ -200,3 +200,5 @@ export class ConquerorSpy {
 
 ConquerorSpy.initialize();
 ConquerorSpy.start();
+
+(window as any).conquerorSpy = ConquerorSpy;
