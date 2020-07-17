@@ -54,7 +54,8 @@ export class OpponentAttacker {
       return this.attackFort(soldiersReadyToAttack, target);
     }
     const soldiersRequiredToConquer = this.soldierRequiredToConquer(target);
-    if (soldiersReadyToAttack < soldiersRequiredToConquer) {
+    // To limit small movements
+    if (soldiersReadyToAttack < soldiersRequiredToConquer / 2) {
       return 0;
     }
     return Math.min(soldiersReadyToAttack, soldiersRequiredToConquer);
