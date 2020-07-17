@@ -32,7 +32,7 @@ export class AiManager {
       this.provinceProductionAi.updateAllProvinces();
       this.armyMoverAi.moveArmies();
 
-      const autoEndTurn: boolean = true;
+      const autoEndTurn: boolean = false;
       if (autoEndTurn) {
         window.setTimeout(() => {
           this.clicker.clickEndTurn();
