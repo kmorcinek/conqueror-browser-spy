@@ -151,6 +151,7 @@ export class ConquerorSpy {
       }
 
       ConquerorSpy.settings.setMyCapital();
+      ConquerorSpy.settings.setTurn(turn);
 
       ConquerorSpy.lastTurn = turn;
       console.log("New turn: ", ConquerorSpy.lastTurn);

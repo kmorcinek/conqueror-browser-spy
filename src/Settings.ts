@@ -1,7 +1,11 @@
 import { ColorPicker } from "./ColorPicker";
+import { Season } from "./Season";
+import { Seasons } from "./Seasons";
 
 export class Settings {
   private myColor: string | undefined = undefined;
+  private season: Season | undefined = undefined;
+  private turn: number | undefined = undefined;
 
   setMyCapital() {
     if (this.myColor === undefined) {
@@ -18,6 +22,25 @@ export class Settings {
       throw new Error(`myColor was not set yet, this method should be called later`);
     }
     return this.myColor;
+  }
+
+  setTurn(turn: number) {
+    this.turn = turn;
+    this.season = Seasons.parseSeason(turn);
+  }
+
+  getSeason(): Season {
+    if (this.season === undefined) {
+      throw new Error(`season was not set yet, this method should be called later`);
+    }
+    return this.season;
+  }
+
+  getTurn(): number {
+    if (this.turn === undefined) {
+      throw new Error(`turn was not set yet, this method should be called later`);
+    }
+    return this.turn;
   }
 
   private getCapital() {
