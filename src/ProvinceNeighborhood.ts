@@ -16,7 +16,7 @@ export class ProvinceNeighborhood {
       this.assignProvinces(provider, provinceMapValidator);
     }
     const length = Object.keys(this.neighbors).length;
-    console.log(`provinces on the map ${length}`);
+    console.log(`Provinces on the map ${length}`);
   }
 
   getNeighbors(provinceName: string) {
@@ -60,7 +60,7 @@ export class ProvinceNeighborhood {
   private getManyPathWithDistance2NotCached(source: string, target: string): string[][] {
     const manyPath: string[][] = [];
     if (this.getDistance(source, target) !== 2) {
-      throw new Error(`distance from ${source} to ${target} is required to be 2`);
+      throw new Error(`Distance from ${source} to ${target} is required to be 2`);
     }
 
     const firstLineOfNeighbors = this.getNeighbors(source);

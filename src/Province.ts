@@ -50,7 +50,7 @@ export class Province {
     attitude: Attitude | null
   ) {
     if (turn < 1) {
-      throw new Error(`turn '${turn}' cannot be less than 1`);
+      throw new Error(`Turn '${turn}' cannot be less than 1`);
     }
     this.turn = turn;
     this.name = name;

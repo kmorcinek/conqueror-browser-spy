@@ -123,7 +123,7 @@ export class ConquerorSpy {
   }
 
   static start() {
-    console.log("running conqueror-browser-spy");
+    console.log("Running conqueror-browser-spy");
 
     ConquerorSpy.cleanAllValues();
 
@@ -135,7 +135,7 @@ export class ConquerorSpy {
 
     const toolVersion = "1.8.6 - PROD version is not showing history for owned provinces";
 
-    console.log("tool version: " + toolVersion);
+    console.log("Tool version: " + toolVersion);
   }
 
   private static refreshTurn() {

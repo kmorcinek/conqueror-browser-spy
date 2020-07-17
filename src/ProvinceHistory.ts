@@ -20,17 +20,17 @@ export class ProvinceHistory {
     const turns = this.history.map((province: Province) => province.turn);
 
     if (turns.includes(newProvince.turn)) {
-      throw new Error(`turn '${newProvince.turn}' already exists in history`);
+      throw new Error(`Turn '${newProvince.turn}' already exists in history`);
     }
 
     const max = Math.max.apply(null, turns);
     if (max > newProvince.turn) {
-      throw new Error(`new province turn '${newProvince.turn}' has to greater than previous`);
+      throw new Error(`New province turn '${newProvince.turn}' has to greater than previous`);
     }
 
     if (this.history.length > 0 && this.history[0].resources !== newProvince.resources) {
       throw new Error(
-        `new province resources '${newProvince.resources}' differ from previous resources '${this.history[0].resources}'`
+        `New province resources '${newProvince.resources}' differ from previous resources '${this.history[0].resources}'`
       );
     }
 

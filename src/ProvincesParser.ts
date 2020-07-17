@@ -127,7 +127,7 @@ export class ProvinceParser {
   }
 
   private getAttitudeLabel(provinceName: string) {
-    console.log("clicking when parsing:", provinceName);
+    console.log("Clicking when parsing:", provinceName);
     this.clicker.clickProvince(provinceName);
     return document.getElementsByClassName("fieldInfoAttitude ")[0].childNodes[0].textContent;
   }

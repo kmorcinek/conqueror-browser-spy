@@ -16,7 +16,7 @@ export class ArmyMarcher {
   }
 
   marchArmy(sourceProvince: BattleProvince) {
-    console.log("trying to march army from " + sourceProvince.name);
+    console.log("Trying to march army from " + sourceProvince.name);
     const closeOpponentOrNeutralNeighbors = this.battleProvinceNeighborhoods.getClosestNotConqueredNeighbors(
       sourceProvince
     );

@@ -4,7 +4,7 @@ import { BuyProduction } from "./BuyProduction";
 
 export class Clicker {
   changeProvinceProduction(provinceName: string, production: Production | BuyProduction) {
-    console.log("clicking " + provinceName);
+    console.log("Clicking " + provinceName);
     this.clickProvince(provinceName);
     if (production instanceof BuyProduction) {
       this.buyProduction(production.production);
@@ -15,7 +15,7 @@ export class Clicker {
 
   buyProduction(production: Production) {
     this.clickProduction(production);
-    console.log("buying production for " + production);
+    console.log("Buying production for " + production);
     if (production === Production.Soldier) {
       this.click(this.getElementByClassName("fieldProdBuyButton2"));
     } else {
@@ -29,7 +29,7 @@ export class Clicker {
   }
 
   clickEndTurn() {
-    console.log("clicking end turn");
+    console.log("Clicking end turn");
     this.clickByClassName("endTurn");
   }
 
@@ -46,7 +46,7 @@ export class Clicker {
     }
 
     this.confirmArmy();
-    console.log("soldiers moved");
+    console.log("Soldiers moved");
   }
 
   private getProvinceElement(provinceName: string) {
@@ -90,7 +90,7 @@ export class Clicker {
       console.log(`Production ${production} is already active`);
       return;
     }
-    console.log("changing production to " + production);
+    console.log("Changing production to " + production);
     const className = this.getProductionClass(production);
     this.clickByClassName(className);
   }

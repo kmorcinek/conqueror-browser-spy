@@ -115,7 +115,7 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
       for (const neighborName of neighborsNames) {
         const neighborBattleProvince = this.battleProvinces[neighborName];
         if (neighborBattleProvince === undefined) {
-          throw new Error(`neighbor with name '${neighborName}' is not yet in battleProvinces`);
+          throw new Error(`Neighbor with name '${neighborName}' is not yet in battleProvinces`);
         }
         battleProvince.addNeighbor(neighborBattleProvince);
       }
@@ -147,7 +147,7 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
     }
 
     if (closestOpponents.length === 0) {
-      throw new Error(`at least one opponent province have to be present`);
+      throw new Error(`At least one opponent province have to be present`);
     }
     return closestOpponents;
   }

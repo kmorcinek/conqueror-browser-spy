@@ -32,7 +32,7 @@ export class Settings {
       case "e1":
         return "a3";
       default:
-        throw new Error(`cannot find opponent capital based on my capital`);
+        throw new Error(`Cannot find opponent capital based on my capital`);
     }
   }
 
@@ -65,7 +65,7 @@ export class Settings {
   private getCapital() {
     const spotName = document.getElementsByClassName("spotName")[0];
     if (spotName.textContent === null) {
-      throw new Error(`text of .spotName cannot be accessed`);
+      throw new Error(`Text of .spotName cannot be accessed`);
     }
     return this.parseCapital(spotName.textContent);
   }

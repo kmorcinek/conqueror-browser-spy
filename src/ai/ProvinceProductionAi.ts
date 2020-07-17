@@ -41,7 +41,7 @@ export class ProvinceProductionAi {
     let productionGoal: Production | BuyProduction | null;
     if (this.backlands.isBackland(province.name)) {
       productionGoal = this.backlandProductionAi.getProductionGoal(province);
-      console.log(`backland choose to produce ${productionGoal}`);
+      console.log(`Backland choose to produce ${productionGoal}`);
     } else {
       productionGoal = this.getProductionGoal(province);
     }
@@ -49,7 +49,7 @@ export class ProvinceProductionAi {
     if (productionGoal !== null) {
       if (province.production === productionGoal) {
         console.log(
-          `no need to change. ${province.name} is already building ${province.production}`
+          `No need to change. ${province.name} is already building ${province.production}`
         );
       } else {
         this.clicker.changeProvinceProduction(province.name, productionGoal);

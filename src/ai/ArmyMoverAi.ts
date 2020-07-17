@@ -54,7 +54,7 @@ export class ArmyMoverAi {
   }
 
   private moveArmy(sourceProvince: BattleProvince) {
-    console.log("trying to move army from " + sourceProvince.name);
+    console.log("Trying to move army from " + sourceProvince.name);
     const opponentNeighbors = sourceProvince.getOpponentNeighbors();
     const neutralNeighbors = sourceProvince.getNeutralNeighbors();
     if (opponentNeighbors.length > 0) {
@@ -70,7 +70,7 @@ export class ArmyMoverAi {
         this.neutralAttacker.attackNeutrals(neutralNeighbors, sourceProvince);
       }
     } else {
-      console.log("> close neighbors already conquered. Moving armies");
+      console.log("> Close neighbors already conquered. Moving armies");
       this.armyMarcher.marchArmy(sourceProvince);
     }
   }

@@ -24,7 +24,7 @@ export class OpponentAttacker {
       if (this.armyMovesRecorder.isFull()) {
         return;
       }
-      console.log("trying to move army to      " + target.name);
+      console.log("Trying to move army to      " + target.name);
 
       // Stay in fort
       if (sourceProvince.hasAnyFort()) {
@@ -33,7 +33,7 @@ export class OpponentAttacker {
           opponents.filter(x => x.remainingSoldiers >= sourceProvince.remainingSoldiers).length > 0
         ) {
           console.log(
-            `> don't leave fort when opponents nearby of ${sourceProvince.name} are strong`
+            `> Don't leave fort when opponents nearby of ${sourceProvince.name} are strong`
           );
           return;
         }

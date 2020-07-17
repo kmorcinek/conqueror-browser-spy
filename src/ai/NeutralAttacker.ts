@@ -16,7 +16,7 @@ export class NeutralAttacker {
       if (this.armyMovesRecorder.isFull()) {
         return;
       }
-      console.log("trying to move army to      " + target.name);
+      console.log("Trying to move army to      " + target.name);
 
       const isLastProvinceToAttack = target === neutralsByValue[neutralsByValue.length - 1];
       let attackingSoldiersCount: number;
