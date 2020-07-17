@@ -11,7 +11,15 @@ export class OpponentAttacker {
   }
 
   attackOpponents(opponents: BattleProvince[], sourceProvince: BattleProvince) {
-    const opponentsByValue = this.sortByProvinceValue(opponents);
+    function notRetreating(target: BattleProvince) {
+      return (
+        target.getOpponentCapitalDistance() <= sourceProvince.getOpponentCapitalDistance() &&
+        target.getOwnCapitalDistance() >= sourceProvince.getOwnCapitalDistance()
+      );
+    }
+
+    const opponentsByValue = this.sortByProvinceValue(opponents).filter(notRetreating);
+
     for (const target of opponentsByValue) {
       if (this.armyMovesRecorder.isFull()) {
         return;

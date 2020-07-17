@@ -5,8 +5,10 @@ import { ProvinceNeighborhoods } from "../ProvinceNeighborhoods";
 import { ProvinceHistoryService } from "../ProvinceHistoryService";
 import { ProvinceOwner } from "../ProvinceOwner";
 import { IBattleProvinceNeighborhoods } from "./IBattleProvinceNeighborhoods";
+import { Settings } from "../Settings";
 
 export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods {
+  private readonly settings: Settings;
   private readonly provinceOwnership: IProvinceOwnership;
   private readonly provinceNeighborhood: ProvinceNeighborhood;
   private readonly provinceNeighborhoods: ProvinceNeighborhoods;
@@ -17,11 +19,13 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
   private opponentProvinces: BattleProvince[] = [];
 
   constructor(
+    settings: Settings,
     provinceOwnership: IProvinceOwnership,
     provinceNeighborhood: ProvinceNeighborhood,
     provinceNeighborhoods: ProvinceNeighborhoods,
     provinceHistoryService: ProvinceHistoryService
   ) {
+    this.settings = settings;
     this.provinceOwnership = provinceOwnership;
     this.provinceNeighborhood = provinceNeighborhood;
     this.provinceNeighborhoods = provinceNeighborhoods;
@@ -41,7 +45,7 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
 
     this.createBattleProvinces(this.provinceOwnership.getNeutralProvinces(), ProvinceOwner.Neutral);
 
-    this.createNeighbors(ownedProvinces);
+    this.createNeighbors(this.provinceOwnership.getAllProvinces());
   }
 
   getOwnedProvinces(): BattleProvince[] {
@@ -100,12 +104,15 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
   }
 
   private createNeighbors(ownedProvinces: string[]) {
+    const opponentCapital = this.settings.getOpponentCapital();
+    const ownCapital = this.settings.getMyCapital();
     for (const provinceName of ownedProvinces) {
       const battleProvince = this.battleProvinces[provinceName];
 
-      const neighbors = this.provinceNeighborhood.getNeighbors(provinceName);
+      const neighborsNames = this.provinceNeighborhood.getNeighbors(provinceName);
 
-      for (const neighborName of neighbors) {
+      // TODO: to map
+      for (const neighborName of neighborsNames) {
         const neighborBattleProvince = this.battleProvinces[neighborName];
         if (neighborBattleProvince === undefined) {
           throw new Error(`neighbor with name '${neighborName}' is not yet in battleProvinces`);
@@ -116,6 +123,12 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
       const closestOpponents = this.getClosestOpponents(battleProvince);
       const distance = this.getDistance(battleProvince, closestOpponents[0]);
       battleProvince.updateClosestOpponents(closestOpponents, distance);
+      battleProvince.updateOpponentCapitalDistance(
+        this.provinceNeighborhood.getDistance(provinceName, opponentCapital)
+      );
+      battleProvince.updateOwnCapitalDistance(
+        this.provinceNeighborhood.getDistance(provinceName, ownCapital)
+      );
     }
   }
 

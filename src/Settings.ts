@@ -3,17 +3,36 @@ import { Season } from "./Season";
 import { Seasons } from "./Seasons";
 
 export class Settings {
+  private myCapital: string | undefined = undefined;
   private myColor: string | undefined = undefined;
   private season: Season | undefined = undefined;
   private turn: number | undefined = undefined;
 
   setMyCapital() {
     if (this.myColor === undefined) {
-      const capitalName = this.getCapital();
+      this.myCapital = this.getCapital();
 
-      console.warn(`Capital is ${capitalName}`);
-      this.myColor = ColorPicker.getColor(capitalName);
+      console.warn(`Capital is ${this.myCapital}`);
+      this.myColor = ColorPicker.getColor(this.myCapital);
       console.log(`Capital color is ${this.myColor}`);
+    }
+  }
+
+  getMyCapital() {
+    if (this.myCapital === undefined) {
+      throw new Error(`myCapital was not set yet, this method should be called later`);
+    }
+    return this.myCapital;
+  }
+
+  getOpponentCapital(): string {
+    switch (this.getMyCapital()) {
+      case "a3":
+        return "e1";
+      case "e1":
+        return "a3";
+      default:
+        throw new Error(`cannot find opponent capital based on my capital`);
     }
   }
 

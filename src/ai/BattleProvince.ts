@@ -11,6 +11,8 @@ export class BattleProvince {
   private readonly neighbors: BattleProvince[] = [];
   private closestOpponents: BattleProvince[] = [];
   private closestOpponentDistance: number = 0;
+  private opponentCapitalDistance: number | undefined;
+  private ownCapitalDistance: number | undefined;
   private remainingSoldiersInternal: number;
 
   constructor(province: Province, provinceOwner: ProvinceOwner) {
@@ -61,9 +63,31 @@ export class BattleProvince {
 
   getClosestOpponents(): BattleProvince[] {
     if (this.closestOpponents.length === 0) {
-      throw new Error(`closestOpponent  is not set yet`);
+      throw new Error(`closestOpponent is not set yet`);
     }
     return this.closestOpponents;
+  }
+
+  updateOpponentCapitalDistance(distance: number) {
+    this.opponentCapitalDistance = distance;
+  }
+
+  getOpponentCapitalDistance(): number {
+    if (this.opponentCapitalDistance === undefined) {
+      throw new Error(`opponentCapitalDistance is not set yet`);
+    }
+    return this.opponentCapitalDistance;
+  }
+
+  updateOwnCapitalDistance(distance: number) {
+    this.ownCapitalDistance = distance;
+  }
+
+  getOwnCapitalDistance(): number {
+    if (this.ownCapitalDistance === undefined) {
+      throw new Error(`ownCapitalDistance is not set yet`);
+    }
+    return this.ownCapitalDistance;
   }
 
   getNumberOfSoldiersToStayByAttitude(): number {

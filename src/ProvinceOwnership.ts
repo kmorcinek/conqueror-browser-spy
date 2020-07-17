@@ -76,6 +76,10 @@ export class ProvinceOwnership implements IProvinceOwnership {
     return this.neutralProvinces;
   }
 
+  getAllProvinces() {
+    return this.ownedProvinces.concat(this.opponentProvinces).concat(this.neutralProvinces);
+  }
+
   getNotOwned(provinces: string[]) {
     return provinces.filter(provinceName => this.isOwned(provinceName) === false);
   }

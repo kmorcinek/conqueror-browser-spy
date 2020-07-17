@@ -90,6 +90,7 @@ export class ConquerorSpy {
       provinceHistoryService
     );
     const battleProvinceNeighborhoods = new BattleProvinceNeighborhoods(
+      settings,
       provinceOwnership,
       provinceNeighborhood,
       provinceNeighborhoods,
