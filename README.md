@@ -43,3 +43,7 @@
 * number of players - 2 (I am as green) - only that setup works for AI
 * Turn timer - high ie. 8 minutes
 * Map: Big enough, Europe is good, but for testing AI Tiny Arena is best.
+
+## Deploy
+
+Run script `sh build_deploy.sh` (credentials for AWS were already provided)
