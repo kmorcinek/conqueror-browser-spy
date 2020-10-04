@@ -133,7 +133,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.9 - revert switching to gold";
+    const toolVersion = "1.9.1 - buttons for switching AI";
 
     console.log("Tool version: " + toolVersion);
   }
