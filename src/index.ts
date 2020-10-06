@@ -28,6 +28,7 @@ import { OpponentAttacker } from "./ai/OpponentAttacker";
 import { Backlands } from "./ai/backland/Backlands";
 import { BacklandProductionAi } from "./ai/backland/BacklandProductionAi";
 import { NeutralAttacker } from "./ai/NeutralAttacker";
+import { StaticProductionChecker } from "./StaticProductionChecker";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -76,6 +77,7 @@ export class ConquerorSpy {
       provinceOwnership,
       provinceHistoryService,
       productionWarningsHud,
+      new StaticProductionChecker(),
       buildingChanger
     );
     ConquerorSpy.historyChecker = new HistoryChecker(
