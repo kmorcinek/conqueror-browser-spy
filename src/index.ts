@@ -29,6 +29,7 @@ import { Backlands } from "./ai/backland/Backlands";
 import { BacklandProductionAi } from "./ai/backland/BacklandProductionAi";
 import { NeutralAttacker } from "./ai/NeutralAttacker";
 import { StaticProductionChecker } from "./StaticProductionChecker";
+import { DynamicProductionChecker } from "./DynamicProductionChecker";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -78,6 +79,7 @@ export class ConquerorSpy {
       provinceHistoryService,
       productionWarningsHud,
       new StaticProductionChecker(),
+      new DynamicProductionChecker(),
       buildingChanger
     );
     ConquerorSpy.historyChecker = new HistoryChecker(
@@ -179,7 +181,7 @@ export class ConquerorSpy {
       ConquerorSpy.provinceParser.updateProvinces();
       ConquerorSpy.historyChecker.checkProvinces();
       ConquerorSpy.provinceOwnership.updateOwnedProvinces();
-      ConquerorSpy.productionChecker.checkBuildingProvinces();
+      ConquerorSpy.productionChecker.checkBuildingProvinces(this.settings.getSeason());
 
       ConquerorSpy.aiManager.run();
 
