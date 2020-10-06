@@ -137,7 +137,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.9.1 - buttons for switching AI";
+    const toolVersion = "1.10 - 100k province in autumn is switching to farm";
 
     console.log("Tool version: " + toolVersion);
   }
