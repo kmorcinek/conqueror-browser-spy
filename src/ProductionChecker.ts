@@ -38,14 +38,13 @@ export class ProductionChecker {
       }
     }
 
+    let message = "";
     if (this.buildingAdvices.length) {
-      const message = this.buildingAdvices.join(", ");
+      message = this.buildingAdvices.join(", ");
       console.log(message);
-      this.productionWarningsHud.update(message);
       this.buildingAdvices = [];
-    } else {
-      this.productionWarningsHud.update("");
     }
+    this.productionWarningsHud.update(message);
   }
 
   reset() {
