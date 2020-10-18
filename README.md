@@ -38,6 +38,7 @@ Run script `sh build_deploy.sh` (credentials for AWS were already provided)
 
 ## Knows issues
 
+<!--
 * livonia jest źle pokazywana, z jakiegoś powodu była w conqueredProvince. (zły kolor?).
   * znowu z Hannoverem tylko teraz nie było 'conquered' gdy powinno.
 * bug: eire jest puste. nie zczytało prowincji, a inne zczytało.
@@ -45,5 +46,7 @@ Run script `sh build_deploy.sh` (credentials for AWS were already provided)
 	- LOW
 	- kolejny raz.
 		- wrzucić 1s setTimeout.
+-->
+
 * `Uncaught (in promise) DOMException: The play() request was interrupted by a new load request.` - it means that where was Exception and was swallowed and hidden by this message.
     * Examples: clicking to build Soldier when Soldier is already set.
