@@ -58,10 +58,19 @@ export class ProvinceParser {
     const productionString = productionItem!.getAttribute("xlink:href");
     let production: Production | null;
     let attitude: Attitude | null;
-    const isOwnedByMe = this.isHidden(productionItem!) == false;
+    const farmsWithResources = Province.parsePopulation(populationItem.textContent!);
+
+    const isOwnedByMe = this.isHidden(productionItem!) === false;
     if (isOwnedByMe) {
+      console.log("Clicking when parsing:", provinceName);
+      this.clicker.clickProvince(provinceName);
+
+      const farmsLabel = this.getFarmsLabel();
+      farmsWithResources.farms = parseInt(farmsLabel);
+
       production = this.parseProduction(productionString!);
-      const attitudeLabel = this.getAttitudeLabel(provinceName);
+
+      const attitudeLabel = this.getAttitudeLabel();
       attitude = this.parseAttitude(attitudeLabel!);
     } else {
       production = null;
@@ -69,8 +78,6 @@ export class ProvinceParser {
     }
 
     const soldierItem = mapDocument.getElementById(createId("info_"));
-
-    const farmsWithResources = Province.parsePopulation(populationItem.textContent!);
 
     const province = new Province(
       Globals.getTurn(),
@@ -90,7 +97,7 @@ export class ProvinceParser {
   }
 
   private isHidden(htmlElement: HTMLElement) {
-    return  htmlElement.getAttribute("visibility") === "hidden";
+    return htmlElement.getAttribute("visibility") === "hidden";
   }
 
   private parseCulture(str: string): Culture {
@@ -130,10 +137,12 @@ export class ProvinceParser {
     }
   }
 
-  private getAttitudeLabel(provinceName: string) {
-    console.log("Clicking when parsing:", provinceName);
-    this.clicker.clickProvince(provinceName);
-    return document.getElementsByClassName("fieldInfoAttitude ")[0].childNodes[0].textContent;
+  private getFarmsLabel(): string {
+    return document.getElementsByClassName("fieldInfoMain ")[0].childNodes[0].textContent!;
+  }
+
+  private getAttitudeLabel(): string {
+    return document.getElementsByClassName("fieldInfoAttitude ")[0].childNodes[0].textContent!;
   }
 
   private parseAttitude(label: string): Attitude {
