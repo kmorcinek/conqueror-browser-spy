@@ -48,7 +48,7 @@ export class ProvinceParser {
     }
 
     // fog of war
-    if (populationItem.getAttribute("visibility") === "hidden") {
+    if (this.isHidden(populationItem)) {
       return null;
     }
 
@@ -58,14 +58,14 @@ export class ProvinceParser {
     const productionString = productionItem!.getAttribute("xlink:href");
     let production: Production | null;
     let attitude: Attitude | null;
-    const isHidden = productionItem!.getAttribute("visibility") === "hidden";
-    if (isHidden) {
-      production = null;
-      attitude = null;
-    } else {
+    const isOwnedByMe = this.isHidden(productionItem!) == false;
+    if (isOwnedByMe) {
       production = this.parseProduction(productionString!);
       const attitudeLabel = this.getAttitudeLabel(provinceName);
       attitude = this.parseAttitude(attitudeLabel!);
+    } else {
+      production = null;
+      attitude = null;
     }
 
     const soldierItem = mapDocument.getElementById(createId("info_"));
@@ -87,6 +87,10 @@ export class ProvinceParser {
     // console.log("province parsed:", countryName);
 
     return province;
+  }
+
+  private isHidden(htmlElement: HTMLElement) {
+    return  htmlElement.getAttribute("visibility") === "hidden";
   }
 
   private parseCulture(str: string): Culture {
