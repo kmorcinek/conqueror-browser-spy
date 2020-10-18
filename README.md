@@ -1,5 +1,7 @@
 # Conqueror browser spy
 
+App for better playing an online game http://conquerorgame.com/teams/
+
 ## How I develop this application (tools, IDEs, etc)
 
 * Visual Studio Code - open folder
@@ -15,24 +17,28 @@
   * In application folder `git reset --hard` - to get back previously deleted file
 * Edit any *.ts files in /src folder
 * Inside Docker Container run: `npm run browserify` - it will run **browsify** and create one file 'output.js' in app-vol folder and expose it as http://127.0.0.1:8887/output.js
-* Create bookmark in browser with js scripts from file `/wrapper/wrapper.jjj`
+* Create bookmark in browser with js scripts from file `/wrapper/wrapper.jjj` (dummy extension just for not conflicting with other usefull extensions)
+
   * One bookmark for PROD and one for testing
   * Click the bookmark and scripts are loaded/reloaded
+* When new game is set up and app is loaded you should see in browser debugger console `Running conqueror-browser-spy`
 
 ## How I test the code on Ubuntu (above not always works)
 
 * run: `npm run browserify`
-* server file output.js port 8887 using ie Web Server for Chrome
+* serve file `output.js` on localhost:8887 using ie "Web Server for Chrome"
 
 ## Which game to set for testing
 
+* http://conquerorgame.com/teams/
+* "Login as guest" - no need to register
 * Multiplayer
 * Fog of war - off
 * number of players - 2 (I am as green) - only that setup works for AI
 * Turn timer - high ie. 8 minutes
 * Map: Big enough, Europe is good, but for testing AI Tiny Arena is best.
 
-## Deploy
+## PROD Deploy
 
 Run script `sh build_deploy.sh` (credentials for AWS were already provided)
 
