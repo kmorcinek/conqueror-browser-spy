@@ -12,7 +12,7 @@ export class Settings {
     if (this.myColor === undefined) {
       this.myCapital = this.getCapital();
 
-      console.warn(`Capital is ${this.myCapital}`);
+      console.log(`Capital is ${this.myCapital}`);
       this.myColor = ColorPicker.getColor(this.myCapital);
       console.log(`Capital color is ${this.myColor}`);
     }
