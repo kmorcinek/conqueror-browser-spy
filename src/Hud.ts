@@ -11,6 +11,7 @@ export class Hud {
   private readonly historyChecker: HistoryChecker;
   private readonly provinceHistoryService: ProvinceHistoryService;
   private readonly selector = "#hud";
+  private readonly hudWrapperSelector = "#hud-wrapper";
 
   constructor(
     provinceOwnership: IProvinceOwnership,
@@ -62,34 +63,37 @@ export class Hud {
     this.updateHudHtml(lines.join("<br>"));
   }
 
-  private initHud() {
-    if ($(this.selector).length) {
-      return;
-    }
-
-    const timerWrapper = $(Globals.timerWrapperSelector);
-
-    const hud = $(
-      "<div>" +
-        '  <label for="run-ai">Run AI</label>' +
-        '  <input type="checkbox" name="run-ai" id="run-ai" onchange="conquerorSpy.updateRunAi()" checked="checked">' +
-        "</div>" +
-        "<div>" +
-        '  <label for="auto-end-turn">Auto et</label>' +
-        '  <input type="checkbox" name="auto-end-turn" id="auto-end-turn" onchange="conquerorSpy.updateAutoEndTurn()">' +
-        "</div>" +
-        '<div id="hud" style="color: blue; background-color: white;"></div>'
+  private initHudWrapper() {
+    const hudWrapper = $(
+      '<div id="hud-wrapper">' +
+      "  <div>" +
+      '    <label for="run-ai">Run AI</label>' +
+      '      <input type="checkbox" name="run-ai" id="run-ai" onchange="conquerorSpy.updateRunAi()" checked="checked">' +
+      "    </div>" +
+      "    <div>" +
+      '      <label for="auto-end-turn">Auto et</label>' +
+      '      <input type="checkbox" name="auto-end-turn" id="auto-end-turn" onchange="conquerorSpy.updateAutoEndTurn()">' +
+      "    </div>" +
+      '  <div id="hud" style="color: blue; background-color: white;"></div>' +
+      "</div>"
     );
-    timerWrapper.append(hud);
+
+    if ($(this.hudWrapperSelector).length) {
+      $(this.hudWrapperSelector).replaceWith(hudWrapper);
+    } else {
+      const timerWrapper = $(Globals.timerWrapperSelector);
+
+      timerWrapper.append(hudWrapper);
+    }
   }
 
   private updateHud(text: string) {
-    this.initHud();
+    this.initHudWrapper();
     $(this.selector).text(text);
   }
 
   private updateHudHtml(html: string) {
-    this.initHud();
+    this.initHudWrapper();
     $(this.selector).html(html);
   }
 
