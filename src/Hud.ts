@@ -42,7 +42,7 @@ export class Hud {
     }
 
     if (this.provinceOwnership.getConqueredProvinces().includes(provinceName)) {
-      this.updateHud("");
+      this.clearHud();
       return;
     }
 
@@ -66,16 +66,16 @@ export class Hud {
   private initHudWrapper() {
     const hudWrapper = $(
       '<div id="hud-wrapper">' +
-      "  <div>" +
-      '    <label for="run-ai">Run AI</label>' +
-      '      <input type="checkbox" name="run-ai" id="run-ai" onchange="conquerorSpy.updateRunAi()" checked="checked">' +
-      "    </div>" +
-      "    <div>" +
-      '      <label for="auto-end-turn">Auto et</label>' +
-      '      <input type="checkbox" name="auto-end-turn" id="auto-end-turn" onchange="conquerorSpy.updateAutoEndTurn()">' +
-      "    </div>" +
-      '  <div id="hud" style="color: blue; background-color: white;"></div>' +
-      "</div>"
+        "  <div>" +
+        '    <label for="run-ai">Run AI</label>' +
+        '      <input type="checkbox" name="run-ai" id="run-ai" onchange="conquerorSpy.updateRunAi()" checked="checked">' +
+        "    </div>" +
+        "    <div>" +
+        '      <label for="auto-end-turn">Auto et</label>' +
+        '      <input type="checkbox" name="auto-end-turn" id="auto-end-turn" onchange="conquerorSpy.updateAutoEndTurn()">' +
+        "    </div>" +
+        '  <div id="hud" style="color: blue; background-color: white;"></div>' +
+        "</div>"
     );
 
     if ($(this.hudWrapperSelector).length) {
@@ -87,9 +87,9 @@ export class Hud {
     }
   }
 
-  private updateHud(text: string) {
+  private clearHud() {
     this.initHudWrapper();
-    $(this.selector).text(text);
+    $(this.selector).text("");
   }
 
   private updateHudHtml(html: string) {
