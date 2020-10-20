@@ -3,8 +3,8 @@ export class GoldService {
   private support: number = NaN;
 
   update() {
-    this.current = this.getAmount("gold");
-    this.support = this.getAmount("costs");
+    this.current = this.getAmount("Gold", "gold");
+    this.support = this.getAmount("Support", "costs");
   }
 
   getCurrent() {
@@ -15,9 +15,9 @@ export class GoldService {
     return this.support;
   }
 
-  private getAmount(className: string) {
-    const gold = document.getElementsByClassName(className)[0].childNodes[3]!.textContent;
-    console.log(`${className}: '${gold}'`);
-    return parseInt(gold!);
+  private getAmount(uiName: string, className: string) {
+    const amount = document.getElementsByClassName(className)[0].childNodes[3]!.textContent;
+    console.log(`${uiName}: '${amount}'`);
+    return parseInt(amount!);
   }
 }
