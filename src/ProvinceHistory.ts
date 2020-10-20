@@ -30,7 +30,7 @@ export class ProvinceHistory {
 
     if (this.history.length > 0 && this.history[0].resources !== newProvince.resources) {
       throw new Error(
-        `New province resources '${newProvince.resources}' differ from previous resources '${this.history[0].resources}'`
+        `New province resources '${newProvince.resources}' differ from previous resources '${this.history[0].resources}', name: '${newProvince.name}'`
       );
     }
 
