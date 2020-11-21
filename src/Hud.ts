@@ -63,7 +63,7 @@ export class Hud {
     this.updateHudHtml(lines.join("<br>"));
   }
 
-  private initHudWrapper() {
+  initHudWrapper() {
     const hudWrapper = $(
       '<div id="hud-wrapper">' +
         "  <div>" +
