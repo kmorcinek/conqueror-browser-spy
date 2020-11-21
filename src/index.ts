@@ -66,7 +66,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.10 - 100k province in autumn is switching to farm";
+    const toolVersion = "1.11 - fix: After starting another game, the Hud overlaps with clock";
 
     console.log("Tool version: " + toolVersion);
   }
