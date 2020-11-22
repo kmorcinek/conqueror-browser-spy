@@ -30,6 +30,8 @@ import { BacklandProductionAi } from "./ai/backland/BacklandProductionAi";
 import { NeutralAttacker } from "./ai/NeutralAttacker";
 import { StaticProductionChecker } from "./StaticProductionChecker";
 import { DynamicProductionChecker } from "./DynamicProductionChecker";
+import { CapitalFinder } from "./CapitalFinder";
+import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -83,7 +85,8 @@ export class ConquerorSpy {
 
   private static constructObjects() {
     const goldService = new GoldService();
-    const settings = new Settings();
+    const capitalFinder = new CapitalFinder(new BrowserHtmlDocument());
+    const settings = new Settings(capitalFinder);
     ConquerorSpy.settings = settings;
     ConquerorSpy.goldService = goldService;
     const productionWarningsHud = new ProductionWarningsHud();
