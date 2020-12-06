@@ -38,7 +38,7 @@ export class ConquerorSpy {
   static provinceOwnership: IProvinceOwnership;
   static productionChecker: ProductionChecker;
   static historyChecker: HistoryChecker;
-  static hud: Hud;
+    static hud: Hud;
   static provinceHistoryService: ProvinceHistoryService;
   static goldService: GoldService;
   static settings: Settings;
