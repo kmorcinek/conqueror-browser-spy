@@ -1,6 +1,7 @@
 <div class="fieldInfoMain" dojoattachpoint="apFieldInfoMain">3<span class="dpTooltip" data-dp-tooltip="Population increases production. population grows by building farms">0,000&nbsp;<span class="label"> population</span></span><br><span class="dpTooltip" data-dp-tooltip="Culture increases production and lowers rebellion.">developed<span class="label"> culture</span></span><br><span class="dpTooltip" data-dp-tooltip="Natural resources increase production.">+2<span class="label"> resources</span></span><br></div>
 
 
+test
 
 #gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldInfoMain
 
