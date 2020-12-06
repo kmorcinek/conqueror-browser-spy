@@ -1,6 +1,6 @@
 import { expect } from "chai";
-import { Season } from "../src/Season";
-import { Seasons } from "../src/Seasons";
+import { Season } from "../../src/Season";
+import { Seasons } from "../../src/Seasons";
 
 describe("SeasonsTest", () => {
   it("should parse Spring", () => {
