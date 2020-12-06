@@ -36,7 +36,7 @@ import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
   static provinceOwnership: IProvinceOwnership;
-  static productionChecker: ProductionChecker;
+    static productionChecker: ProductionChecker;
   static historyChecker: HistoryChecker;
   static hud: Hud;
   static provinceHistoryService: ProvinceHistoryService;
