@@ -30,11 +30,13 @@ import { BacklandProductionAi } from "./ai/backland/BacklandProductionAi";
 import { NeutralAttacker } from "./ai/NeutralAttacker";
 import { StaticProductionChecker } from "./StaticProductionChecker";
 import { DynamicProductionChecker } from "./DynamicProductionChecker";
+import { CapitalFinder } from "./CapitalFinder";
+import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
   static provinceOwnership: IProvinceOwnership;
-  static productionChecker: ProductionChecker;
+    static productionChecker: ProductionChecker;
   static historyChecker: HistoryChecker;
   static hud: Hud;
   static provinceHistoryService: ProvinceHistoryService;
@@ -49,9 +51,42 @@ export class ConquerorSpy {
   static lastCountry: string = "";
 
   static initialize() {
+    this.constructObjects();
+
+    ConquerorSpy.hud.initHudWrapper();
     ProductionWarningsHud.initHud();
+  }
+
+  static start() {
+    console.log("Running conqueror-browser-spy");
+
+    ConquerorSpy.cleanAllValues();
+
+    clearInterval((document as any).refrestTurnInterval);
+    (document as any).refrestTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
+
+    clearInterval((document as any).refreshNameInterval);
+    (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
+
+    const toolVersion = "1.11 - fix: After starting another game, the Hud overlaps with clock";
+
+    console.log("Tool version: " + toolVersion);
+  }
+
+  static updateRunAi() {
+    const checked = (document.getElementById("run-ai")! as any).checked;
+    ConquerorSpy.aiManager.updateRunAi(checked);
+  }
+
+  static updateAutoEndTurn() {
+    const checked = (document.getElementById("auto-end-turn")! as any).checked;
+    ConquerorSpy.aiManager.updateAutoEndTurn(checked);
+  }
+
+  private static constructObjects() {
     const goldService = new GoldService();
-    const settings = new Settings();
+    const capitalFinder = new CapitalFinder(new BrowserHtmlDocument());
+    const settings = new Settings(capitalFinder);
     ConquerorSpy.settings = settings;
     ConquerorSpy.goldService = goldService;
     const productionWarningsHud = new ProductionWarningsHud();
@@ -124,32 +159,6 @@ export class ConquerorSpy {
       armyMoverAi,
       provinceProductionAi
     );
-  }
-
-  static start() {
-    console.log("Running conqueror-browser-spy");
-
-    ConquerorSpy.cleanAllValues();
-
-    clearInterval((document as any).refrestTurnInterval);
-    (document as any).refrestTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
-
-    clearInterval((document as any).refreshNameInterval);
-    (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
-
-    const toolVersion = "1.10 - 100k province in autumn is switching to farm";
-
-    console.log("Tool version: " + toolVersion);
-  }
-
-  static updateRunAi() {
-    const checked = (document.getElementById("run-ai")! as any).checked;
-    ConquerorSpy.aiManager.updateRunAi(checked);
-  }
-
-  static updateAutoEndTurn() {
-    const checked = (document.getElementById("auto-end-turn")! as any).checked;
-    ConquerorSpy.aiManager.updateAutoEndTurn(checked);
   }
 
   private static refreshTurn() {

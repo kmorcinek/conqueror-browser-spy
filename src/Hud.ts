@@ -63,9 +63,9 @@ export class Hud {
     this.updateHudHtml(lines.join("<br>"));
   }
 
-  private initHudWrapper() {
+  initHudWrapper() {
     const hudWrapper = $(
-      '<div id="hud-wrapper">' +
+      '<div id="hud-wrapper" style="margin-top: 20px;">' +
         "  <div>" +
         '    <label for="run-ai">Run AI</label>' +
         '      <input type="checkbox" name="run-ai" id="run-ai" onchange="conquerorSpy.updateRunAi()" checked="checked">' +
