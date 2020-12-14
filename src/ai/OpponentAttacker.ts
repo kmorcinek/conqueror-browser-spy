@@ -72,10 +72,12 @@ export class OpponentAttacker {
 
   private soldierRequiredToConquer(target: BattleProvince) {
     // tslint:disable: prettier
-    return target.remainingSoldiers +
+    return (
+      target.remainingSoldiers +
       2 +
       Math.floor(target.farms / 3) +
-      Math.floor(target.remainingSoldiers / 9);
+      Math.floor(target.remainingSoldiers / 9)
+    );
     // tslint:enable: prettier
   }
 
