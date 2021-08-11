@@ -35,9 +35,10 @@ App for better playing an online game http://conquerorgame.com/teams/
 * "Login as guest" - no need to register
 * Multiplayer
 * Fog of war - off
-* number of players - 2 (I am as green) - only that setup works for AI
+* number of players - 2 - only that setup works for AI
 * Turn timer - high ie. 8 minutes
-* Map: Big enough, Europe is good, but for testing AI Tiny Arena is best.
+* Map: for testing AI - "Tiny" "Team Arena" is best.
+* Map: for testing history tool: any, Europe is good
 
 ## PROD Deploy
 
