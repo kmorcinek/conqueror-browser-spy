@@ -9,6 +9,7 @@ App for better playing an online game http://conquerorgame.com/teams/
 
 ## How I test the code
 
+* You don't need to use docker (!Need to verify on Windows). You can host it just using `npx http-server ./lib -p 8887`
 * If you have already running container (even after system restart) you can just login from powershell to container: `docker exec -it sha512OfContainer /bin/bash`
 * If you run container for first time (or done changes to ie. 'package.json') then perform:
   * In application folder: `docker image build -t ts-demo .`
