@@ -20,7 +20,15 @@ export class ArmyMarcher {
     const closeOpponentOrNeutralNeighbors = this.battleProvinceNeighborhoods.getClosestNotConqueredNeighbors(
       sourceProvince
     );
-    console.log(">> Number of closeEnemiesOrNeutral:", closeOpponentOrNeutralNeighbors.length);
+
+    if (closeOpponentOrNeutralNeighbors.length) {
+      console.log(
+        ">> Number of closeOpponentOrNeutralNeighbors:",
+        closeOpponentOrNeutralNeighbors.length
+      );
+    } else {
+      console.warn(">> Missing closeOpponentOrNeutralNeighbors");
+    }
 
     const opponentToNumber = (bp: BattleProvince) => (bp.isOpponent() ? 1 : 0);
     const targetProvince = closeOpponentOrNeutralNeighbors

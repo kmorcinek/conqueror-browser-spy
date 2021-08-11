@@ -176,6 +176,8 @@ export class ConquerorSpy {
       return;
     }
 
+    // here can be log
+
     if (turn !== ConquerorSpy.lastTurn) {
       if (turn === 1) {
         ConquerorSpy.cleanAllValues();
