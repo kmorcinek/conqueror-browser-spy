@@ -2,6 +2,9 @@ import { IProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/IProvince
 import { IProvinceMapValidator } from "./ProvinceNeighborhood/IProvinceMapValidator";
 
 export class ProvinceNeighborhood {
+  private readonly neighbourhoodProviders: IProvinceNeighbourhoodProvider[];
+  private readonly provinceMapValidator: IProvinceMapValidator;
+
   private readonly neighbors: Record<string, string[]> = {};
 
   private readonly distanceCache: Cache<number> = new Cache<number>();
@@ -12,8 +15,15 @@ export class ProvinceNeighborhood {
     neighbourhoodProviders: IProvinceNeighbourhoodProvider[],
     provinceMapValidator: IProvinceMapValidator
   ) {
-    for (const provider of neighbourhoodProviders) {
-      this.assignProvinces(provider, provinceMapValidator);
+    this.neighbourhoodProviders = neighbourhoodProviders;
+    this.provinceMapValidator = provinceMapValidator;
+
+    this.reset();
+  }
+
+  reset() {
+    for (const provider of this.neighbourhoodProviders) {
+      this.assignProvinces(provider, this.provinceMapValidator);
     }
     const length = Object.keys(this.neighbors).length;
     console.log(`Provinces on the map ${length}`);

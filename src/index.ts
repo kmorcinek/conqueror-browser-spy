@@ -36,6 +36,7 @@ import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
   static provinceOwnership: IProvinceOwnership;
+  static provinceNeighborhood: ProvinceNeighborhood;
   static productionChecker: ProductionChecker;
   static historyChecker: HistoryChecker;
   static hud: Hud;
@@ -108,6 +109,7 @@ export class ConquerorSpy {
       provinceNeighborhood
     );
     ConquerorSpy.provinceOwnership = provinceOwnership;
+    ConquerorSpy.provinceNeighborhood = provinceNeighborhood;
     const buildingChanger = new BuildingChanger(clicker);
     ConquerorSpy.productionChecker = new ProductionChecker(
       provinceOwnership,
@@ -205,6 +207,7 @@ export class ConquerorSpy {
     ConquerorSpy.historyChecker.reset();
     ConquerorSpy.productionChecker.reset();
     ConquerorSpy.provinceOwnership.reset();
+    ConquerorSpy.provinceNeighborhood.reset();
   }
 
   private static refreshName() {
