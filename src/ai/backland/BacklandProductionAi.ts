@@ -60,7 +60,8 @@ export class BacklandProductionAi {
     const safeAmount = 20 + (this.settings.getTurn() - 20);
     return (
       this.settings.getSeason() === Season.Winter &&
-      this.goldService.getCurrent() - safeAmount < this.goldService.getSupport()
+      this.goldService.getCurrentGold() - safeAmount <
+        this.goldService.getGoldRequiredForWinterSupport()
     );
   }
 }

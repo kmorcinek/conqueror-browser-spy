@@ -119,7 +119,10 @@ export class ProvinceProductionAi {
   private isEnoughGold(production: Production) {
     if (production === Production.Culture) {
       // TODO: hardcoded 60
-      return this.goldService.getCurrent() - 2 * this.goldService.getSupport() > 60;
+      return (
+        this.goldService.getCurrentGold() - 2 * this.goldService.getGoldRequiredForWinterSupport() >
+        60
+      );
     }
 
     return false;

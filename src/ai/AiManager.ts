@@ -40,7 +40,7 @@ export class AiManager {
     if (this.runAi) {
       this.battleProvinceNeighborhoods.recreateNextTurn();
 
-      this.backlands.run();
+      this.backlands.chooseBacklands();
       this.armyMoverAi.moveArmies();
       this.provinceProductionAi.updateAllProvinces();
 

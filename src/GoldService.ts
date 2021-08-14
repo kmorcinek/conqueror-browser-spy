@@ -7,11 +7,11 @@ export class GoldService {
     this.support = this.getAmount("Support", "costs");
   }
 
-  getCurrent() {
+  getCurrentGold() {
     return this.current;
   }
 
-  getSupport() {
+  getGoldRequiredForWinterSupport() {
     return this.support;
   }
 
