@@ -19,15 +19,18 @@ export class Backlands {
     // choose one as backland based on distance from opponent.
     // choose by provinceName.
     // all neighbors are mine.
-    const farthestFromOpponent: BattleProvince = this.battleProvinceNeighborhoods
+    const sortedByOpponentDistance: BattleProvince[] = this.battleProvinceNeighborhoods
       .getOwnedProvinces()
       .filter(bp => !bp.hasNeighborToConquer())
       .sort(
         (first, second) => first.getClosestOpponentDistance() - second.getClosestOpponentDistance()
       )
-      .reverse()[0];
+      .reverse();
 
-    this.chosen = farthestFromOpponent.name;
-    console.log(`Choose ${this.chosen} as backland`);
+    if (sortedByOpponentDistance.length) {
+      const farthestFromOpponent = sortedByOpponentDistance[0];
+      this.chosen = farthestFromOpponent.name;
+      console.log(`Choose ${this.chosen} as backland`);
+    }
   }
 }
