@@ -15,7 +15,8 @@ export class BacklandProductionAi {
   }
 
   getProductionGoal(province: BattleProvince): Production | null {
-    if (this.missingGoldInWinter()) {
+    // start from some turn (5) after first winter is passed
+    if (this.missingGoldInWinter() && this.settings.getTurn() > 5) {
       return Production.Gold;
     }
 

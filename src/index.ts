@@ -137,7 +137,7 @@ export class ConquerorSpy {
       provinceNeighborhoods,
       provinceHistoryService
     );
-    const backlands = new Backlands(battleProvinceNeighborhoods, goldService, settings);
+    const backlands = new Backlands(battleProvinceNeighborhoods);
     const backlandProductionAi = new BacklandProductionAi(goldService, settings);
     const provinceProductionAi = new ProvinceProductionAi(
       clicker,
