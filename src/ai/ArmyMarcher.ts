@@ -39,6 +39,7 @@ export class ArmyMarcher {
   }
 
   marchToPossibleTargets(sourceProvince: BattleProvince, possibleTargets: BattleProvince[]) {
+    // TODO: for now choosing only first target
     this.marchToTarget(sourceProvince, possibleTargets[0]);
   }
 
