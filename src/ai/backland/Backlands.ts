@@ -1,12 +1,12 @@
-import { BattleProvinceNeighborhoods } from "../BattleProvinceNeighborhoods";
+import { IBattleProvinceNeighborhoods } from "../IBattleProvinceNeighborhoods";
 import { BattleProvince } from "../BattleProvince";
 
 export class Backlands {
-  private readonly battleProvinceNeighborhoods: BattleProvinceNeighborhoods;
+  private readonly battleProvinceNeighborhoods: IBattleProvinceNeighborhoods;
 
   private chosen: string | undefined;
 
-  constructor(battleProvinceNeighborhoods: BattleProvinceNeighborhoods) {
+  constructor(battleProvinceNeighborhoods: IBattleProvinceNeighborhoods) {
     this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
   }
 
