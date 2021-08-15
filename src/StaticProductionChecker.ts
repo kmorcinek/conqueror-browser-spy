@@ -49,7 +49,7 @@ export class StaticProductionChecker {
         production: Production.Culture,
         changeTo: Production.Farm,
       },
-      // Do not force, it some situations it's better to first develop
+      // Do not force, in some situations it's better to first develop
       // {
       //   farms: 3,
       //   resources: 1,
