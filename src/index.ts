@@ -69,7 +69,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    const toolVersion = "1.12 - reset map when starting new game";
+    const toolVersion = "1.13 - fix chosing backland when no backland is perfect";
 
     console.log("Tool version: " + toolVersion);
   }
