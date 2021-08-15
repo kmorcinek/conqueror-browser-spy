@@ -15,43 +15,20 @@ export class BacklandProductionAi {
   }
 
   getProductionGoal(province: BattleProvince): Production | null {
+    const productionGoal = this.calculateProductionGoal(province);
+    if (productionGoal === null) {
+      console.log(`Backland choose not to produce anything particular`);
+    } else {
+      console.log(`Backland choose to produce ${productionGoal}`);
+    }
+
+    return productionGoal;
+  }
+
+  private calculateProductionGoal(province: BattleProvince): Production | null {
     // start from some turn (5) after first winter is passed
     if (this.missingGoldInWinter() && this.settings.getTurn() > 5) {
       return Production.Gold;
-    }
-
-    if (province.culture === Culture.Primitive && province.farms < 5) {
-      return Production.Farm;
-    }
-
-    if (province.culture === Culture.Primitive && province.farms >= 5) {
-      return Production.Culture;
-    }
-
-    if (province.culture === Culture.Developed && province.farms < 7) {
-      return Production.Farm;
-    }
-
-    if (province.hasNeighborOpponent()) {
-      return Production.Soldier;
-    }
-
-    if (province.getClosestOpponentDistance() <= 2 && province.remainingSoldiers < province.farms) {
-      return Production.Soldier;
-    }
-
-    // TODO: Maybe remove this check as it is done without AI
-    if (province.culture === Culture.Advanced) {
-      if (
-        (province.farms >= 6 && (province.resources === 0 || province.resources === 2)) ||
-        province.farms >= 7
-      ) {
-        return Production.Gold;
-      }
-    }
-
-    if (province.production !== Production.Farm && province.production !== Production.Culture) {
-      return Production.Farm;
     }
 
     return null;
