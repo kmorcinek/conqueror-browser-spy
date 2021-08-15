@@ -1,11 +1,9 @@
 <div class="fieldInfoMain" dojoattachpoint="apFieldInfoMain">3<span class="dpTooltip" data-dp-tooltip="Population increases production. population grows by building farms">0,000&nbsp;<span class="label"> population</span></span><br><span class="dpTooltip" data-dp-tooltip="Culture increases production and lowers rebellion.">developed<span class="label"> culture</span></span><br><span class="dpTooltip" data-dp-tooltip="Natural resources increase production.">+2<span class="label"> resources</span></span><br></div>
 
 
-
 #gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldInfoMain
 
 $("#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldInfoMain").firstChild
-
 
 var wrapper = $("#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldInfoMain")
 
@@ -37,6 +35,8 @@ var test = $('<button>Test</button>').click(function () {
 $('#field_bulgaria').click()
 
 
+#lobbyWrapper > div > div > div.mainContainer > div.area.areaML > div > div.viewContent > div.createGame > div > div.viewContent > div.createGameDialog > div > div.viewContent > div.optionRow.submit > div.start.button
+
 var event = document.createEvent("SVGEvents");
 event.initEvent("click",true,true);
 var d = document.getElementById("a0xa000033"); // id for one the "g" element.
@@ -46,13 +46,14 @@ d.dispatchEvent(event);
 http://api.jquery.com/trigger/
 
 
+tak laduje my jQuery:
 javascript:if(!window.jQuery||confirm('Overwrite\x20current\x20version?\x20v'+jQuery.fn.jquery))(function(d,s){s=d.createElement('script');s.src='https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.js';(d.head||d.documentElement).appendChild(s)})(document);
+- tak sprawdzamy:
+
+
 
 javascript:if(!window.jQuery||confirm('Overwrite\x20current\x20version?\x20v'+jQuery.fn.jquery))(function(d,s){s=d.createElement('script');s.src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js';(d.head||d.documentElement).appendChild(s)})(document);
 - za pierwszym razem po prostu ładuje a za drugim pyta, bo już załadowane.
-
-var gold = $('#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldProdWrapper > div.fieldProps > div.fieldProp.fieldProp2.fieldPropGold')
-
 
 #gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.cap.type_default.fogOfWar0 > div > div.fieldProdWrapper > div.fieldProps > div.fieldProp.fieldProp2.fieldPropGold > div.fieldPropValue
 
@@ -84,9 +85,6 @@ var sidebar = $("#gameWrapper > div > div.area.areaR");
   alert( "Handler for .change() called." );
 });
 
-Zrobić przypominacza o najlepszej budowie.
-
-na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a następnie po zmianie country, zczytywać nowe budowania (ale może te nowe production nie sa takie ważne?!).
 
 !Wrócić do ProvinceSpy zeby było wiadomo co neutralne budują.
 - gdzie to wpisywać
@@ -95,30 +93,12 @@ na wstępnie (nowa tura) zczytać wszystk, (zaproponować jakieś hinty), a nast
 - ostrzegać gdy jest pewne że 3 buduje development
   - historie każdej tury 
 
-Określanie co dokładnie jest budowane nie robić na podstawie dokładnych wyliczeń (jak wcześniej w C#) tylko hardkodować najbardziej użyteczne info.
 
-Testować gdy conqueror bez 'fog of war'.
-
-Alert gdy jest pewność co buduje ale też opis na górze HUDa, (można też napisać albo albo).
-
-
-Ten tool się bardzo przyda w 2v2 a najbardziej w 1v1.
-
-
-obliczyć co musi się dziać dla 3 potem dla 4 -ki.
-- zrobić to może w TS razem z UT?
-
-  
 Toolik do rysowania kolorów kropek, zeby wiedzieć gdzie dochodzą czyje potęgi.
-
-
-zagrać 1v1 i się dać w złe miejsce.
 
 
 Mooker powieniał że ja zawsze agro nawet gdy powiniem na niego jechać.
 
-
-dlaczego mnie wypierdala czasem?
 
 gdy 2 oddalenia do stolicy to nie czekać 7 tur.
 
