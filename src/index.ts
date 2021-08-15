@@ -189,6 +189,7 @@ export class ConquerorSpy {
       ConquerorSpy.settings.setTurn(turn);
 
       ConquerorSpy.lastTurn = turn;
+      console.log("");
       console.log("New turn: ", ConquerorSpy.lastTurn);
       ConquerorSpy.goldService.update();
       ConquerorSpy.provinceParser.updateProvinces();
