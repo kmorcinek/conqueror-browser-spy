@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { Globals } from "./Globals";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { ProvinceParser } from "./ProvincesParser";
@@ -32,6 +33,8 @@ import { StaticProductionChecker } from "./StaticProductionChecker";
 import { DynamicProductionChecker } from "./DynamicProductionChecker";
 import { CapitalFinder } from "./CapitalFinder";
 import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
+import { GameLobby } from "./GameLobby";
+import { GameLobbyClicker } from "./GameLobbyClicker";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -46,6 +49,7 @@ export class ConquerorSpy {
   static aiManager: AiManager;
   static provinceMapValidator: ProvinceMapValidator = new ProvinceMapValidator();
   static clicker = new Clicker();
+  static gameLobby = new GameLobby();
 
   static lastTurn: number = NaN;
 
@@ -72,6 +76,14 @@ export class ConquerorSpy {
     const toolVersion = "1.13 - fix chosing backland when no backland is perfect";
 
     console.log("Tool version: " + toolVersion);
+  }
+
+  static runClick() {
+    new GameLobby().startNewAiGame();
+  }
+
+  static simulateQuit() {
+    this.gameLobby.quitGameAfterSound();
   }
 
   static updateRunAi() {
@@ -175,9 +187,18 @@ export class ConquerorSpy {
     const turn = Globals.getTurn();
 
     if (isNaN(turn)) {
+      console.log("unsetting/reset");
       // hacky was of reseting lastTurn, without it when we exit game at turn 1 and start new game
       // it will be not treated as new game
       ConquerorSpy.lastTurn = NaN;
+      ConquerorSpy.settings.unsetEverything();
+      return;
+    }
+
+    if (this.isGameOver()) {
+      console.log("game is over")
+      // log result
+      this.gameLobby.quitGameAfterSound();
       return;
     }
 
@@ -188,10 +209,10 @@ export class ConquerorSpy {
         ConquerorSpy.cleanAllValues();
       }
 
-      ConquerorSpy.settings.setMyCapital();
+      ConquerorSpy.settings.setEverything();
       ConquerorSpy.settings.setTurn(turn);
-
       ConquerorSpy.lastTurn = turn;
+
       console.log("");
       console.log("New turn: ", ConquerorSpy.lastTurn);
       ConquerorSpy.goldService.update();
@@ -204,6 +225,11 @@ export class ConquerorSpy {
 
       console.log("---------- refreshTurn() finished");
     }
+  }
+
+  private static isGameOver(): boolean {
+    const maybeGameOverElement: any = $(".content")[0];
+    return maybeGameOverElement.outerText === "Game Over !!!";
   }
 
   private static cleanAllValues() {

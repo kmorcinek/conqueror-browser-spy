@@ -155,5 +155,7 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
   private reset() {
     this.battleProvinces = {};
     this.ownedBattleProvinces.splice(0, this.ownedBattleProvinces.length);
+    console.log("after reset", this.ownedBattleProvinces.length)
+    this.opponentProvinces.splice(0, this.opponentProvinces.length);
   }
 }

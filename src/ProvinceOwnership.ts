@@ -33,8 +33,8 @@ export class ProvinceOwnership implements IProvinceOwnership {
       if (!this.provinceMapValidator.exists(provinceName)) {
         continue;
       }
-      const color = ColorPicker.getColor(provinceName);
-      // console.log(`Province: ${provinceName}, Color: '${color}'`);
+      const provinceColor = ColorPicker.getColor(provinceName);
+      console.log(`Province: ${provinceName}, Color: '${provinceColor}'`);
       const myColor = this.settings.getMyColor();
 
       const playerColors = [
@@ -50,9 +50,10 @@ export class ProvinceOwnership implements IProvinceOwnership {
         "#319c9c",
       ];
 
-      if (color === myColor) {
+      if (provinceColor === myColor) {
+        console.log(`pushing Province: ${provinceName}, as mine`);
         this.ownedProvinces.push(provinceName);
-      } else if (playerColors.includes(color)) {
+      } else if (playerColors.includes(provinceColor)) {
         this.opponentProvinces.push(provinceName);
       } else {
         this.neutralProvinces.push(provinceName);

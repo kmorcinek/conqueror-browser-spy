@@ -5,7 +5,7 @@ import { CapitalFinder } from "./CapitalFinder";
 
 export class Settings {
   private capitals: CapitalFinder;
-
+  private isSet: boolean = false;
   private myColor: string | undefined = undefined;
   private season: Season | undefined = undefined;
   private turn: number | undefined = undefined;
@@ -14,12 +14,22 @@ export class Settings {
     this.capitals = capitalFinder;
   }
 
-  setMyCapital() {
-    if (this.myColor === undefined) {
-      this.capitals.setCapitals();
-      this.myColor = ColorPicker.getColor(this.capitals.getMyCapital());
-      console.log(`Capital color is ${this.myColor}`);
+  setEverything() {
+    if (this.isSet) {
+      return;
     }
+
+    this.capitals.setCapitals();
+    this.myColor = ColorPicker.getColor(this.capitals.getMyCapital());
+    console.log(`Capital color is ${this.myColor}`);
+    this.isSet = true;
+  }
+
+  unsetEverything() {
+    this.isSet = false;
+    this.myColor === undefined;
+    this.capitals.unsetCapitals();
+    this.unsetTurn();
   }
 
   getMyColor() {
@@ -32,6 +42,11 @@ export class Settings {
   setTurn(turn: number) {
     this.turn = turn;
     this.season = Seasons.parseSeason(turn);
+  }
+
+  private unsetTurn() {
+    this.turn = undefined;
+    this.season = undefined;
   }
 
   getSeason(): Season {
