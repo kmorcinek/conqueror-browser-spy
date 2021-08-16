@@ -14,7 +14,7 @@ export class Globals {
     );
   }
 
-  static getCountry(): string {
+  static getCountry(): string | null {
     const countrySelector =
       "#gameWrapper > div > div.area.areaR > div.view.headerView.conqFieldTools.fogOfWar0 > div > div.fieldHeaderWrapper > div.fieldHeader > span";
     let text = $(countrySelector)
@@ -29,6 +29,10 @@ export class Globals {
 
     if (text === "ile de france") {
       text = "iledefrance";
+    }
+
+    if (text === "") {
+      return null;
     }
 
     return text;

@@ -49,7 +49,7 @@ export class ConquerorSpy {
 
   static lastTurn: number = NaN;
 
-  static lastCountry: string = "";
+  static lastCountry: string | null = null;
 
   static initialize() {
     this.constructObjects();
@@ -221,7 +221,7 @@ export class ConquerorSpy {
 
   private static refreshNameInternal() {
     const country = Globals.getCountry();
-    if (country !== ConquerorSpy.lastCountry) {
+    if (country !== ConquerorSpy.lastCountry && country !== null) {
       ConquerorSpy.lastCountry = country;
       ConquerorSpy.hud.refreshHudHistory(country);
     }
