@@ -1,3 +1,4 @@
+import $ from "jquery";
 import { Globals } from "./Globals";
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { ProvinceParser } from "./ProvincesParser";
@@ -32,6 +33,7 @@ import { StaticProductionChecker } from "./StaticProductionChecker";
 import { DynamicProductionChecker } from "./DynamicProductionChecker";
 import { CapitalFinder } from "./CapitalFinder";
 import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
+import { GameRestarter } from "./GameRestarter";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -46,17 +48,20 @@ export class ConquerorSpy {
   static aiManager: AiManager;
   static provinceMapValidator: ProvinceMapValidator = new ProvinceMapValidator();
   static clicker = new Clicker();
+  static gameRestarter = new GameRestarter();
 
   static lastTurn: number = NaN;
 
   static lastCountry: string | null = null;
 
   static initialize() {
+    console.log("initialize conqueror-browser-spy");
     this.constructObjects();
 
     ConquerorSpy.hud.hardInitHudWrapper();
     this.updateRunAi();
     this.updateAutoEndTurn();
+
     ProductionWarningsHud.initHud();
   }
 
@@ -71,9 +76,26 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
+    clearInterval((document as any).refreshGameLobbyInterval);
+    (document as any).refreshGameLobbyInterval = setInterval(ConquerorSpy.refreshGameLobby, 2000);
+
     const toolVersion = "1.14 - can reenter game when it was exited at turn 1";
 
     console.log("Tool version: " + toolVersion);
+  }
+
+  static simulateStartNewAiGame() {
+    this.gameRestarter.startNewAiGame();
+  }
+
+  static simulateExit() {
+    this.gameRestarter.exitGameAfterSound();
+  }
+
+  // changeRestartNewGame is called from browser console like:
+  // `conquerorSpy.changeRestartNewGame(true);`
+  static changeRestartNewGame(state: boolean) {
+    this.gameRestarter.changeRestartNewGame(state);
   }
 
   static updateRunAi() {
@@ -193,6 +215,12 @@ export class ConquerorSpy {
       return;
     }
 
+    if (this.isGameOver()) {
+      console.log("game is over");
+      // TODO: #85 log game result
+      this.gameRestarter.exitGameAfterSound();
+    }
+
     // here can be log
 
     if (turn !== ConquerorSpy.lastTurn) {
@@ -218,6 +246,20 @@ export class ConquerorSpy {
     }
   }
 
+  private static isGameOver(): boolean {
+    const maybeGameOverElement: any = $(".content")[0];
+    return maybeGameOverElement.outerText === "Game Over !!!";
+  }
+
+  private static isInGameLobby(): boolean {
+    const element: any = $(Globals.singleplayerButtonSelector);
+    const firstElement = element[0];
+    if (firstElement === undefined) {
+      return false;
+    }
+    return firstElement.outerText === "Singleplayer";
+  }
+
   private static cleanAllValues() {
     ConquerorSpy.provinceHistoryService.reset();
     ConquerorSpy.historyChecker.reset();
@@ -239,6 +281,21 @@ export class ConquerorSpy {
     if (country !== ConquerorSpy.lastCountry && country !== null) {
       ConquerorSpy.lastCountry = country;
       ConquerorSpy.hud.refreshHudHistory(country);
+    }
+  }
+
+  private static refreshGameLobby() {
+    // console.log("refreshGameLobby");
+    try {
+      ConquerorSpy.refreshGameLobbyInternal();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  private static refreshGameLobbyInternal() {
+    if (this.isInGameLobby()) {
+      this.gameRestarter.startNewAiGame();
     }
   }
 }
