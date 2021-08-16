@@ -175,9 +175,11 @@ export class ConquerorSpy {
     const turn = Globals.getTurn();
 
     if (isNaN(turn)) {
-      // hacky was of reseting lastTurn, without it when we exit game at turn 1 and start new game
+      // hacky way of resetting lastTurn, without it when we exit game at turn 1 and start new game
       // it will be not treated as new game
       ConquerorSpy.lastTurn = NaN;
+
+      ConquerorSpy.settings.unsetEverything();
       return;
     }
 
@@ -188,10 +190,10 @@ export class ConquerorSpy {
         ConquerorSpy.cleanAllValues();
       }
 
-      ConquerorSpy.settings.setMyCapital();
+      ConquerorSpy.settings.setEverything();
       ConquerorSpy.settings.setTurn(turn);
-
       ConquerorSpy.lastTurn = turn;
+
       console.log("");
       console.log("New turn: ", ConquerorSpy.lastTurn);
       ConquerorSpy.goldService.update();

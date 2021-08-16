@@ -26,7 +26,12 @@ export class CapitalFinder {
     console.log(`Opponent Capital is ${this.opponentCapital}`);
   }
 
-  findOpponentCapital(capitals: string[]) {
+  unsetCapitals() {
+    this.myCapital = undefined;
+    this.opponentCapital = undefined;
+  }
+
+  private findOpponentCapital(capitals: string[]) {
     if (capitals[0] === this.myCapital) {
       return capitals[1];
     }
@@ -35,7 +40,6 @@ export class CapitalFinder {
   }
 
   getMyCapital() {
-    this.setCapitals();
     if (this.myCapital === undefined) {
       throw new Error(`myCapital was not set yet, this method should be called later`);
     }
@@ -44,7 +48,7 @@ export class CapitalFinder {
 
   getOpponentCapital(): string {
     if (this.opponentCapital === undefined) {
-      this.setCapitals();
+      throw new Error(`opponentCapital was not set yet, this method should be called later`);
     }
     return this.opponentCapital!;
   }
