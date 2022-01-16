@@ -65,8 +65,8 @@ export class ConquerorSpy {
 
     ConquerorSpy.cleanAllValues();
 
-    clearInterval((document as any).refrestTurnInterval);
-    (document as any).refrestTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
+    clearInterval((document as any).refreshTurnInterval);
+    (document as any).refreshTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
 
     clearInterval((document as any).refreshNameInterval);
     (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
