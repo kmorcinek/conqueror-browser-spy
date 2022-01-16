@@ -53,6 +53,11 @@ Run script `sh build_deploy.sh` (credentials for AWS were already provided)
 
 `git push origin --tags`
 
+### Hot to check prod version
+
+* run script on conqueror and there is information in console logs: `Tool version: 1.12 - reset map when starting new game`
+
+* open url https://s3.amazonaws.com/krzysztof.morcinek.conquerorgame/output.js and search for "Tool version"
 
 ## Knows issues
 
