@@ -49,6 +49,11 @@ App for better playing an online game http://conquerorgame.com/teams/
 
 Run script `sh build_deploy.sh` (credentials for AWS were already provided)
 
+`git tag v1.x`
+
+`git push origin --tags`
+
+
 ## Knows issues
 
 <!--
