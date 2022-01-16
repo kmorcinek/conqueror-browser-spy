@@ -77,19 +77,19 @@ export class ConquerorSpy {
   }
 
   static updateRunAi() {
-    const checked = this.getCheckedState("run-ai");
+    const checked = this.getCheckedState("run-ai", true);
     ConquerorSpy.aiManager.updateRunAi(checked);
   }
 
   static updateAutoEndTurn() {
-    const checked = this.getCheckedState("auto-end-turn");
+    const checked = this.getCheckedState("auto-end-turn", false);
     ConquerorSpy.aiManager.updateAutoEndTurn(checked);
   }
 
-  private static getCheckedState(elementId: string): boolean {
+  private static getCheckedState(elementId: string, defaultValue: boolean): boolean {
     const element = document.getElementById(elementId)! as any;
     if (element === null) {
-      return false;
+      return defaultValue;
     }
     return element.checked;
   }
