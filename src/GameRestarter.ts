@@ -1,9 +1,16 @@
 import { GameRestarterClicker } from "./GameRestarterClicker";
+import { Statistics } from "./statistics/Statistics";
 
 export class GameRestarter {
   readonly clicker: GameRestarterClicker = new GameRestarterClicker();
+  readonly statistics: Statistics;
+
   isExiting = false;
   isRestartGame = false;
+
+  constructor(statistics: Statistics) {
+    this.statistics = statistics;
+  }
 
   changeRestartNewGame(state: boolean) {
     this.isRestartGame = state;
@@ -35,6 +42,9 @@ export class GameRestarter {
     }
 
     this.isExiting = true;
+
+    this.statistics.writeResult();
+
     window.setTimeout(() => {
       this.clicker.clickExitGame();
       // maybe also delay

@@ -35,6 +35,8 @@ import { CapitalFinder } from "./CapitalFinder";
 import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
 import { GameRestarter } from "./GameRestarter";
 import { Version } from "./Version";
+import { Winner } from "./statistics/Winner";
+import { Statistics } from "./statistics/Statistics";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -49,7 +51,7 @@ export class ConquerorSpy {
   static aiManager: AiManager;
   static provinceMapValidator: ProvinceMapValidator = new ProvinceMapValidator();
   static clicker = new Clicker();
-  static gameRestarter = new GameRestarter();
+  static gameRestarter: GameRestarter;
 
   static lastTurn: number = NaN;
 
@@ -192,6 +194,10 @@ export class ConquerorSpy {
       armyMoverAi,
       provinceProductionAi
     );
+
+    ConquerorSpy.gameRestarter = new GameRestarter(
+      new Statistics(new Winner(settings, provinceOwnership))
+    );
   }
 
   private static refreshTurn() {
@@ -216,7 +222,6 @@ export class ConquerorSpy {
 
     if (this.isGameOver()) {
       console.log("game is over");
-      // TODO: #85 log game result
       this.gameRestarter.exitGameAfterSound();
     }
 
