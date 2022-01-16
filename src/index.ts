@@ -54,7 +54,9 @@ export class ConquerorSpy {
   static initialize() {
     this.constructObjects();
 
-    ConquerorSpy.hud.initHudWrapper();
+    ConquerorSpy.hud.hardInitHudWrapper();
+    this.updateRunAi();
+    this.updateAutoEndTurn();
     ProductionWarningsHud.initHud();
   }
 
@@ -75,13 +77,21 @@ export class ConquerorSpy {
   }
 
   static updateRunAi() {
-    const checked = (document.getElementById("run-ai")! as any).checked;
+    const checked = this.getCheckedState("run-ai");
     ConquerorSpy.aiManager.updateRunAi(checked);
   }
 
   static updateAutoEndTurn() {
-    const checked = (document.getElementById("auto-end-turn")! as any).checked;
+    const checked = this.getCheckedState("auto-end-turn");
     ConquerorSpy.aiManager.updateAutoEndTurn(checked);
+  }
+
+  private static getCheckedState(elementId: string): boolean {
+    const element = document.getElementById(elementId)! as any;
+    if (element === null) {
+      return false;
+    }
+    return element.checked;
   }
 
   private static constructObjects() {

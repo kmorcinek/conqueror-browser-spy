@@ -13,6 +13,20 @@ export class Hud {
   private readonly selector = "#hud";
   private readonly hudWrapperSelector = "#hud-wrapper";
 
+  private readonly hudWrapper = $(
+    '<div id="hud-wrapper" style="margin-top: 20px;">' +
+      "  <div>" +
+      '    <label for="run-ai">Run AI</label>' +
+      '      <input type="checkbox" name="run-ai" id="run-ai" onchange="conquerorSpy.updateRunAi()" checked="checked">' +
+      "    </div>" +
+      "    <div>" +
+      '      <label for="auto-end-turn">Auto et</label>' +
+      '      <input type="checkbox" name="auto-end-turn" id="auto-end-turn" onchange="conquerorSpy.updateAutoEndTurn()">' +
+      "    </div>" +
+      '  <div id="hud" style="color: blue; background-color: white;"></div>' +
+      "</div>"
+  );
+
   constructor(
     provinceOwnership: IProvinceOwnership,
     historyChecker: HistoryChecker,
@@ -63,37 +77,36 @@ export class Hud {
     this.updateHudHtml(lines.join("<br>"));
   }
 
-  initHudWrapper() {
-    const hudWrapper = $(
-      '<div id="hud-wrapper" style="margin-top: 20px;">' +
-        "  <div>" +
-        '    <label for="run-ai">Run AI</label>' +
-        '      <input type="checkbox" name="run-ai" id="run-ai" onchange="conquerorSpy.updateRunAi()" checked="checked">' +
-        "    </div>" +
-        "    <div>" +
-        '      <label for="auto-end-turn">Auto et</label>' +
-        '      <input type="checkbox" name="auto-end-turn" id="auto-end-turn" onchange="conquerorSpy.updateAutoEndTurn()">' +
-        "    </div>" +
-        '  <div id="hud" style="color: blue; background-color: white;"></div>' +
-        "</div>"
-    );
-
-    if ($(this.hudWrapperSelector).length) {
-      $(this.hudWrapperSelector).replaceWith(hudWrapper);
+  hardInitHudWrapper() {
+    if (this.hudWrapperExists()) {
+      // This is hard refresh by new version on conqueror-browser-spy
+      $(this.hudWrapperSelector).replaceWith(this.hudWrapper);
     } else {
       const timerWrapper = $(Globals.timerWrapperSelector);
 
-      timerWrapper.append(hudWrapper);
+      timerWrapper.append(this.hudWrapper);
     }
   }
 
+  ensureHudWrapperExists() {
+    if (!this.hudWrapperExists()) {
+      const timerWrapper = $(Globals.timerWrapperSelector);
+
+      timerWrapper.append(this.hudWrapper);
+    }
+  }
+
+  private hudWrapperExists(): boolean {
+    return $(this.hudWrapperSelector).length > 0;
+  }
+
   private clearHud() {
-    this.initHudWrapper();
+    this.ensureHudWrapperExists();
     $(this.selector).text("");
   }
 
   private updateHudHtml(html: string) {
-    this.initHudWrapper();
+    this.ensureHudWrapperExists();
     $(this.selector).html(html);
   }
 
