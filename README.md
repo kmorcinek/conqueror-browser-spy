@@ -34,6 +34,7 @@ App for better playing an online game http://conquerorgame.com/teams/
 * http://conquerorgame.com/teams/
 * "Login as guest" - no need to register
 * Multiplayer
+* Mode - "Team game"
 * Fog of war - off
 * number of players - 2 - only that setup works for AI
 * Turn timer - high ie. 8 minutes
