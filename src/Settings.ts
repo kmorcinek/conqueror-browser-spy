@@ -26,7 +26,7 @@ export class Settings {
   }
 
   unsetEverything() {
-    console.log("unsetEverything(): unsetting/reset");
+    // console.log("unsetEverything(): unsetting/reset");
     this.isSet = false;
     this.myColor = undefined;
     this.capitals.unsetCapitals();
