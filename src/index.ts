@@ -243,7 +243,11 @@ export class ConquerorSpy {
   }
 }
 
-ConquerorSpy.initialize();
-ConquerorSpy.start();
+try {
+  ConquerorSpy.initialize();
+  ConquerorSpy.start();
+} catch (error) {
+  console.error(error);
+}
 
 (window as any).conquerorSpy = ConquerorSpy;
