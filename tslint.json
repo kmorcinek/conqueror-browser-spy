@@ -6,6 +6,7 @@
     "no-unused-expression": [true, "allow-tagged-template"],
     "only-arrow-functions": false,
     "member-access": [true, "no-public"],
+    "member-ordering": [false],
     "arrow-parens": [true, "ban-single-arg-parens"],
     "no-console": false,
     "object-literal-sort-keys": false,
