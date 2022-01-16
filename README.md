@@ -76,3 +76,16 @@ Run script `sh build_deploy.sh` (credentials for AWS were already provided)
 
 * `Uncaught (in promise) DOMException: The play() request was interrupted by a new load request.` - it means that where was Exception and was swallowed and hidden by this message.
   * Examples: clicking to build Soldier when Soldier is already set.
+
+### uncaught exceptions in conqueror-browser-spy application
+
+like in commit https://github.com/kmorcinek/conqueror-browser-spy/commit/4cb1dbb41316a3e5171d2cccc8e8ee7c439c163b it is good to surround with `try/catch` some global functions or event handlers:
+
+``` ts
+try {
+  ConquerorSpy.initialize();
+  ConquerorSpy.start();
+} catch (error) {
+  console.error(error);
+}
+```
