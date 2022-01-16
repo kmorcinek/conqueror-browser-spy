@@ -40,9 +40,11 @@ App for better playing an online game http://conquerorgame.com/teams/
 * Turn timer - high ie. 8 minutes
 
 ### for testing history tool
+
 * any, Europe is good
 
 ### for testing AI
+
 * Map - "Tiny" "Team Arena" is best.
 * Difficulty - Weak
 
@@ -73,4 +75,4 @@ Run script `sh build_deploy.sh` (credentials for AWS were already provided)
 -->
 
 * `Uncaught (in promise) DOMException: The play() request was interrupted by a new load request.` - it means that where was Exception and was swallowed and hidden by this message.
-    * Examples: clicking to build Soldier when Soldier is already set.
+  * Examples: clicking to build Soldier when Soldier is already set.
