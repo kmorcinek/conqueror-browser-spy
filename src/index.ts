@@ -83,6 +83,9 @@ export class ConquerorSpy {
     (document as any).refreshGameLobbyInterval = setInterval(ConquerorSpy.refreshGameLobby, 2000);
 
     console.log("Tool version: " + Version.getFullVersion());
+
+    // HACK: only for testing locally
+    this.changeRestartNewGame(true);
   }
 
   static simulateStartNewAiGame() {
