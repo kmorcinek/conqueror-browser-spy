@@ -15,6 +15,10 @@ export class Winner {
     return new OneGameStatistics(this.isMyWin(), this.settings.getTurn());
   }
 
+  getWalkoverGameAgainstMe(): OneGameStatistics {
+    return new OneGameStatistics(false, this.settings.getTurn());
+  }
+
   private isMyWin(): boolean {
     const capital: string = this.settings.getMyCapital();
     return this.provinceOwnership.getOwnedProvinces().includes(capital);

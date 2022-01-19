@@ -93,6 +93,10 @@ export class ConquerorSpy {
     this.gameRestarter.exitGameAfterSound();
   }
 
+  static giveUpGame() {
+    this.gameRestarter.giveUpGame();
+  }
+
   // changeRestartNewGame is called from browser console like:
   // `conquerorSpy.changeRestartNewGame(true);`
   static changeRestartNewGame(state: boolean) {
@@ -196,7 +200,8 @@ export class ConquerorSpy {
     );
 
     ConquerorSpy.gameRestarter = new GameRestarter(
-      new Statistics(new Winner(settings, provinceOwnership))
+      new Statistics(),
+      new Winner(settings, provinceOwnership)
     );
   }
 

@@ -1,14 +1,8 @@
 import { Version } from "../Version";
-import { Winner } from "./Winner";
+import { OneGameStatistics } from "./OneGameStatistics";
 
 export class Statistics {
-  readonly winner: Winner;
-
-  constructor(winner: Winner) {
-    this.winner = winner;
-  }
-
-  writeResult() {
+  writeResult(statistic: OneGameStatistics) {
     const key = this.getKey();
 
     let statistics = localStorage.getItem(key) as any;
@@ -19,7 +13,6 @@ export class Statistics {
       statistics = JSON.parse(statistics);
     }
 
-    const statistic = this.winner.getStatistic();
     statistics.push(statistic);
 
     localStorage.setItem(key, JSON.stringify(statistics));
