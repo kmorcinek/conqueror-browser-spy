@@ -34,6 +34,7 @@ import { DynamicProductionChecker } from "./DynamicProductionChecker";
 import { CapitalFinder } from "./CapitalFinder";
 import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
 import { GameRestarter } from "./GameRestarter";
+import { Version } from "./Version";
 
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
@@ -79,9 +80,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshGameLobbyInterval);
     (document as any).refreshGameLobbyInterval = setInterval(ConquerorSpy.refreshGameLobby, 2000);
 
-    const toolVersion = "v1.14 - can reenter game when it was exited at turn 1";
-
-    console.log("Tool version: " + toolVersion);
+    console.log("Tool version: " + Version.getFullVersion());
   }
 
   static simulateStartNewAiGame() {
