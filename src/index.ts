@@ -79,7 +79,7 @@ export class ConquerorSpy {
     clearInterval((document as any).refreshGameLobbyInterval);
     (document as any).refreshGameLobbyInterval = setInterval(ConquerorSpy.refreshGameLobby, 2000);
 
-    const toolVersion = "1.14 - can reenter game when it was exited at turn 1";
+    const toolVersion = "v1.14 - can reenter game when it was exited at turn 1";
 
     console.log("Tool version: " + toolVersion);
   }
