@@ -68,6 +68,7 @@ export class ArmyMarcher {
         );
         for (const onePath of manyPath) {
           const middleTarget = onePath[0];
+          console.log(`middleTarget`);
           if (middleTarget.isNeutral() && middleTarget.remainingSoldiers === 0) {
             console.log(`EMPYT NETURAL`);
             if (this.moveWhenEnoughSoldier(sourceProvince, toStay, middleTarget)) {

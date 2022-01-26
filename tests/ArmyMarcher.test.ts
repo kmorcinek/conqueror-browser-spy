@@ -135,7 +135,7 @@ describe("ArmyMarcher", () => {
       getOwnedProvinces: () => [],
       getByName: () => middleTargetNeutralProvince,
       getClosestNotConqueredNeighbors: () => [],
-      getDistance: () => 0,
+      getDistance: () => 2,
       getPath: () => [middleTargetNeutralProvince.name, targetProvince.name],
       // tslint:enable: no-empty
     };
