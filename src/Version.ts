@@ -1,6 +1,7 @@
 export class Version {
-  static readonly versionNumber = "v1.14";
-  private static readonly versionDescription = "can reenter game when it was exited at turn 1";
+  static readonly versionNumber = "v1.15.1";
+  private static readonly versionDescription =
+    "Move to empty neutral neighbor (regardless opponent is 2 provinces away)";
 
   static getFullVersion(): string {
     return `${this.versionNumber} - ${this.versionDescription}`;
