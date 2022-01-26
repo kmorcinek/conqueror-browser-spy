@@ -66,9 +66,21 @@ export class ArmyMarcher {
           sourceProvince,
           targetProvince
         );
-        for (const onePath of manyPath) {
-          if (onePath[0].isMine()) {
-            if (this.moveWhenEnoughSoldier(sourceProvince, toStay, onePath[0])) {
+        // we only sort by soldiers, not important is Neutral vs Mine, cause if empty it may be fine to
+        // attach first the neutral, cause our move to Mine can be too late (overtake by Opponent)
+        const sortedPathByBeingEmpty = ArmyMarcher.sortByLessSoldiersInNextTarget(manyPath);
+        for (const onePath of sortedPathByBeingEmpty) {
+          const middleTargetProvince = onePath[0];
+          // We attack empty neutral, even if this class should only move armies on my territory
+          if (middleTargetProvince.isNeutral() && middleTargetProvince.remainingSoldiers === 0) {
+            if (this.moveWhenEnoughSoldier(sourceProvince, toStay, middleTargetProvince)) {
+              console.log(`Another way was found through empty neutral province`);
+              return;
+            }
+          }
+
+          if (middleTargetProvince.isMine()) {
+            if (this.moveWhenEnoughSoldier(sourceProvince, toStay, middleTargetProvince)) {
               console.log(`Another way was found on my own lands`);
               return;
             }
@@ -77,6 +89,12 @@ export class ArmyMarcher {
         console.warn(`Another way was not found`);
       }
     }
+  }
+
+  static sortByLessSoldiersInNextTarget(manyPath: BattleProvince[][]) {
+    return manyPath.sort(
+      (first, second) => first[0].remainingSoldiers - second[0].remainingSoldiers
+    );
   }
 
   // TODO: reuse with same method after refactoring

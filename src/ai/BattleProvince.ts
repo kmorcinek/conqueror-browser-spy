@@ -48,6 +48,10 @@ export class BattleProvince {
     return this.provinceOwner === ProvinceOwner.Me;
   }
 
+  isNeutral() {
+    return this.provinceOwner === ProvinceOwner.Neutral;
+  }
+
   isOpponent() {
     return this.provinceOwner === ProvinceOwner.Opponent;
   }
