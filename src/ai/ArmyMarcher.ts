@@ -67,8 +67,16 @@ export class ArmyMarcher {
           targetProvince
         );
         for (const onePath of manyPath) {
-          if (onePath[0].isMine()) {
-            if (this.moveWhenEnoughSoldier(sourceProvince, toStay, onePath[0])) {
+          const middleTarget = onePath[0];
+          if (middleTarget.isNeutral() && middleTarget.remainingSoldiers === 0) {
+            if (this.moveWhenEnoughSoldier(sourceProvince, toStay, middleTarget)) {
+              console.log(`Another way was found through empty neutral province`);
+              return;
+            }
+          }
+
+          if (middleTarget.isMine()) {
+            if (this.moveWhenEnoughSoldier(sourceProvince, toStay, middleTarget)) {
               console.log(`Another way was found on my own lands`);
               return;
             }
