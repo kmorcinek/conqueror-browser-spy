@@ -83,6 +83,7 @@ export class ArmyMarcher {
           }
         }
         console.warn(`Another way was not found`);
+        console.log(`Another way was not found`);
       }
     }
   }
