@@ -68,9 +68,7 @@ export class ArmyMarcher {
         );
         for (const onePath of manyPath) {
           const middleTarget = onePath[0];
-          console.log(`middleTarget`);
           if (middleTarget.isNeutral() && middleTarget.remainingSoldiers === 0) {
-            console.log(`EMPYT NETURAL`);
             if (this.moveWhenEnoughSoldier(sourceProvince, toStay, middleTarget)) {
               console.log(`Another way was found through empty neutral province`);
               return;
@@ -85,7 +83,6 @@ export class ArmyMarcher {
           }
         }
         console.warn(`Another way was not found`);
-        console.log(`Another way was not found`);
       }
     }
   }
