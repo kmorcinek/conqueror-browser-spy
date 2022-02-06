@@ -6,6 +6,7 @@ import { IArmyMovesRecorder } from "../src/ai/IArmyMovesRecorder";
 import { ArmyMove } from "../src/ai/ArmyMove";
 import { ArmyMarcher } from "../src/ai/ArmyMarcher";
 import { IBattleProvinceNeighborhoods } from "../src/ai/IBattleProvinceNeighborhoods";
+import { BattleProvinceNeighborhoodsWrapper } from "./BattleProvinceNeighborhoodsWrapper";
 
 describe("ArmyMarcher", () => {
   it("should marchToTarget move army when middle target is owned by me", () => {
@@ -32,12 +33,15 @@ describe("ArmyMarcher", () => {
       // tslint:enable: no-empty
     };
 
+    const wrapper = new BattleProvinceNeighborhoodsWrapper();
+    wrapper.assignAll([sourceProvince, middleTargetOwnedProvince, targetProvince]);
+
     const battleProvinceNeighborhoods: IBattleProvinceNeighborhoods = {
       // tslint:disable: no-empty
       getManyPathWithDistance2: () => [],
       recreateNextTurn: () => {},
       getOwnedProvinces: () => [],
-      getByName: () => middleTargetOwnedProvince,
+      getByName: wrapper.getByName,
       getClosestNotConqueredNeighbors: () => [],
       getDistance: () => 0,
       getPath: () => [middleTargetOwnedProvince.name, targetProvince.name],
@@ -79,12 +83,15 @@ describe("ArmyMarcher", () => {
       // tslint:enable: no-empty
     };
 
+    const wrapper = new BattleProvinceNeighborhoodsWrapper();
+    wrapper.assignAll([sourceProvince, middleTargetNeutralProvince, targetProvince]);
+
     const battleProvinceNeighborhoods: IBattleProvinceNeighborhoods = {
       getManyPathWithDistance2: () => [[middleTargetNeutralProvince, targetProvince]],
       // tslint:disable: no-empty
       recreateNextTurn: () => {},
       getOwnedProvinces: () => [],
-      getByName: () => middleTargetNeutralProvince,
+      getByName: wrapper.getByName,
       getClosestNotConqueredNeighbors: () => [],
       getDistance: () => 2,
       getPath: () => [middleTargetNeutralProvince.name, targetProvince.name],
@@ -127,12 +134,15 @@ describe("ArmyMarcher", () => {
       // tslint:enable: no-empty
     };
 
+    const wrapper = new BattleProvinceNeighborhoodsWrapper();
+    wrapper.assignAll([sourceProvince, middleTargetNeutralProvince, targetProvince]);
+
     const battleProvinceNeighborhoods: IBattleProvinceNeighborhoods = {
       getManyPathWithDistance2: () => [[middleTargetNeutralProvince, targetProvince]],
       // tslint:disable: no-empty
       recreateNextTurn: () => {},
       getOwnedProvinces: () => [],
-      getByName: () => middleTargetNeutralProvince,
+      getByName: wrapper.getByName,
       getClosestNotConqueredNeighbors: () => [],
       getDistance: () => 2,
       getPath: () => [middleTargetNeutralProvince.name, targetProvince.name],
@@ -223,12 +233,15 @@ describe("ArmyMarcher", () => {
       // tslint:enable: no-empty
     };
 
+    const wrapper = new BattleProvinceNeighborhoodsWrapper();
+    wrapper.assignAll([sourceProvince, middleTargetNeutralProvince, targetProvince]);
+
     const battleProvinceNeighborhoods: IBattleProvinceNeighborhoods = {
       getManyPathWithDistance2: () => [[middleTargetOwnedProvince, targetProvince]],
       // tslint:disable: no-empty
       recreateNextTurn: () => {},
       getOwnedProvinces: () => [],
-      getByName: () => middleTargetNeutralProvince,
+      getByName: wrapper.getByName,
       getClosestNotConqueredNeighbors: () => [],
       getDistance: () => 2,
       getPath: () => [middleTargetNeutralProvince.name, targetProvince.name],
