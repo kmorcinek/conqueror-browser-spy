@@ -3,7 +3,7 @@ import { OneGameStatistics } from "./OneGameStatistics";
 
 export class Statistics {
   writeResult(statistic: OneGameStatistics) {
-    const key = this.getKey();
+    const key = Statistics.getKey();
 
     let statistics = localStorage.getItem(key) as any;
 
@@ -18,7 +18,11 @@ export class Statistics {
     localStorage.setItem(key, JSON.stringify(statistics));
   }
 
-  private getKey() {
-    return "conquerorSpy_statistics_" + Version.versionNumber.replace(".", "_");
+  static logKey() {
+    console.log("key for writing Statistics", this.getKey());
+  }
+
+  private static getKey() {
+    return "conquerorSpy_statistics_" + Version.versionNumber;
   }
 }
