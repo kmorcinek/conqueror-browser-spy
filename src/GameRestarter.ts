@@ -65,7 +65,7 @@ export class GameRestarter {
       window.setTimeout(() => {
         this.clicker.confirmExit();
         this.isExiting = false;
-      }, 200);
+      }, 700);
     }, 2000);
   }
 }
