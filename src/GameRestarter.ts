@@ -57,15 +57,14 @@ export class GameRestarter {
 
     this.isExiting = true;
 
-    this.statistics.writeResult(statistic);
-
     window.setTimeout(() => {
       this.clicker.clickExitGame();
       // maybe also delay
       window.setTimeout(() => {
         this.clicker.confirmExit();
         this.isExiting = false;
-      }, 700);
+        this.statistics.writeResult(statistic);
+      }, 200);
     }, 2000);
   }
 }
