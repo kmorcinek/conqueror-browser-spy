@@ -13,3 +13,5 @@ javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t
 
 // Bookmark for TEST env:
 javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t+"?a="+Math.random()),(e.head||e.documentElement).appendChild(o)})("https://s3.amazonaws.com/krzysztof.morcinek.conquerorgame/output-for-testing.js")
+
+javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t+"?a="+Math.random()),(e.head||e.documentElement).appendChild(o)})("http://127.0.0.1:5500/lib/output.js")
