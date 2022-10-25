@@ -1,11 +1,32 @@
-my_cards
+# Red7
 
-var d = document.getElementById("a0xa000033"); // id for one the "g" element.
+## granie na 2 konta
+
+musze miec konto premium zeby grac z tego samego adresu IP.
+albo VPN.
+
+## poczatek, przeczytac jakie mam karty na ręce.
+
+opcje:
+a) moge zrobic ze przyciskam karty. tylko trzeba kilka klikow.
+  pros:
+  * moge klikac z aplikacji, odpalajac np cos z konsoli, jakies metody.
 
 
-style="top: 0px; left: 294px; width: 93px; height: 130px; background-image: url("https://x.boardgamearena.net/data/themereleases/current/games/redsevengame/210309-1358/img/cards.png"); background-position: 0% -400%; opacity: 1;"
+b) moge zrobic ze uderzam do API
+  cons:
+  * trzeba bedzie rozkminic to API.
+  
+## logika gry
 
+### dummest player will do
 
+* play on canvas
+* check all cards if any possible one canvas
+* will have to understand game rules.
+* start from one color (simplest one)
+  * RED -> high card + color.
+* decode cards.
 
 <div id="my_cards_item_11" class="stockitem " style="top: 0px; left: 294px; width: 93px; height: 130px; background-image: url(&quot;https://x.boardgamearena.net/data/themereleases/current/games/redsevengame/210309-1358/img/cards.png&quot;); background-position: 0% -400%; opacity: 1;"></div> 
 
@@ -14,6 +35,20 @@ style="top: 0px; left: 294px; width: 93px; height: 130px; background-image: url(
 
 
 <div id="my_cards_item_23" class="stockitem " style="top: 135px; left: 0px; width: 93px; height: 130px; background-image: url(&quot;https://x.boardgamearena.net/data/themereleases/current/games/redsevengame/210309-1358/img/cards.png&quot;); background-position: -300% -400%; opacity: 1;"></div>
+
+
+
+
+
+{id: '16', type: 'violet', type_arg: '4', location: 'hand', location_arg: '83989769'}
+23
+: 
+{id: '23', type: 'blue', type_arg: '4', location: 'hand', location_arg: '83989769'}
+
+obydwie "4" roznia sie o 7 (23-16) i maja kolory obok siebie.
+
+
+
 
 
 11
@@ -114,3 +149,21 @@ curl 'https://boardgamearena.com/4/redsevengame/redsevengame/playCanvas.html?id=
   -H 'x-request-token: WPzDn0g54NwTXY4' \
   -H 'x-requested-with: XMLHttpRequest' \
   --compressed
+
+curl 'https://boardgamearena.com/4/redsevengame/redsevengame/playPalette.html?
+id=23&
+lock=0780b3f1-946a-44c7-8f9d-f3d8b6d6e8ba&
+table=311653649
+&noerrortracking=true&dojo.preventCache=1666710461455' \
+
+curl 'https://boardgamearena.com/5/redsevengame/redsevengame/playPalette.html?
+id=49&
+lock=ac2532cf-7dcc-4c1f-815c-e9619217891d&
+table=311660297
+&noerrortracking=true&dojo.preventCache=1666710811091' \
+
+curl 'https://boardgamearena.com/5/redsevengame/redsevengame/playPalette.html?
+id=47&
+lock=cb3de5a5-a157-4f99-878e-af3b6668ca61&
+table=311660297
+&noerrortracking=true&dojo.preventCache=1666712300563' \
