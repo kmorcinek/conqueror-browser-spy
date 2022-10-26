@@ -28,6 +28,18 @@ b) moge zrobic ze uderzam do API
   * RED -> high card + color.
 * decode cards.
 
+## typescript
+
+``` typescript
+clickPallete() {
+  const allPalleteRows = document.getElementById("all_rows")!;
+  const pallete = allPalleteRows.firstElementChild!;
+  pallete.click();
+}
+```
+
+property `click` does not exist on `Element`
+
 <div id="my_cards_item_11" class="stockitem " style="top: 0px; left: 294px; width: 93px; height: 130px; background-image: url(&quot;https://x.boardgamearena.net/data/themereleases/current/games/redsevengame/210309-1358/img/cards.png&quot;); background-position: 0% -400%; opacity: 1;"></div> 
 
 
