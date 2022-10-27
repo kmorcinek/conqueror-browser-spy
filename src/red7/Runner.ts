@@ -1,7 +1,6 @@
 import { Red7 } from "./Red7";
 
 export class Runner {
-
   private readonly red7: Red7;
 
   constructor(red7: Red7) {

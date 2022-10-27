@@ -1,12 +1,13 @@
 export class Red7 {
-
   getMyHand(): string[] {
     const myCards = document.getElementById("my_cards")!;
 
     const cardElements = myCards.children;
     const listArray = Array.from(cardElements);
     const elements = [] as string[];
-    listArray.forEach((item) => { elements.push(item.id) });
+    listArray.forEach(item => {
+      elements.push(item.id);
+    });
     return elements;
   }
 
@@ -16,9 +17,9 @@ export class Red7 {
   }
 
   clickCard(cardId: string) {
-    const cardElement  = document.getElementById(cardId);
+    const cardElement = document.getElementById(cardId);
 
-    if(cardElement === null) {
+    if (cardElement === null) {
       alert(`card with id ${cardId} not found`);
     } else {
       cardElement.click();

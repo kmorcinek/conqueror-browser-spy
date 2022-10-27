@@ -23,11 +23,10 @@ export class Red7Spy {
   private static constructObjects() {
     Red7Spy.runner = new Runner(new Red7());
   }
-
 }
 
 try {
-  console.log("start red7")
+  console.log("start red7");
   Red7Spy.initialize();
   Red7Spy.start();
 } catch (error) {

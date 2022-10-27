@@ -310,7 +310,7 @@ export class ConquerorSpy {
 }
 
 try {
-  console.log("start red7")
+  console.log("start red7");
   // // ConquerorSpy.initialize();
   // ConquerorSpy.start();
 } catch (error) {
