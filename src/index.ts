@@ -17,6 +17,7 @@ export class Red7Spy {
   static start() {
     console.log("Running red7-spy");
 
+    this.runner.giveFirstCardToCanvas();
     // console.log("Tool version: " + Version.getFullVersion());
   }
 
