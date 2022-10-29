@@ -38,4 +38,12 @@ export class Card {
     this.color = color;
     this.elementId = elementId;
   }
+
+  isGreater(other: Card): boolean {
+    if (this.rank === other.rank) {
+      return this.color > other.color;
+    }
+
+    return this.rank > other.rank;
+  }
 }
