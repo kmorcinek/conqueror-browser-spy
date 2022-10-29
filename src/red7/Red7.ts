@@ -27,7 +27,23 @@ export class Red7 {
       const card = Card.parseCard(item);
       elements.push(card);
     });
-    console.log(elements);
+    console.log("MyPallete", elements);
+    return elements;
+  }
+
+  getOponentPallete(): Card[] {
+    const allPalleteRows = document.getElementById("all_rows")!;
+    const whiteBlock = allPalleteRows.children[1];
+    const pallete = whiteBlock.children[1];
+
+    const cardElements = pallete.children;
+    const listArray = Array.from(cardElements);
+    const elements = [] as Card[];
+    listArray.forEach(item => {
+      const card = Card.parseCard(item);
+      elements.push(card);
+    });
+    console.log("OponentPallete", elements);
     return elements;
   }
 
