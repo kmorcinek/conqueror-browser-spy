@@ -11,7 +11,7 @@ export class Runner {
     const myCards = this.red7.getMyHand();
 
     const firstCard = myCards[0];
-    this.red7.clickCard(firstCard);
+    this.red7.clickCard(firstCard.elementId);
     this.red7.clickCanvas();
   }
 }

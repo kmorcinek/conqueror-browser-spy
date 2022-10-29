@@ -28,6 +28,12 @@ b) moge zrobic ze uderzam do API
   * RED -> high card + color.
 * decode cards.
 
+### decode card ids
+
+
+
+https://x.boardgamearena.net/data/themereleases/current/games/redsevengame/210309-1358/img/cards.png
+
 ## typescript
 
 ``` typescript

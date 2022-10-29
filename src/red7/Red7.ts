@@ -1,12 +1,15 @@
+import { Card } from "./Card";
+
 export class Red7 {
-  getMyHand(): string[] {
+  getMyHand(): Card[] {
     const myCards = document.getElementById("my_cards")!;
 
     const cardElements = myCards.children;
     const listArray = Array.from(cardElements);
-    const elements = [] as string[];
+    const elements = [] as Card[];
     listArray.forEach(item => {
-      elements.push(item.id);
+      const card = Card.parseCard(item);
+      elements.push(card);
     });
     return elements;
   }

@@ -2,49 +2,35 @@ import { Color } from "./Color";
 
 export class Card {
   // tslint:disable-next-line: member-ordering
-  // static parseCard(cardElementId: string): Card {
-  //   // cardElementId: my_cards_item_16
-  //   let rest: string = population;
-  //   let resources = 0;
+  static parseCard(cardElement: Element): Card {
+    let position = (cardElement as any).style.backgroundPosition;
+    // '-600% 0%'
+    position = position.replace("%", "").replace("-", "");
 
-  //   while (true) {
-  //     // TODO: charCodeAt() should get a length of 'rest'
-  //     const lastChar = rest[rest.length - 1];
-  //     if (lastChar.charCodeAt(0) === 176) {
-  //       rest = rest.substring(0, rest.length - 1);
-  //       resources++;
-  //     } else {
-  //       break;
-  //     }
-  //   }
+    const parts = position.split(" ");
 
-  //   return {
-  //     farms: parseInt(rest),
-  //     resources,
-  //   };
-  // }
+    const first = parseInt(parts[0]) / 100;
+    const second = parseInt(parts[1]) / 100;
+
+    let color = Color.Other;
+
+    if (second === 0) {
+      color = Color.Red;
+    }
+
+    return new Card(first + 1, color, cardElement.id);
+  }
 
   readonly rank: number;
   readonly color: Color;
+  readonly elementId: string;
 
-  constructor(rank: number, color: Color) {
-    // if (turn < 1) {
-    // throw new Error(`Turn '${turn}' cannot be less than 1`);
-    // }
+  constructor(rank: number, color: Color, elementId: string) {
+    if (rank < 1 || rank > 7) {
+      throw new Error(`Rank '${rank}' is invalid`);
+    }
     this.rank = rank;
     this.color = color;
+    this.elementId = elementId;
   }
-
-  // getPopulation() {
-  //   const resourceDot: string = String.fromCharCode(176);
-  //   let population: string = this.farms.toString();
-  //   if (this.resources === 1) {
-  //     population += resourceDot;
-  //   }
-  //   if (this.resources === 2) {
-  //     population += resourceDot;
-  //     population += resourceDot;
-  //   }
-  //   return population;
-  // }
 }
