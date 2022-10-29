@@ -5,4 +5,8 @@ export class CardFactory {
   static byRank(rank: number) {
     return new Card(rank, Color.Red, "");
   }
+
+  static of(rank: number, color: Color) {
+    return new Card(rank, color, "");
+  }
 }

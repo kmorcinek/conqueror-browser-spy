@@ -1,5 +1,6 @@
 import { Card } from "./Card";
 import { Color } from "./Color";
+import { MoveToPallete } from "./MoveToPalette";
 
 export class Red7 {
   getMyHand(): Card[] {
@@ -56,7 +57,7 @@ export class Red7 {
     canvas.click();
   }
 
-  clickCard(cardId: string) {
+  private clickCard(cardId: string) {
     const cardElement = document.getElementById(cardId);
 
     if (cardElement === null) {
@@ -66,7 +67,14 @@ export class Red7 {
     }
   }
 
-  clickPallete() {
+  moveToPallete(move: MoveToPallete) {
+    const card = move.card;
+    console.log(`Moving card ${card.color}:${card.rank} to pallete`);
+    this.clickCard(card.elementId);
+    this.clickPallete();
+  }
+
+  private clickPallete() {
     const allPalleteRows = document.getElementById("all_rows")!;
     const pallete = allPalleteRows.firstElementChild!;
     (pallete as any).click();

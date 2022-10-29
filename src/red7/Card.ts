@@ -19,6 +19,10 @@ export class Card {
       color = Color.Red;
     }
 
+    if (second === 1) {
+      color = Color.Orange;
+    }
+
     return new Card(first + 1, color, cardElement.id);
   }
 

@@ -3,9 +3,10 @@ import { Card } from "../Card";
 export class RedRule {
   static isMyPalleteBetter(myPallete: Card[], oponentPallete: Card[]) {
     const myBestCard = this.getBestCard(myPallete);
-    const oponentBestCard = this.getBestCard(oponentPallete);
-    return myBestCard.rank > oponentBestCard.rank;
-    // Compare colors
+    const oponentBest = this.getBestCard(oponentPallete);
+    const isX = myBestCard.rank === oponentBest.rank && myBestCard.color > oponentBest.color;
+
+    return myBestCard.rank > oponentBest.rank || isX;
   }
 
   private static getBestCard(pallete: Card[]) {
@@ -16,7 +17,9 @@ export class RedRule {
         bestCard = card;
       }
 
-      // TODO compare colors
+      if (card.rank === bestCard.rank && card.color > bestCard.color) {
+        bestCard = card;
+      }
     });
 
     return bestCard;

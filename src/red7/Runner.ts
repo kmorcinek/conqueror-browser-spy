@@ -1,4 +1,5 @@
 import { Board } from "./Board";
+import { MoveToPallete } from "./MoveToPalette";
 import { Red7 } from "./Red7";
 
 export class Runner {
@@ -12,6 +13,17 @@ export class Runner {
 
   giveFirstCardToCanvas() {
     const boardState = this.board.getCurrentBoardState();
+    boardState.myHand.forEach(cardInHand => {
+      if (cardInHand.rank !== 1 && cardInHand.rank !== 5 && cardInHand.rank !== 7) {
+        const move = new MoveToPallete(cardInHand);
+        const newBoard = boardState.applyMove(move);
+        if (newBoard.isMyPalleteBetter()) {
+          this.red7.moveToPallete(move);
+
+          return;
+        }
+      }
+    });
     // const myCards = this.red7.getMyHand();
 
     // const firstCard = myCards[0];
