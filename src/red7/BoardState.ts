@@ -1,6 +1,7 @@
 import { Card } from "./Card";
 import { Color } from "./Color";
 import { MoveToPallete } from "./MoveToPalette";
+import { GreenRule } from "./rules/GreenRule";
 import { OrangeRule } from "./rules/OrangeRule";
 import { RedRule } from "./rules/RedRule";
 import { Rule } from "./rules/Rule";
@@ -29,13 +30,15 @@ export class BoardState {
     // as singleton
     const mapOfRules = new Map<Color, Rule>();
     mapOfRules.set(Color.Red, new RedRule());
+    mapOfRules.set(Color.Orange, new OrangeRule());
     mapOfRules.set(Color.Yellow, new YellowRule());
+    mapOfRules.set(Color.Green, new GreenRule());
 
-    if (mapOfRules.get(this.currentRule) === undefined) {
+    const rule = mapOfRules.get(this.currentRule);
+    if (rule === undefined) {
       throw new Error(`Implement more rules`);
     }
 
-    const rule = mapOfRules.get(this.currentRule)!;
     return rule.isMyPalleteBetter(this.myPallete, this.oponentPallete);
   }
 }
