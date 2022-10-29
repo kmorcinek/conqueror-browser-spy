@@ -3,8 +3,9 @@ import { Color } from "./Color";
 export class Card {
   // tslint:disable-next-line: member-ordering
   static parseCard(cardElement: Element): Card {
-    let position = (cardElement as any).style.backgroundPosition;
     // '-600% 0%'
+    let position = (cardElement as any).style.backgroundPosition;
+    console.log(`Parsing card with position '${position}'`);
     position = position.replace("%", "").replace("-", "");
 
     const parts = position.split(" ");

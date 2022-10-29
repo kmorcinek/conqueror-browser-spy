@@ -17,7 +17,8 @@ export class Red7 {
 
   getMyPallete(): Card[] {
     const allPalleteRows = document.getElementById("all_rows")!;
-    const pallete = allPalleteRows.firstElementChild!;
+    const whiteBlock = allPalleteRows.firstElementChild!;
+    const pallete = whiteBlock.children[1];
 
     const cardElements = pallete.children;
     const listArray = Array.from(cardElements);
