@@ -1,5 +1,6 @@
 import { Card } from "../Card";
 import { Color } from "../Color";
+import { Rules } from "./Rules";
 
 class Yellow {
   constructor(bestCard: Card, bestRankCount: number) {
@@ -26,8 +27,6 @@ export class YellowRule {
   private getBestCard(pallete: Card[]): Yellow {
     const map = new Map<Color, Card[]>();
 
-    // const map: Record<number, Card[]> = {};
-
     pallete.forEach(card => {
       if (map.get(card.color) === undefined) {
         map.set(card.color, []);
@@ -36,29 +35,25 @@ export class YellowRule {
       map.get(card.color)!.push(card);
     });
 
-    let bestRank: number | undefined;
+    let bestColor = -1;
     let bestCount = -1;
+    let bestHighCardInColor: Card | undefined;
 
     for (const [key, value] of map) {
       const cardsCount = value.length;
-      if (bestRank === undefined || cardsCount > bestCount) {
-        bestRank = key;
+      const bestCardInColor = Rules.getBest(value);
+      if (cardsCount > bestCount) {
+        bestColor = key;
         bestCount = cardsCount;
+        bestHighCardInColor = bestCardInColor;
       }
-      if (cardsCount === bestCount && key > bestRank) {
-        bestRank = key;
+      if (cardsCount === bestCount && bestCardInColor.isGreater(bestHighCardInColor!)) {
+        bestColor = key;
         bestCount = cardsCount;
+        bestHighCardInColor = bestCardInColor;
       }
     }
 
-    const bestCard = this.getBestColor(map.get(bestRank!)!);
-
-    return new Yellow(bestCard, bestCount);
-  }
-
-  private getBestColor(cards: Card[]): Card {
-    cards.sort((a, b) => a.compareTo(b));
-
-    return cards[cards.length - 1];
+    return new Yellow(bestHighCardInColor!, bestCount);
   }
 }

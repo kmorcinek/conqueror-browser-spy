@@ -1,4 +1,5 @@
 import { Card } from "../Card";
+import { Rules } from "./Rules";
 
 class Orange {
   constructor(bestCard: Card, bestRankCount: number) {
@@ -50,20 +51,8 @@ export class OrangeRule {
       }
     }
 
-    const bestCard = this.getBestColor(map[bestRank!]);
+    const bestCard = Rules.getBest(map[bestRank!]);
 
     return new Orange(bestCard, bestCount);
-  }
-
-  private getBestColor(cards: Card[]): Card {
-    // TODO: aggregate
-    let bestCard: Card = cards[0];
-    for (const card of cards) {
-      if (card.color > bestCard.color) {
-        bestCard = card;
-      }
-    }
-
-    return bestCard;
   }
 }
