@@ -39,10 +39,8 @@ export class YellowRule {
     let bestRank: number | undefined;
     let bestCount = -1;
 
-    const keys = Object.keys(map);
-    for (const i of keys) {
-      const key: number = parseInt(i);
-      const cardsCount = map.get(key)!.length;
+    for (const [key, value] of map) {
+      const cardsCount = value.length;
       if (bestRank === undefined || cardsCount > bestCount) {
         bestRank = key;
         bestCount = cardsCount;
@@ -59,10 +57,8 @@ export class YellowRule {
   }
 
   private getBestColor(cards: Card[]): Card {
-    cards.sort((a, b) => {
-      return a.compareTo(b);
-    });
+    cards.sort((a, b) => a.compareTo(b));
 
-    return cards[0];
+    return cards[cards.length - 1];
   }
 }

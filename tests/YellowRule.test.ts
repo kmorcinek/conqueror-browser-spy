@@ -1,11 +1,11 @@
 import { expect } from "chai";
 import { Card } from "../src/red7/Card";
 import { Color } from "../src/red7/Color";
-import { OrangeRule } from "../src/red7/rules/OrangeRule";
+import { YellowRule } from "../src/red7/rules/YellowRule";
 import { CardFactory } from "./CardFactory";
 
 describe("YellowRuleTest", () => {
-  const sut = new OrangeRule();
+  const sut = new YellowRule();
 
   it("more cards with rank yellow color", () => {
     const myPallete: Card[] = [CardFactory.of(1, Color.Yellow), CardFactory.of(2, Color.Yellow)];
