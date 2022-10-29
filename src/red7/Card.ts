@@ -46,4 +46,12 @@ export class Card {
 
     return this.rank > other.rank;
   }
+
+  compareTo(other: Card): number {
+    if (this.rank === other.rank) {
+      return this.color - other.color;
+    }
+
+    return this.rank - other.rank;
+  }
 }
