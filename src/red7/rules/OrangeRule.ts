@@ -23,16 +23,7 @@ export class OrangeRule {
   }
 
   private getBestCard(pallete: Card[]): Orange {
-    // const dictionary: Record<number, Card[]> = {};
-
-    // const map: { [id: number]: Card[]; } = {};
-    // const map = new Map<number, Card[]>();
     const map: Record<number, Card[]> = {};
-    // MediaCapabilities.
-    // map[2] = [];
-
-    // Output: undefined
-    // console.log(map['c']);
 
     pallete.forEach(card => {
       if (map[card.rank] === undefined) {
@@ -45,18 +36,15 @@ export class OrangeRule {
     let bestRank: number | undefined;
     let bestCount = -1;
 
-    // for (const key in map) {
-    //     console.log(map[i]);
-    // }
     const keys = Object.keys(map);
-    // for (let i = 0; i < keys.length; ++i) {
     for (const i of keys) {
       const key: number = parseInt(i);
-      // console.log(key + ': ' + value);
-      // }
-      // for (const key in dictionary) {
       const cardsCount = map[key].length;
       if (bestRank === undefined || cardsCount > bestCount) {
+        bestRank = key;
+        bestCount = cardsCount;
+      }
+      if (cardsCount === bestCount && key > bestRank) {
         bestRank = key;
         bestCount = cardsCount;
       }
