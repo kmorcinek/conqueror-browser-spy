@@ -1,4 +1,5 @@
 // import $ from "jquery";
+import { Board } from "./red7/Board";
 import { Red7 } from "./red7/Red7";
 import { Runner } from "./red7/Runner";
 
@@ -22,7 +23,8 @@ export class Red7Spy {
   }
 
   private static constructObjects() {
-    Red7Spy.runner = new Runner(new Red7());
+    const red7 = new Red7();
+    Red7Spy.runner = new Runner(red7, new Board(red7));
   }
 }
 

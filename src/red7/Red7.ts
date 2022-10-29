@@ -1,4 +1,5 @@
 import { Card } from "./Card";
+import { Color } from "./Color";
 
 export class Red7 {
   getMyHand(): Card[] {
@@ -12,6 +13,25 @@ export class Red7 {
       elements.push(card);
     });
     return elements;
+  }
+
+  getMyPallete(): Card[] {
+    const allPalleteRows = document.getElementById("all_rows")!;
+    const pallete = allPalleteRows.firstElementChild!;
+
+    const cardElements = pallete.children;
+    const listArray = Array.from(cardElements);
+    const elements = [] as Card[];
+    listArray.forEach(item => {
+      const card = Card.parseCard(item);
+      elements.push(card);
+    });
+    console.log(elements);
+    return elements;
+  }
+
+  getCurrentRule(): Color {
+    return Color.Red;
   }
 
   clickCanvas() {
