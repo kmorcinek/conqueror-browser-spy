@@ -67,7 +67,7 @@ export class OrangeRule {
     return new Orange(bestCard, bestCount);
   }
 
-  getBestColor(cards: Card[]): Card {
+  private getBestColor(cards: Card[]): Card {
     // TODO: aggregate
     let bestCard: Card = cards[0];
     for (const card of cards) {

@@ -1,6 +1,7 @@
 import { Card } from "./Card";
 import { Color } from "./Color";
 import { MoveToPallete } from "./MoveToPalette";
+import { OrangeRule } from "./rules/OrangeRule";
 import { RedRule } from "./rules/RedRule";
 
 export class BoardState {
@@ -25,6 +26,10 @@ export class BoardState {
   isMyPalleteBetter() {
     if (this.currentRule === Color.Red) {
       return RedRule.isMyPalleteBetter(this.myPallete, this.oponentPallete);
+    }
+
+    if (this.currentRule === Color.Orange) {
+      return new OrangeRule().isMyPalleteBetter(this.myPallete, this.oponentPallete);
     }
 
     throw new Error(`Implement more rules`);
