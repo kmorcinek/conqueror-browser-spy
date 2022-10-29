@@ -1,7 +1,7 @@
 import { Card } from "../Card";
 
 export class RedRule {
-  static isMyPalleteBetter(myPallete: Card[], oponentPallete: Card[]) {
+  isMyPalleteBetter(myPallete: Card[], oponentPallete: Card[]) {
     const myBestCard = this.getBestCard(myPallete);
     const oponentBest = this.getBestCard(oponentPallete);
     const isX = myBestCard.rank === oponentBest.rank && myBestCard.color > oponentBest.color;
@@ -9,7 +9,7 @@ export class RedRule {
     return myBestCard.rank > oponentBest.rank || isX;
   }
 
-  private static getBestCard(pallete: Card[]) {
+  private getBestCard(pallete: Card[]) {
     let bestCard = pallete[0];
 
     pallete.forEach(card => {

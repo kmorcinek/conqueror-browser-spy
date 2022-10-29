@@ -3,6 +3,8 @@ import { Color } from "./Color";
 import { MoveToPallete } from "./MoveToPalette";
 import { OrangeRule } from "./rules/OrangeRule";
 import { RedRule } from "./rules/RedRule";
+import { Rule } from "./rules/Rule";
+import { YellowRule } from "./rules/YellowRule";
 
 export class BoardState {
   readonly currentRule: Color;
@@ -24,14 +26,16 @@ export class BoardState {
   }
 
   isMyPalleteBetter() {
-    if (this.currentRule === Color.Red) {
-      return RedRule.isMyPalleteBetter(this.myPallete, this.oponentPallete);
+    // as singleton
+    const mapOfRules = new Map<Color, Rule>();
+    mapOfRules.set(Color.Red, new RedRule());
+    mapOfRules.set(Color.Yellow, new YellowRule());
+
+    if (mapOfRules.get(this.currentRule) === undefined) {
+      throw new Error(`Implement more rules`);
     }
 
-    if (this.currentRule === Color.Orange) {
-      return new OrangeRule().isMyPalleteBetter(this.myPallete, this.oponentPallete);
-    }
-
-    throw new Error(`Implement more rules`);
+    const rule = mapOfRules.get(this.currentRule)!;
+    return rule.isMyPalleteBetter(this.myPallete, this.oponentPallete);
   }
 }

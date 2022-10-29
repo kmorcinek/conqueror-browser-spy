@@ -1,6 +1,7 @@
 import { Card } from "../Card";
 import { Color } from "../Color";
 import { Rules } from "./Rules";
+import { Rule } from "./Rule";
 
 class Yellow {
   constructor(bestCard: Card, bestRankCount: number) {
@@ -12,7 +13,7 @@ class Yellow {
   readonly bestRankCount: number;
 }
 
-export class YellowRule {
+export class YellowRule implements Rule {
   isMyPalleteBetter(myPallete: Card[], oponentPallete: Card[]) {
     const myBestCard = this.getBestCard(myPallete);
     const oponentBest = this.getBestCard(oponentPallete);
