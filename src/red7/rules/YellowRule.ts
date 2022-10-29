@@ -35,7 +35,6 @@ export class YellowRule {
       map.get(card.color)!.push(card);
     });
 
-    let bestColor = -1;
     let bestCount = -1;
     let bestHighCardInColor: Card | undefined;
 
@@ -43,12 +42,10 @@ export class YellowRule {
       const cardsCount = value.length;
       const bestCardInColor = Rules.getBest(value);
       if (cardsCount > bestCount) {
-        bestColor = key;
         bestCount = cardsCount;
         bestHighCardInColor = bestCardInColor;
       }
       if (cardsCount === bestCount && bestCardInColor.isGreater(bestHighCardInColor!)) {
-        bestColor = key;
         bestCount = cardsCount;
         bestHighCardInColor = bestCardInColor;
       }
