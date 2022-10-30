@@ -73,11 +73,20 @@ export class Red7 {
     console.log(`Moving (clicking) card ${card.toString()} to pallete`);
     this.clickCard(card.elementId);
     this.clickPallete();
+
+    window.setTimeout(() => {
+      this.clickFinishMove();
+    }, 1000);
   }
 
   private clickPallete() {
     const allPalleteRows = document.getElementById("all_rows")!;
     const pallete = allPalleteRows.firstElementChild!;
     (pallete as any).click();
+  }
+
+  private clickFinishMove() {
+    const button = document.getElementById("button_3_id")!;
+    (button as any).click();
   }
 }
