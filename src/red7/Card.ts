@@ -31,6 +31,9 @@ export class Card {
   readonly elementId: string;
 
   constructor(rank: number, color: Color, elementId: string) {
+    if (Number.isNaN(rank)) {
+      throw new Error(`Rank is NaN`);
+    }
     if (rank < 1 || rank > 7) {
       throw new Error(`Rank '${rank}' is invalid`);
     }

@@ -22,6 +22,7 @@ export class Red7 {
     const pallete = whiteBlock.children[1];
 
     const cardElements = pallete.children;
+    console.log(cardElements);
     const listArray = Array.from(cardElements);
     const elements = [] as Card[];
     listArray.forEach(item => {
