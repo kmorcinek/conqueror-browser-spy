@@ -61,7 +61,8 @@ export class Card {
   }
 
   toString() {
-    return `'${this.color}:${this.rank}'`;
+    const colorAsString = Color[this.color];
+    return `'${colorAsString}:${this.rank}'`;
   }
 
   static getColorBasedOnIndex(colorIndex: number) {
