@@ -26,13 +26,13 @@ export class Runner {
         }
       }
 
-      // const move = new ChangeRuleMove(cardInHand);
-      // const newBoard = boardState.applyMove(move);
-      // if (newBoard.isMyPaletteBetter()) {
-      //   this.red7.moveToPalette(move);
+      const move = new ChangeRuleMove(cardInHand);
+      const newBoard = boardState.applyRuleChange(move);
+      if (newBoard.isMyPaletteBetter()) {
+        this.red7.changeRule(move);
 
-      //   return;
-      // }
+        return;
+      }
     });
   }
 }

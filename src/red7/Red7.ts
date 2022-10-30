@@ -1,4 +1,5 @@
 import { Card } from "./Card";
+import { ChangeRuleMove } from "./ChangeRuleMove";
 import { Color } from "./Color";
 import { MoveToPalette } from "./MoveToPalette";
 
@@ -77,6 +78,13 @@ export class Red7 {
     window.setTimeout(() => {
       this.clickFinishMove();
     }, 1000);
+  }
+
+  changeRule(move: ChangeRuleMove) {
+    const card = move.card;
+    console.log(`Moving (clicking) card ${card.toString()} to canvas`);
+    this.clickCard(card.elementId);
+    this.clickCanvas();
   }
 
   private clickPalette() {

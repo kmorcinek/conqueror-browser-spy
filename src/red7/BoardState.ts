@@ -26,14 +26,14 @@ export class BoardState {
     const myNewPalette = [...this.myPalette];
     myNewPalette.push(move.card);
 
+    // TODO: remove card from myHand
     return new BoardState(this.currentRuleColor, this.myHand, myNewPalette, this.opponentPalette);
   }
 
-  // applyRuleChange(move: ChangeRuleMove) {
-  //   const myNewPalette = [...this.myPalette];
-
-  //   return new BoardState(this.currentRule, this.myHand, myNewPalette, this.opponentPalette);
-  // }
+  applyRuleChange(move: ChangeRuleMove) {
+    // TODO: remove card from myHand
+    return new BoardState(move.newRule(), this.myHand, this.myPalette, this.opponentPalette);
+  }
 
   isMyPaletteBetter() {
     // as singleton
