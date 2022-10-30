@@ -39,8 +39,8 @@ https://x.boardgamearena.net/data/themereleases/current/games/redsevengame/21030
 ``` typescript
 clickPallete() {
   const allPalleteRows = document.getElementById("all_rows")!;
-  const pallete = allPalleteRows.firstElementChild!;
-  pallete.click();
+  const palette = allPalleteRows.firstElementChild!;
+  palette.click();
 }
 ```
 

@@ -9,10 +9,10 @@ export class RedRule {
     return myBestCard.rank > oponentBest.rank || isX;
   }
 
-  private getBestCard(pallete: Card[]) {
-    let bestCard = pallete[0];
+  private getBestCard(palette: Card[]) {
+    let bestCard = palette[0];
 
-    pallete.forEach(card => {
+    palette.forEach(card => {
       if (card.rank > bestCard.rank) {
         bestCard = card;
       }

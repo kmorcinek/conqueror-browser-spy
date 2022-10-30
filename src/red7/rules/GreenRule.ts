@@ -23,8 +23,8 @@ export class GreenRule {
     return myBestCard.bestRankCount > oponentBest.bestRankCount;
   }
 
-  private getBestCard(pallete: Card[]): Yellow {
-    const evenCards = pallete.filter(card => card.rank % 2 === 0);
+  private getBestCard(palette: Card[]): Yellow {
+    const evenCards = palette.filter(card => card.rank % 2 === 0);
 
     return new Yellow(Rules.getBest(evenCards), evenCards.length);
   }

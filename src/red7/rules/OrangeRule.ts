@@ -23,10 +23,10 @@ export class OrangeRule {
     return myBestCard.bestRankCount > oponentBest.bestRankCount;
   }
 
-  private getBestCard(pallete: Card[]): Orange {
+  private getBestCard(palette: Card[]): Orange {
     const map: Record<number, Card[]> = {};
 
-    pallete.forEach(card => {
+    palette.forEach(card => {
       if (map[card.rank] === undefined) {
         map[card.rank] = [];
       }

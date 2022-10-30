@@ -25,10 +25,10 @@ export class YellowRule implements Rule {
     return myBestCard.bestRankCount > oponentBest.bestRankCount;
   }
 
-  private getBestCard(pallete: Card[]): Yellow {
+  private getBestCard(palette: Card[]): Yellow {
     const map = new Map<Color, Card[]>();
 
-    pallete.forEach(card => {
+    palette.forEach(card => {
       if (map.get(card.color) === undefined) {
         map.set(card.color, []);
       }

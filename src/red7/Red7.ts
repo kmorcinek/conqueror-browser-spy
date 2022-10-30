@@ -19,9 +19,9 @@ export class Red7 {
   getMyPallete(): Card[] {
     const allPalleteRows = document.getElementById("all_rows")!;
     const whiteBlock = allPalleteRows.firstElementChild!;
-    const pallete = whiteBlock.children[1];
+    const palette = whiteBlock.children[1];
 
-    const cardElements = pallete.children;
+    const cardElements = palette.children;
     console.log(cardElements);
     const listArray = Array.from(cardElements);
     const elements = [] as Card[];
@@ -36,9 +36,9 @@ export class Red7 {
   getOponentPallete(): Card[] {
     const allPalleteRows = document.getElementById("all_rows")!;
     const whiteBlock = allPalleteRows.children[1];
-    const pallete = whiteBlock.children[1];
+    const palette = whiteBlock.children[1];
 
-    const cardElements = pallete.children;
+    const cardElements = palette.children;
     const listArray = Array.from(cardElements);
     const elements = [] as Card[];
     listArray.forEach(item => {
@@ -70,7 +70,7 @@ export class Red7 {
 
   moveToPallete(move: MoveToPallete) {
     const card = move.card;
-    console.log(`Moving (clicking) card ${card.toString()} to pallete`);
+    console.log(`Moving (clicking) card ${card.toString()} to palette`);
     this.clickCard(card.elementId);
     this.clickPallete();
 
@@ -81,8 +81,8 @@ export class Red7 {
 
   private clickPallete() {
     const allPalleteRows = document.getElementById("all_rows")!;
-    const pallete = allPalleteRows.firstElementChild!;
-    (pallete as any).click();
+    const palette = allPalleteRows.firstElementChild!;
+    (palette as any).click();
   }
 
   private clickFinishMove() {

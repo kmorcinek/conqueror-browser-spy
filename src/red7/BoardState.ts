@@ -22,7 +22,7 @@ export class BoardState {
   }
 
   applyMove(move: MoveToPallete) {
-    console.log(`Potentially moving card ${move.card.toString()} to pallete`);
+    console.log(`Potentially moving card ${move.card.toString()} to palette`);
     const myNewPallete = [...this.myPallete];
     myNewPallete.push(move.card);
 
