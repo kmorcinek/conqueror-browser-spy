@@ -13,7 +13,7 @@ export class Card {
     }
 
     console.log(`Parsing card with position '${position}'`);
-    position = position.replace("%", "").replace("-", "");
+    position = position.replace("%", "").replace("-", "").replace("%", "").replace("-", "");
 
     const parts = position.split(" ");
 
