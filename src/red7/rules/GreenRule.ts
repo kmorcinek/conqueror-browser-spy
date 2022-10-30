@@ -12,15 +12,15 @@ class Yellow {
 }
 
 export class GreenRule {
-  isMyPaletteBetter(myPalette: Card[], oponentPalette: Card[]) {
+  isMyPaletteBetter(myPalette: Card[], opponentPalette: Card[]) {
     const myBestCard = this.getBestCard(myPalette);
-    const oponentBest = this.getBestCard(oponentPalette);
+    const opponentBest = this.getBestCard(opponentPalette);
 
-    if (myBestCard.bestRankCount === oponentBest.bestRankCount) {
-      return myBestCard.bestCard.isGreater(oponentBest.bestCard);
+    if (myBestCard.bestRankCount === opponentBest.bestRankCount) {
+      return myBestCard.bestCard.isGreater(opponentBest.bestCard);
     }
 
-    return myBestCard.bestRankCount > oponentBest.bestRankCount;
+    return myBestCard.bestRankCount > opponentBest.bestRankCount;
   }
 
   private getBestCard(palette: Card[]): Yellow {

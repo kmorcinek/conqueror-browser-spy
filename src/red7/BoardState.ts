@@ -12,13 +12,13 @@ export class BoardState {
   readonly currentRuleColor: Color;
   readonly myHand: Card[];
   readonly myPalette: Card[];
-  readonly oponentPalette: Card[];
+  readonly opponentPalette: Card[];
 
-  constructor(currentRuleColor: Color, myHand: Card[], myPalette: Card[], oponentPalette: Card[]) {
+  constructor(currentRuleColor: Color, myHand: Card[], myPalette: Card[], opponentPalette: Card[]) {
     this.currentRuleColor = currentRuleColor;
     this.myHand = myHand;
     this.myPalette = myPalette;
-    this.oponentPalette = oponentPalette;
+    this.opponentPalette = opponentPalette;
   }
 
   applyMove(move: MoveToPalette) {
@@ -26,13 +26,13 @@ export class BoardState {
     const myNewPalette = [...this.myPalette];
     myNewPalette.push(move.card);
 
-    return new BoardState(this.currentRuleColor, this.myHand, myNewPalette, this.oponentPalette);
+    return new BoardState(this.currentRuleColor, this.myHand, myNewPalette, this.opponentPalette);
   }
 
   // applyRuleChange(move: ChangeRuleMove) {
   //   const myNewPalette = [...this.myPalette];
 
-  //   return new BoardState(this.currentRule, this.myHand, myNewPalette, this.oponentPalette);
+  //   return new BoardState(this.currentRule, this.myHand, myNewPalette, this.opponentPalette);
   // }
 
   isMyPaletteBetter() {
@@ -48,6 +48,6 @@ export class BoardState {
       throw new Error(`Implement more rules`);
     }
 
-    return rule.isMyPaletteBetter(this.myPalette, this.oponentPalette);
+    return rule.isMyPaletteBetter(this.myPalette, this.opponentPalette);
   }
 }

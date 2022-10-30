@@ -33,7 +33,7 @@ export class Red7 {
     return elements;
   }
 
-  getOponentPalette(): Card[] {
+  getOpponentPalette(): Card[] {
     const allPaletteRows = document.getElementById("all_rows")!;
     const whiteBlock = allPaletteRows.children[1];
     const palette = whiteBlock.children[1];
@@ -45,7 +45,7 @@ export class Red7 {
       const card = Card.parseCard(item);
       elements.push(card);
     });
-    console.log("OponentPalette", elements);
+    console.log("OpponentPalette", elements);
     return elements;
   }
 

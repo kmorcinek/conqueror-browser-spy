@@ -13,7 +13,7 @@ export class Board {
       this.red7.getCurrentRule(),
       this.red7.getMyHand(),
       this.red7.getMyPalette(),
-      this.red7.getOponentPalette()
+      this.red7.getOpponentPalette()
     );
   }
 

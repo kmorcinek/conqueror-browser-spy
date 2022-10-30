@@ -1,12 +1,12 @@
 import { Card } from "../Card";
 
 export class RedRule {
-  isMyPaletteBetter(myPalette: Card[], oponentPalette: Card[]) {
+  isMyPaletteBetter(myPalette: Card[], opponentPalette: Card[]) {
     const myBestCard = this.getBestCard(myPalette);
-    const oponentBest = this.getBestCard(oponentPalette);
-    const isX = myBestCard.rank === oponentBest.rank && myBestCard.color > oponentBest.color;
+    const opponentBest = this.getBestCard(opponentPalette);
+    const isX = myBestCard.rank === opponentBest.rank && myBestCard.color > opponentBest.color;
 
-    return myBestCard.rank > oponentBest.rank || isX;
+    return myBestCard.rank > opponentBest.rank || isX;
   }
 
   private getBestCard(palette: Card[]) {

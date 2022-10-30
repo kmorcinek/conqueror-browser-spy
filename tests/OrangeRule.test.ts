@@ -9,18 +9,18 @@ describe("OrangeRuleTest", () => {
   it("more cards with rank 1", () => {
     const myPalette: Card[] = [CardFactory.byRank(1), CardFactory.byRank(1), CardFactory.byRank(1)];
 
-    const oponentPalette: Card[] = [CardFactory.byRank(5), CardFactory.byRank(5)];
+    const opponentPalette: Card[] = [CardFactory.byRank(5), CardFactory.byRank(5)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, opponentPalette)).to.equal(true);
   });
 
   it("higher color", () => {
     const myPalette: Card[] = [CardFactory.of(7, Color.Red)];
 
-    const oponentPalette: Card[] = [CardFactory.of(7, Color.Orange)];
+    const opponentPalette: Card[] = [CardFactory.of(7, Color.Orange)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, opponentPalette)).to.equal(true);
   });
 });
