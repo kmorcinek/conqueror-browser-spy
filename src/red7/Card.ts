@@ -54,4 +54,8 @@ export class Card {
 
     return this.rank - other.rank;
   }
+
+  toString() {
+    return `'${this.color}:${this.rank}'`;
+  }
 }

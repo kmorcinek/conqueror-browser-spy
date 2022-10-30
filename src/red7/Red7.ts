@@ -69,7 +69,7 @@ export class Red7 {
 
   moveToPallete(move: MoveToPallete) {
     const card = move.card;
-    console.log(`Moving card ${card.color}:${card.rank} to pallete`);
+    console.log(`Moving (clicking) card ${card.toString} to pallete`);
     this.clickCard(card.elementId);
     this.clickPallete();
   }

@@ -1,4 +1,5 @@
 import { Board } from "./Board";
+import { ChangeRuleMove } from "./ChangeRuleMove";
 import { MoveToPallete } from "./MoveToPalette";
 import { Red7 } from "./Red7";
 
@@ -13,6 +14,7 @@ export class Runner {
 
   giveFirstCardToCanvas() {
     const boardState = this.board.getCurrentBoardState();
+    // TODO: maybe start from small cards to have higher for later use
     boardState.myHand.forEach(cardInHand => {
       if (cardInHand.rank !== 1 && cardInHand.rank !== 5 && cardInHand.rank !== 7) {
         const move = new MoveToPallete(cardInHand);
@@ -23,11 +25,14 @@ export class Runner {
           return;
         }
       }
-    });
-    // const myCards = this.red7.getMyHand();
 
-    // const firstCard = myCards[0];
-    // this.red7.clickCard(firstCard.elementId);
-    // this.red7.clickCanvas();
+      // const move = new ChangeRuleMove(cardInHand);
+      // const newBoard = boardState.applyMove(move);
+      // if (newBoard.isMyPalleteBetter()) {
+      //   this.red7.moveToPallete(move);
+
+      //   return;
+      // }
+    });
   }
 }

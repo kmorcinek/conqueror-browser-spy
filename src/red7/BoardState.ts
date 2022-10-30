@@ -1,4 +1,5 @@
 import { Card } from "./Card";
+import { ChangeRuleMove } from "./ChangeRuleMove";
 import { Color } from "./Color";
 import { MoveToPallete } from "./MoveToPalette";
 import { GreenRule } from "./rules/GreenRule";
@@ -21,10 +22,18 @@ export class BoardState {
   }
 
   applyMove(move: MoveToPallete) {
+    console.log(`Potentially moving card ${move.card.toString} to pallete`);
     const myNewPallete = [...this.myPallete];
+    myNewPallete.push(move.card);
 
     return new BoardState(this.currentRule, this.myHand, myNewPallete, this.oponentPallete);
   }
+
+  // applyRuleChange(move: ChangeRuleMove) {
+  //   const myNewPallete = [...this.myPallete];
+
+  //   return new BoardState(this.currentRule, this.myHand, myNewPallete, this.oponentPallete);
+  // }
 
   isMyPalleteBetter() {
     // as singleton
