@@ -7,9 +7,9 @@ describe("Card", () => {
 
   it("position", () => {
     const mockElement = {
-      "style": {
-        "backgroundPosition": "-300% -500%"
-      }
+      style: {
+        backgroundPosition: "-300% -500%",
+      },
     };
     const card = Card.parseCard(mockElement as any);
 
