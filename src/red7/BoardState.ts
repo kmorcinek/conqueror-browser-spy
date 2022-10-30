@@ -9,13 +9,13 @@ import { Rule } from "./rules/Rule";
 import { YellowRule } from "./rules/YellowRule";
 
 export class BoardState {
-  readonly currentRule: Color;
+  readonly currentRuleColor: Color;
   readonly myHand: Card[];
   readonly myPallete: Card[];
   readonly oponentPallete: Card[];
 
-  constructor(currentRule: Color, myHand: Card[], myPallete: Card[], oponentPallete: Card[]) {
-    this.currentRule = currentRule;
+  constructor(currentRuleColor: Color, myHand: Card[], myPallete: Card[], oponentPallete: Card[]) {
+    this.currentRuleColor = currentRuleColor;
     this.myHand = myHand;
     this.myPallete = myPallete;
     this.oponentPallete = oponentPallete;
@@ -26,7 +26,7 @@ export class BoardState {
     const myNewPallete = [...this.myPallete];
     myNewPallete.push(move.card);
 
-    return new BoardState(this.currentRule, this.myHand, myNewPallete, this.oponentPallete);
+    return new BoardState(this.currentRuleColor, this.myHand, myNewPallete, this.oponentPallete);
   }
 
   // applyRuleChange(move: ChangeRuleMove) {
@@ -43,7 +43,7 @@ export class BoardState {
     mapOfRules.set(Color.Yellow, new YellowRule());
     mapOfRules.set(Color.Green, new GreenRule());
 
-    const rule = mapOfRules.get(this.currentRule);
+    const rule = mapOfRules.get(this.currentRuleColor);
     if (rule === undefined) {
       throw new Error(`Implement more rules`);
     }
