@@ -5,6 +5,9 @@ export class Card {
   static parseCard(cardElement: Element): Card {
     // '-600% 0%'
     let position = (cardElement as any).style.backgroundPosition;
+    if (position === "") {
+      return new Card(1, Color.Red, cardElement.id);
+    }
     console.log(`Parsing card with position '${position}'`);
     position = position.replace("%", "").replace("-", "");
 
