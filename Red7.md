@@ -44,6 +44,12 @@ clickPalette() {
 }
 ```
 
+
+<div id="canvas">
+<div id="card_violet_2" class="rest_card" style="top: 0px; left: -0.000125px;"></div>
+</div>
+
+
 property `click` does not exist on `Element`
 
 <div id="my_cards_item_11" class="stockitem " style="top: 0px; left: 294px; width: 93px; height: 130px; background-image: url(&quot;https://x.boardgamearena.net/data/themereleases/current/games/redsevengame/210309-1358/img/cards.png&quot;); background-position: 0% -400%; opacity: 1;"></div> 
