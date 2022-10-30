@@ -20,16 +20,7 @@ export class Card {
     const first = parseInt(parts[0]) / 100;
     const second = parseInt(parts[1]) / 100;
 
-    let color = Color.Other;
-
-    if (second === 0) {
-      color = Color.Red;
-    }
-
-    if (second === 1) {
-      color = Color.Orange;
-    }
-
+    const color = this.getColorBasedOnIndex(second + 1);
     return new Card(first + 1, color, cardElement.id);
   }
 
@@ -67,5 +58,23 @@ export class Card {
 
   toString() {
     return `'${this.color}:${this.rank}'`;
+  }
+
+  static getColorBasedOnIndex(colorIndex: number) {
+    const mapOfColors = new Map<number, Color>();
+    mapOfColors.set(1, Color.Red);
+    mapOfColors.set(2, Color.Orange);
+    mapOfColors.set(3, Color.Yellow);
+    mapOfColors.set(4, Color.Green);
+    mapOfColors.set(5, Color.Other);
+    mapOfColors.set(6, Color.Other);
+    mapOfColors.set(7, Color.Other);
+
+    const color = mapOfColors.get(colorIndex);
+    if (color === undefined) {
+      throw new Error(`Missing color index ${colorIndex}`);
+    }
+
+    return color;
   }
 }
