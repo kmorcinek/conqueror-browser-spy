@@ -1,7 +1,7 @@
 import { Card } from "./Card";
 import { ChangeRuleMove } from "./ChangeRuleMove";
 import { Color } from "./Color";
-import { MoveToPallete } from "./MoveToPalette";
+import { MoveToPalette } from "./MoveToPalette";
 import { GreenRule } from "./rules/GreenRule";
 import { OrangeRule } from "./rules/OrangeRule";
 import { RedRule } from "./rules/RedRule";
@@ -11,31 +11,31 @@ import { YellowRule } from "./rules/YellowRule";
 export class BoardState {
   readonly currentRuleColor: Color;
   readonly myHand: Card[];
-  readonly myPallete: Card[];
-  readonly oponentPallete: Card[];
+  readonly myPalette: Card[];
+  readonly oponentPalette: Card[];
 
-  constructor(currentRuleColor: Color, myHand: Card[], myPallete: Card[], oponentPallete: Card[]) {
+  constructor(currentRuleColor: Color, myHand: Card[], myPalette: Card[], oponentPalette: Card[]) {
     this.currentRuleColor = currentRuleColor;
     this.myHand = myHand;
-    this.myPallete = myPallete;
-    this.oponentPallete = oponentPallete;
+    this.myPalette = myPalette;
+    this.oponentPalette = oponentPalette;
   }
 
-  applyMove(move: MoveToPallete) {
+  applyMove(move: MoveToPalette) {
     console.log(`Potentially moving card ${move.card.toString()} to palette`);
-    const myNewPallete = [...this.myPallete];
-    myNewPallete.push(move.card);
+    const myNewPalette = [...this.myPalette];
+    myNewPalette.push(move.card);
 
-    return new BoardState(this.currentRuleColor, this.myHand, myNewPallete, this.oponentPallete);
+    return new BoardState(this.currentRuleColor, this.myHand, myNewPalette, this.oponentPalette);
   }
 
   // applyRuleChange(move: ChangeRuleMove) {
-  //   const myNewPallete = [...this.myPallete];
+  //   const myNewPalette = [...this.myPalette];
 
-  //   return new BoardState(this.currentRule, this.myHand, myNewPallete, this.oponentPallete);
+  //   return new BoardState(this.currentRule, this.myHand, myNewPalette, this.oponentPalette);
   // }
 
-  isMyPalleteBetter() {
+  isMyPaletteBetter() {
     // as singleton
     const mapOfRules = new Map<Color, Rule>();
     mapOfRules.set(Color.Red, new RedRule());
@@ -48,6 +48,6 @@ export class BoardState {
       throw new Error(`Implement more rules`);
     }
 
-    return rule.isMyPalleteBetter(this.myPallete, this.oponentPallete);
+    return rule.isMyPaletteBetter(this.myPalette, this.oponentPalette);
   }
 }

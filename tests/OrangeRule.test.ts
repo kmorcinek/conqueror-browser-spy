@@ -7,20 +7,20 @@ import { CardFactory } from "./CardFactory";
 describe("OrangeRuleTest", () => {
   const sut = new OrangeRule();
   it("more cards with rank 1", () => {
-    const myPallete: Card[] = [CardFactory.byRank(1), CardFactory.byRank(1), CardFactory.byRank(1)];
+    const myPalette: Card[] = [CardFactory.byRank(1), CardFactory.byRank(1), CardFactory.byRank(1)];
 
-    const oponentPallete: Card[] = [CardFactory.byRank(5), CardFactory.byRank(5)];
+    const oponentPalette: Card[] = [CardFactory.byRank(5), CardFactory.byRank(5)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPalleteBetter(myPallete, oponentPallete)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
   });
 
   it("higher color", () => {
-    const myPallete: Card[] = [CardFactory.of(7, Color.Red)];
+    const myPalette: Card[] = [CardFactory.of(7, Color.Red)];
 
-    const oponentPallete: Card[] = [CardFactory.of(7, Color.Orange)];
+    const oponentPalette: Card[] = [CardFactory.of(7, Color.Orange)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPalleteBetter(myPallete, oponentPallete)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
   });
 });

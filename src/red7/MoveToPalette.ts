@@ -1,6 +1,6 @@
 import { Card } from "./Card";
 
-export class MoveToPallete {
+export class MoveToPalette {
   readonly card: Card;
 
   constructor(card: Card) {

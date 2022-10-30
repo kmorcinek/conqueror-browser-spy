@@ -12,8 +12,8 @@ export class Board {
     return new BoardState(
       this.red7.getCurrentRule(),
       this.red7.getMyHand(),
-      this.red7.getMyPallete(),
-      this.red7.getOponentPallete()
+      this.red7.getMyPalette(),
+      this.red7.getOponentPalette()
     );
   }
 

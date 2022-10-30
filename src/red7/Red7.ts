@@ -1,6 +1,6 @@
 import { Card } from "./Card";
 import { Color } from "./Color";
-import { MoveToPallete } from "./MoveToPalette";
+import { MoveToPalette } from "./MoveToPalette";
 
 export class Red7 {
   getMyHand(): Card[] {
@@ -16,9 +16,9 @@ export class Red7 {
     return elements;
   }
 
-  getMyPallete(): Card[] {
-    const allPalleteRows = document.getElementById("all_rows")!;
-    const whiteBlock = allPalleteRows.firstElementChild!;
+  getMyPalette(): Card[] {
+    const allPaletteRows = document.getElementById("all_rows")!;
+    const whiteBlock = allPaletteRows.firstElementChild!;
     const palette = whiteBlock.children[1];
 
     const cardElements = palette.children;
@@ -29,13 +29,13 @@ export class Red7 {
       const card = Card.parseCard(item);
       elements.push(card);
     });
-    console.log("MyPallete", elements);
+    console.log("MyPalette", elements);
     return elements;
   }
 
-  getOponentPallete(): Card[] {
-    const allPalleteRows = document.getElementById("all_rows")!;
-    const whiteBlock = allPalleteRows.children[1];
+  getOponentPalette(): Card[] {
+    const allPaletteRows = document.getElementById("all_rows")!;
+    const whiteBlock = allPaletteRows.children[1];
     const palette = whiteBlock.children[1];
 
     const cardElements = palette.children;
@@ -45,7 +45,7 @@ export class Red7 {
       const card = Card.parseCard(item);
       elements.push(card);
     });
-    console.log("OponentPallete", elements);
+    console.log("OponentPalette", elements);
     return elements;
   }
 
@@ -68,20 +68,20 @@ export class Red7 {
     }
   }
 
-  moveToPallete(move: MoveToPallete) {
+  moveToPalette(move: MoveToPalette) {
     const card = move.card;
     console.log(`Moving (clicking) card ${card.toString()} to palette`);
     this.clickCard(card.elementId);
-    this.clickPallete();
+    this.clickPalette();
 
     window.setTimeout(() => {
       this.clickFinishMove();
     }, 1000);
   }
 
-  private clickPallete() {
-    const allPalleteRows = document.getElementById("all_rows")!;
-    const palette = allPalleteRows.firstElementChild!;
+  private clickPalette() {
+    const allPaletteRows = document.getElementById("all_rows")!;
+    const palette = allPaletteRows.firstElementChild!;
     (palette as any).click();
   }
 

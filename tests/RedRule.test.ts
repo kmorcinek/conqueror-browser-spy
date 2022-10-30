@@ -8,20 +8,20 @@ describe("RedRuleTest", () => {
   const sut = new RedRule();
 
   it("higher", () => {
-    const myPallete: Card[] = [CardFactory.byRank(2), CardFactory.byRank(6), CardFactory.byRank(2)];
+    const myPalette: Card[] = [CardFactory.byRank(2), CardFactory.byRank(6), CardFactory.byRank(2)];
 
-    const oponentPallete: Card[] = [CardFactory.byRank(5)];
+    const oponentPalette: Card[] = [CardFactory.byRank(5)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPalleteBetter(myPallete, oponentPallete)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
   });
 
   it("higher color", () => {
-    const myPallete: Card[] = [CardFactory.of(4, Color.Red)];
+    const myPalette: Card[] = [CardFactory.of(4, Color.Red)];
 
-    const oponentPallete: Card[] = [CardFactory.of(4, Color.Orange)];
+    const oponentPalette: Card[] = [CardFactory.of(4, Color.Orange)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPalleteBetter(myPallete, oponentPallete)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
   });
 });

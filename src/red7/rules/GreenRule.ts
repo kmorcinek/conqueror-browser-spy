@@ -12,9 +12,9 @@ class Yellow {
 }
 
 export class GreenRule {
-  isMyPalleteBetter(myPallete: Card[], oponentPallete: Card[]) {
-    const myBestCard = this.getBestCard(myPallete);
-    const oponentBest = this.getBestCard(oponentPallete);
+  isMyPaletteBetter(myPalette: Card[], oponentPalette: Card[]) {
+    const myBestCard = this.getBestCard(myPalette);
+    const oponentBest = this.getBestCard(oponentPalette);
 
     if (myBestCard.bestRankCount === oponentBest.bestRankCount) {
       return myBestCard.bestCard.isGreater(oponentBest.bestCard);

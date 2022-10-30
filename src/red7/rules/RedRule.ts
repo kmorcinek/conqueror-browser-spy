@@ -1,9 +1,9 @@
 import { Card } from "../Card";
 
 export class RedRule {
-  isMyPalleteBetter(myPallete: Card[], oponentPallete: Card[]) {
-    const myBestCard = this.getBestCard(myPallete);
-    const oponentBest = this.getBestCard(oponentPallete);
+  isMyPaletteBetter(myPalette: Card[], oponentPalette: Card[]) {
+    const myBestCard = this.getBestCard(myPalette);
+    const oponentBest = this.getBestCard(oponentPalette);
     const isX = myBestCard.rank === oponentBest.rank && myBestCard.color > oponentBest.color;
 
     return myBestCard.rank > oponentBest.rank || isX;

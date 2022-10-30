@@ -8,29 +8,29 @@ describe("YellowRuleTest", () => {
   const sut = new YellowRule();
 
   it("more cards with rank yellow color", () => {
-    const myPallete: Card[] = [CardFactory.of(1, Color.Yellow), CardFactory.of(2, Color.Yellow)];
+    const myPalette: Card[] = [CardFactory.of(1, Color.Yellow), CardFactory.of(2, Color.Yellow)];
 
-    const oponentPallete: Card[] = [CardFactory.of(3, Color.Yellow), CardFactory.of(5, Color.Red)];
+    const oponentPalette: Card[] = [CardFactory.of(3, Color.Yellow), CardFactory.of(5, Color.Red)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPalleteBetter(myPallete, oponentPallete)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
   });
 
   it("higher color", () => {
-    const myPallete: Card[] = [CardFactory.of(7, Color.Red)];
+    const myPalette: Card[] = [CardFactory.of(7, Color.Red)];
 
-    const oponentPallete: Card[] = [CardFactory.of(7, Color.Orange)];
+    const oponentPalette: Card[] = [CardFactory.of(7, Color.Orange)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPalleteBetter(myPallete, oponentPallete)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
   });
 
   it("when two colors have the same count, then the highest card wins", () => {
-    const myPallete: Card[] = [CardFactory.of(1, Color.Red), CardFactory.of(7, Color.Yellow)];
+    const myPalette: Card[] = [CardFactory.of(1, Color.Red), CardFactory.of(7, Color.Yellow)];
 
-    const oponentPallete: Card[] = [CardFactory.of(5, Color.Orange), CardFactory.of(5, Color.Red)];
+    const oponentPalette: Card[] = [CardFactory.of(5, Color.Orange), CardFactory.of(5, Color.Red)];
 
     // tslint:disable-next-line: no-unused-expression
-    expect(sut.isMyPalleteBetter(myPallete, oponentPallete)).to.equal(true);
+    expect(sut.isMyPaletteBetter(myPalette, oponentPalette)).to.equal(true);
   });
 });

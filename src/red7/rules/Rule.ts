@@ -1,5 +1,5 @@
 import { Card } from "../Card";
 
 export interface Rule {
-  isMyPalleteBetter(myPallete: Card[], oponentPallete: Card[]): boolean;
+  isMyPaletteBetter(myPalette: Card[], oponentPalette: Card[]): boolean;
 }
