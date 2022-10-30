@@ -66,9 +66,9 @@ export class Card {
     mapOfColors.set(2, Color.Orange);
     mapOfColors.set(3, Color.Yellow);
     mapOfColors.set(4, Color.Green);
-    mapOfColors.set(5, Color.Other);
-    mapOfColors.set(6, Color.Other);
-    mapOfColors.set(7, Color.Other);
+    mapOfColors.set(5, Color.Blue);
+    mapOfColors.set(6, Color.Indigo);
+    mapOfColors.set(7, Color.Violet);
 
     const color = mapOfColors.get(colorIndex);
     if (color === undefined) {
