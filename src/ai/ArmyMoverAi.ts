@@ -43,7 +43,12 @@ export class ArmyMoverAi {
       }
       this.moveArmy(ownedProvince);
     }
+    this.validateMoves();
     this.executeMoves();
+  }
+
+  validateMoves() {
+    throw new Error("Method not implemented.");
   }
 
   private executeMoves() {
