@@ -11,6 +11,7 @@ export class Province {
     let rest: string = population;
     let resources = 0;
 
+    // eslint-disable-next-line no-constant-condition
     while (true) {
       // TODO: charCodeAt() should get a length of 'rest'
       const lastChar = rest[rest.length - 1];
