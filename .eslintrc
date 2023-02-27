@@ -14,6 +14,7 @@
         "plugin:import/recommended"
     ],
     "rules": {
+        "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "@typescript-eslint/lines-between-class-members": "off",
         "@typescript-eslint/comma-dangle": "off",
         "@typescript-eslint/quotes": "off",
