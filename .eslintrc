@@ -10,7 +10,8 @@
     "extends": [
         "airbnb-typescript/base",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/recommended"
     ],
     "rules": {
         "@typescript-eslint/quotes": "off",
