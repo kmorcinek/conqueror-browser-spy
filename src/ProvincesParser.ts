@@ -130,10 +130,11 @@ export class ProvinceParser {
         return Production.Fort;
       case "diplomat":
         return Production.Diplomat;
-      default:
+      default: {
         const errorMessage = "new Production value: " + icon;
         console.error(errorMessage);
         throw new DOMException(errorMessage);
+      }
     }
   }
 
