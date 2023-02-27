@@ -1,8 +1,6 @@
 import { expect } from "chai";
-import { Province } from "../src/Province";
 import { Culture } from "../src/Culture";
 import { ProvinceFactory } from "./ProvinceFactory";
-import { Production } from "../src/Production";
 import { FarmHistoryChecker } from "../src/FarmHistoryChecker";
 import { ProvinceHistory } from "../src/ProvinceHistory";
 

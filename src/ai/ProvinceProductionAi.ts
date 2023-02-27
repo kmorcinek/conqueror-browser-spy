@@ -1,7 +1,5 @@
 import { Clicker } from "../Clicker";
 import { Production } from "../Production";
-import { Culture } from "../Culture";
-import { Attitude } from "../Attitude";
 import { BuyProduction } from "../BuyProduction";
 import { GoldService } from "../GoldService";
 import { BattleProvinceNeighborhoods } from "./BattleProvinceNeighborhoods";
@@ -43,7 +41,7 @@ export class ProvinceProductionAi {
   updateProduction(province: BattleProvince) {
     let productionGoal: Production | BuyProduction | null;
     if (this.backlands.isBackland(province.name)) {
-      productionGoal = this.backlandProductionAi.getProductionGoal(province);
+      productionGoal = this.backlandProductionAi.getProductionGoal();
       if (productionGoal === null) {
         productionGoal = this.regularProvinceProductionGoal.getProductionGoal(province);
       }

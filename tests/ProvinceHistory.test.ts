@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { Province } from "../src/Province";
 import { Culture } from "../src/Culture";
 import { ProvinceFactory } from "./ProvinceFactory";
 import { ProvinceHistory } from "../src/ProvinceHistory";

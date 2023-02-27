@@ -14,6 +14,7 @@
         "plugin:import/recommended"
     ],
     "rules": {
+        "@typescript-eslint/no-unused-vars": "error",
         "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
         "@typescript-eslint/lines-between-class-members": "off",
         "@typescript-eslint/quotes": "off",

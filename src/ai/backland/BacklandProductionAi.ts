@@ -1,7 +1,5 @@
 import { Production } from "../../Production";
-import { Culture } from "../../Culture";
 import { GoldService } from "../../GoldService";
-import { BattleProvince } from "../BattleProvince";
 import { Settings } from "../../Settings";
 import { Season } from "../../Season";
 
@@ -14,8 +12,8 @@ export class BacklandProductionAi {
     this.settings = settings;
   }
 
-  getProductionGoal(province: BattleProvince): Production | null {
-    const productionGoal = this.calculateProductionGoal(province);
+  getProductionGoal(): Production | null {
+    const productionGoal = this.calculateProductionGoal();
     if (productionGoal === null) {
       console.log(`Backland choose not to produce anything particular`);
     } else {
@@ -25,7 +23,7 @@ export class BacklandProductionAi {
     return productionGoal;
   }
 
-  private calculateProductionGoal(province: BattleProvince): Production | null {
+  private calculateProductionGoal(): Production | null {
     // start from some turn (5) after first winter is passed
     if (this.missingGoldInWinter() && this.settings.getTurn() > 5) {
       return Production.Gold;
