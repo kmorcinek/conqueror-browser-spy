@@ -76,7 +76,7 @@ export class ArmyMoverAi {
   }
 
   // tslint:disable-next-line: member-ordering
-  sortByProvinceValue(notOwnedNeighbors: BattleProvince[]) {
+  static sortByProvinceValue(notOwnedNeighbors: BattleProvince[]) {
     return notOwnedNeighbors
       .sort((first, second) => first.province.calculateValue() - second.province.calculateValue())
       .reverse();

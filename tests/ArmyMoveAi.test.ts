@@ -21,21 +21,13 @@ describe("ArmyMoveAi", () => {
     const provinceHistoryService = new ProvinceHistoryService();
     provinceHistoryService.getByName(primitiveProvince.name).add(primitiveProvince);
     provinceHistoryService.getByName(developedProvince.name).add(developedProvince);
-    const sut = new ArmyMoverAi(
-      null as any,
-      null as any,
-      null as any,
-      null as any,
-      null as any,
-      null as any,
-    );
 
     const neighbors = [
       new BattleProvince(primitiveProvince, ProvinceOwner.Opponent),
       new BattleProvince(developedProvince, ProvinceOwner.Opponent),
     ];
 
-    const sortedProvinces: BattleProvince[] = sut.sortByProvinceValue(neighbors);
+    const sortedProvinces: BattleProvince[] = ArmyMoverAi.sortByProvinceValue(neighbors);
     expect(sortedProvinces[0].name).to.equal(developedProvince.name);
     expect(sortedProvinces[1].name).to.equal(primitiveProvince.name);
   });
