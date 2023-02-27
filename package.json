@@ -26,6 +26,8 @@
     "browserify": "^16.5.0",
     "chai": "^4.2.0",
     "eslint": "^8.35.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
     "jquery": "^3.4.1",
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
