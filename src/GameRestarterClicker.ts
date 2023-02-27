@@ -37,13 +37,13 @@ export class GameRestarterClicker {
     }
   }
 
-  private click(element: any | null) {
+  private click(element: Element | null) {
     if (element !== null) {
       this.mouseDown(element);
     }
   }
 
-  private mouseDown(element: any) {
+  private mouseDown(element: Element) {
     element.dispatchEvent(new Event("mousedown"));
   }
 
