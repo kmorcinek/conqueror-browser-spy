@@ -1,6 +1,47 @@
 import { IProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/IProvinceNeighbourhoodProvider";
 import { IProvinceMapValidator } from "./ProvinceNeighborhood/IProvinceMapValidator";
 
+class Cache<T> {
+  dictionary: Record<string, T> = {};
+
+  getCached(source: string, target: string, getFreshData: (a: string, b: string) => T): T {
+    const key = Cache.concatWay(source, target);
+    const cachedData = this.dictionary[key];
+    if (cachedData !== undefined) {
+      return cachedData;
+    }
+
+    const freshData = getFreshData(source, target);
+    this.dictionary[key] = freshData;
+    return freshData;
+  }
+
+  // tslint:disable-next-line: member-ordering
+  private static concatWay(source: string, target: string) {
+    return source + ";" + target;
+  }
+}
+
+class DistanceAndPath {
+  static Empty = new DistanceAndPath(300, []);
+
+  static min(first: DistanceAndPath, second: DistanceAndPath) {
+    return first.distance < second.distance ? first : second;
+  }
+
+  static create(path: string[]) {
+    return new DistanceAndPath(path.length, path);
+  }
+
+  distance: number;
+  path: string[];
+
+  private constructor(distance: number, path: string[]) {
+    this.distance = distance;
+    this.path = path;
+  }
+}
+
 export class ProvinceNeighborhood {
   private readonly neighbourhoodProviders: IProvinceNeighbourhoodProvider[];
   private readonly provinceMapValidator: IProvinceMapValidator;
@@ -126,46 +167,5 @@ export class ProvinceNeighborhood {
         );
       }
     }
-  }
-}
-
-class Cache<T> {
-  dictionary: Record<string, T> = {};
-
-  getCached(source: string, target: string, getFreshData: (a: string, b: string) => T): T {
-    const key = Cache.concatWay(source, target);
-    const cachedData = this.dictionary[key];
-    if (cachedData !== undefined) {
-      return cachedData;
-    }
-
-    const freshData = getFreshData(source, target);
-    this.dictionary[key] = freshData;
-    return freshData;
-  }
-
-  // tslint:disable-next-line: member-ordering
-  private static concatWay(source: string, target: string) {
-    return source + ";" + target;
-  }
-}
-
-class DistanceAndPath {
-  static Empty = new DistanceAndPath(300, []);
-
-  static min(first: DistanceAndPath, second: DistanceAndPath) {
-    return first.distance < second.distance ? first : second;
-  }
-
-  static create(path: string[]) {
-    return new DistanceAndPath(path.length, path);
-  }
-
-  distance: number;
-  path: string[];
-
-  private constructor(distance: number, path: string[]) {
-    this.distance = distance;
-    this.path = path;
   }
 }
