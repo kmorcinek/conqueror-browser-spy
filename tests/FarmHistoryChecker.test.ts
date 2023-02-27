@@ -20,7 +20,7 @@ describe("FarmHistoryChecker", () => {
       history.add(province);
     }
     const turn = sut.whenNextFarm(history);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(turn).to.equal(5);
   });
 });

@@ -10,7 +10,7 @@ describe("ProvinceHistoryChecker", () => {
     const sut = new ProvinceHistoryChecker();
     const province = new ProvinceFactory().build();
     const message = sut.checkHistory([province]);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(message).to.be.null;
   });
 
@@ -26,7 +26,7 @@ describe("ProvinceHistoryChecker", () => {
       history.push(province);
     }
     const message = sut.checkHistory(history);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(message).to.equal(Production.Culture);
   });
 
@@ -42,7 +42,7 @@ describe("ProvinceHistoryChecker", () => {
       history.push(province);
     }
     const message = sut.checkHistory(history);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(message).to.equal(Production.Culture);
   });
 
@@ -58,7 +58,7 @@ describe("ProvinceHistoryChecker", () => {
       history.push(province);
     }
     const message = sut.checkHistory(history);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(message).to.equal(Production.Culture);
   });
 });
