@@ -256,11 +256,13 @@ export class ConquerorSpy {
   }
 
   private static isGameOver(): boolean {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const maybeGameOverElement: any = $(".content")[0];
     return maybeGameOverElement.outerText === "Game Over !!!";
   }
 
   private static isInGameLobby(): boolean {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const element: any = $(Globals.singleplayerButtonSelector);
     const firstElement = element[0];
     if (firstElement === undefined) {
@@ -316,4 +318,5 @@ try {
   console.error(error);
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).conquerorSpy = ConquerorSpy;

@@ -52,6 +52,7 @@ export class ProvinceParser {
       return null;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const culture = this.parseCulture((populationItem.className as any).animVal);
 
     const productionItem = mapDocument.getElementById(createId("prod_")) as HTMLElement;
