@@ -49,7 +49,7 @@ describe("ArmyMarcher", () => {
     sut.marchToTarget(sourceProvince, targetProvince);
 
     expect(result).to.not.equal(undefined);
-    expect(result!.target).to.equal(middleTargetOwnedProvince);
+    expect(result?.target).to.equal(middleTargetOwnedProvince);
   });
 
   it("should marchToTarget NOT move army when middle target is neutral", () => {
@@ -144,8 +144,8 @@ describe("ArmyMarcher", () => {
     sut.marchToTarget(sourceProvince, targetProvince);
 
     expect(result).to.not.equal(undefined);
-    expect(result!.source).to.equal(sourceProvince);
-    expect(result!.target).to.equal(middleTargetNeutralProvince);
+    expect(result?.source).to.equal(sourceProvince);
+    expect(result?.target).to.equal(middleTargetNeutralProvince);
   });
 
   it("should sortByLessSoldiersInNextTarget start from empty province", () => {
@@ -240,6 +240,6 @@ describe("ArmyMarcher", () => {
     sut.marchToTarget(sourceProvince, targetProvince);
 
     expect(result).to.not.equal(undefined);
-    expect(result!.target).to.equal(middleTargetOwnedProvince);
+    expect(result?.target).to.equal(middleTargetOwnedProvince);
   });
 });

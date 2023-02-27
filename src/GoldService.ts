@@ -16,8 +16,8 @@ export class GoldService {
   }
 
   private getAmount(uiName: string, className: string) {
-    const amount = document.getElementsByClassName(className)[0].childNodes[3]!.textContent;
+    const amount = document.getElementsByClassName(className)[0].childNodes[3]?.textContent;
     console.log(`${uiName}: '${amount}'`);
-    return parseInt(amount!);
+    return parseInt(amount as string);
   }
 }

@@ -54,13 +54,13 @@ export class ProvinceParser {
 
     const culture = this.parseCulture((populationItem.className as any).animVal);
 
-    const productionItem = mapDocument.getElementById(createId("prod_"));
-    const productionString = productionItem!.getAttribute("xlink:href");
+    const productionItem = mapDocument.getElementById(createId("prod_")) as HTMLElement;
+    const productionString = productionItem.getAttribute("xlink:href") as string;
     let production: Production | null;
     let attitude: Attitude | null;
-    const farmsWithResources = Province.parsePopulation(populationItem.textContent!);
+    const farmsWithResources = Province.parsePopulation(populationItem.textContent as string);
 
-    const isOwnedByMe = this.isHidden(productionItem!) === false;
+    const isOwnedByMe = this.isHidden(productionItem) === false;
     if (isOwnedByMe) {
       console.log("Clicking when parsing:", provinceName);
       this.clicker.clickProvince(provinceName);
@@ -68,16 +68,16 @@ export class ProvinceParser {
       const farmsLabel = this.getFarmsLabel();
       farmsWithResources.farms = parseInt(farmsLabel);
 
-      production = this.parseProduction(productionString!);
+      production = this.parseProduction(productionString);
 
       const attitudeLabel = this.getAttitudeLabel();
-      attitude = this.parseAttitude(attitudeLabel!);
+      attitude = this.parseAttitude(attitudeLabel);
     } else {
       production = null;
       attitude = null;
     }
 
-    const soldierItem = mapDocument.getElementById(createId("info_"));
+    const soldierItem = mapDocument.getElementById(createId("info_")) as HTMLElement;
 
     const province = new Province(
       Globals.getTurn(),
@@ -86,7 +86,7 @@ export class ProvinceParser {
       farmsWithResources.resources,
       culture,
       production,
-      parseInt(soldierItem!.textContent!),
+      parseInt(soldierItem.textContent as string),
       this.parseFort(mapDocument, provinceName),
       attitude,
     );
@@ -139,11 +139,11 @@ export class ProvinceParser {
   }
 
   private getFarmsLabel(): string {
-    return document.getElementsByClassName("fieldInfoMain ")[0].childNodes[0].textContent!;
+    return document.getElementsByClassName("fieldInfoMain ")[0].childNodes[0].textContent as string;
   }
 
   private getAttitudeLabel(): string {
-    return document.getElementsByClassName("fieldInfoAttitude ")[0].childNodes[0].textContent!;
+    return document.getElementsByClassName("fieldInfoAttitude ")[0].childNodes[0].textContent as string;
   }
 
   private parseAttitude(label: string): Attitude {

@@ -50,7 +50,7 @@ export class CapitalFinder {
     if (this.opponentCapital === undefined) {
       throw new Error(`opponentCapital was not set yet, this method should be called later`);
     }
-    return this.opponentCapital!;
+    return this.opponentCapital as string;
   }
 
   getCapitals(): string[] {

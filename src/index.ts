@@ -114,7 +114,7 @@ export class ConquerorSpy {
   }
 
   private static getCheckedState(elementId: string, defaultValue: boolean): boolean {
-    const element = document.getElementById(elementId)! as any;
+    const element = document.getElementById(elementId) as any;
     if (element === null) {
       return defaultValue;
     }

@@ -37,7 +37,7 @@ describe("OpponentAttacker ", () => {
     sut.attackOpponents([targetProvince], sourceProvince);
 
     expect(result).to.not.equal(undefined);
-    expect(result!.source).to.equal(sourceProvince);
+    expect(result?.source).to.equal(sourceProvince);
   });
 
   it("should attackOpponent not move further from opponent capital", () => {

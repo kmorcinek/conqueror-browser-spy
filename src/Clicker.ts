@@ -51,7 +51,7 @@ export class Clicker {
 
   private getProvinceElement(provinceName: string) {
     const mapDocument = Globals.getMapDocument();
-    return mapDocument.getElementById("field_" + provinceName)!;
+    return mapDocument.getElementById("field_" + provinceName) as HTMLElement;
   }
 
   private decrementArmy() {

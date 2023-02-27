@@ -9,7 +9,7 @@ export class ColorPicker {
       throw new Error(`map is null when picking color`);
     }
 
-    const color = map.getAttribute("fill")!;
+    const color = map.getAttribute("fill") as string;
     // console.log(`Color: '${color}'`);
     return color;
   }
