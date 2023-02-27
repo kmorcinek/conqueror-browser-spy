@@ -38,6 +38,12 @@ import { Version } from "./Version";
 import { Winner } from "./statistics/Winner";
 import { Statistics } from "./statistics/Statistics";
 
+class ConquerorDocument extends Document {
+  refreshTurnInterval: NodeJS.Timeout | undefined;
+  refreshNameInterval: NodeJS.Timeout | undefined;
+  refreshGameLobbyInterval: NodeJS.Timeout | undefined;
+}
+
 export class ConquerorSpy {
   static provinceParser: ProvinceParser;
   static provinceOwnership: IProvinceOwnership;
@@ -73,14 +79,15 @@ export class ConquerorSpy {
 
     ConquerorSpy.cleanAllValues();
 
-    clearInterval((document as any).refreshTurnInterval);
-    (document as any).refreshTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
+    const conquerorDocument = document as ConquerorDocument;
+    clearInterval(conquerorDocument.refreshTurnInterval as NodeJS.Timeout);
+    conquerorDocument.refreshTurnInterval = setInterval(ConquerorSpy.refreshTurn, 500);
 
-    clearInterval((document as any).refreshNameInterval);
-    (document as any).refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
+    clearInterval(conquerorDocument.refreshNameInterval as NodeJS.Timeout);
+    conquerorDocument.refreshNameInterval = setInterval(ConquerorSpy.refreshName, 200);
 
-    clearInterval((document as any).refreshGameLobbyInterval);
-    (document as any).refreshGameLobbyInterval = setInterval(ConquerorSpy.refreshGameLobby, 2000);
+    clearInterval(conquerorDocument.refreshGameLobbyInterval as NodeJS.Timeout);
+    conquerorDocument.refreshGameLobbyInterval = setInterval(ConquerorSpy.refreshGameLobby, 2000);
 
     console.log("Tool version: " + Version.getFullVersion());
   }
