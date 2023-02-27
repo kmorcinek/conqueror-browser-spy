@@ -10,10 +10,8 @@
     "browserify": "browserify src/index.ts -p [ tsify --noImplicitAny ] > lib/output.js",
     "build:live": "http-server lib",
     "format": "prettier --write '{src,test,types}/**/*.ts'",
-    "eslint": "eslint . --ext .ts",
-    "eslint-and-fix": "eslint . --ext .ts --fix",
-    "lint": "tslint --project .",
-    "lint:fix": "tslint --fix --project ./tsconfig.json"
+    "lint": "eslint . --ext .ts",
+    "lint-and-fix": "eslint . --ext .ts --fix"
   },
   "keywords": [],
   "author": "",
@@ -32,11 +30,8 @@
     "mocha": "^6.2.2",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2",
-    "prettier-tslint": "^0.4.2",
     "ts-node": "^8.5.2",
     "tsify": "^4.0.1",
-    "tslint": "^5.20.1",
-    "tslint-plugin-prettier": "^2.0.1",
     "typescript": "^3.6.4"
   }
 }
