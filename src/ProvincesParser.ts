@@ -133,7 +133,7 @@ export class ProvinceParser {
       default: {
         const errorMessage = "new Production value: " + icon;
         console.error(errorMessage);
-        throw new DOMException(errorMessage);
+        throw new Error(errorMessage);
       }
     }
   }
@@ -165,7 +165,7 @@ export class ProvinceParser {
 
     const errorMessage = `Missing attitude label: '${label}'`;
     console.error(errorMessage);
-    throw new DOMException(errorMessage);
+    throw new Error(errorMessage);
   }
 
   private parseFort(mapDocument: Document, provinceName: string): Fortification {
