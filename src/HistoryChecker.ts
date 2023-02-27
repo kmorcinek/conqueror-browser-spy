@@ -20,7 +20,7 @@ export class HistoryChecker {
     provinceOwnership: IProvinceOwnership,
     provinceHistoryChecker: ProvinceHistoryChecker,
     farmHistoryChecker: FarmHistoryChecker,
-    provinceHistoryService: ProvinceHistoryService
+    provinceHistoryService: ProvinceHistoryService,
   ) {
     this.provinceOwnership = provinceOwnership;
     this.provinceHistoryChecker = provinceHistoryChecker;

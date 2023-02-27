@@ -26,7 +26,7 @@ export class NeutralAttacker {
         attackingSoldiersCount = this.attackingSoldiersCount(sourceProvince, target);
       }
       console.log(
-        `> Attacking ${attackingSoldiersCount} soldiers from ${sourceProvince.name} to ${target.name}`
+        `> Attacking ${attackingSoldiersCount} soldiers from ${sourceProvince.name} to ${target.name}`,
       );
       if (attackingSoldiersCount > 0) {
         const decrementArmySize = sourceProvince.remainingSoldiers - attackingSoldiersCount;
@@ -84,14 +84,14 @@ export class NeutralAttacker {
   private moveWhenEnoughSoldier(
     sourceProvince: BattleProvince,
     toStay: number,
-    target: BattleProvince
+    target: BattleProvince,
   ) {
     if (sourceProvince.remainingSoldiers - toStay > 0) {
       this.armyMovesRecorder.addMove(new ArmyMove(sourceProvince, target, toStay));
       sourceProvince.moveOutSoldiers(sourceProvince.remainingSoldiers - toStay);
     } else {
       console.log(
-        `>>>> Not enough soldiers. soldier:'${sourceProvince.remainingSoldiers}', toStay:'${toStay}'`
+        `>>>> Not enough soldiers. soldier:'${sourceProvince.remainingSoldiers}', toStay:'${toStay}'`,
       );
     }
   }

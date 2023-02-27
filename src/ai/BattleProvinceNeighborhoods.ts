@@ -23,7 +23,7 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
     provinceOwnership: IProvinceOwnership,
     provinceNeighborhood: ProvinceNeighborhood,
     provinceNeighborhoods: ProvinceNeighborhoods,
-    provinceHistoryService: ProvinceHistoryService
+    provinceHistoryService: ProvinceHistoryService,
   ) {
     this.settings = settings;
     this.provinceOwnership = provinceOwnership;
@@ -40,7 +40,7 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
 
     this.opponentProvinces = this.createBattleProvinces(
       this.provinceOwnership.getOpponentProvinces(),
-      ProvinceOwner.Opponent
+      ProvinceOwner.Opponent,
     );
 
     this.createBattleProvinces(this.provinceOwnership.getNeutralProvinces(), ProvinceOwner.Neutral);
@@ -58,7 +58,7 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
 
   getClosestNotConqueredNeighbors(battleProvince: BattleProvince): BattleProvince[] {
     const closeNotConqueredNeighborNames = this.provinceNeighborhoods.getCloseNotConqueredNeighbors(
-      battleProvince.name
+      battleProvince.name,
     );
     return this.getByNames(closeNotConqueredNeighborNames);
   }
@@ -83,7 +83,7 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
 
   private createBattleProvinces(
     provinces: string[],
-    provinceOwner: ProvinceOwner
+    provinceOwner: ProvinceOwner,
   ): BattleProvince[] {
     const newBattleProvinces: BattleProvince[] = [];
     for (const provinceName of provinces) {
@@ -124,10 +124,10 @@ export class BattleProvinceNeighborhoods implements IBattleProvinceNeighborhoods
       const distance = this.getDistance(battleProvince, closestOpponents[0]);
       battleProvince.updateClosestOpponents(closestOpponents, distance);
       battleProvince.updateOpponentCapitalDistance(
-        this.provinceNeighborhood.getDistance(provinceName, opponentCapital)
+        this.provinceNeighborhood.getDistance(provinceName, opponentCapital),
       );
       battleProvince.updateOwnCapitalDistance(
-        this.provinceNeighborhood.getDistance(provinceName, ownCapital)
+        this.provinceNeighborhood.getDistance(provinceName, ownCapital),
       );
     }
   }

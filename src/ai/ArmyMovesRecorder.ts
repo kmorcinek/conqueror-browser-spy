@@ -12,7 +12,7 @@ export class ArmyMovesRecorder implements IArmyMovesRecorder {
       throw new Error(`Only '${ArmyMovesRecorder.MAX_MOVES_PER_TURN}' per turn are allowed`);
     }
     console.log(
-      `>>>> Adding move from ${armyMove.source.name} to ${armyMove.target.name}, army size ${armyMove.armySize} or less`
+      `>>>> Adding move from ${armyMove.source.name} to ${armyMove.target.name}, army size ${armyMove.armySize} or less`,
     );
     this.armyMoves.push(armyMove);
   }

@@ -23,7 +23,7 @@ export class Backlands {
       .getOwnedProvinces()
       .filter(bp => !bp.hasNeighborToConquer())
       .sort(
-        (first, second) => first.getClosestOpponentDistance() - second.getClosestOpponentDistance()
+        (first, second) => first.getClosestOpponentDistance() - second.getClosestOpponentDistance(),
       )
       .reverse();
 

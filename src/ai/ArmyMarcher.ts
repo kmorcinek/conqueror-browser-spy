@@ -9,7 +9,7 @@ export class ArmyMarcher {
 
   constructor(
     battleProvinceNeighborhoods: IBattleProvinceNeighborhoods,
-    armyMovesRecorder: IArmyMovesRecorder
+    armyMovesRecorder: IArmyMovesRecorder,
   ) {
     this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
     this.armyMovesRecorder = armyMovesRecorder;
@@ -18,13 +18,13 @@ export class ArmyMarcher {
   marchArmy(sourceProvince: BattleProvince) {
     console.log("Trying to march army from " + sourceProvince.name);
     const closeOpponentOrNeutralNeighbors = this.battleProvinceNeighborhoods.getClosestNotConqueredNeighbors(
-      sourceProvince
+      sourceProvince,
     );
 
     if (closeOpponentOrNeutralNeighbors.length) {
       console.log(
         ">> Number of closeOpponentOrNeutralNeighbors:",
-        closeOpponentOrNeutralNeighbors.length
+        closeOpponentOrNeutralNeighbors.length,
       );
     } else {
       console.warn(">> Missing closeOpponentOrNeutralNeighbors");
@@ -64,7 +64,7 @@ export class ArmyMarcher {
       if (this.battleProvinceNeighborhoods.getDistance(sourceProvince, targetProvince) === 2) {
         const manyPath = this.battleProvinceNeighborhoods.getManyPathWithDistance2(
           sourceProvince,
-          targetProvince
+          targetProvince,
         );
         // we only sort by soldiers, not important is Neutral vs Mine, cause if empty it may be fine to
         // attach first the neutral, cause our move to Mine can be too late (overtake by Opponent)
@@ -93,7 +93,7 @@ export class ArmyMarcher {
 
   static sortByLessSoldiersInNextTarget(manyPath: BattleProvince[][]) {
     return manyPath.sort(
-      (first, second) => first[0].remainingSoldiers - second[0].remainingSoldiers
+      (first, second) => first[0].remainingSoldiers - second[0].remainingSoldiers,
     );
   }
 
@@ -101,7 +101,7 @@ export class ArmyMarcher {
   private moveWhenEnoughSoldier(
     sourceProvince: BattleProvince,
     toStay: number,
-    target: BattleProvince
+    target: BattleProvince,
   ): boolean {
     if (sourceProvince.remainingSoldiers - toStay > 0) {
       this.armyMovesRecorder.addMove(new ArmyMove(sourceProvince, target, toStay));
@@ -109,7 +109,7 @@ export class ArmyMarcher {
       return true;
     } else {
       console.log(
-        `>>>> Not enough soldiers. soldier:'${sourceProvince.remainingSoldiers}', toStay:'${toStay}'`
+        `>>>> Not enough soldiers. soldier:'${sourceProvince.remainingSoldiers}', toStay:'${toStay}'`,
       );
       return false;
     }

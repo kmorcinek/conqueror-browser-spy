@@ -48,7 +48,7 @@ export class Province {
     production: Production | null,
     soldiers: number,
     fort: Fortification,
-    attitude: Attitude | null
+    attitude: Attitude | null,
   ) {
     if (turn < 1) {
       throw new Error(`Turn '${turn}' cannot be less than 1`);

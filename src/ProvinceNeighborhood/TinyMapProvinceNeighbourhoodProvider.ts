@@ -18,7 +18,7 @@ export class TinyMapProvinceNeighbourhoodProvider implements IProvinceNeighbourh
     neighborhood: Record<string, string[]>,
     heroLetter: string,
     neighborsLetters: string[],
-    additionalShift: number
+    additionalShift: number,
   ) {
     const firstIndex = 1;
     const lastIndex = 5;

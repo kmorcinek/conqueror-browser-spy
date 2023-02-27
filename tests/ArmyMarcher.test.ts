@@ -61,7 +61,7 @@ describe("ArmyMarcher", () => {
     provinceFactory.name = "syria";
     const middleTargetNeutralProvince = new BattleProvince(
       provinceFactory.build(),
-      ProvinceOwner.Neutral
+      ProvinceOwner.Neutral,
     );
 
     provinceFactory.name = "palestine";
@@ -108,7 +108,7 @@ describe("ArmyMarcher", () => {
     provinceFactory.soldiers = 0;
     const middleTargetNeutralProvince = new BattleProvince(
       provinceFactory.build(),
-      ProvinceOwner.Neutral
+      ProvinceOwner.Neutral,
     );
 
     provinceFactory.name = "palestine";
@@ -156,14 +156,14 @@ describe("ArmyMarcher", () => {
     provinceFactory.soldiers = 8;
     const middleTargetNeutralProvinceNotEmpty = new BattleProvince(
       provinceFactory.build(),
-      ProvinceOwner.Neutral
+      ProvinceOwner.Neutral,
     );
 
     provinceFactory.name = "cyprus";
     provinceFactory.soldiers = 0;
     const middleTargetNeutralProvinceEmpty = new BattleProvince(
       provinceFactory.build(),
-      ProvinceOwner.Neutral
+      ProvinceOwner.Neutral,
     );
 
     provinceFactory.name = "palestine";
@@ -202,7 +202,7 @@ describe("ArmyMarcher", () => {
     provinceFactory.name = "syria";
     const middleTargetNeutralProvince = new BattleProvince(
       provinceFactory.build(),
-      ProvinceOwner.Neutral
+      ProvinceOwner.Neutral,
     );
 
     provinceFactory.name = "cyprus";

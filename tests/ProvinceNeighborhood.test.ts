@@ -7,7 +7,7 @@ import { TinyMapProvinceNeighbourhoodProvider } from "../src/ProvinceNeighborhoo
 describe("ProvinceNeighborhood", () => {
   const sut = new ProvinceNeighborhood(
     [new EuropeMapProvinceNeighbourhoodProvider()],
-    new ProvinceMapValidatorMock([])
+    new ProvinceMapValidatorMock([]),
   );
 
   it("should have distance 0 to itself", () => {
@@ -46,7 +46,7 @@ describe("ProvinceNeighborhood", () => {
   it("should ignore a1 when generating tiny map", () => {
     const tinyMapNeighborhood = new ProvinceNeighborhood(
       [new TinyMapProvinceNeighbourhoodProvider()],
-      new ProvinceMapValidatorMock(["a1"])
+      new ProvinceMapValidatorMock(["a1"]),
     );
 
     const a1Province = tinyMapNeighborhood.getNeighbors("a1");

@@ -88,7 +88,7 @@ export class ProvinceParser {
       production,
       parseInt(soldierItem!.textContent!),
       this.parseFort(mapDocument, provinceName),
-      attitude
+      attitude,
     );
 
     // console.log("province parsed:", countryName);

@@ -23,7 +23,7 @@ export class ProvinceProductionAi {
     battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
     backlands: Backlands,
     backlandProductionAi: BacklandProductionAi,
-    goldService: GoldService
+    goldService: GoldService,
   ) {
     this.clicker = clicker;
     this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
@@ -54,7 +54,7 @@ export class ProvinceProductionAi {
     if (productionGoal !== null) {
       if (province.production === productionGoal) {
         console.log(
-          `No need to change. ${province.name} is already building ${province.production}`
+          `No need to change. ${province.name} is already building ${province.production}`,
         );
       } else {
         this.clicker.changeProvinceProduction(province.name, productionGoal);

@@ -27,7 +27,7 @@ describe("ArmyMoveAi", () => {
       null as any,
       null as any,
       null as any,
-      null as any
+      null as any,
     );
 
     const neighbors = [

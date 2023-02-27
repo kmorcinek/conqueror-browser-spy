@@ -33,7 +33,7 @@ export class OpponentAttacker {
           opponents.filter(x => x.remainingSoldiers >= sourceProvince.remainingSoldiers).length > 0
         ) {
           console.log(
-            `> Don't leave fort when opponents nearby of ${sourceProvince.name} are strong`
+            `> Don't leave fort when opponents nearby of ${sourceProvince.name} are strong`,
           );
           return;
         }
@@ -47,7 +47,7 @@ export class OpponentAttacker {
         attackingSoldiersCount = this.attackingSoldiersCount(sourceProvince, target);
       }
       console.log(
-        `> Attacking ${attackingSoldiersCount} soldiers from ${sourceProvince.name} to ${target.name}`
+        `> Attacking ${attackingSoldiersCount} soldiers from ${sourceProvince.name} to ${target.name}`,
       );
       if (attackingSoldiersCount > 0) {
         const decrementArmySize = sourceProvince.remainingSoldiers - attackingSoldiersCount;
@@ -120,14 +120,14 @@ export class OpponentAttacker {
   private moveWhenEnoughSoldier(
     sourceProvince: BattleProvince,
     toStay: number,
-    target: BattleProvince
+    target: BattleProvince,
   ) {
     if (sourceProvince.remainingSoldiers - toStay > 0) {
       this.armyMovesRecorder.addMove(new ArmyMove(sourceProvince, target, toStay));
       sourceProvince.moveOutSoldiers(sourceProvince.remainingSoldiers - toStay);
     } else {
       console.log(
-        `>>>> Not enough soldiers. soldier:'${sourceProvince.remainingSoldiers}', toStay:'${toStay}'`
+        `>>>> Not enough soldiers. soldier:'${sourceProvince.remainingSoldiers}', toStay:'${toStay}'`,
       );
     }
   }

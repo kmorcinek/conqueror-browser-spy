@@ -54,7 +54,7 @@ export class ProvinceNeighborhood {
 
   constructor(
     neighbourhoodProviders: IProvinceNeighbourhoodProvider[],
-    provinceMapValidator: IProvinceMapValidator
+    provinceMapValidator: IProvinceMapValidator,
   ) {
     this.neighbourhoodProviders = neighbourhoodProviders;
     this.provinceMapValidator = provinceMapValidator;
@@ -81,7 +81,7 @@ export class ProvinceNeighborhood {
 
   getPath(source: string, target: string): string[] {
     return this.pathCache.getCached(source, target, (src, dest) =>
-      this.getPathNotCached(src, dest)
+      this.getPathNotCached(src, dest),
     );
   }
 
@@ -98,13 +98,13 @@ export class ProvinceNeighborhood {
 
   getDistance(source: string, target: string): number {
     return this.distanceCache.getCached(source, target, (src, dest) =>
-      this.getDistanceNotCached(src, dest)
+      this.getDistanceNotCached(src, dest),
     );
   }
 
   getManyPathWithDistance2(source: string, target: string): string[][] {
     return this.manyPathCache.getCached(source, target, (src, dest) =>
-      this.getManyPathWithDistance2NotCached(src, dest)
+      this.getManyPathWithDistance2NotCached(src, dest),
     );
   }
 
@@ -157,13 +157,13 @@ export class ProvinceNeighborhood {
 
   private assignProvinces(
     provider: IProvinceNeighbourhoodProvider,
-    provinceMapValidator: IProvinceMapValidator
+    provinceMapValidator: IProvinceMapValidator,
   ) {
     const neighborhood = provider.getNeighborhood();
     for (const province of Object.keys(neighborhood)) {
       if (provinceMapValidator.exists(province)) {
         this.neighbors[province] = neighborhood[province].filter(name =>
-          provinceMapValidator.exists(name)
+          provinceMapValidator.exists(name),
         );
       }
     }

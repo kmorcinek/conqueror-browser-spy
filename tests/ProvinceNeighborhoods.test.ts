@@ -8,7 +8,7 @@ import { ProvinceMapValidatorMock } from "./ProvinceMapValidatorMock";
 describe("ProvinceNeighborhoods", () => {
   const provinceNeighborhood = new ProvinceNeighborhood(
     [new EuropeMapProvinceNeighbourhoodProvider()],
-    new ProvinceMapValidatorMock([])
+    new ProvinceMapValidatorMock([]),
   );
   it("should have neutral neighbors around natolia", () => {
     const provinceOwnershipMock: IProvinceOwnership = {

@@ -24,13 +24,13 @@ export class Hud {
       '      <input type="checkbox" name="auto-end-turn" id="auto-end-turn" onchange="conquerorSpy.updateAutoEndTurn()">' +
       "    </div>" +
       '  <div id="hud" style="color: blue; background-color: white;"></div>' +
-      "</div>"
+      "</div>",
   );
 
   constructor(
     provinceOwnership: IProvinceOwnership,
     historyChecker: HistoryChecker,
-    provinceHistoryService: ProvinceHistoryService
+    provinceHistoryService: ProvinceHistoryService,
   ) {
     this.provinceOwnership = provinceOwnership;
     this.historyChecker = historyChecker;

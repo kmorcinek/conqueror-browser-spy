@@ -24,7 +24,7 @@ export class ProductionChecker {
     productionWarningsHud: ProductionWarningsHud,
     staticProductionChecker: StaticProductionChecker,
     dynamicProductionChecker: DynamicProductionChecker,
-    buildingChanger: BuildingChanger
+    buildingChanger: BuildingChanger,
   ) {
     this.provinceOwnership = provinceOwnership;
     this.provinceHistoryService = provinceHistoryService;

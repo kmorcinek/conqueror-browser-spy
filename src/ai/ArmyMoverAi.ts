@@ -20,7 +20,7 @@ export class ArmyMoverAi {
     armyMarcher: ArmyMarcher,
     opponentAttacker: OpponentAttacker,
     neutralAttacker: NeutralAttacker,
-    armyMovesRecorder: ArmyMovesRecorder
+    armyMovesRecorder: ArmyMovesRecorder,
   ) {
     this.clicker = clicker;
     this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
@@ -64,7 +64,7 @@ export class ArmyMoverAi {
         console.log("> Instead of attacking neutral move closer to near (2 distance) opponent");
         this.armyMarcher.marchToPossibleTargets(
           sourceProvince,
-          sourceProvince.getClosestOpponents()
+          sourceProvince.getClosestOpponents(),
         );
       } else {
         this.neutralAttacker.attackNeutrals(neutralNeighbors, sourceProvince);
@@ -84,7 +84,7 @@ export class ArmyMoverAi {
 
   private sortByNumberOfSoldier(ownedProvinces: BattleProvince[]) {
     return ownedProvinces.sort(
-      (first, second) => second.remainingSoldiers - first.remainingSoldiers
+      (first, second) => second.remainingSoldiers - first.remainingSoldiers,
     );
   }
 

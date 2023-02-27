@@ -10,7 +10,7 @@ export class ProductionWarningsHud {
     const timerWrapper = $(Globals.timerWrapperSelector);
 
     const productionWarningsElement = $(
-      '<div id="production-warnings" style="margin-top: 20px; color: blue; background-color: gray; width: 400px;">koniczek konicze koniczekk koniczek</div>'
+      '<div id="production-warnings" style="margin-top: 20px; color: blue; background-color: gray; width: 400px;">koniczek konicze koniczekk koniczek</div>',
     );
     timerWrapper.append(productionWarningsElement);
   }

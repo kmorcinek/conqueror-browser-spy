@@ -131,7 +131,7 @@ export class ConquerorSpy {
     const provinceHistoryService = new ProvinceHistoryService();
     const provinceNeighborhood = new ProvinceNeighborhood(
       [new EuropeMapProvinceNeighbourhoodProvider(), new TinyMapProvinceNeighbourhoodProvider()],
-      ConquerorSpy.provinceMapValidator
+      ConquerorSpy.provinceMapValidator,
     );
     ConquerorSpy.provinceHistoryService = provinceHistoryService;
     const clicker = ConquerorSpy.clicker;
@@ -139,11 +139,11 @@ export class ConquerorSpy {
     const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(
       provinceHistoryService,
       ConquerorSpy.provinceMapValidator,
-      settings
+      settings,
     );
     const provinceNeighborhoods = new ProvinceNeighborhoods(
       provinceOwnership,
-      provinceNeighborhood
+      provinceNeighborhood,
     );
     ConquerorSpy.provinceOwnership = provinceOwnership;
     ConquerorSpy.provinceNeighborhood = provinceNeighborhood;
@@ -154,25 +154,25 @@ export class ConquerorSpy {
       productionWarningsHud,
       new StaticProductionChecker(),
       new DynamicProductionChecker(),
-      buildingChanger
+      buildingChanger,
     );
     ConquerorSpy.historyChecker = new HistoryChecker(
       provinceOwnership,
       new ProvinceHistoryChecker(),
       new FarmHistoryChecker(),
-      provinceHistoryService
+      provinceHistoryService,
     );
     ConquerorSpy.hud = new Hud(
       provinceOwnership,
       ConquerorSpy.historyChecker,
-      provinceHistoryService
+      provinceHistoryService,
     );
     const battleProvinceNeighborhoods = new BattleProvinceNeighborhoods(
       settings,
       provinceOwnership,
       provinceNeighborhood,
       provinceNeighborhoods,
-      provinceHistoryService
+      provinceHistoryService,
     );
     const backlands = new Backlands(battleProvinceNeighborhoods);
     const backlandProductionAi = new BacklandProductionAi(goldService, settings);
@@ -181,7 +181,7 @@ export class ConquerorSpy {
       battleProvinceNeighborhoods,
       backlands,
       backlandProductionAi,
-      goldService
+      goldService,
     );
     const armyMovesRecorder = new ArmyMovesRecorder();
     const armyMoverAi = new ArmyMoverAi(
@@ -190,18 +190,18 @@ export class ConquerorSpy {
       new ArmyMarcher(battleProvinceNeighborhoods, armyMovesRecorder),
       new OpponentAttacker(armyMovesRecorder),
       new NeutralAttacker(armyMovesRecorder),
-      armyMovesRecorder
+      armyMovesRecorder,
     );
     ConquerorSpy.aiManager = new AiManager(
       battleProvinceNeighborhoods,
       backlands,
       armyMoverAi,
-      provinceProductionAi
+      provinceProductionAi,
     );
 
     ConquerorSpy.gameRestarter = new GameRestarter(
       new Statistics(),
-      new Winner(settings, provinceOwnership)
+      new Winner(settings, provinceOwnership),
     );
   }
 

@@ -18,7 +18,7 @@ export class AiManager {
     battleProvinceNeighborhoods: BattleProvinceNeighborhoods,
     backlands: Backlands,
     armyMoverAi: ArmyMoverAi,
-    provinceProductionAi: ProvinceProductionAi
+    provinceProductionAi: ProvinceProductionAi,
   ) {
     this.battleProvinceNeighborhoods = battleProvinceNeighborhoods;
     this.backlands = backlands;

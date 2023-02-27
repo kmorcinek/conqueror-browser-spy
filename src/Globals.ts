@@ -13,7 +13,7 @@ export class Globals {
     return parseInt(
       $(turnSelector)
         .text()
-        .substring(5)
+        .substring(5),
     );
   }
 

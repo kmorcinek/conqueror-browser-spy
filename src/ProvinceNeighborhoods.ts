@@ -20,7 +20,7 @@ export class ProvinceNeighborhoods {
     }
 
     return neighbors.filter(
-      province => this.provinceNeighborhood.getDistance(source, province) === smallestDistance
+      province => this.provinceNeighborhood.getDistance(source, province) === smallestDistance,
     );
   }
 

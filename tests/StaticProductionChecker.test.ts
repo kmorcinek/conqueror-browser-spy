@@ -19,7 +19,7 @@ describe("StaticProductionChecker", () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(unwantedProduction).to.not.equal(null);
     expect(((unwantedProduction as unknown) as BuildingPattern).changeTo).to.equal(
-      Production.Culture
+      Production.Culture,
     );
   });
 

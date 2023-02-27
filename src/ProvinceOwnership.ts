@@ -17,7 +17,7 @@ export class ProvinceOwnership implements IProvinceOwnership {
   constructor(
     provinceHistoryService: ProvinceHistoryServiceInterface,
     provinceMapValidator: IProvinceMapValidator,
-    settings: Settings
+    settings: Settings,
   ) {
     this.provinceHistoryService = provinceHistoryService;
     this.provinceMapValidator = provinceMapValidator;

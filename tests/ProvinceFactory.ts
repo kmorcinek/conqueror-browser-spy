@@ -25,7 +25,7 @@ export class ProvinceFactory {
       this.production,
       this.soldiers,
       this.fort,
-      this.attitude
+      this.attitude,
     );
   }
 }
