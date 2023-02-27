@@ -16,7 +16,7 @@ describe("StaticProductionChecker", () => {
 
     const sut = new StaticProductionChecker();
     const unwantedProduction: BuildingPattern | null = sut.check(province);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(unwantedProduction).to.not.equal(null);
     expect(((unwantedProduction as unknown) as BuildingPattern).changeTo).to.equal(
       Production.Culture
@@ -33,7 +33,7 @@ describe("StaticProductionChecker", () => {
 
     const sut = new StaticProductionChecker();
     const unwantedProduction: BuildingPattern | null = sut.check(province);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(unwantedProduction).to.equal(null);
   });
 });

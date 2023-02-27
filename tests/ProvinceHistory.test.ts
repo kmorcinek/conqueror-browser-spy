@@ -17,7 +17,7 @@ describe("ProvinceHistory", () => {
       sut.add(province);
     }
     const provinceFound = sut.findHistoryAfterBuildingFinished();
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(provinceFound.turn).to.equal(1);
   });
 
@@ -35,7 +35,7 @@ describe("ProvinceHistory", () => {
     sut.add(provinceFactory.build());
 
     const provinceFound = sut.findHistoryAfterBuildingFinished();
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(provinceFound.turn).to.equal(2);
   });
 
@@ -50,7 +50,7 @@ describe("ProvinceHistory", () => {
     const provinceWithKilledSoldiers = provinceFactory.build();
 
     const result = ProvinceHistory.wasSomethingBuilt(provinceWithKilledSoldiers, previousProvince);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(result).to.be.false;
   });
 
@@ -64,7 +64,7 @@ describe("ProvinceHistory", () => {
     const provinceWithBuildSoldiers = provinceFactory.build();
 
     const result = ProvinceHistory.wasSomethingBuilt(provinceWithBuildSoldiers, previousProvince);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(result).to.be.false;
   });
 
@@ -79,7 +79,7 @@ describe("ProvinceHistory", () => {
     const provinceWithBuildSoldiers = provinceFactory.build();
 
     const result = ProvinceHistory.wasSomethingBuilt(provinceWithBuildSoldiers, previousProvince);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(result).to.be.true;
   });
 });

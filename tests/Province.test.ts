@@ -7,7 +7,7 @@ describe("ProvinceTest", () => {
     provinceFactory.farms = 4;
     provinceFactory.resources = 1;
     const province = provinceFactory.build();
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(province.getPopulation()).to.equal("4°");
   });
 
@@ -16,7 +16,7 @@ describe("ProvinceTest", () => {
     provinceFactory.farms = 3;
     provinceFactory.resources = 2;
     const province = provinceFactory.build();
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(province.getPopulation()).to.equal("3°°");
   });
 });

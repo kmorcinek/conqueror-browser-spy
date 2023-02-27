@@ -17,7 +17,7 @@ describe("DynamicProductionChecker", () => {
 
     const sut = new DynamicProductionChecker();
     const unwantedProduction: BuildingPattern | null = sut.check(province, Season.Autumn);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(unwantedProduction).to.not.equal(null);
     expect(((unwantedProduction as unknown) as BuildingPattern).changeTo).to.equal(Production.Farm);
   });
@@ -32,7 +32,7 @@ describe("DynamicProductionChecker", () => {
 
     const sut = new DynamicProductionChecker();
     const unwantedProduction: BuildingPattern | null = sut.check(province, Season.Spring);
-    // tslint:disable-next-line: no-unused-expression
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     expect(unwantedProduction).to.not.equal(null);
     expect(((unwantedProduction as unknown) as BuildingPattern).changeTo).to.equal(
       Production.Soldier
