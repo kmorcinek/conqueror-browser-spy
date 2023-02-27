@@ -5,12 +5,14 @@ export class Statistics {
   writeResult(statistic: OneGameStatistics) {
     const key = this.getKey();
 
-    let statistics = localStorage.getItem(key) as any;
+    const statisticsAsString = localStorage.getItem(key);
 
-    if (statistics === null) {
+    let statistics: OneGameStatistics[];
+
+    if (statisticsAsString === null) {
       statistics = [];
     } else {
-      statistics = JSON.parse(statistics);
+      statistics = JSON.parse(statisticsAsString);
     }
 
     statistics.push(statistic);
