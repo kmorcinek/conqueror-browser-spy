@@ -10,6 +10,8 @@
     "browserify": "browserify src/index.ts -p [ tsify --noImplicitAny ] > lib/output.js",
     "build:live": "http-server lib",
     "format": "prettier --write '{src,test,types}/**/*.ts'",
+    "eslint": "eslint . --ext .ts",
+    "eslint-and-fix": "eslint . --ext .ts --fix",
     "lint": "tslint --project .",
     "lint:fix": "tslint --fix --project ./tsconfig.json"
   },
