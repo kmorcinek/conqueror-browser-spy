@@ -3,6 +3,8 @@ import { Provinces } from "../Provinces";
 
 export class EuropeMapProvinceNeighbourhoodProvider implements IProvinceNeighbourhoodProvider {
   getNeighborhood(): Record<string, string[]> {
+    // the connections between provinces is not automatically in both ways. When Bulgaria->Byzantium i it not Byzantium->Bulgaria by default
+
     const neighborhood: Record<string, string[]> = {};
 
     neighborhood.natolia = ["nicaea", "syria", "cyprus"];
@@ -11,6 +13,7 @@ export class EuropeMapProvinceNeighbourhoodProvider implements IProvinceNeighbou
     neighborhood.crete = ["greece", "nicaea"];
     neighborhood.greece = ["macedonia", "nicaea", "crete"];
     neighborhood.byzantium = ["macedonia", "nicaea", "bulgaria"];
+    neighborhood.bulgaria = ["moldavia", "byzantium", "macedonia", "serbia", "wallachia"];
     neighborhood.macedonia = ["bulgaria", "byzantium", "greece", "napoli", "dalmatia", "serbia"];
     neighborhood.dalmatia = ["macedonia", "venetia", "austria", "hungary", "serbia"];
     neighborhood.serbia = [
@@ -32,6 +35,8 @@ export class EuropeMapProvinceNeighbourhoodProvider implements IProvinceNeighbou
       "wallachia",
       "transylvania",
     ];
+    neighborhood.poland = ["moldavia", "ukraine", "podolia", "hungary"]; // and more
+    neighborhood.crimea = ["moldavia", "ukraine"];
     neighborhood.syria = ["natolia", "palestine", "cyprus"];
     neighborhood.cyprus = ["natolia", "palestine", "syria"];
     neighborhood.palestine = ["egypt", "cyprus", "syria"];
