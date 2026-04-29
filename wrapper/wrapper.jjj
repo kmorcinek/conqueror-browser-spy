@@ -16,3 +16,9 @@ javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t
 
 // Bookmark for TEST env (localhost):
 javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t+"?a="+Math.random()),(e.head||e.documentElement).appendChild(o)})("http://localhost:8887/output.js")
+
+// Bookmark for TEST env (az server):
+javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t+"?a="+Math.random()),(e.head||e.documentElement).appendChild(o)})("https://conquerorgamespy.blob.core.windows.net/spy/output-for-testing.js")
+
+// Bookmark for PROD env (az server):
+javascript:(function (t){var e,o;e=document,(o=e.createElement("script")).src=(t+"?a="+Math.random()),(e.head||e.documentElement).appendChild(o)})("https://conquerorgamespy.blob.core.windows.net/spy/output.js")
