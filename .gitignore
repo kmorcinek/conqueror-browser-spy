@@ -210,5 +210,5 @@ $RECYCLE.BIN/
 
 output-volume/**/*.js
 lib/output.js
-local-notes.txt
+local-notes.md
 statistic_files/*
