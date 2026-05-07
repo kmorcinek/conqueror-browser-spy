@@ -1,5 +1,11 @@
+import * as Sentry from "@sentry/browser";
 import $ from "jquery";
 import { Globals } from "./Globals";
+
+Sentry.init({
+  dsn:
+    "https://d1f0d2ddff0bc0c4216617f7b4c27406@o4505684613988352.ingest.us.sentry.io/4511347682705408",
+});
 import { ProvinceOwnership } from "./ProvinceOwnership";
 import { ProvinceParser } from "./ProvincesParser";
 import { HistoryChecker } from "./HistoryChecker";
@@ -217,6 +223,7 @@ export class ConquerorSpy {
       ConquerorSpy.refreshTurnInternal();
     } catch (error) {
       console.error(error);
+      Sentry.captureException(error);
     }
   }
 
@@ -234,6 +241,7 @@ export class ConquerorSpy {
 
     if (this.isGameOver()) {
       console.log("game is over");
+      Sentry.captureMessage("game is over", "info");
       this.gameRestarter.exitGameAfterSound();
     }
 
@@ -291,6 +299,7 @@ export class ConquerorSpy {
       ConquerorSpy.refreshNameInternal();
     } catch (error) {
       console.error(error);
+      Sentry.captureException(error);
     }
   }
 
@@ -308,6 +317,7 @@ export class ConquerorSpy {
       ConquerorSpy.refreshGameLobbyInternal();
     } catch (error) {
       console.error(error);
+      Sentry.captureException(error);
     }
   }
 
@@ -323,6 +333,7 @@ try {
   ConquerorSpy.start();
 } catch (error) {
   console.error(error);
+  Sentry.captureException(error);
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
