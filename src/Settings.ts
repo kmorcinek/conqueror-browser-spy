@@ -71,4 +71,8 @@ export class Settings {
   getOpponentCapital(): string {
     return this.capitals.getOpponentCapital();
   }
+
+  hasMoreThan2Players(): boolean {
+    return this.capitals.getCapitals().length > 2;
+  }
 }

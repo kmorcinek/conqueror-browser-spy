@@ -264,7 +264,9 @@ export class ConquerorSpy {
       ConquerorSpy.provinceOwnership.updateOwnedProvinces();
       ConquerorSpy.productionChecker.checkBuildingProvinces(this.settings.getSeason());
 
-      ConquerorSpy.aiManager.run();
+      if (!ConquerorSpy.settings.hasMoreThan2Players()) {
+        ConquerorSpy.aiManager.run();
+      }
 
       console.log("---------- refreshTurn() finished");
     }
