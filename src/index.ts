@@ -6,43 +6,22 @@ Sentry.init({
   dsn:
     "https://d1f0d2ddff0bc0c4216617f7b4c27406@o4505684613988352.ingest.us.sentry.io/4511347682705408",
 });
-import { ProvinceOwnership } from "./ProvinceOwnership";
-import { ProvinceParser } from "./ProvincesParser";
 import { HistoryChecker } from "./HistoryChecker";
 import { ProductionChecker } from "./ProductionChecker";
 import { Hud } from "./Hud";
-import { ProvinceHistoryChecker } from "./ProvinceHistoryChecker";
-import { FarmHistoryChecker } from "./FarmHistoryChecker";
 import { ProvinceHistoryService } from "./ProvinceHistoryService";
 import { Clicker } from "./Clicker";
-import { BuildingChanger } from "./BuildingChanger";
-import { ProductionWarningsHud } from "./ProductionWarningsHud";
 import { IProvinceOwnership } from "./IProvinceOwnership";
-import { ProvinceProductionAi } from "./ai/ProvinceProductionAi";
-import { ArmyMoverAi } from "./ai/ArmyMoverAi";
 import { ProvinceNeighborhood } from "./ProvinceNeighborhood";
-import { ProvinceNeighborhoods } from "./ProvinceNeighborhoods";
 import { GoldService } from "./GoldService";
-import { TinyMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/TinyMapProvinceNeighbourhoodProvider";
-import { ArmyMovesRecorder } from "./ai/ArmyMovesRecorder";
-import { BattleProvinceNeighborhoods } from "./ai/BattleProvinceNeighborhoods";
 import { Settings } from "./Settings";
-import { ArmyMarcher } from "./ai/ArmyMarcher";
 import { ProvinceMapValidator } from "./ProvinceNeighborhood/ProvinceMapValidator";
-import { EuropeMapProvinceNeighbourhoodProvider } from "./ProvinceNeighborhood/EuropeMapProvinceNeighborhoodProvider";
 import { AiManager } from "./ai/AiManager";
-import { OpponentAttacker } from "./ai/OpponentAttacker";
-import { Backlands } from "./ai/backland/Backlands";
-import { BacklandProductionAi } from "./ai/backland/BacklandProductionAi";
-import { NeutralAttacker } from "./ai/NeutralAttacker";
-import { StaticProductionChecker } from "./StaticProductionChecker";
-import { DynamicProductionChecker } from "./DynamicProductionChecker";
-import { CapitalFinder } from "./CapitalFinder";
-import { BrowserHtmlDocument } from "./BrowserHtmlDocument";
 import { GameRestarter } from "./GameRestarter";
 import { Version } from "./Version";
-import { Winner } from "./statistics/Winner";
-import { Statistics } from "./statistics/Statistics";
+import { ProvinceParser } from "./ProvincesParser";
+import { ProductionWarningsHud } from "./ProductionWarningsHud";
+import { createContainer } from "./container";
 
 class ConquerorDocument extends Document {
   refreshTurnInterval: NodeJS.Timeout | undefined;
@@ -135,87 +114,18 @@ export class ConquerorSpy {
   }
 
   private static constructObjects() {
-    const goldService = new GoldService();
-    const capitalFinder = new CapitalFinder(new BrowserHtmlDocument());
-    const settings = new Settings(capitalFinder);
-    ConquerorSpy.settings = settings;
-    ConquerorSpy.goldService = goldService;
-    const productionWarningsHud = new ProductionWarningsHud();
-    const provinceHistoryService = new ProvinceHistoryService();
-    const provinceNeighborhood = new ProvinceNeighborhood(
-      [new EuropeMapProvinceNeighbourhoodProvider(), new TinyMapProvinceNeighbourhoodProvider()],
-      ConquerorSpy.provinceMapValidator,
-    );
-    ConquerorSpy.provinceHistoryService = provinceHistoryService;
-    const clicker = ConquerorSpy.clicker;
-    this.provinceParser = new ProvinceParser(provinceHistoryService, clicker);
-    const provinceOwnership: IProvinceOwnership = new ProvinceOwnership(
-      provinceHistoryService,
-      ConquerorSpy.provinceMapValidator,
-      settings,
-    );
-    const provinceNeighborhoods = new ProvinceNeighborhoods(
-      provinceOwnership,
-      provinceNeighborhood,
-    );
-    ConquerorSpy.provinceOwnership = provinceOwnership;
-    ConquerorSpy.provinceNeighborhood = provinceNeighborhood;
-    const buildingChanger = new BuildingChanger(clicker);
-    ConquerorSpy.productionChecker = new ProductionChecker(
-      provinceOwnership,
-      provinceHistoryService,
-      productionWarningsHud,
-      new StaticProductionChecker(),
-      new DynamicProductionChecker(),
-      buildingChanger,
-    );
-    ConquerorSpy.historyChecker = new HistoryChecker(
-      provinceOwnership,
-      new ProvinceHistoryChecker(),
-      new FarmHistoryChecker(),
-      provinceHistoryService,
-    );
-    ConquerorSpy.hud = new Hud(
-      provinceOwnership,
-      ConquerorSpy.historyChecker,
-      provinceHistoryService,
-    );
-    const battleProvinceNeighborhoods = new BattleProvinceNeighborhoods(
-      settings,
-      provinceOwnership,
-      provinceNeighborhood,
-      provinceNeighborhoods,
-      provinceHistoryService,
-    );
-    const backlands = new Backlands(battleProvinceNeighborhoods);
-    const backlandProductionAi = new BacklandProductionAi(goldService, settings);
-    const provinceProductionAi = new ProvinceProductionAi(
-      clicker,
-      battleProvinceNeighborhoods,
-      backlands,
-      backlandProductionAi,
-      goldService,
-    );
-    const armyMovesRecorder = new ArmyMovesRecorder();
-    const armyMoverAi = new ArmyMoverAi(
-      clicker,
-      battleProvinceNeighborhoods,
-      new ArmyMarcher(battleProvinceNeighborhoods, armyMovesRecorder),
-      new OpponentAttacker(armyMovesRecorder),
-      new NeutralAttacker(armyMovesRecorder),
-      armyMovesRecorder,
-    );
-    ConquerorSpy.aiManager = new AiManager(
-      battleProvinceNeighborhoods,
-      backlands,
-      armyMoverAi,
-      provinceProductionAi,
-    );
-
-    ConquerorSpy.gameRestarter = new GameRestarter(
-      new Statistics(),
-      new Winner(settings, provinceOwnership),
-    );
+    const c = createContainer(ConquerorSpy.clicker, ConquerorSpy.provinceMapValidator);
+    ConquerorSpy.settings = c.settings;
+    ConquerorSpy.goldService = c.goldService;
+    ConquerorSpy.provinceHistoryService = c.provinceHistoryService;
+    this.provinceParser = c.provinceParser;
+    ConquerorSpy.provinceOwnership = c.provinceOwnership;
+    ConquerorSpy.provinceNeighborhood = c.provinceNeighborhood;
+    ConquerorSpy.productionChecker = c.productionChecker;
+    ConquerorSpy.historyChecker = c.historyChecker;
+    ConquerorSpy.hud = c.hud;
+    ConquerorSpy.aiManager = c.aiManager;
+    ConquerorSpy.gameRestarter = c.gameRestarter;
   }
 
   private static refreshTurn() {
