@@ -28,6 +28,7 @@ export class ArmyMarcher {
       );
     } else {
       console.warn(">> Missing closeOpponentOrNeutralNeighbors");
+      return;
     }
 
     const opponentToNumber = (bp: BattleProvince) => (bp.isOpponent() ? 1 : 0);
