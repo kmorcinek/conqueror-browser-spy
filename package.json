@@ -11,7 +11,8 @@
     "build:live": "http-server lib",
     "format": "biome format --write .",
     "lint": "biome lint .",
-    "lint-and-fix": "biome check --write ."
+    "lint-and-fix": "biome check --write .",
+    "postinstall": "patch-package"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,7 @@
     "jquery": "^3.4.1",
     "mocha": "^10.0.0",
     "nodemon": "^3.0.0",
+    "patch-package": "^8.0.1",
     "ts-node": "^10.0.0",
     "tsify": "^5.0.0",
     "typescript": "^5.0.0"

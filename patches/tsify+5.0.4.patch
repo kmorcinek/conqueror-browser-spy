@@ -1,0 +1,13 @@
+diff --git a/node_modules/tsify/lib/Tsifier.js b/node_modules/tsify/lib/Tsifier.js
+index 8e84002..ebc9f4b 100644
+--- a/node_modules/tsify/lib/Tsifier.js
++++ b/node_modules/tsify/lib/Tsifier.js
+@@ -2,7 +2,7 @@
+ 
+ var convert  = require('convert-source-map');
+ var events   = require('events');
+-var extend   = require('util')._extend;
++var extend   = Object.assign;
+ var fs       = require('fs');
+ var realpath = require('fs.realpath');
+ var log      = require('util').debuglog(require('../package').name);
