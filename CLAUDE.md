@@ -36,3 +36,41 @@ Browser extension/bookmarklet for the online strategy game conquerorgame.com. Ty
 **Test framework:** Mocha + Chai, TypeScript via `ts-node/register`. Tests live in `tests/`.
 
 **Deployment:** `sh build_deploy.sh` (requires AWS credentials) then tag: `git tag v1.x && git push origin --tags`.
+
+## Viewing Sentry Logs
+
+Token is stored in `sentry.token` (gitignored). Org: `naizz`, project ID: `4511347682705408`, region: US (`sentry.io`).
+
+When waiting for logs to appear (e.g. after manual trigger), poll for at most 1 minute. If no logs arrive within that time, assume they won't come.
+
+```bash
+TOKEN=$(cat sentry.token)
+
+# Unresolved issues
+curl -s -H "Authorization: Bearer $TOKEN" \
+  "https://sentry.io/api/0/organizations/naizz/issues/?limit=20&query=is:unresolved&project=4511347682705408" \
+  | python3 -c "
+import json, sys
+for i in json.load(sys.stdin):
+    print(f\"[{i['level'].upper()}] {i['title']} (count={i['count']}, last={i['lastSeen']})\")
+"
+
+# Specific issue details
+curl -s -H "Authorization: Bearer $TOKEN" \
+  "https://sentry.io/api/0/issues/ISSUE_ID/" \
+  | python3 -c "import json, sys; i = json.load(sys.stdin); print(i['title']); print(i.get('culprit','')); print(json.dumps(i.get('metadata',{}), indent=2))"
+
+# Latest events for an issue
+curl -s -H "Authorization: Bearer $TOKEN" \
+  "https://sentry.io/api/0/issues/ISSUE_ID/events/latest/" \
+  | python3 -c "
+import json, sys
+e = json.load(sys.stdin)
+for ex in e.get('entries', []):
+    if ex['type'] == 'exception':
+        for v in ex['data']['values']:
+            print(v.get('type'), v.get('value'))
+            for f in (v.get('stacktrace') or {}).get('frames', []):
+                print(f'  {f.get(\"filename\")}:{f.get(\"lineno\")} in {f.get(\"function\")}')
+"
+```

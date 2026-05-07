@@ -215,3 +215,4 @@ output-volume/**/*.js
 lib/output.js
 local-notes.md
 statistic_files/*
+sentry.token
