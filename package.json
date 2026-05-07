@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register tests/**/*.test.ts",
+    "test": "NODE_NO_WARNINGS=1 mocha -r ts-node/register tests/**/*.test.ts",
     "start": "npm run build:live",
     "build": "tsc -p .",
     "browserify": "browserify src/index.ts -p [ tsify --noImplicitAny ] > lib/output.js",
