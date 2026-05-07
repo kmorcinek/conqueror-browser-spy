@@ -14,6 +14,7 @@ npm run browserify          # bundle to lib/output.js (for browser deployment)
 ```
 
 Run a single test file:
+
 ```bash
 npx mocha -r ts-node/register tests/ArmyMarcher.test.ts
 ```
@@ -36,6 +37,15 @@ Browser extension/bookmarklet for the online strategy game conquerorgame.com. Ty
 **Test framework:** Mocha + Chai, TypeScript via `ts-node/register`. Tests live in `tests/`.
 
 **Deployment:** `sh build_deploy.sh` (requires AWS credentials) then tag: `git tag v1.x && git push origin --tags`.
+
+## Updating Project Version
+
+Edit `src/Version.ts`:
+
+- `versionNumber`: new version string (e.g. `"v1.17"`)
+- `versionDescription`: short description of the release feature
+
+Commit message convention: `bump version to 1.17 - <description>`
 
 ## Viewing Sentry Logs
 
